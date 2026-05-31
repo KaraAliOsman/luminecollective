@@ -47,6 +47,30 @@ npm run deploy
 5. Keep SSL/TLS mode as `Full` or `Full (strict)`.
 6. Enable Always Use HTTPS.
 
+## Important: Workers, Not Pages
+
+This repository is configured for Cloudflare Workers via OpenNext. Do not create
+a classic Cloudflare Pages project for this repo.
+
+If your build log says:
+
+```txt
+Did you mean to use wrangler.toml to configure Pages?
+pages_build_output_dir
+```
+
+then the project was imported as **Pages**. Create/deploy it as a **Worker**
+instead, or deploy from your machine with:
+
+```bash
+npx wrangler login
+npm run deploy
+```
+
+The `.npmrc` file intentionally sets `legacy-peer-deps=true` because
+`next-sanity@10.1.4` declares a Next 15 peer dependency while this project uses
+Next 16. The app builds correctly with this dependency resolution.
+
 ## Required Variables
 
 Set public values in the Cloudflare dashboard or `wrangler.jsonc`:
