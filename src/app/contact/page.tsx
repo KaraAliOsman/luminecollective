@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { visuals } from "@/data/placeholders";
-import { getSiteSettings } from "@/lib/cms/content";
+import { getPageByKey, getSiteSettings } from "@/lib/cms/content";
 import { socialLinks } from "@/lib/constants/social";
 import { createMetadata } from "@/lib/seo/config";
 import { contactPageJsonLd } from "@/lib/seo/jsonLd";
@@ -15,27 +15,39 @@ import { contactPageJsonLd } from "@/lib/seo/jsonLd";
 const description =
   "Neem contact op met Stichting Lumina Collective voor vragen, deelname, vrijwilligerswerk of samenwerking.";
 
-export const metadata: Metadata = createMetadata({
-  title: "Contact",
-  description,
-  path: "/contact",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("contact");
+
+  return createMetadata({
+    title: page?.seoTitle || "Contact",
+    description: page?.metaDescription || description,
+    path: "/contact",
+  });
+}
 
 export default async function ContactPage() {
-  const settings = await getSiteSettings();
+  const [page, settings] = await Promise.all([
+    getPageByKey("contact"),
+    getSiteSettings(),
+  ]);
+  const pageDescription = page?.metaDescription || description;
   const contactEmail = settings.contactEmail;
   const socials = settings.socialLinks.length ? settings.socialLinks : socialLinks;
 
   return (
     <>
-      <StructuredData data={contactPageJsonLd({ description })} />
+      <StructuredData data={contactPageJsonLd({ description: pageDescription })} />
 
       <PageHero
-        body="Heb je een vraag, idee of voorstel voor samenwerking? We horen graag van je."
+        body={
+          page?.heroText ||
+          "Heb je een vraag, idee of voorstel voor samenwerking? We horen graag van je."
+        }
         eyebrow="Contact"
+        image={page?.heroImage}
         primary={{ label: "Stuur een bericht", href: "#contact-form" }}
         secondary={{ label: "Doe mee", href: "/doe-mee" }}
-        title="Een helder begin voor contact en samenwerking."
+        title={page?.heroTitle || "Een helder begin voor contact en samenwerking."}
         visual={visuals.communityTable}
       />
 

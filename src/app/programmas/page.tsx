@@ -8,21 +8,29 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { visuals } from "@/data/placeholders";
-import { getPrograms } from "@/lib/cms/content";
+import { getPageByKey, getPrograms } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 const description =
   "Bekijk de programma's en activiteiten van Stichting Lumina Collective rond ontmoeting, groei, cultuur en participatie.";
 
-export const metadata: Metadata = createMetadata({
-  title: "Programma's",
-  description,
-  path: "/programmas",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("programmas");
+
+  return createMetadata({
+    title: page?.seoTitle || "Programma's",
+    description: page?.metaDescription || description,
+    path: "/programmas",
+  });
+}
 
 export default async function ProgrammasPage() {
-  const programs = await getPrograms();
+  const [page, programs] = await Promise.all([
+    getPageByKey("programmas"),
+    getPrograms(),
+  ]);
+  const pageDescription = page?.metaDescription || description;
 
   return (
     <>
@@ -30,15 +38,19 @@ export default async function ProgrammasPage() {
         data={webPageJsonLd({
           path: "/programmas",
           title: "Programma's | Stichting Lumina Collective",
-          description,
+          description: pageDescription,
         })}
       />
       <PageHero
-        body="Onze programma's brengen vrouwen samen rond ontmoeting, persoonlijke ontwikkeling, cultuur, ondersteuning en maatschappelijke betrokkenheid."
+        body={
+          page?.heroText ||
+          "Onze programma's brengen vrouwen samen rond ontmoeting, persoonlijke ontwikkeling, cultuur, ondersteuning en maatschappelijke betrokkenheid."
+        }
         eyebrow="Programma's"
+        image={page?.heroImage}
         primary={{ label: "Bekijk agenda", href: "/agenda" }}
         secondary={{ label: "Doe mee", href: "/doe-mee" }}
-        title="Programma's die vrouwen samenbrengen en versterken."
+        title={page?.heroTitle || "Programma's die vrouwen samenbrengen en versterken."}
         visual={visuals.warmWorkshop}
       />
 

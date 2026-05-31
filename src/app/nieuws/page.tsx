@@ -1,22 +1,28 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Container } from "@/components/ui/Container";
+import { CMSImage } from "@/components/ui/CMSImage";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { TextLink } from "@/components/ui/TextLink";
-import { VisualPlaceholder } from "@/components/ui/VisualPlaceholder";
-import { visuals } from "@/data/placeholders";
+import { getPageByKey, getPosts } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 
-export const metadata: Metadata = createMetadata({
-  title: "Nieuws & verhalen",
-  description:
-    "Artikelen, interviews, terugblikken en kennis van Stichting Lumina Collective.",
-  path: "/nieuws",
-});
+const fallbackDescription =
+  "Artikelen, interviews, terugblikken en kennis van Stichting Lumina Collective.";
 
-// Category labels
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("nieuws");
+
+  return createMetadata({
+    title: page?.seoTitle || "Nieuws & verhalen",
+    description: page?.metaDescription || fallbackDescription,
+    path: "/nieuws",
+  });
+}
+
 const categoryLabels: Record<string, string> = {
   nieuws: "Nieuws",
   verhalen: "Verhalen",
@@ -26,39 +32,6 @@ const categoryLabels: Record<string, string> = {
   persbericht: "Persbericht",
 };
 
-const previewPosts = [
-  {
-    slug: "eerste-ontmoeting-lumina",
-    category: "nieuws",
-    publishedAt: "2025-01-01",
-    title: "Voorbeeldartikel: eerste bericht van Lumina Collective",
-    excerpt:
-      "Dit voorbeeld toont hoe nieuws eruitziet. Vervang dit met een echt artikel zodra de organisatie klaar is voor publicatie.",
-    visual: visuals.communityTable,
-    isPreview: true,
-  },
-  {
-    slug: "over-verbinding-en-groei",
-    category: "verhalen",
-    publishedAt: "2025-01-01",
-    title: "Voorbeeldartikel: over verbinding en groei",
-    excerpt:
-      "Verhalen van deelneemsters worden hier pas gedeeld zodra inhoud en toestemming bevestigd zijn.",
-    visual: visuals.conversation,
-    isPreview: true,
-  },
-  {
-    slug: "interview-met-een-vrijwilligster",
-    category: "interviews",
-    publishedAt: "2025-01-01",
-    title: "Voorbeeldartikel: interview met een vrijwilligster",
-    excerpt:
-      "Interviews volgen zodra vrijwilligers toestemming hebben gegeven en de tekst is goedgekeurd.",
-    visual: visuals.presentation,
-    isPreview: true,
-  },
-];
-
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("nl-NL", {
     day: "numeric",
@@ -67,26 +40,25 @@ function formatDate(iso: string) {
   });
 }
 
-export default function NieuwsPage() {
-  const [featured, ...rest] = previewPosts;
+export default async function NieuwsPage() {
+  const [page, posts] = await Promise.all([getPageByKey("nieuws"), getPosts()]);
+  const [featured, ...rest] = posts;
 
   return (
     <>
-      {/* Hero */}
       <section className="border-b border-deep-aubergine/10 py-16 md:py-20">
         <Container>
           <Eyebrow>Nieuws &amp; verhalen</Eyebrow>
           <h1 className="mt-4 max-w-2xl font-serif text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] text-deep-aubergine">
-            Verhalen, kennis en nieuws van de gemeenschap.
+            {page?.heroTitle || "Verhalen, kennis en nieuws van de gemeenschap."}
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-ink-brown/75">
-            We delen artikelen over thema&#39;s die onze gemeenschap raken:
-            ontmoeting, groei, cultuur en participatie.
+            {page?.heroText ||
+              "We delen artikelen over thema's die onze gemeenschap raken: ontmoeting, groei, cultuur en participatie."}
           </p>
         </Container>
       </section>
 
-      {/* Featured article */}
       {featured && (
         <section className="py-16 md:py-20">
           <Container>
@@ -95,32 +67,34 @@ export default function NieuwsPage() {
               className="mt-8 grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-start"
               data-preview={featured.isPreview}
             >
-              <VisualPlaceholder className="min-h-[24rem]" visual={featured.visual}>
-                {categoryLabels[featured.category] ?? featured.category}
-              </VisualPlaceholder>
+              <Link href={`/nieuws/${featured.slug}`} tabIndex={-1} aria-hidden="true">
+                <CMSImage
+                  className="min-h-[24rem]"
+                  fallback={featured.visual}
+                  image={featured.image}
+                  caption={categoryLabels[featured.category] ?? featured.category}
+                />
+              </Link>
               <div className="space-y-4 md:pt-4">
                 <p className="text-sm font-semibold uppercase tracking-[0.1em] text-warm-taupe">
                   {formatDate(featured.publishedAt)}
                 </p>
                 <Heading size="md">
-                  <a
+                  <Link
                     href={`/nieuws/${featured.slug}`}
                     className="transition hover:text-wine-plum"
                   >
                     {featured.title}
-                  </a>
+                  </Link>
                 </Heading>
                 <p className="leading-7 text-ink-brown/75">{featured.excerpt}</p>
-                <TextLink href={`/nieuws/${featured.slug}`}>
-                  Lees verder
-                </TextLink>
+                <TextLink href={`/nieuws/${featured.slug}`}>Lees verder</TextLink>
               </div>
             </article>
           </Container>
         </section>
       )}
 
-      {/* Article grid */}
       {rest.length > 0 && (
         <section className="bg-warm-white py-16 md:py-20">
           <Container>
@@ -135,20 +109,25 @@ export default function NieuwsPage() {
                   className="grid gap-4"
                   data-preview={post.isPreview}
                 >
-                  <VisualPlaceholder className="min-h-[16rem]" visual={post.visual}>
-                    {categoryLabels[post.category] ?? post.category}
-                  </VisualPlaceholder>
+                  <Link href={`/nieuws/${post.slug}`} tabIndex={-1} aria-hidden="true">
+                    <CMSImage
+                      className="min-h-[16rem]"
+                      fallback={post.visual}
+                      image={post.image}
+                      caption={categoryLabels[post.category] ?? post.category}
+                    />
+                  </Link>
                   <div className="space-y-2">
                     <p className="text-sm font-semibold uppercase tracking-[0.1em] text-warm-taupe">
                       {formatDate(post.publishedAt)}
                     </p>
                     <h2 className="font-serif text-2xl leading-tight text-deep-aubergine">
-                      <a
+                      <Link
                         href={`/nieuws/${post.slug}`}
                         className="transition hover:text-wine-plum"
                       >
                         {post.title}
-                      </a>
+                      </Link>
                     </h2>
                     <p className="leading-7 text-ink-brown/72">{post.excerpt}</p>
                     <TextLink href={`/nieuws/${post.slug}`}>Lees verder</TextLink>
@@ -160,7 +139,6 @@ export default function NieuwsPage() {
         </section>
       )}
 
-      {/* Newsletter CTA */}
       <section className="py-16 md:py-20">
         <Container className="max-w-2xl text-center">
           <Eyebrow>Blijf op de hoogte</Eyebrow>
@@ -171,12 +149,12 @@ export default function NieuwsPage() {
             Schrijf je in voor updates over activiteiten, verhalen en nieuws van
             Lumina Collective.
           </p>
-          <a
+          <Link
             href="/contact"
             className="mt-6 inline-flex min-h-11 items-center border border-deep-aubergine bg-deep-aubergine px-5 py-3 text-sm font-semibold text-warm-white transition hover:bg-wine-plum"
           >
             Updates ontvangen
-          </a>
+          </Link>
         </Container>
       </section>
 

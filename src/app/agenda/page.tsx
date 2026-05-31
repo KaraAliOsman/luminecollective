@@ -10,21 +10,29 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { visuals } from "@/data/placeholders";
-import { getUpcomingEvents } from "@/lib/cms/content";
+import { getPageByKey, getUpcomingEvents } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 const description =
   "Bekijk komende activiteiten en bijeenkomsten van Stichting Lumina Collective.";
 
-export const metadata: Metadata = createMetadata({
-  title: "Agenda",
-  description,
-  path: "/agenda",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("agenda");
+
+  return createMetadata({
+    title: page?.seoTitle || "Agenda",
+    description: page?.metaDescription || description,
+    path: "/agenda",
+  });
+}
 
 export default async function AgendaPage() {
-  const events = await getUpcomingEvents();
+  const [page, events] = await Promise.all([
+    getPageByKey("agenda"),
+    getUpcomingEvents(),
+  ]);
+  const pageDescription = page?.metaDescription || description;
 
   return (
     <>
@@ -32,15 +40,19 @@ export default async function AgendaPage() {
         data={webPageJsonLd({
           path: "/agenda",
           title: "Agenda | Stichting Lumina Collective",
-          description,
+          description: pageDescription,
         })}
       />
       <PageHero
-        body="Hier delen we komende bijeenkomsten, workshops en momenten waarop vrouwen elkaar kunnen ontmoeten, leren en deelnemen."
+        body={
+          page?.heroText ||
+          "Hier delen we komende bijeenkomsten, workshops en momenten waarop vrouwen elkaar kunnen ontmoeten, leren en deelnemen."
+        }
         eyebrow="Agenda"
+        image={page?.heroImage}
         primary={{ label: "Updates ontvangen", href: "/contact" }}
         secondary={{ label: "Doe mee", href: "/doe-mee" }}
-        title="Activiteiten met aandacht voor ontmoeting en groei."
+        title={page?.heroTitle || "Activiteiten met aandacht voor ontmoeting en groei."}
         visual={visuals.culturalMoment}
       />
 

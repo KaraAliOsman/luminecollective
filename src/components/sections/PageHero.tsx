@@ -1,16 +1,18 @@
 import { Button } from "@/components/ui/Button";
+import { CMSImage } from "@/components/ui/CMSImage";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { Prose } from "@/components/ui/Prose";
-import { VisualPlaceholder } from "@/components/ui/VisualPlaceholder";
 import type { VisualPlaceholder as VisualPlaceholderType } from "@/data/placeholders";
+import type { SanityImageLike } from "@/types/cms";
 
 type PageHeroProps = {
   eyebrow: string;
   title: string;
   body: string;
   visual: VisualPlaceholderType;
+  image?: SanityImageLike;
   primary?: {
     label: string;
     href: string;
@@ -26,6 +28,7 @@ export function PageHero({
   title,
   body,
   visual,
+  image,
   primary,
   secondary,
 }: PageHeroProps) {
@@ -51,7 +54,12 @@ export function PageHero({
             </div>
           )}
         </div>
-        <VisualPlaceholder className="min-h-[28rem]" priority visual={visual} />
+        <CMSImage
+          className="min-h-[28rem]"
+          fallback={visual}
+          image={image}
+          priority
+        />
       </Container>
     </section>
   );

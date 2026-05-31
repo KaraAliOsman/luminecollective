@@ -9,6 +9,7 @@ import { Heading } from "@/components/ui/Heading";
 import { Prose } from "@/components/ui/Prose";
 import { VisualPlaceholder } from "@/components/ui/VisualPlaceholder";
 import { visuals } from "@/data/placeholders";
+import { getPageByKey } from "@/lib/cms/content";
 import { values } from "@/data/values";
 import { createMetadata } from "@/lib/seo/config";
 import { webPageJsonLd } from "@/lib/seo/jsonLd";
@@ -16,28 +17,39 @@ import { webPageJsonLd } from "@/lib/seo/jsonLd";
 const description =
   "Leer Stichting Lumina Collective kennen: een warme gemeenschap voor vrouwen rond ontmoeting, groei, cultuur en participatie.";
 
-export const metadata: Metadata = createMetadata({
-  title: "Over ons",
-  description,
-  path: "/over-ons",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("over-ons");
 
-export default function OverOnsPage() {
+  return createMetadata({
+    title: page?.seoTitle || "Over ons",
+    description: page?.metaDescription || description,
+    path: "/over-ons",
+  });
+}
+
+export default async function OverOnsPage() {
+  const page = await getPageByKey("over-ons");
+  const pageDescription = page?.metaDescription || description;
+
   return (
     <>
       <StructuredData
         data={webPageJsonLd({
           path: "/over-ons",
           title: "Over ons | Stichting Lumina Collective",
-          description,
+          description: pageDescription,
         })}
       />
       <PageHero
-        body="Stichting Lumina Collective is ontstaan vanuit de behoefte aan een warme, zichtbare en toegankelijke plek waar vrouwen elkaar kunnen ontmoeten, ervaringen delen en nieuwe stappen zetten."
+        body={
+          page?.heroText ||
+          "Stichting Lumina Collective is ontstaan vanuit de behoefte aan een warme, zichtbare en toegankelijke plek waar vrouwen elkaar kunnen ontmoeten, ervaringen delen en nieuwe stappen zetten."
+        }
         eyebrow="Over ons"
+        image={page?.heroImage}
         primary={{ label: "Doe mee", href: "/doe-mee" }}
         secondary={{ label: "Neem contact op", href: "/contact" }}
-        title="Wij zijn Lumina Collective."
+        title={page?.heroTitle || "Wij zijn Lumina Collective."}
         visual={visuals.supportCircle}
       />
 

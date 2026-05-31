@@ -4,18 +4,18 @@ const required = "Dit veld is verplicht.";
 
 export const teamMemberSchema = defineType({
   name: "teamMember",
-  title: "Team Member",
+  title: "Teamlid",
   type: "document",
   fields: [
     defineField({
       name: "name",
-      title: "Name",
+      title: "Naam",
       type: "string",
       validation: (Rule) => Rule.required().error(required),
     }),
     defineField({
       name: "role",
-      title: "Role",
+      title: "Rol",
       type: "string",
       validation: (Rule) => Rule.required().error(required),
     }),
@@ -28,34 +28,34 @@ export const teamMemberSchema = defineType({
     }),
     defineField({
       name: "portrait",
-      title: "Portrait",
+      title: "Portret",
       type: "image",
       options: { hotspot: true },
       fields: [
         defineField({
           name: "alt",
-          title: "Alt text",
+          title: "Alt-tekst",
           type: "string",
-          validation: (Rule) => Rule.required().error("Alt text is nodig."),
+          validation: (Rule) => Rule.required().error("Alt-tekst is nodig."),
         }),
       ],
     }),
     defineField({
       name: "email",
-      title: "Email optional",
+      title: "E-mail optioneel",
       type: "email",
       description: "Alleen invullen als dit openbaar gedeeld mag worden.",
     }),
     defineField({
       name: "order",
-      title: "Order",
+      title: "Volgorde",
       type: "number",
       initialValue: 99,
       validation: (Rule) => Rule.integer().error("Gebruik een heel getal."),
     }),
     defineField({
       name: "visible",
-      title: "Visible",
+      title: "Zichtbaar",
       type: "boolean",
       initialValue: true,
       description: "Alleen zichtbare teamleden worden later getoond.",
@@ -65,7 +65,7 @@ export const teamMemberSchema = defineType({
     select: { title: "name", subtitle: "role", media: "portrait" },
   },
   orderings: [
-    { title: "Order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
+    { title: "Volgorde", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
   ],
 });
 
@@ -76,7 +76,7 @@ export const partnerSchema = defineType({
   fields: [
     defineField({
       name: "name",
-      title: "Name",
+      title: "Naam",
       type: "string",
       validation: (Rule) => Rule.required().error(required),
     }),
@@ -88,9 +88,9 @@ export const partnerSchema = defineType({
       fields: [
         defineField({
           name: "alt",
-          title: "Alt text",
+          title: "Alt-tekst",
           type: "string",
-          validation: (Rule) => Rule.required().error("Alt text is nodig."),
+          validation: (Rule) => Rule.required().error("Alt-tekst is nodig."),
         }),
       ],
     }),
@@ -102,19 +102,19 @@ export const partnerSchema = defineType({
     }),
     defineField({
       name: "description",
-      title: "Description",
+      title: "Beschrijving",
       type: "text",
       rows: 3,
     }),
     defineField({
       name: "visible",
-      title: "Visible",
+      title: "Zichtbaar",
       type: "boolean",
       initialValue: true,
     }),
     defineField({
       name: "order",
-      title: "Order",
+      title: "Volgorde",
       type: "number",
       initialValue: 99,
       validation: (Rule) => Rule.integer().error("Gebruik een heel getal."),
@@ -124,7 +124,7 @@ export const partnerSchema = defineType({
     select: { title: "name", subtitle: "website", media: "logo" },
   },
   orderings: [
-    { title: "Order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
+    { title: "Volgorde", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
   ],
 });
 
@@ -135,7 +135,7 @@ export const testimonialSchema = defineType({
   fields: [
     defineField({
       name: "quote",
-      title: "Quote",
+      title: "Citaat",
       type: "text",
       rows: 4,
       validation: (Rule) =>
@@ -143,42 +143,42 @@ export const testimonialSchema = defineType({
     }),
     defineField({
       name: "name",
-      title: "Name",
+      title: "Naam",
       type: "string",
-      description: "Laat leeg als anonymous aan staat.",
+      description: "Laat leeg als anoniem aan staat.",
       hidden: ({ document }) => Boolean(document?.anonymous),
     }),
     defineField({
       name: "roleOrContext",
-      title: "Role or context",
+      title: "Rol of context",
       type: "string",
       description: "Bijvoorbeeld deelneemster, vrijwilliger of partner.",
     }),
     defineField({
       name: "image",
-      title: "Image optional",
+      title: "Afbeelding optioneel",
       type: "image",
       options: { hotspot: true },
       fields: [
-        defineField({ name: "alt", title: "Alt text", type: "string" }),
+        defineField({ name: "alt", title: "Alt-tekst", type: "string" }),
       ],
     }),
     defineField({
       name: "anonymous",
-      title: "Anonymous",
+      title: "Anoniem",
       type: "boolean",
       initialValue: false,
     }),
     defineField({
       name: "approvedForPublication",
-      title: "Approved for publication",
+      title: "Goedgekeurd voor publicatie",
       type: "boolean",
       initialValue: false,
       description: "Alleen goedgekeurde testimonials worden later getoond.",
     }),
     defineField({
       name: "order",
-      title: "Order",
+      title: "Volgorde",
       type: "number",
       initialValue: 99,
       validation: (Rule) => Rule.integer().error("Gebruik een heel getal."),
@@ -195,12 +195,12 @@ export const testimonialSchema = defineType({
       const text = String(quote || "Testimonial");
       return {
         title: text.length > 60 ? `${text.slice(0, 60)}...` : text,
-        subtitle: anonymous ? "Anonymous" : name || "Geen naam",
+        subtitle: anonymous ? "Anoniem" : name || "Geen naam",
         media,
       };
     },
   },
   orderings: [
-    { title: "Order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
+    { title: "Volgorde", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
   ],
 });

@@ -3,6 +3,7 @@ import { eventSchema } from "./event";
 import { galleryItemSchema } from "./galleryItem";
 import { pageSchema } from "./page";
 import { partnerSchema, teamMemberSchema, testimonialSchema } from "./people";
+import { postSchema } from "./post";
 import { programSchema } from "./program";
 
 export const schemaTypes = [
@@ -10,6 +11,7 @@ export const schemaTypes = [
   pageSchema,
   programSchema,
   eventSchema,
+  postSchema,
   galleryItemSchema,
   teamMemberSchema,
   partnerSchema,

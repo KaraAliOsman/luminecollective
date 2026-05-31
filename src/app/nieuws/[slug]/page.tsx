@@ -1,14 +1,21 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/sections/CtaBand";
+import { CMSImage } from "@/components/ui/CMSImage";
 import { Container } from "@/components/ui/Container";
+import { PortableText } from "@/components/ui/PortableText";
 import { Prose } from "@/components/ui/Prose";
-import { VisualPlaceholder } from "@/components/ui/VisualPlaceholder";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { visuals } from "@/data/placeholders";
+import {
+  getPostBySlug,
+  getPostSlugs,
+  getRelatedPosts,
+} from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 import { blogPostingJsonLd, breadcrumbJsonLd } from "@/lib/seo/jsonLd";
+import type { SanityBlock } from "@/types/sanity";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -21,61 +28,18 @@ const categoryLabels: Record<string, string> = {
   persbericht: "Persbericht",
 };
 
-const previewPosts = [
-  {
-    slug: "eerste-ontmoeting-lumina",
-    category: "nieuws",
-    publishedAt: "2025-01-01",
-    author: "Stichting Lumina Collective",
-    title: "Voorbeeldartikel: eerste bericht van Lumina Collective",
-    excerpt:
-      "Dit voorbeeld toont hoe nieuws eruitziet. Vervang dit met een echt artikel zodra de organisatie klaar is voor publicatie.",
-    body: "Dit voorbeeldartikel laat de leeservaring, typografie en structuur zien. Het bevat geen echte nieuwsfeiten en moet worden vervangen door inhoud die door Stichting Lumina Collective is goedgekeurd.\n\nVia Sanity Studio kunnen nieuwe artikelen worden aangemaakt, gecategoriseerd en gepubliceerd zonder technische kennis.",
-    visual: visuals.communityTable,
-    isPreview: true,
-  },
-  {
-    slug: "over-verbinding-en-groei",
-    category: "verhalen",
-    publishedAt: "2025-01-01",
-    author: "Stichting Lumina Collective",
-    title: "Voorbeeldartikel: over verbinding en groei",
-    excerpt:
-      "Verhalen van deelneemsters worden hier pas gedeeld zodra inhoud en toestemming bevestigd zijn.",
-    body: "Dit voorbeeld laat zien hoe een persoonlijk verhaal kan worden opgebouwd. Echte verhalen worden pas gepubliceerd na toestemming van de betrokken personen en redactionele controle.",
-    visual: visuals.conversation,
-    isPreview: true,
-  },
-  {
-    slug: "interview-met-een-vrijwilligster",
-    category: "interviews",
-    publishedAt: "2025-01-01",
-    author: "Stichting Lumina Collective",
-    title: "Voorbeeldartikel: interview met een vrijwilligster",
-    excerpt:
-      "Interviews volgen zodra vrijwilligers toestemming hebben gegeven en de tekst is goedgekeurd.",
-    body: "Dit voorbeeld toont hoe een interviewpagina eruit kan zien. Publiceer hier alleen echte interviews nadat de tekst, foto en toestemming zorgvuldig zijn bevestigd.",
-    visual: visuals.presentation,
-    isPreview: true,
-  },
-];
-
 export async function generateStaticParams() {
-  return previewPosts.map((p) => ({ slug: p.slug }));
-}
-
-function findPost(slug: string) {
-  return previewPosts.find((p) => p.slug === slug);
+  return getPostSlugs();
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = findPost(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
 
   return createMetadata({
-    title: post.title,
-    description: post.excerpt,
+    title: post.seoTitle || post.title,
+    description: post.metaDescription || post.excerpt,
     path: `/nieuws/${slug}`,
   });
 }
@@ -90,7 +54,10 @@ function formatDate(iso: string) {
 
 export default async function NieuwsDetailPage({ params }: Props) {
   const { slug } = await params;
-  const post = findPost(slug);
+  const [post, relatedPosts] = await Promise.all([
+    getPostBySlug(slug),
+    getRelatedPosts(slug),
+  ]);
 
   if (!post) notFound();
 
@@ -112,7 +79,6 @@ export default async function NieuwsDetailPage({ params }: Props) {
       />
       <StructuredData data={breadcrumbJsonLd(breadcrumbs)} />
 
-      {/* Breadcrumbs */}
       <nav
         aria-label="Breadcrumb"
         className="border-b border-deep-aubergine/8 py-3"
@@ -123,12 +89,12 @@ export default async function NieuwsDetailPage({ params }: Props) {
               <li key={crumb.path} className="flex items-center gap-2">
                 {i > 0 && <span aria-hidden="true">/</span>}
                 {i < breadcrumbs.length - 1 ? (
-                  <a
+                  <Link
                     href={crumb.path}
                     className="transition hover:text-deep-aubergine"
                   >
                     {crumb.name}
-                  </a>
+                  </Link>
                 ) : (
                   <span className="text-ink-brown/90" aria-current="page">
                     {crumb.name}
@@ -140,7 +106,6 @@ export default async function NieuwsDetailPage({ params }: Props) {
         </Container>
       </nav>
 
-      {/* Article header */}
       <article>
         <header className="py-14 md:py-20">
           <Container className="max-w-3xl">
@@ -152,26 +117,30 @@ export default async function NieuwsDetailPage({ params }: Props) {
             </h1>
             <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-warm-taupe">
               <span>{formatDate(post.publishedAt)}</span>
-              <span aria-hidden="true">·</span>
+              <span aria-hidden="true">/</span>
               <span>{post.author}</span>
             </div>
           </Container>
         </header>
 
-        <VisualPlaceholder
+        <CMSImage
           className="mx-auto mb-12 min-h-[28rem] max-w-5xl"
-          visual={post.visual}
+          fallback={post.visual}
+          image={post.image}
+          sizes="(min-width: 1024px) 960px, 100vw"
         />
 
-        {/* Body */}
         <Container className="max-w-3xl pb-16 md:pb-24">
-          <Prose>
-            {post.body.split("\n\n").map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
-          </Prose>
+          {post.body?.length ? (
+            <PortableText value={post.body as SanityBlock[]} />
+          ) : (
+            <Prose>
+              {(post.bodyText || post.excerpt).split("\n\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </Prose>
+          )}
 
-          {/* Placeholder notice */}
           {post.isPreview && (
             <div
               className="mt-10 border-l-2 border-muted-gold/50 bg-lumina-ivory px-5 py-4 text-sm text-ink-brown/65"
@@ -184,6 +153,40 @@ export default async function NieuwsDetailPage({ params }: Props) {
           )}
         </Container>
       </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="bg-warm-white py-16 md:py-20">
+          <Container>
+            <div className="mb-10 max-w-2xl space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-muted-gold">
+                Verder lezen
+              </p>
+              <h2 className="font-serif text-4xl leading-tight text-deep-aubergine">
+                Meer verhalen uit de gemeenschap.
+              </h2>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {relatedPosts.map((related) => (
+                <article key={related.slug} className="grid gap-4">
+                  <CMSImage
+                    className="aspect-[4/3] min-h-0"
+                    fallback={related.visual}
+                    image={related.image}
+                  />
+                  <h3 className="font-serif text-2xl leading-tight text-deep-aubergine">
+                    <Link
+                      href={`/nieuws/${related.slug}`}
+                      className="transition hover:text-wine-plum"
+                    >
+                      {related.title}
+                    </Link>
+                  </h3>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <CtaBand
         body="Ben jij actief in de gemeenschap en wil je je verhaal delen? We horen graag van je."

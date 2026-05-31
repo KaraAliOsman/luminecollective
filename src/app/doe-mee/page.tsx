@@ -8,14 +8,21 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
 import { VisualPlaceholder } from "@/components/ui/VisualPlaceholder";
 import { visuals } from "@/data/placeholders";
+import { getPageByKey } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 
-export const metadata: Metadata = createMetadata({
-  title: "Doe mee",
-  description:
-    "Ontdek hoe je kunt deelnemen, vrijwilliger worden, partner worden, doneren of een verhaal delen met Lumina Collective.",
-  path: "/doe-mee",
-});
+const description =
+  "Ontdek hoe je kunt deelnemen, vrijwilliger worden, partner worden, doneren of een verhaal delen met Lumina Collective.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("doe-mee");
+
+  return createMetadata({
+    title: page?.seoTitle || "Doe mee",
+    description: page?.metaDescription || description,
+    path: "/doe-mee",
+  });
+}
 
 const options = [
   {
@@ -40,15 +47,21 @@ const options = [
   },
 ];
 
-export default function DoeMeePage() {
+export default async function DoeMeePage() {
+  const page = await getPageByKey("doe-mee");
+
   return (
     <>
       <PageHero
-        body="Meedoen hoeft niet groot te beginnen. Je kunt aansluiten als deelnemer, vrijwilliger, partner, donateur of door een verhaal te delen."
+        body={
+          page?.heroText ||
+          "Meedoen hoeft niet groot te beginnen. Je kunt aansluiten als deelnemer, vrijwilliger, partner, donateur of door een verhaal te delen."
+        }
         eyebrow="Doe mee"
+        image={page?.heroImage}
         primary={{ label: "Neem contact op", href: "/contact" }}
         secondary={{ label: "Bekijk programma's", href: "/programmas" }}
-        title="Jouw betrokkenheid maakt ruimte voor meer vrouwen."
+        title={page?.heroTitle || "Jouw betrokkenheid maakt ruimte voor meer vrouwen."}
         visual={visuals.participation}
       />
 

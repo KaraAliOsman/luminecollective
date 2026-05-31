@@ -26,6 +26,36 @@ export type SiteSettings = {
   isFallback: boolean;
 };
 
+export type PageDisplay = {
+  title: string;
+  slug: string;
+  pageKey: string;
+  heroTitle: string;
+  heroText: string;
+  heroImage?: SanityImageLike;
+  body?: unknown[];
+  seoTitle?: string;
+  metaDescription?: string;
+  isFallback: boolean;
+};
+
+export type PostDisplay = {
+  title: string;
+  slug: string;
+  category: string;
+  publishedAt: string;
+  author: string;
+  excerpt: string;
+  image?: SanityImageLike;
+  body?: unknown[];
+  bodyText?: string;
+  visual: VisualPlaceholder;
+  seoTitle?: string;
+  metaDescription?: string;
+  isPreview: boolean;
+  isFallback: boolean;
+};
+
 export type ProgramDisplay = {
   title: string;
   slug: string;

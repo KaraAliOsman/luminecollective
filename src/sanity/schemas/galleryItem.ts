@@ -4,61 +4,61 @@ const required = "Dit veld is verplicht.";
 
 export const galleryItemSchema = defineType({
   name: "galleryItem",
-  title: "Gallery Item",
+  title: "Foto",
   type: "document",
   fields: [
     defineField({
       name: "image",
-      title: "Image",
+      title: "Foto",
       type: "image",
       options: { hotspot: true },
       validation: (Rule) => Rule.required().error(required),
     }),
     defineField({
       name: "alt",
-      title: "Alt",
+      title: "Alt-tekst",
       type: "string",
       description: "Beschrijf kort wat zichtbaar is op de foto.",
-      validation: (Rule) => Rule.required().error("Alt text is verplicht."),
+      validation: (Rule) => Rule.required().error("Alt-tekst is verplicht."),
     }),
-    defineField({ name: "caption", title: "Caption", type: "string" }),
+    defineField({ name: "caption", title: "Onderschrift", type: "string" }),
     defineField({
       name: "event",
-      title: "Event",
+      title: "Activiteit",
       type: "reference",
       to: [{ type: "event" }],
       description: "Koppel aan een event als dit relevant is.",
     }),
     defineField({
       name: "program",
-      title: "Program",
+      title: "Programma",
       type: "reference",
       to: [{ type: "program" }],
       description: "Koppel aan een programma als dit relevant is.",
     }),
-    defineField({ name: "date", title: "Date", type: "date" }),
+    defineField({ name: "date", title: "Datum", type: "date" }),
     defineField({
       name: "credit",
-      title: "Credit",
+      title: "Fotocredit",
       type: "string",
       description: "Fotograaf of bron, indien nodig.",
     }),
     defineField({
       name: "isPlaceholder",
-      title: "Is placeholder",
+      title: "Tijdelijke foto",
       type: "boolean",
       initialValue: false,
       description: "Aanvinken als dit beeld later vervangen moet worden.",
     }),
     defineField({
       name: "visibility",
-      title: "Visibility",
+      title: "Zichtbaarheid",
       type: "string",
       options: {
         list: [
-          { title: "Public", value: "public" },
-          { title: "Private", value: "private" },
-          { title: "Internal", value: "internal" },
+          { title: "Publiek", value: "public" },
+          { title: "Prive", value: "private" },
+          { title: "Intern", value: "internal" },
         ],
         layout: "radio",
       },
@@ -68,7 +68,7 @@ export const galleryItemSchema = defineType({
     }),
     defineField({
       name: "consentConfirmed",
-      title: "Consent confirmed",
+      title: "Toestemming bevestigd",
       type: "boolean",
       initialValue: false,
       description: "Aanvinken als toestemming voor publicatie bevestigd is.",
@@ -85,8 +85,8 @@ export const galleryItemSchema = defineType({
     select: { title: "alt", subtitle: "visibility", media: "image" },
     prepare({ title, subtitle, media }) {
       return {
-        title: title || "Gallery item",
-        subtitle: subtitle === "public" ? "Public" : "Niet voor frontend",
+        title: title || "Foto",
+        subtitle: subtitle === "public" ? "Publiek" : "Niet voor website",
         media,
       };
     },

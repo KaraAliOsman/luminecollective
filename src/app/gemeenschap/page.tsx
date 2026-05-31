@@ -5,15 +5,25 @@ import { CMSImage } from "@/components/ui/CMSImage";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
-import { getApprovedTestimonials, getPublicGallery } from "@/lib/cms/content";
+import {
+  getApprovedTestimonials,
+  getPageByKey,
+  getPublicGallery,
+} from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 
-export const metadata: Metadata = createMetadata({
-  title: "Gemeenschap",
-  description:
-    "Een blik op de momenten, ontmoetingen en verhalen die de gemeenschap van Lumina Collective vormen.",
-  path: "/gemeenschap",
-});
+const description =
+  "Een blik op de momenten, ontmoetingen en verhalen die de gemeenschap van Lumina Collective vormen.";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("gemeenschap");
+
+  return createMetadata({
+    title: page?.seoTitle || "Gemeenschap",
+    description: page?.metaDescription || description,
+    path: "/gemeenschap",
+  });
+}
 
 function itemSize(index: number) {
   if (index === 0 || index === 7) return "large";
@@ -22,7 +32,8 @@ function itemSize(index: number) {
 }
 
 export default async function GemeenschapPage() {
-  const [galleryItems, testimonials] = await Promise.all([
+  const [page, galleryItems, testimonials] = await Promise.all([
+    getPageByKey("gemeenschap"),
     getPublicGallery(),
     getApprovedTestimonials(),
   ]);
@@ -35,12 +46,12 @@ export default async function GemeenschapPage() {
             <div>
               <Eyebrow>Gemeenschap</Eyebrow>
               <h1 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] text-deep-aubergine">
-                Onze gemeenschap in beeld.
+                {page?.heroTitle || "Onze gemeenschap in beeld."}
               </h1>
             </div>
             <p className="text-lg leading-8 text-ink-brown/75 md:max-w-xl md:pb-2">
-              Een blik op de momenten, ontmoetingen en verhalen die onze
-              gemeenschap vormen.
+              {page?.heroText ||
+                "Een blik op de momenten, ontmoetingen en verhalen die onze gemeenschap vormen."}
             </p>
           </div>
         </Container>

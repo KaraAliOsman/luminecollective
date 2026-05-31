@@ -4,19 +4,19 @@ const required = "Dit veld is verplicht.";
 
 export const globalSettingsSchema = defineType({
   name: "globalSettings",
-  title: "Global Settings",
+  title: "Site instellingen",
   type: "document",
   fields: [
     defineField({
       name: "siteTitle",
-      title: "Site title",
+      title: "Sitenaam",
       type: "string",
       description: "De naam van de website, meestal Stichting Lumina Collective.",
       validation: (Rule) => Rule.required().error(required),
     }),
     defineField({
       name: "siteDescription",
-      title: "Site description",
+      title: "Sitebeschrijving",
       type: "text",
       rows: 3,
       description: "Korte beschrijving voor zoekmachines en social previews.",
@@ -25,7 +25,7 @@ export const globalSettingsSchema = defineType({
     }),
     defineField({
       name: "defaultOgImage",
-      title: "Default OG image",
+      title: "Standaard deelafbeelding",
       type: "image",
       options: { hotspot: true },
       description: "Standaard deelafbeelding. Aanbevolen formaat: 1200 x 630.",
@@ -33,7 +33,7 @@ export const globalSettingsSchema = defineType({
       fields: [
         defineField({
           name: "alt",
-          title: "Alt text",
+          title: "Alt-tekst",
           type: "string",
           validation: (Rule) => Rule.required().error("Beschrijf de afbeelding."),
         }),
@@ -41,33 +41,33 @@ export const globalSettingsSchema = defineType({
     }),
     defineField({
       name: "logoFull",
-      title: "Logo full",
+      title: "Volledig logo",
       type: "image",
       description: "Volledig logo voor header en footer.",
       validation: (Rule) => Rule.required().error(required),
       fields: [
-        defineField({ name: "alt", title: "Alt text", type: "string" }),
+        defineField({ name: "alt", title: "Alt-tekst", type: "string" }),
       ],
     }),
     defineField({
       name: "logoMark",
-      title: "Logo mark",
+      title: "Klein logo / L-mark",
       type: "image",
       description: "Kleine L-mark voor compacte plekken.",
       validation: (Rule) => Rule.required().error(required),
       fields: [
-        defineField({ name: "alt", title: "Alt text", type: "string" }),
+        defineField({ name: "alt", title: "Alt-tekst", type: "string" }),
       ],
     }),
     defineField({
       name: "contactEmail",
-      title: "Contact email",
+      title: "Contact e-mail",
       type: "email",
       description: "Alleen invullen als dit officieel bevestigd is.",
     }),
     defineField({
       name: "socialLinks",
-      title: "Social links",
+      title: "Social media links",
       type: "array",
       description: "Links naar sociale kanalen. Alleen echte kanalen toevoegen.",
       of: [
@@ -107,7 +107,7 @@ export const globalSettingsSchema = defineType({
     }),
     defineField({
       name: "footerText",
-      title: "Footer text",
+      title: "Footer tekst",
       type: "text",
       rows: 2,
       description: "Korte warme zin onder het logo.",
@@ -115,14 +115,14 @@ export const globalSettingsSchema = defineType({
     }),
     defineField({
       name: "donationEnabled",
-      title: "Donation enabled",
+      title: "Donaties tonen",
       type: "boolean",
       initialValue: false,
       description: "Zet aan als donaties zichtbaar mogen zijn.",
     }),
     defineField({
       name: "donationUrl",
-      title: "Donation URL",
+      title: "Donatielink",
       type: "url",
       description: "Alleen nodig als donaties actief zijn.",
       hidden: ({ document }) => !document?.donationEnabled,
@@ -136,7 +136,7 @@ export const globalSettingsSchema = defineType({
     }),
     defineField({
       name: "newsletterEnabled",
-      title: "Newsletter enabled",
+      title: "Nieuwsbrief tonen",
       type: "boolean",
       initialValue: true,
       description: "Zet uit als nieuwsbriefinschrijving tijdelijk niet nodig is.",

@@ -4,16 +4,16 @@ const required = "Dit veld is verplicht.";
 
 export const programSchema = defineType({
   name: "program",
-  title: "Program",
+  title: "Programma",
   type: "document",
   groups: [
-    { name: "content", title: "Content", default: true },
+    { name: "content", title: "Inhoud", default: true },
     { name: "seo", title: "SEO" },
   ],
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "Titel",
       type: "string",
       group: "content",
       validation: (Rule) =>
@@ -30,25 +30,25 @@ export const programSchema = defineType({
     }),
     defineField({
       name: "shortDescription",
-      title: "Short description",
+      title: "Korte beschrijving",
       type: "text",
       rows: 3,
       group: "content",
-      description: "Korte tekst voor kaarten en overzichten.",
+      description: "Korte tekst voor kaarten, Home en overzichtspagina's.",
       validation: (Rule) =>
         Rule.required().min(20).max(220).error("Gebruik 20 tot 220 tekens."),
     }),
     defineField({
       name: "longDescription",
-      title: "Long description",
+      title: "Lange beschrijving",
       type: "array",
       group: "content",
       of: [{ type: "block" }],
-      description: "Uitgebreide tekst voor de detailpagina later.",
+      description: "Uitgebreide tekst voor de detailpagina.",
     }),
     defineField({
       name: "featuredImage",
-      title: "Featured image",
+      title: "Afbeelding",
       type: "image",
       group: "content",
       options: { hotspot: true },
@@ -56,15 +56,16 @@ export const programSchema = defineType({
       fields: [
         defineField({
           name: "alt",
-          title: "Alt text",
+          title: "Alt-tekst",
           type: "string",
-          validation: (Rule) => Rule.required().error("Alt text is nodig."),
+          description: "Beschrijf wat er op de foto te zien is.",
+          validation: (Rule) => Rule.required().error("Alt-tekst is nodig."),
         }),
-        defineField({ name: "caption", title: "Caption", type: "string" }),
-        defineField({ name: "credit", title: "Credit", type: "string" }),
+        defineField({ name: "caption", title: "Onderschrift", type: "string" }),
+        defineField({ name: "credit", title: "Fotocredit", type: "string" }),
         defineField({
           name: "isPlaceholder",
-          title: "Is placeholder",
+          title: "Tijdelijke afbeelding",
           type: "boolean",
           initialValue: false,
         }),
@@ -72,7 +73,7 @@ export const programSchema = defineType({
     }),
     defineField({
       name: "category",
-      title: "Category",
+      title: "Categorie",
       type: "string",
       group: "content",
       options: {
@@ -89,7 +90,7 @@ export const programSchema = defineType({
     }),
     defineField({
       name: "targetAudience",
-      title: "Target audience",
+      title: "Voor wie",
       type: "text",
       rows: 2,
       group: "content",
@@ -97,7 +98,7 @@ export const programSchema = defineType({
     }),
     defineField({
       name: "goals",
-      title: "Goals",
+      title: "Doelen",
       type: "array",
       group: "content",
       of: [{ type: "string" }],
@@ -105,7 +106,7 @@ export const programSchema = defineType({
     }),
     defineField({
       name: "ctaLabel",
-      title: "CTA label",
+      title: "Knoptekst",
       type: "string",
       group: "content",
       initialValue: "Doe mee",
@@ -113,7 +114,7 @@ export const programSchema = defineType({
     }),
     defineField({
       name: "ctaHref",
-      title: "CTA href",
+      title: "Knoplink",
       type: "string",
       group: "content",
       initialValue: "/doe-mee",
@@ -121,14 +122,14 @@ export const programSchema = defineType({
     }),
     defineField({
       name: "seoTitle",
-      title: "SEO title",
+      title: "SEO-titel",
       type: "string",
       group: "seo",
       validation: (Rule) => Rule.max(70).error("Gebruik maximaal 70 tekens."),
     }),
     defineField({
       name: "metaDescription",
-      title: "Meta description",
+      title: "Meta-beschrijving",
       type: "text",
       rows: 2,
       group: "seo",
@@ -139,6 +140,6 @@ export const programSchema = defineType({
     select: { title: "title", subtitle: "category", media: "featuredImage" },
   },
   orderings: [
-    { title: "Title A-Z", name: "titleAsc", by: [{ field: "title", direction: "asc" }] },
+    { title: "Titel A-Z", name: "titleAsc", by: [{ field: "title", direction: "asc" }] },
   ],
 });

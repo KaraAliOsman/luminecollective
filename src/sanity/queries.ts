@@ -24,6 +24,65 @@ export const pageByKeyQuery = `*[_type == "page" && pageKey == $pageKey][0]{
   metaDescription
 }`;
 
+export const postsQuery = `*[
+  _type == "post" &&
+  defined(slug.current) &&
+  defined(publishedAt)
+] | order(publishedAt desc){
+  title,
+  "slug": slug.current,
+  category,
+  publishedAt,
+  author,
+  excerpt,
+  featuredImage,
+  body,
+  seoTitle,
+  metaDescription
+}`;
+
+export const postBySlugQuery = `*[
+  _type == "post" &&
+  slug.current == $slug &&
+  defined(publishedAt)
+][0]{
+  title,
+  "slug": slug.current,
+  category,
+  publishedAt,
+  author,
+  excerpt,
+  featuredImage,
+  body,
+  seoTitle,
+  metaDescription
+}`;
+
+export const postSlugsQuery = `*[
+  _type == "post" &&
+  defined(slug.current) &&
+  defined(publishedAt)
+]{
+  "slug": slug.current
+}`;
+
+export const relatedPostsQuery = `*[
+  _type == "post" &&
+  defined(slug.current) &&
+  defined(publishedAt) &&
+  slug.current != $slug
+] | order(publishedAt desc)[0...3]{
+  title,
+  "slug": slug.current,
+  category,
+  publishedAt,
+  author,
+  excerpt,
+  featuredImage,
+  seoTitle,
+  metaDescription
+}`;
+
 export const programsQuery = `*[_type == "program"] | order(title asc){
   title,
   "slug": slug.current,

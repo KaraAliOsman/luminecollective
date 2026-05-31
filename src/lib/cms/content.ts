@@ -10,12 +10,17 @@ import {
   approvedTestimonialsQuery,
   eventBySlugQuery,
   eventSlugsQuery,
+  pageByKeyQuery,
+  postBySlugQuery,
+  postSlugsQuery,
+  postsQuery,
   programsQuery,
   programBySlugQuery,
   programSlugsQuery,
   publicGalleryByEventSlugQuery,
   publicGalleryByProgramSlugQuery,
   publicGalleryQuery,
+  relatedPostsQuery,
   relatedEventsByEventSlugQuery,
   relatedEventsByProgramSlugQuery,
   settingsQuery,
@@ -26,7 +31,9 @@ import {
 import type {
   EventDisplay,
   GalleryItemDisplay,
+  PageDisplay,
   PartnerDisplay,
+  PostDisplay,
   ProgramDisplay,
   SanityImageLike,
   SiteSettings,
@@ -46,6 +53,31 @@ type RawSettings = {
   donationEnabled?: boolean;
   donationUrl?: string;
   newsletterEnabled?: boolean;
+};
+
+type RawPage = {
+  title?: string;
+  slug?: string;
+  pageKey?: string;
+  heroTitle?: string;
+  heroText?: string;
+  heroImage?: SanityImageLike;
+  body?: unknown[];
+  seoTitle?: string;
+  metaDescription?: string;
+};
+
+type RawPost = {
+  title?: string;
+  slug?: string;
+  category?: string;
+  publishedAt?: string;
+  author?: string;
+  excerpt?: string;
+  featuredImage?: SanityImageLike;
+  body?: unknown[];
+  seoTitle?: string;
+  metaDescription?: string;
 };
 
 type RawProgram = {
@@ -89,6 +121,51 @@ type RawGalleryItem = {
   credit?: string;
   isPlaceholder?: boolean;
 };
+
+const fallbackPosts: PostDisplay[] = [
+  {
+    slug: "eerste-ontmoeting-lumina",
+    category: "nieuws",
+    publishedAt: "2025-01-01",
+    author: "Stichting Lumina Collective",
+    title: "Voorbeeldartikel: eerste bericht van Lumina Collective",
+    excerpt:
+      "Dit voorbeeld toont hoe nieuws eruitziet. Vervang dit met een echt artikel zodra de organisatie klaar is voor publicatie.",
+    bodyText:
+      "Dit voorbeeldartikel laat de leeservaring, typografie en structuur zien. Het bevat geen echte nieuwsfeiten en moet worden vervangen door inhoud die door Stichting Lumina Collective is goedgekeurd.\n\nVia Sanity Studio kunnen nieuwe artikelen worden aangemaakt, gecategoriseerd en gepubliceerd zonder technische kennis.",
+    visual: visuals.communityTable,
+    isPreview: true,
+    isFallback: true,
+  },
+  {
+    slug: "over-verbinding-en-groei",
+    category: "verhalen",
+    publishedAt: "2025-01-01",
+    author: "Stichting Lumina Collective",
+    title: "Voorbeeldartikel: over verbinding en groei",
+    excerpt:
+      "Verhalen van deelneemsters worden hier pas gedeeld zodra inhoud en toestemming bevestigd zijn.",
+    bodyText:
+      "Dit voorbeeld laat zien hoe een persoonlijk verhaal kan worden opgebouwd. Echte verhalen worden pas gepubliceerd na toestemming van de betrokken personen en redactionele controle.",
+    visual: visuals.conversation,
+    isPreview: true,
+    isFallback: true,
+  },
+  {
+    slug: "interview-met-een-vrijwilligster",
+    category: "interviews",
+    publishedAt: "2025-01-01",
+    author: "Stichting Lumina Collective",
+    title: "Voorbeeldartikel: interview met een vrijwilligster",
+    excerpt:
+      "Interviews volgen zodra vrijwilligers toestemming hebben gegeven en de tekst is goedgekeurd.",
+    bodyText:
+      "Dit voorbeeld toont hoe een interviewpagina eruit kan zien. Publiceer hier alleen echte interviews nadat de tekst, foto en toestemming zorgvuldig zijn bevestigd.",
+    visual: visuals.presentation,
+    isPreview: true,
+    isFallback: true,
+  },
+];
 
 function imageUrl(image?: SanityImageLike) {
   if (!image?.asset) return undefined;
@@ -163,6 +240,48 @@ function fallbackSettings(): SiteSettings {
     donationEnabled: false,
     newsletterEnabled: true,
     isFallback: true,
+  };
+}
+
+function normalizePage(page: RawPage): PageDisplay | null {
+  if (!page.pageKey || !page.heroTitle || !page.heroText) return null;
+  return {
+    title: page.title || page.heroTitle,
+    slug: page.slug || page.pageKey,
+    pageKey: page.pageKey,
+    heroTitle: page.heroTitle,
+    heroText: page.heroText,
+    heroImage: page.heroImage,
+    body: page.body,
+    seoTitle: page.seoTitle,
+    metaDescription: page.metaDescription,
+    isFallback: false,
+  };
+}
+
+function normalizePost(post: RawPost, index = 0): PostDisplay | null {
+  if (!post.title || !post.slug || !post.excerpt || !post.publishedAt) return null;
+  return {
+    title: post.title,
+    slug: post.slug,
+    category: post.category || "nieuws",
+    publishedAt: post.publishedAt,
+    author: post.author || "Stichting Lumina Collective",
+    excerpt: post.excerpt,
+    image: post.featuredImage,
+    body: post.body,
+    bodyText: plainText(post.body),
+    visual: [
+      visuals.communityTable,
+      visuals.conversation,
+      visuals.presentation,
+      visuals.warmWorkshop,
+      visuals.culturalMoment,
+    ][index % 5],
+    seoTitle: post.seoTitle,
+    metaDescription: post.metaDescription,
+    isPreview: false,
+    isFallback: false,
   };
 }
 
@@ -280,6 +399,52 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     newsletterEnabled: data.newsletterEnabled ?? true,
     isFallback: false,
   };
+}
+
+export async function getPageByKey(pageKey: string): Promise<PageDisplay | null> {
+  const data = await sanityFetch<RawPage>(
+    pageByKeyQuery,
+    { pageKey },
+    { tags: ["pages"] },
+  );
+  return data ? normalizePage(data) : null;
+}
+
+export async function getPosts(): Promise<PostDisplay[]> {
+  const data = await sanityFetch<RawPost[]>(postsQuery, {}, { tags: ["posts"] });
+  const posts = data?.map(normalizePost).filter(Boolean) as PostDisplay[] | undefined;
+  return posts?.length ? posts : fallbackPosts;
+}
+
+export async function getPostBySlug(slug: string): Promise<PostDisplay | null> {
+  const data = await sanityFetch<RawPost>(
+    postBySlugQuery,
+    { slug },
+    { tags: ["posts"] },
+  );
+  const cmsPost = data ? normalizePost(data) : null;
+  if (cmsPost) return cmsPost;
+  return fallbackPosts.find((post) => post.slug === slug) ?? null;
+}
+
+export async function getPostSlugs() {
+  const data = await sanityFetch<Array<{ slug?: string }>>(
+    postSlugsQuery,
+    {},
+    { tags: ["posts"] },
+  );
+  const cmsSlugs = data?.map((item) => item.slug).filter(Boolean) ?? [];
+  const fallbackSlugs = fallbackPosts.map((post) => post.slug);
+  return Array.from(new Set([...cmsSlugs, ...fallbackSlugs])).map((slug) => ({ slug }));
+}
+
+export async function getRelatedPosts(slug: string): Promise<PostDisplay[]> {
+  const data = await sanityFetch<RawPost[]>(
+    relatedPostsQuery,
+    { slug },
+    { tags: ["posts"] },
+  );
+  return (data?.map(normalizePost).filter(Boolean) as PostDisplay[] | undefined) ?? [];
 }
 
 export async function getPrograms(): Promise<ProgramDisplay[]> {

@@ -12,6 +12,7 @@ import { Heading } from "@/components/ui/Heading";
 import { visuals } from "@/data/placeholders";
 import {
   getApprovedTestimonials,
+  getPageByKey,
   getPrograms,
   getPublicGallery,
   getUpcomingEvents,
@@ -20,10 +21,15 @@ import {
 import { createMetadata } from "@/lib/seo/config";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/jsonLd";
 
-export const metadata: Metadata = createMetadata({
-  title: "Home",
-  path: "/",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByKey("home");
+
+  return createMetadata({
+    title: page?.seoTitle || "Home",
+    description: page?.metaDescription,
+    path: "/",
+  });
+}
 
 const pillars = [
   {
@@ -41,7 +47,8 @@ const pillars = [
 ];
 
 export default async function Home() {
-  const [programs, events, gallery, testimonials, partners] = await Promise.all([
+  const [page, programs, events, gallery, testimonials, partners] = await Promise.all([
+    getPageByKey("home"),
     getPrograms(),
     getUpcomingEvents(),
     getPublicGallery(),
@@ -55,11 +62,18 @@ export default async function Home() {
       <StructuredData data={organizationJsonLd()} />
       <StructuredData data={websiteJsonLd()} />
       <PageHero
-        body="Stichting Lumina Collective brengt vrouwen samen in Nederland rond ontmoeting, kennis, cultuur en maatschappelijke betrokkenheid."
+        body={
+          page?.heroText ||
+          "Stichting Lumina Collective brengt vrouwen samen in Nederland rond ontmoeting, kennis, cultuur en maatschappelijke betrokkenheid."
+        }
         eyebrow="Stichting Lumina Collective"
+        image={page?.heroImage}
         primary={{ label: "Doe mee", href: "/doe-mee" }}
         secondary={{ label: "Bekijk programma's", href: "/programmas" }}
-        title="Ruimte voor vrouwen om te groeien, verbinden en zichtbaar te zijn."
+        title={
+          page?.heroTitle ||
+          "Ruimte voor vrouwen om te groeien, verbinden en zichtbaar te zijn."
+        }
         visual={visuals.communityTable}
       />
 

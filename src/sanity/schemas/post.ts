@@ -2,26 +2,35 @@ import { defineField, defineType } from "sanity";
 
 export const postSchema = defineType({
   name: "post",
-  title: "Artikel",
+  title: "Nieuws & verhaal",
   type: "document",
+  groups: [
+    { name: "content", title: "Inhoud", default: true },
+    { name: "seo", title: "SEO" },
+  ],
   fields: [
     defineField({
       name: "title",
       title: "Titel",
       type: "string",
+      group: "content",
+      description: "Gebruik een heldere titel, zonder clickbait.",
       validation: (Rule) => Rule.required().min(5).max(100),
     }),
     defineField({
       name: "slug",
       title: "URL (slug)",
       type: "slug",
+      group: "content",
       options: { source: "title", maxLength: 96 },
+      description: "Klik op Generate. Dit wordt de URL van het artikel.",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "category",
       title: "Categorie",
       type: "string",
+      group: "content",
       options: {
         list: [
           { title: "Nieuws", value: "nieuws" },
@@ -39,19 +48,25 @@ export const postSchema = defineType({
       name: "publishedAt",
       title: "Publicatiedatum",
       type: "datetime",
+      group: "content",
+      description: "Kies de datum waarop dit artikel zichtbaar mag zijn.",
+      initialValue: () => new Date().toISOString(),
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "author",
       title: "Auteur",
       type: "string",
+      group: "content",
       initialValue: "Stichting Lumina Collective",
+      description: "Laat staan als er geen specifieke auteur is.",
     }),
     defineField({
       name: "excerpt",
       title: "Samenvatting",
       type: "text",
       rows: 3,
+      group: "content",
       description: "Korte introductie voor de artikellijst (max. 200 tekens).",
       validation: (Rule) => Rule.required().max(200),
     }),
@@ -59,12 +74,15 @@ export const postSchema = defineType({
       name: "featuredImage",
       title: "Uitgelichte afbeelding",
       type: "image",
+      group: "content",
       options: { hotspot: true },
+      description: "Gebruik een echte, warme foto. Alt-tekst is verplicht.",
       fields: [
         defineField({
           name: "alt",
           title: "Alt-tekst",
           type: "string",
+          description: "Beschrijf wat er op de foto te zien is.",
           validation: (Rule) => Rule.required(),
         }),
         defineField({ name: "caption", title: "Onderschrift", type: "string" }),
@@ -76,6 +94,8 @@ export const postSchema = defineType({
       name: "body",
       title: "Inhoud",
       type: "array",
+      group: "content",
+      description: "Schrijf rustig en leesbaar. Gebruik H2 voor tussenkoppen.",
       of: [
         { type: "block" },
         {
@@ -105,7 +125,6 @@ export const postSchema = defineType({
       group: "seo",
     }),
   ],
-  groups: [{ name: "seo", title: "SEO" }],
   preview: {
     select: {
       title: "title",

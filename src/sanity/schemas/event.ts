@@ -4,17 +4,17 @@ const required = "Dit veld is verplicht.";
 
 export const eventSchema = defineType({
   name: "event",
-  title: "Event",
+  title: "Activiteit",
   type: "document",
   groups: [
-    { name: "content", title: "Content", default: true },
+    { name: "content", title: "Inhoud", default: true },
     { name: "details", title: "Details" },
     { name: "seo", title: "SEO" },
   ],
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "Titel",
       type: "string",
       group: "content",
       validation: (Rule) =>
@@ -31,7 +31,7 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "description",
-      title: "Description",
+      title: "Beschrijving",
       type: "array",
       group: "content",
       of: [{ type: "block" }],
@@ -39,7 +39,7 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "program",
-      title: "Related program",
+      title: "Gekoppeld programma",
       type: "reference",
       group: "content",
       to: [{ type: "program" }],
@@ -47,14 +47,14 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "dateStart",
-      title: "Start date",
+      title: "Startdatum",
       type: "datetime",
       group: "details",
       validation: (Rule) => Rule.required().error(required),
     }),
     defineField({
       name: "dateEnd",
-      title: "End date",
+      title: "Einddatum",
       type: "datetime",
       group: "details",
       validation: (Rule) =>
@@ -68,14 +68,14 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "locationName",
-      title: "Location name",
+      title: "Locatienaam",
       type: "string",
       group: "details",
       description: "Bijvoorbeeld de plaats of locatie. Geen adres invullen als dit nog niet zeker is.",
     }),
     defineField({
       name: "locationAddress",
-      title: "Location address",
+      title: "Adres",
       type: "text",
       rows: 2,
       group: "details",
@@ -83,21 +83,21 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "registrationUrl",
-      title: "Registration URL",
+      title: "Aanmeldlink",
       type: "url",
       group: "details",
       description: "Laat leeg als aanmelden via contact loopt.",
     }),
     defineField({
       name: "isFree",
-      title: "Is free",
+      title: "Gratis",
       type: "boolean",
       group: "details",
       initialValue: true,
     }),
     defineField({
       name: "priceDescription",
-      title: "Price description",
+      title: "Prijsomschrijving",
       type: "string",
       group: "details",
       hidden: ({ document }) => Boolean(document?.isFree),
@@ -105,29 +105,30 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "capacity",
-      title: "Capacity",
+      title: "Capaciteit",
       type: "number",
       group: "details",
       validation: (Rule) => Rule.min(1).integer().error("Gebruik een positief getal."),
     }),
     defineField({
       name: "featuredImage",
-      title: "Featured image",
+      title: "Afbeelding",
       type: "image",
       group: "content",
       options: { hotspot: true },
       fields: [
         defineField({
           name: "alt",
-          title: "Alt text",
+          title: "Alt-tekst",
           type: "string",
-          validation: (Rule) => Rule.required().error("Alt text is nodig."),
+          description: "Beschrijf wat er op de foto te zien is.",
+          validation: (Rule) => Rule.required().error("Alt-tekst is nodig."),
         }),
-        defineField({ name: "caption", title: "Caption", type: "string" }),
-        defineField({ name: "credit", title: "Credit", type: "string" }),
+        defineField({ name: "caption", title: "Onderschrift", type: "string" }),
+        defineField({ name: "credit", title: "Fotocredit", type: "string" }),
         defineField({
           name: "isPlaceholder",
-          title: "Is placeholder",
+          title: "Tijdelijke afbeelding",
           type: "boolean",
           initialValue: false,
         }),
@@ -140,9 +141,9 @@ export const eventSchema = defineType({
       group: "details",
       options: {
         list: [
-          { title: "Upcoming", value: "upcoming" },
-          { title: "Past", value: "past" },
-          { title: "Cancelled", value: "cancelled" },
+          { title: "Komend", value: "upcoming" },
+          { title: "Geweest", value: "past" },
+          { title: "Geannuleerd", value: "cancelled" },
         ],
         layout: "radio",
       },
@@ -151,14 +152,14 @@ export const eventSchema = defineType({
     }),
     defineField({
       name: "seoTitle",
-      title: "SEO title",
+      title: "SEO-titel",
       type: "string",
       group: "seo",
       validation: (Rule) => Rule.max(70).error("Gebruik maximaal 70 tekens."),
     }),
     defineField({
       name: "metaDescription",
-      title: "Meta description",
+      title: "Meta-beschrijving",
       type: "text",
       rows: 2,
       group: "seo",
@@ -175,7 +176,7 @@ export const eventSchema = defineType({
     },
   },
   orderings: [
-    { title: "Date ascending", name: "dateAsc", by: [{ field: "dateStart", direction: "asc" }] },
-    { title: "Date descending", name: "dateDesc", by: [{ field: "dateStart", direction: "desc" }] },
+    { title: "Datum oplopend", name: "dateAsc", by: [{ field: "dateStart", direction: "asc" }] },
+    { title: "Datum aflopend", name: "dateDesc", by: [{ field: "dateStart", direction: "desc" }] },
   ],
 });
