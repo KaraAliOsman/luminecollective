@@ -38,30 +38,35 @@ export async function sendNotification({
     return { delivered: false, skipped: true };
   }
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to,
-      subject,
-      html: `
-        <div style="font-family: Arial, sans-serif; color: #2f241f; line-height: 1.6;">
-          <h1 style="color: #42152f;">${escapeHtml(subject)}</h1>
-          <p>${escapeHtml(intro)}</p>
-          ${renderFields(fields)}
-        </div>
-      `,
-    }),
-  });
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to,
+        subject,
+        html: `
+          <div style="font-family: Arial, sans-serif; color: #2f241f; line-height: 1.6;">
+            <h1 style="color: #42152f;">${escapeHtml(subject)}</h1>
+            <p>${escapeHtml(intro)}</p>
+            ${renderFields(fields)}
+          </div>
+        `,
+      }),
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("Resend API failed with status:", response.status, "body:", errorText);
-    throw new Error(`Email provider request failed: ${errorText}`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Resend API failed with status:", response.status, "body:", errorText);
+      return { delivered: false, skipped: true };
+    }
+  } catch (error) {
+    console.error("Email provider request failed:", error);
+    return { delivered: false, skipped: true };
   }
 
   return { delivered: true, skipped: false };
