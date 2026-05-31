@@ -10,7 +10,7 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 const pageTemplates = [
   {
     id: "page-home",
-    title: "Home",
+    title: "Ana sayfa",
     value: {
       _id: "page-home",
       title: "Home",
@@ -23,7 +23,7 @@ const pageTemplates = [
   },
   {
     id: "page-over-ons",
-    title: "Over ons",
+    title: "Hakkımızda",
     value: {
       _id: "page-over-ons",
       title: "Over ons",
@@ -36,7 +36,7 @@ const pageTemplates = [
   },
   {
     id: "page-programmas",
-    title: "Programma's pagina",
+    title: "Programlar sayfası",
     value: {
       _id: "page-programmas",
       title: "Programma's",
@@ -49,7 +49,7 @@ const pageTemplates = [
   },
   {
     id: "page-agenda",
-    title: "Agenda pagina",
+    title: "Ajanda sayfası",
     value: {
       _id: "page-agenda",
       title: "Agenda",
@@ -62,7 +62,7 @@ const pageTemplates = [
   },
   {
     id: "page-doe-mee",
-    title: "Doe mee pagina",
+    title: "Katıl sayfası",
     value: {
       _id: "page-doe-mee",
       title: "Doe mee",
@@ -75,7 +75,7 @@ const pageTemplates = [
   },
   {
     id: "page-contact",
-    title: "Contact pagina",
+    title: "İletişim sayfası",
     value: {
       _id: "page-contact",
       title: "Contact",
@@ -88,7 +88,7 @@ const pageTemplates = [
   },
   {
     id: "page-gemeenschap",
-    title: "Gemeenschap pagina",
+    title: "Topluluk sayfası",
     value: {
       _id: "page-gemeenschap",
       title: "Gemeenschap",
@@ -101,7 +101,7 @@ const pageTemplates = [
   },
   {
     id: "page-nieuws",
-    title: "Nieuws pagina",
+    title: "Haberler sayfası",
     value: {
       _id: "page-nieuws",
       title: "Nieuws & verhalen",

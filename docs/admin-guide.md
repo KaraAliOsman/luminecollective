@@ -1,57 +1,56 @@
-# Lumina beheer - korte handleiding
+# Lumina yönetimi - kısa kullanım kılavuzu
 
-Deze handleiding is bedoeld voor iemand zonder technische kennis.
+Bu kılavuz teknik bilgi bilmeyen yöneticiler için hazırlanmıştır.
 
-## Start hier
+## Buradan başla
 
-Open `/studio` en begin bij **Start hier**.
+`/studio` adresini açın ve **Buradan başla** bölümünden başlayın.
 
-- **Site instellingen**: logo, standaard SEO-beschrijving, deelafbeelding, contact e-mail, social media, footer en donatielink.
-- **Home**: grote titel, introductietekst, hero-afbeelding en SEO voor de homepage.
-- **Over ons / Programma's / Agenda / Doe mee / Contact**: vaste pagina's met eigen titel, introductie, beeld en SEO.
-- **Gemeenschap / Nieuws**: vaste overzichtspagina's voor foto's en artikelen.
+- **Site ayarları**: logo, temel SEO açıklaması, paylaşım görseli, iletişim e-postası, sosyal medya, footer metni ve bağış linki.
+- **Ana sayfa**: büyük başlık, giriş metni, hero görseli ve SEO.
+- **Hakkımızda / Programlar / Ajanda / Katıl / İletişim**: sabit sayfaların başlığı, giriş metni, görseli ve SEO bilgileri.
+- **Topluluk / Haberler**: fotoğraflar ve yazılar için ana liste sayfaları.
 
-## Content maken
+## İçerik oluştur
 
-- **Programma's**: maak activiteitenreeksen of thema's zoals community, cultuur, groei of ondersteuning.
-- **Activiteiten / agenda**: maak concrete bijeenkomsten met datum, locatie, aanmeldlink en status.
-- **Nieuws & verhalen**: maak nieuwsberichten, interviews, terugblikken of kennisartikelen.
-- **Fotogalerij**: voeg foto's toe die publiek mogen worden getoond.
+- **Programlar**: topluluk, kültür, gelişim veya destek gibi program başlıkları oluşturun.
+- **Etkinlikler / ajanda**: tarih, yer, kayıt linki ve durum bilgisi olan etkinlikler oluşturun.
+- **Haberler & hikayeler**: haber, röportaj, etkinlik sonrası yazı veya bilgi yazısı yayınlayın.
+- **Fotoğraf galerisi**: web sitesinde gösterilmesine izin verilen fotoğrafları ekleyin.
 
-## Belangrijke regels
+## Önemli kurallar
 
-- Publiceer geen foto zonder toestemming.
-- Vul altijd alt-tekst in bij afbeeldingen.
-- Gebruik geen verzonnen adres, telefoonnummer, KVK, ANBI of namen.
-- Zet galerijfoto's alleen op **public** als ze echt op de website mogen staan.
-- Publiceer testimonials alleen als ze expliciet zijn goedgekeurd.
-- Houd teksten kort, warm en duidelijk.
+- İzin alınmamış fotoğraf yayınlamayın.
+- Her görsel için mutlaka alt metin yazın.
+- Adres, telefon, KVK, ANBI, ekip adı veya partner bilgisi uydurmayın.
+- Galeri fotoğraflarını sadece gerçekten sitede görünecekse **public** yapın.
+- Yorumları sadece açıkça onaylandıysa yayınlayın.
+- Metinleri kısa, sıcak ve anlaşılır tutun.
 
-## Nieuwe activiteit publiceren
+## Yeni etkinlik yayınlama
 
-1. Ga naar **Content maken**.
-2. Kies **Activiteiten / agenda**.
-3. Klik op **Create new**.
-4. Vul titel, slug, beschrijving, startdatum, locatie en status in.
-5. Voeg een afbeelding met alt-tekst toe.
-6. Publiceer.
+1. **İçerik oluştur** bölümüne gidin.
+2. **Etkinlikler / ajanda** seçin.
+3. **Create new** butonuna tıklayın.
+4. Başlık, slug, açıklama, başlangıç tarihi, yer ve durum bilgilerini doldurun.
+5. Alt metni olan bir görsel ekleyin.
+6. Yayınlayın.
 
-## Nieuw artikel publiceren
+## Yeni yazı yayınlama
 
-1. Ga naar **Content maken**.
-2. Kies **Nieuws & verhalen**.
-3. Klik op **Create new**.
-4. Kies categorie, titel, slug, publicatiedatum en samenvatting.
-5. Voeg een uitgelichte afbeelding met alt-tekst toe.
-6. Schrijf de inhoud en publiceer.
+1. **İçerik oluştur** bölümüne gidin.
+2. **Haberler & hikayeler** seçin.
+3. **Create new** butonuna tıklayın.
+4. Kategori, başlık, slug, yayın tarihi ve kısa özet girin.
+5. Alt metni olan öne çıkan görsel ekleyin.
+6. İçeriği yazın ve yayınlayın.
 
-## Foto publiceren
+## Fotoğraf yayınlama
 
-1. Ga naar **Content maken**.
-2. Kies **Fotogalerij**.
-3. Upload de foto.
-4. Vul alt-tekst en eventueel caption/credit in.
-5. Zet zichtbaarheid op **public**.
-6. Bevestig toestemming met **consentConfirmed**.
-7. Publiceer.
-
+1. **İçerik oluştur** bölümüne gidin.
+2. **Fotoğraf galerisi** seçin.
+3. Fotoğrafı yükleyin.
+4. Alt metin ve gerekiyorsa açıklama/fotoğraf kredisi girin.
+5. Görünürlüğü **public** yapın.
+6. **Yayın izni onaylandı** alanını işaretleyin.
+7. Yayınlayın.

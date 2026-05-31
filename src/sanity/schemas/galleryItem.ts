@@ -1,81 +1,81 @@
 import { defineField, defineType } from "sanity";
 
-const required = "Dit veld is verplicht.";
+const required = "Bu alan zorunludur.";
 
 export const galleryItemSchema = defineType({
   name: "galleryItem",
-  title: "Foto",
+  title: "Fotoğraf",
   type: "document",
   fields: [
     defineField({
       name: "image",
-      title: "Foto",
+      title: "Fotoğraf",
       type: "image",
       options: { hotspot: true },
       validation: (Rule) => Rule.required().error(required),
     }),
     defineField({
       name: "alt",
-      title: "Alt-tekst",
+      title: "Alt metin",
       type: "string",
-      description: "Beschrijf kort wat zichtbaar is op de foto.",
-      validation: (Rule) => Rule.required().error("Alt-tekst is verplicht."),
+      description: "Fotoğrafta ne göründüğünü kısa şekilde açıklayın.",
+      validation: (Rule) => Rule.required().error("Alt metin zorunludur."),
     }),
-    defineField({ name: "caption", title: "Onderschrift", type: "string" }),
+    defineField({ name: "caption", title: "Açıklama", type: "string" }),
     defineField({
       name: "event",
-      title: "Activiteit",
+      title: "Etkinlik",
       type: "reference",
       to: [{ type: "event" }],
-      description: "Koppel aan een event als dit relevant is.",
+      description: "Fotoğraf bir etkinliğe bağlıysa seçin.",
     }),
     defineField({
       name: "program",
-      title: "Programma",
+      title: "Program",
       type: "reference",
       to: [{ type: "program" }],
-      description: "Koppel aan een programma als dit relevant is.",
+      description: "Fotoğraf bir programa bağlıysa seçin.",
     }),
-    defineField({ name: "date", title: "Datum", type: "date" }),
+    defineField({ name: "date", title: "Tarih", type: "date" }),
     defineField({
       name: "credit",
-      title: "Fotocredit",
+      title: "Fotoğraf kredisi",
       type: "string",
-      description: "Fotograaf of bron, indien nodig.",
+      description: "Fotoğrafçı veya kaynak gerekiyorsa yazın.",
     }),
     defineField({
       name: "isPlaceholder",
-      title: "Tijdelijke foto",
+      title: "Geçici fotoğraf",
       type: "boolean",
       initialValue: false,
-      description: "Aanvinken als dit beeld later vervangen moet worden.",
+      description: "Bu fotoğraf daha sonra değiştirilecekse işaretleyin.",
     }),
     defineField({
       name: "visibility",
-      title: "Zichtbaarheid",
+      title: "Görünürlük",
       type: "string",
       options: {
         list: [
-          { title: "Publiek", value: "public" },
-          { title: "Prive", value: "private" },
-          { title: "Intern", value: "internal" },
+          { title: "Web sitesinde yayınla", value: "public" },
+          { title: "Özel", value: "private" },
+          { title: "Sadece iç kullanım", value: "internal" },
         ],
         layout: "radio",
       },
       initialValue: "private",
       validation: (Rule) => Rule.required().error(required),
-      description: "Alleen public wordt later op de website getoond.",
+      description: "Sadece 'Web sitesinde yayınla' seçili fotoğraflar sitede görünür.",
     }),
     defineField({
       name: "consentConfirmed",
-      title: "Toestemming bevestigd",
+      title: "Yayın izni onaylandı",
       type: "boolean",
       initialValue: false,
-      description: "Aanvinken als toestemming voor publicatie bevestigd is.",
+      description: "Fotoğraftaki kişilerden yayın izni alındıysa işaretleyin.",
       validation: (Rule) =>
         Rule.custom((value, context) => {
           if (context.document?.visibility === "public" && value !== true) {
-            return "Publieke beelden hebben bevestigde toestemming nodig.";
+            return "Sitede yayınlanacak fotoğraflar için izin onayı zorunludur.";
           }
           return true;
         }),
@@ -85,8 +85,8 @@ export const galleryItemSchema = defineType({
     select: { title: "alt", subtitle: "visibility", media: "image" },
     prepare({ title, subtitle, media }) {
       return {
-        title: title || "Foto",
-        subtitle: subtitle === "public" ? "Publiek" : "Niet voor website",
+        title: title || "Fotoğraf",
+        subtitle: subtitle === "public" ? "Web sitesinde yayınlanır" : "Sitede görünmez",
         media,
       };
     },

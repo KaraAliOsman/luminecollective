@@ -76,7 +76,7 @@ SANITY_REVALIDATE_SECRET=
 
 The current Studio includes guided sections for Site Settings, fixed MVP pages, Programs, Events, News & Stories, Gallery, Team, Partners and Testimonials. Public frontend queries are prepared in `src/sanity/queries.ts`; gallery items are filtered to `visibility == "public"` and `consentConfirmed == true`, and testimonials are filtered to `approvedForPublication == true`.
 
-For non-technical editing instructions, see `docs/admin-guide.md`.
+For Turkish non-technical editing instructions, see `docs/admin-guide.md`.
 
 To connect Sanity:
 

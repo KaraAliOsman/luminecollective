@@ -2,43 +2,43 @@ import { defineField, defineType } from "sanity";
 
 export const postSchema = defineType({
   name: "post",
-  title: "Nieuws & verhaal",
+  title: "Haber & hikaye",
   type: "document",
   groups: [
-    { name: "content", title: "Inhoud", default: true },
+    { name: "content", title: "İçerik", default: true },
     { name: "seo", title: "SEO" },
   ],
   fields: [
     defineField({
       name: "title",
-      title: "Titel",
+      title: "Başlık",
       type: "string",
       group: "content",
-      description: "Gebruik een heldere titel, zonder clickbait.",
+      description: "Clickbait değil, açık ve güven veren bir başlık yazın.",
       validation: (Rule) => Rule.required().min(5).max(100),
     }),
     defineField({
       name: "slug",
-      title: "URL (slug)",
+      title: "URL adı",
       type: "slug",
       group: "content",
       options: { source: "title", maxLength: 96 },
-      description: "Klik op Generate. Dit wordt de URL van het artikel.",
+      description: "Generate butonuna basın. Bu yazının URL adresi olur.",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "category",
-      title: "Categorie",
+      title: "Kategori",
       type: "string",
       group: "content",
       options: {
         list: [
-          { title: "Nieuws", value: "nieuws" },
-          { title: "Verhalen", value: "verhalen" },
-          { title: "Interviews", value: "interviews" },
-          { title: "Terugblik", value: "terugblik" },
-          { title: "Kennis", value: "kennis" },
-          { title: "Persbericht", value: "persbericht" },
+          { title: "Haber", value: "nieuws" },
+          { title: "Hikayeler", value: "verhalen" },
+          { title: "Röportajlar", value: "interviews" },
+          { title: "Etkinlik sonrası", value: "terugblik" },
+          { title: "Bilgi", value: "kennis" },
+          { title: "Basın bülteni", value: "persbericht" },
         ],
         layout: "radio",
       },
@@ -46,64 +46,64 @@ export const postSchema = defineType({
     }),
     defineField({
       name: "publishedAt",
-      title: "Publicatiedatum",
+      title: "Yayın tarihi",
       type: "datetime",
       group: "content",
-      description: "Kies de datum waarop dit artikel zichtbaar mag zijn.",
+      description: "Yazının hangi tarihle yayınlanacağını seçin.",
       initialValue: () => new Date().toISOString(),
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "author",
-      title: "Auteur",
+      title: "Yazar",
       type: "string",
       group: "content",
       initialValue: "Stichting Lumina Collective",
-      description: "Laat staan als er geen specifieke auteur is.",
+      description: "Özel bir yazar yoksa bu şekilde bırakabilirsiniz.",
     }),
     defineField({
       name: "excerpt",
-      title: "Samenvatting",
+      title: "Kısa özet",
       type: "text",
       rows: 3,
       group: "content",
-      description: "Korte introductie voor de artikellijst (max. 200 tekens).",
+      description: "Yazı listesinde görünecek kısa giriş. En fazla 200 karakter.",
       validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
       name: "featuredImage",
-      title: "Uitgelichte afbeelding",
+      title: "Öne çıkan görsel",
       type: "image",
       group: "content",
       options: { hotspot: true },
-      description: "Gebruik een echte, warme foto. Alt-tekst is verplicht.",
+      description: "Gerçek ve sıcak bir fotoğraf kullanın. Alt metin zorunludur.",
       fields: [
         defineField({
           name: "alt",
-          title: "Alt-tekst",
+          title: "Alt metin",
           type: "string",
-          description: "Beschrijf wat er op de foto te zien is.",
+          description: "Fotoğrafta ne göründüğünü açıklayın.",
           validation: (Rule) => Rule.required(),
         }),
-        defineField({ name: "caption", title: "Onderschrift", type: "string" }),
-        defineField({ name: "credit", title: "Fotocredit", type: "string" }),
+        defineField({ name: "caption", title: "Açıklama", type: "string" }),
+        defineField({ name: "credit", title: "Fotoğraf kredisi", type: "string" }),
       ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "body",
-      title: "Inhoud",
+      title: "Yazı içeriği",
       type: "array",
       group: "content",
-      description: "Schrijf rustig en leesbaar. Gebruik H2 voor tussenkoppen.",
+      description: "Sakin ve okunabilir yazın. Uzun yazılarda ara başlık kullanın.",
       of: [
         { type: "block" },
         {
           type: "image",
           options: { hotspot: true },
           fields: [
-            defineField({ name: "alt", title: "Alt-tekst", type: "string" }),
-            defineField({ name: "caption", title: "Onderschrift", type: "string" }),
+            defineField({ name: "alt", title: "Alt metin", type: "string" }),
+            defineField({ name: "caption", title: "Açıklama", type: "string" }),
           ],
         },
       ],
@@ -111,14 +111,14 @@ export const postSchema = defineType({
     }),
     defineField({
       name: "seoTitle",
-      title: "SEO-titel",
+      title: "SEO başlığı",
       type: "string",
-      description: "Laat leeg om de artikeltitel te gebruiken.",
+      description: "Boş bırakılırsa yazı başlığı kullanılır.",
       group: "seo",
     }),
     defineField({
       name: "metaDescription",
-      title: "Meta-beschrijving",
+      title: "Meta açıklaması",
       type: "text",
       rows: 2,
       validation: (Rule) => Rule.max(160),
@@ -133,12 +133,16 @@ export const postSchema = defineType({
     },
     prepare({ title, subtitle, media }) {
       const date = subtitle
-        ? new Date(subtitle as string).toLocaleDateString("nl-NL")
-        : "Geen datum";
+        ? new Date(subtitle as string).toLocaleDateString("tr-TR")
+        : "Tarih yok";
       return { title, subtitle: date, media };
     },
   },
   orderings: [
-    { title: "Publicatiedatum (nieuwste eerst)", name: "publishedDesc", by: [{ field: "publishedAt", direction: "desc" }] },
+    {
+      title: "Yayın tarihi (en yeni önce)",
+      name: "publishedDesc",
+      by: [{ field: "publishedAt", direction: "desc" }],
+    },
   ],
 });

@@ -23,49 +23,49 @@ const pageSingleton = (
 
 export const studioStructure: StructureResolver = (S) =>
   S.list()
-    .title("Lumina beheer")
+    .title("Lumina yönetimi")
     .items([
       S.listItem()
-        .title("Start hier")
+        .title("Buradan başla")
         .child(
           S.list()
-            .title("Start hier")
+            .title("Buradan başla")
             .items([
-              singleton(S, "globalSettings", "Site instellingen"),
+              singleton(S, "globalSettings", "Site ayarları"),
               S.divider(),
-              pageSingleton(S, "Home", "home"),
-              pageSingleton(S, "Over ons", "over-ons"),
-              pageSingleton(S, "Programma's pagina", "programmas"),
-              pageSingleton(S, "Agenda pagina", "agenda"),
-              pageSingleton(S, "Doe mee pagina", "doe-mee"),
-              pageSingleton(S, "Contact pagina", "contact"),
-              pageSingleton(S, "Gemeenschap pagina", "gemeenschap"),
-              pageSingleton(S, "Nieuws pagina", "nieuws"),
+              pageSingleton(S, "Ana sayfa", "home"),
+              pageSingleton(S, "Hakkımızda", "over-ons"),
+              pageSingleton(S, "Programlar sayfası", "programmas"),
+              pageSingleton(S, "Ajanda sayfası", "agenda"),
+              pageSingleton(S, "Katıl sayfası", "doe-mee"),
+              pageSingleton(S, "İletişim sayfası", "contact"),
+              pageSingleton(S, "Topluluk sayfası", "gemeenschap"),
+              pageSingleton(S, "Haberler sayfası", "nieuws"),
             ]),
         ),
       S.divider(),
       S.listItem()
-        .title("Content maken")
+        .title("İçerik oluştur")
         .child(
           S.list()
-            .title("Content maken")
+            .title("İçerik oluştur")
             .items([
-              S.documentTypeListItem("program").title("Programma's"),
-              S.documentTypeListItem("event").title("Activiteiten / agenda"),
-              S.documentTypeListItem("post").title("Nieuws & verhalen"),
-              S.documentTypeListItem("galleryItem").title("Fotogalerij"),
+              S.documentTypeListItem("program").title("Programlar"),
+              S.documentTypeListItem("event").title("Etkinlikler / ajanda"),
+              S.documentTypeListItem("post").title("Haberler & hikayeler"),
+              S.documentTypeListItem("galleryItem").title("Fotoğraf galerisi"),
             ]),
         ),
       S.divider(),
       S.listItem()
-        .title("Vertrouwen")
+        .title("Güven")
         .child(
           S.list()
-            .title("Vertrouwen")
+            .title("Güven")
             .items([
-              S.documentTypeListItem("teamMember").title("Team"),
-              S.documentTypeListItem("partner").title("Partners"),
-              S.documentTypeListItem("testimonial").title("Testimonials"),
+              S.documentTypeListItem("teamMember").title("Ekip"),
+              S.documentTypeListItem("partner").title("Partnerler"),
+              S.documentTypeListItem("testimonial").title("Yorumlar"),
             ]),
         ),
     ]);

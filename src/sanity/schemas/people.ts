@@ -1,15 +1,15 @@
 import { defineField, defineType } from "sanity";
 
-const required = "Dit veld is verplicht.";
+const required = "Bu alan zorunludur.";
 
 export const teamMemberSchema = defineType({
   name: "teamMember",
-  title: "Teamlid",
+  title: "Ekip üyesi",
   type: "document",
   fields: [
     defineField({
       name: "name",
-      title: "Naam",
+      title: "Ad soyad",
       type: "string",
       validation: (Rule) => Rule.required().error(required),
     }),
@@ -21,51 +21,51 @@ export const teamMemberSchema = defineType({
     }),
     defineField({
       name: "bio",
-      title: "Bio",
+      title: "Kısa biyografi",
       type: "text",
       rows: 4,
-      description: "Korte menselijke bio. Houd dit warm en concreet.",
+      description: "Kısa, insani ve net bir biyografi yazın.",
     }),
     defineField({
       name: "portrait",
-      title: "Portret",
+      title: "Portre",
       type: "image",
       options: { hotspot: true },
       fields: [
         defineField({
           name: "alt",
-          title: "Alt-tekst",
+          title: "Alt metin",
           type: "string",
-          validation: (Rule) => Rule.required().error("Alt-tekst is nodig."),
+          validation: (Rule) => Rule.required().error("Alt metin gereklidir."),
         }),
       ],
     }),
     defineField({
       name: "email",
-      title: "E-mail optioneel",
+      title: "E-posta opsiyonel",
       type: "email",
-      description: "Alleen invullen als dit openbaar gedeeld mag worden.",
+      description: "Sadece herkese açık paylaşılabilecekse doldurun.",
     }),
     defineField({
       name: "order",
-      title: "Volgorde",
+      title: "Sıralama",
       type: "number",
       initialValue: 99,
-      validation: (Rule) => Rule.integer().error("Gebruik een heel getal."),
+      validation: (Rule) => Rule.integer().error("Tam sayı girin."),
     }),
     defineField({
       name: "visible",
-      title: "Zichtbaar",
+      title: "Görünür",
       type: "boolean",
       initialValue: true,
-      description: "Alleen zichtbare teamleden worden later getoond.",
+      description: "Sadece görünür olan ekip üyeleri sitede gösterilir.",
     }),
   ],
   preview: {
     select: { title: "name", subtitle: "role", media: "portrait" },
   },
   orderings: [
-    { title: "Volgorde", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
+    { title: "Sıralama", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
   ],
 });
 
@@ -76,7 +76,7 @@ export const partnerSchema = defineType({
   fields: [
     defineField({
       name: "name",
-      title: "Naam",
+      title: "Ad",
       type: "string",
       validation: (Rule) => Rule.required().error(required),
     }),
@@ -88,100 +88,98 @@ export const partnerSchema = defineType({
       fields: [
         defineField({
           name: "alt",
-          title: "Alt-tekst",
+          title: "Alt metin",
           type: "string",
-          validation: (Rule) => Rule.required().error("Alt-tekst is nodig."),
+          validation: (Rule) => Rule.required().error("Alt metin gereklidir."),
         }),
       ],
     }),
     defineField({
       name: "website",
-      title: "Website",
+      title: "Web sitesi",
       type: "url",
       validation: (Rule) => Rule.uri({ scheme: ["https"] }),
     }),
     defineField({
       name: "description",
-      title: "Beschrijving",
+      title: "Açıklama",
       type: "text",
       rows: 3,
     }),
     defineField({
       name: "visible",
-      title: "Zichtbaar",
+      title: "Görünür",
       type: "boolean",
       initialValue: true,
     }),
     defineField({
       name: "order",
-      title: "Volgorde",
+      title: "Sıralama",
       type: "number",
       initialValue: 99,
-      validation: (Rule) => Rule.integer().error("Gebruik een heel getal."),
+      validation: (Rule) => Rule.integer().error("Tam sayı girin."),
     }),
   ],
   preview: {
     select: { title: "name", subtitle: "website", media: "logo" },
   },
   orderings: [
-    { title: "Volgorde", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
+    { title: "Sıralama", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
   ],
 });
 
 export const testimonialSchema = defineType({
   name: "testimonial",
-  title: "Testimonial",
+  title: "Yorum",
   type: "document",
   fields: [
     defineField({
       name: "quote",
-      title: "Citaat",
+      title: "Alıntı",
       type: "text",
       rows: 4,
       validation: (Rule) =>
-        Rule.required().max(320).error("Gebruik maximaal 320 tekens."),
+        Rule.required().max(320).error("En fazla 320 karakter kullanın."),
     }),
     defineField({
       name: "name",
-      title: "Naam",
+      title: "Ad",
       type: "string",
-      description: "Laat leeg als anoniem aan staat.",
+      description: "Anonim seçiliyse boş bırakın.",
       hidden: ({ document }) => Boolean(document?.anonymous),
     }),
     defineField({
       name: "roleOrContext",
-      title: "Rol of context",
+      title: "Rol veya bağlam",
       type: "string",
-      description: "Bijvoorbeeld deelneemster, vrijwilliger of partner.",
+      description: "Örneğin katılımcı, gönüllü veya partner.",
     }),
     defineField({
       name: "image",
-      title: "Afbeelding optioneel",
+      title: "Görsel opsiyonel",
       type: "image",
       options: { hotspot: true },
-      fields: [
-        defineField({ name: "alt", title: "Alt-tekst", type: "string" }),
-      ],
+      fields: [defineField({ name: "alt", title: "Alt metin", type: "string" })],
     }),
     defineField({
       name: "anonymous",
-      title: "Anoniem",
+      title: "Anonim",
       type: "boolean",
       initialValue: false,
     }),
     defineField({
       name: "approvedForPublication",
-      title: "Goedgekeurd voor publicatie",
+      title: "Yayın için onaylandı",
       type: "boolean",
       initialValue: false,
-      description: "Alleen goedgekeurde testimonials worden later getoond.",
+      description: "Sadece onaylı yorumlar web sitesinde gösterilir.",
     }),
     defineField({
       name: "order",
-      title: "Volgorde",
+      title: "Sıralama",
       type: "number",
       initialValue: 99,
-      validation: (Rule) => Rule.integer().error("Gebruik een heel getal."),
+      validation: (Rule) => Rule.integer().error("Tam sayı girin."),
     }),
   ],
   preview: {
@@ -192,15 +190,15 @@ export const testimonialSchema = defineType({
       media: "image",
     },
     prepare({ quote, name, anonymous, media }) {
-      const text = String(quote || "Testimonial");
+      const text = String(quote || "Yorum");
       return {
         title: text.length > 60 ? `${text.slice(0, 60)}...` : text,
-        subtitle: anonymous ? "Anoniem" : name || "Geen naam",
+        subtitle: anonymous ? "Anonim" : name || "İsim yok",
         media,
       };
     },
   },
   orderings: [
-    { title: "Volgorde", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
+    { title: "Sıralama", name: "orderAsc", by: [{ field: "order", direction: "asc" }] },
   ],
 });

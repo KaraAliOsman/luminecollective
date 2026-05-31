@@ -1,79 +1,75 @@
 import { defineField, defineType } from "sanity";
 
-const required = "Dit veld is verplicht.";
+const required = "Bu alan zorunludur.";
 
 export const globalSettingsSchema = defineType({
   name: "globalSettings",
-  title: "Site instellingen",
+  title: "Site ayarları",
   type: "document",
   fields: [
     defineField({
       name: "siteTitle",
-      title: "Sitenaam",
+      title: "Site adı",
       type: "string",
-      description: "De naam van de website, meestal Stichting Lumina Collective.",
+      description: "Genelde Stichting Lumina Collective olarak kalır.",
       validation: (Rule) => Rule.required().error(required),
     }),
     defineField({
       name: "siteDescription",
-      title: "Sitebeschrijving",
+      title: "Site açıklaması",
       type: "text",
       rows: 3,
-      description: "Korte beschrijving voor zoekmachines en social previews.",
+      description: "Google ve sosyal medya önizlemeleri için kısa açıklama.",
       validation: (Rule) =>
-        Rule.required().max(160).error("Gebruik maximaal 160 tekens."),
+        Rule.required().max(160).error("En fazla 160 karakter kullanın."),
     }),
     defineField({
       name: "defaultOgImage",
-      title: "Standaard deelafbeelding",
+      title: "Varsayılan paylaşım görseli",
       type: "image",
       options: { hotspot: true },
-      description: "Standaard deelafbeelding. Aanbevolen formaat: 1200 x 630.",
+      description: "Sosyal medyada paylaşım için önerilen boyut: 1200 x 630.",
       validation: (Rule) => Rule.required().error(required),
       fields: [
         defineField({
           name: "alt",
-          title: "Alt-tekst",
+          title: "Alt metin",
           type: "string",
-          validation: (Rule) => Rule.required().error("Beschrijf de afbeelding."),
+          validation: (Rule) => Rule.required().error("Görseli açıklayın."),
         }),
       ],
     }),
     defineField({
       name: "logoFull",
-      title: "Volledig logo",
+      title: "Tam logo",
       type: "image",
-      description: "Volledig logo voor header en footer.",
+      description: "Header ve footer için tam logo.",
       validation: (Rule) => Rule.required().error(required),
-      fields: [
-        defineField({ name: "alt", title: "Alt-tekst", type: "string" }),
-      ],
+      fields: [defineField({ name: "alt", title: "Alt metin", type: "string" })],
     }),
     defineField({
       name: "logoMark",
-      title: "Klein logo / L-mark",
+      title: "Küçük logo / L işareti",
       type: "image",
-      description: "Kleine L-mark voor compacte plekken.",
+      description: "Küçük alanlarda kullanılan L işareti.",
       validation: (Rule) => Rule.required().error(required),
-      fields: [
-        defineField({ name: "alt", title: "Alt-tekst", type: "string" }),
-      ],
+      fields: [defineField({ name: "alt", title: "Alt metin", type: "string" })],
     }),
     defineField({
       name: "contactEmail",
-      title: "Contact e-mail",
+      title: "İletişim e-postası",
       type: "email",
-      description: "Alleen invullen als dit officieel bevestigd is.",
+      description: "Sadece resmi olarak onaylı e-posta varsa doldurun.",
     }),
     defineField({
       name: "socialLinks",
-      title: "Social media links",
+      title: "Sosyal medya linkleri",
       type: "array",
-      description: "Links naar sociale kanalen. Alleen echte kanalen toevoegen.",
+      description: "Sadece gerçek sosyal medya hesaplarını ekleyin.",
       of: [
         defineField({
           name: "socialLink",
-          title: "Social link",
+          title: "Sosyal medya linki",
           type: "object",
           fields: [
             defineField({
@@ -87,7 +83,7 @@ export const globalSettingsSchema = defineType({
                   { title: "TikTok", value: "tiktok" },
                   { title: "X", value: "x" },
                   { title: "LinkedIn", value: "linkedin" },
-                  { title: "Other", value: "other" },
+                  { title: "Diğer", value: "other" },
                 ],
               },
               validation: (Rule) => Rule.required().error(required),
@@ -107,39 +103,39 @@ export const globalSettingsSchema = defineType({
     }),
     defineField({
       name: "footerText",
-      title: "Footer tekst",
+      title: "Footer metni",
       type: "text",
       rows: 2,
-      description: "Korte warme zin onder het logo.",
-      validation: (Rule) => Rule.max(180).error("Houd dit kort en rustig."),
+      description: "Logonun altında görünen kısa ve sıcak cümle.",
+      validation: (Rule) => Rule.max(180).error("Kısa ve sakin tutun."),
     }),
     defineField({
       name: "donationEnabled",
-      title: "Donaties tonen",
+      title: "Bağışı göster",
       type: "boolean",
       initialValue: false,
-      description: "Zet aan als donaties zichtbaar mogen zijn.",
+      description: "Bağış linki sitede görünmeli ise açın.",
     }),
     defineField({
       name: "donationUrl",
-      title: "Donatielink",
+      title: "Bağış linki",
       type: "url",
-      description: "Alleen nodig als donaties actief zijn.",
+      description: "Sadece bağış aktifse gereklidir.",
       hidden: ({ document }) => !document?.donationEnabled,
       validation: (Rule) =>
         Rule.custom((value, context) => {
           if (context.document?.donationEnabled && !value) {
-            return "Voeg een donatielink toe of zet donaties uit.";
+            return "Bağış linki ekleyin veya bağışı kapatın.";
           }
           return true;
         }),
     }),
     defineField({
       name: "newsletterEnabled",
-      title: "Nieuwsbrief tonen",
+      title: "Bülteni göster",
       type: "boolean",
       initialValue: true,
-      description: "Zet uit als nieuwsbriefinschrijving tijdelijk niet nodig is.",
+      description: "Bülten aboneliği geçici olarak gerekmiyorsa kapatın.",
     }),
   ],
   preview: {
