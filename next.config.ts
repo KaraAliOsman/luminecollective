@@ -30,6 +30,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/static/:path*",
+        destination: "/studio/static/:path*",
+      },
+      {
+        source: "/studio",
+        destination: "/studio/index.html",
+      },
+      {
+        source: "/studio/((?!static|brand|favicon\\.ico|_headers).*)",
+        destination: "/studio/index.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

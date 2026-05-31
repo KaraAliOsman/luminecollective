@@ -7,7 +7,7 @@ Institutionele, editoriale en warme website voor Stichting Lumina Collective.
 - Next.js App Router
 - TypeScript strict
 - Tailwind CSS
-- Sanity Studio for editable MVP content
+- Sanity Studio for editable MVP content, built as static assets for Cloudflare
 
 ## Local Development
 
@@ -19,7 +19,8 @@ npm run dev
 Open:
 
 - Public site: `http://localhost:3000`
-- Sanity Studio: `http://localhost:3000/studio`
+- Sanity Studio dev server: `npm run studio:dev`
+- Sanity Studio static preview after build: `http://localhost:3000/studio`
 
 ## Quality Checks
 
@@ -53,10 +54,14 @@ If these variables are missing locally, submissions still validate and return a 
 
 ## Sanity Studio
 
-The CMS is mounted at:
+For Cloudflare Workers free tier, the Studio is not bundled as a Next.js route.
+Instead, `npm run build` runs `npm run studio:build` and writes the static Studio
+to `public/studio/`. OpenNext then uploads it as static Worker assets.
+
+The deployed CMS is mounted at:
 
 ```bash
-http://localhost:3000/studio
+https://your-domain.example/studio
 ```
 
 Configure these variables before using Studio with a real Sanity project:
@@ -77,6 +82,7 @@ To connect Sanity:
 2. Add the values from `.env.example` to Cloudflare Workers.
 3. Add this site domain to Sanity CORS:
    - `http://localhost:3000`
+   - `http://localhost:3333`
    - `https://stichtingluminacollective.nl`
    - your `*.workers.dev` preview URL if preview editing is needed.
 4. Create content for Global Settings, Programs, Events and Gallery.

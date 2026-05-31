@@ -4,9 +4,13 @@ out/
 dist/
 .open-next/
 .wrangler/
+.sanity/
+public/studio/
 .dev.vars
 .env
 .env*.local
+pnpm-lock.yaml
+pnpm-workspace.yaml
 *.tsbuildinfo
 next-env.d.ts
 dev-*.log

@@ -18,7 +18,8 @@
     }
   ],
   "vars": {
-    "NEXT_PUBLIC_SITE_URL": "https://stichtingluminacollective.nl",
+    "NEXT_PUBLIC_SITE_URL": "https://lumina-collective.aliosmankara111.workers.dev",
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "user9c35",
     "NEXT_PUBLIC_SANITY_DATASET": "production",
     "NEXTJS_ENV": "production"
   },

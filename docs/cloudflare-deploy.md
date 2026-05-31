@@ -68,8 +68,33 @@ npm run deploy
 ```
 
 The `.npmrc` file intentionally sets `legacy-peer-deps=true` because
-`next-sanity@10.1.4` declares a Next 15 peer dependency while this project uses
-Next 16. The app builds correctly with this dependency resolution.
+it makes Cloudflare's `npm clean-install` less brittle when Sanity packages
+publish peer metadata changes. The current app uses a Cloudflare-compatible
+Next 15.5 release and builds cleanly with `npm ci`.
+
+## Sanity Studio On The Free Tier
+
+Do not restore `src/app/studio` as a Next.js route. Bundling Sanity Studio into
+the Worker makes the script too large for the Cloudflare Workers free tier.
+
+The project now builds Studio separately:
+
+```bash
+npm run studio:build
+```
+
+This writes static assets to `public/studio/`. During `npm run cf:build`,
+OpenNext uploads those files as Worker assets, so the admin is available at:
+
+```txt
+/studio
+```
+
+Sanity's generated Studio references `/static/...` assets, so `next.config.ts`
+contains a rewrite from `/static/:path*` to `/studio/static/:path*`.
+
+Before logging in, add the production domain and the workers.dev preview domain
+to Sanity CORS.
 
 ## Required Variables
 
