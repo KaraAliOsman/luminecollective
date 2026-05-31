@@ -38,7 +38,8 @@ export async function POST(request: Request) {
         Consent: parsed.data.consent,
       },
     });
-  } catch {
+  } catch (error) {
+    console.error("Error in newsletter route:", error);
     return NextResponse.json({ message: formMessages.error }, { status: 500 });
   }
 

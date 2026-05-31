@@ -59,7 +59,9 @@ export async function sendNotification({
   });
 
   if (!response.ok) {
-    throw new Error("Email provider request failed.");
+    const errorText = await response.text();
+    console.error("Resend API failed with status:", response.status, "body:", errorText);
+    throw new Error(`Email provider request failed: ${errorText}`);
   }
 
   return { delivered: true, skipped: false };
