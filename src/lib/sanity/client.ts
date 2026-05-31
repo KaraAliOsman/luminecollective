@@ -1,15 +1,15 @@
 import { createClient } from "next-sanity";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "user9c35";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 const apiVersion = "2024-01-01";
 
 /**
  * Public read client — used in Server Components for fetching published content.
- * Falls back gracefully when NEXT_PUBLIC_SANITY_PROJECT_ID is not set (local dev without CMS).
+ * Falls back to the public Lumina Sanity project when the runtime variable is missing.
  */
 export const sanityClient = createClient({
-  projectId: projectId ?? "placeholder",
+  projectId,
   dataset,
   apiVersion,
   useCdn: true,

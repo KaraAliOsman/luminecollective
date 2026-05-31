@@ -4,7 +4,7 @@ import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./src/sanity/schemas";
 import { studioStructure } from "./src/sanity/structure";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "";
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "user9c35";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 
 export default defineConfig({
