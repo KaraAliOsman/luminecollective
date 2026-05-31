@@ -6,7 +6,7 @@
     "clean:build": "node -e \"const fs=require('fs'); for (const p of ['.next','.open-next']) fs.rmSync(p,{recursive:true,force:true});\"",
     "dev": "next dev",
     "studio:dev": "sanity dev",
-    "studio:build": "sanity build public/studio -y",
+    "studio:build": "sanity build public/studio -y && node scripts/copy-studio-static.mjs",
     "build": "npm run studio:build && next build",
     "cf:build": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.19.11",
-    "@sanity/cli": "^3.49.0",
+    "@sanity/cli": "^6.6.0",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",

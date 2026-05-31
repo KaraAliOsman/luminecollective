@@ -25,9 +25,10 @@ export async function POST(request: NextRequest) {
   };
 
   const tags = documentType ? (tagMap[documentType] ?? []) : [];
+  const revalidate = revalidateTag as (tag: string, profile?: string) => void;
 
   for (const tag of tags) {
-    revalidateTag(tag, "max");
+    revalidate(tag, "max");
   }
 
   // Always revalidate shared paths

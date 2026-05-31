@@ -6,6 +6,7 @@ dist/
 .wrangler/
 .sanity/
 public/studio/
+public/static/
 .dev.vars
 .env
 .env*.local

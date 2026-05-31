@@ -17,6 +17,7 @@ const eslintConfig = [
       ".wrangler/**",
       ".sanity/**",
       "public/studio/**",
+      "public/static/**",
       "cloudflare-env.d.ts",
       "next-env.d.ts",
       "node_modules/**",
