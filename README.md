@@ -74,27 +74,76 @@ The current Studio includes Global Settings, Pages, Programs, Events, Gallery, T
 To connect Sanity:
 
 1. Create a Sanity project and dataset.
-2. Add the values from `.env.example` to Vercel.
+2. Add the values from `.env.example` to Cloudflare Workers.
 3. Add this site domain to Sanity CORS:
    - `http://localhost:3000`
    - `https://stichtingluminacollective.nl`
-   - the Vercel preview domain if preview editing is needed.
+   - your `*.workers.dev` preview URL if preview editing is needed.
 4. Create content for Global Settings, Programs, Events and Gallery.
 5. Configure a webhook to `https://stichtingluminacollective.nl/api/revalidate?secret=YOUR_SECRET`.
 
-## Deploy On Vercel
+## Deploy On Cloudflare Workers
 
-1. Import the GitHub repository into Vercel.
-2. Set framework preset to Next.js.
-3. Add all required environment variables from `.env.example`.
-4. Build command: `npm run build`.
-5. Output is managed by Next.js/Vercel automatically.
-6. Add the production domain `stichtingluminacollective.nl`.
-7. Configure DNS according to Vercel instructions.
+This project is configured for Cloudflare Workers with the OpenNext Cloudflare
+adapter. It does not require Vercel.
+
+See the full deployment checklist in `docs/cloudflare-deploy.md`.
+
+Local checks:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run cf:build
+```
+
+Cloudflare preview:
+
+```bash
+npm run preview
+```
+
+Deploy from local machine:
+
+```bash
+npx wrangler login
+npm run deploy
+```
+
+Recommended production setup:
+
+1. Add the domain `stichtingluminacollective.nl` to Cloudflare DNS.
+2. Create/import the Workers project from this GitHub repository.
+3. Use `npm run deploy` as the deploy command if deploying with CI.
+4. Add the custom domain to the Worker in Cloudflare.
+5. Set all required environment variables and secrets.
+
+Use Cloudflare secrets for private values:
+
+```bash
+npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put SANITY_REVALIDATE_SECRET
+npx wrangler secret put CONTACT_EMAIL
+npx wrangler secret put VOLUNTEER_EMAIL
+npx wrangler secret put NEWSLETTER_EMAIL
+```
+
+Public/non-secret values can stay in `wrangler.jsonc` or be set in the
+Cloudflare dashboard:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://stichtingluminacollective.nl
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_GA_ID=
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=
+```
 
 Do not launch until:
 
 - `npm run lint`, `npm run typecheck` and `npm run build` pass.
+- `npm run cf:build` passes.
 - `CONTACT_EMAIL`, `VOLUNTEER_EMAIL` and `NEWSLETTER_EMAIL` are real addresses.
 - Resend domain and `FORMS_FROM_EMAIL` are verified.
 - Sanity Studio opens and published content appears on the frontend.
