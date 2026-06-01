@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils/cn";
 type ButtonProps<T extends ElementType = "button"> = {
   as?: T;
   href?: string;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "light" | "outlineOnDark";
   size?: "sm" | "md";
   className?: string;
 } & Omit<ComponentPropsWithoutRef<T>, "as" | "href" | "variant" | "size">;
@@ -30,6 +30,10 @@ export function Button({
       "border-deep-aubergine/35 bg-warm-white text-deep-aubergine hover:border-deep-aubergine hover:bg-soft-linen",
     ghost:
       "border-transparent bg-transparent text-deep-aubergine hover:border-deep-aubergine/20 hover:text-wine-plum",
+    light:
+      "border-warm-white bg-warm-white text-deep-aubergine hover:border-soft-linen hover:bg-soft-linen",
+    outlineOnDark:
+      "border-warm-white/40 bg-transparent text-warm-white hover:border-warm-white hover:bg-warm-white/10",
   };
 
   const sizes = {

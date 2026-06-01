@@ -11,21 +11,21 @@ export function Header({ settings }: { settings?: SiteSettings }) {
 
   return (
     <header className="sticky top-0 z-[80] border-b border-deep-aubergine/10 bg-lumina-ivory">
-      <div className="site-container flex min-h-[4.75rem] items-center justify-between gap-4 lg:min-h-[5.25rem]">
+      <div className="site-container flex min-h-16 items-center justify-between gap-3 lg:min-h-[4.5rem]">
         {/* Logo */}
         <Link
           href="/"
           aria-label={`${brand.name} - home`}
           className="flex min-w-0 shrink-0 items-center transition-opacity hover:opacity-85"
         >
-          <span className="relative block aspect-[2.45/1] w-[9.75rem] max-w-[48vw] overflow-hidden sm:w-[11rem] lg:w-[13.5rem]">
+          <span className="relative block h-11 w-[8.75rem] max-w-[44vw] overflow-hidden sm:w-[9.5rem] lg:h-12 lg:w-[10.75rem]">
             <Image
               src={logoSrc}
               alt={brand.name}
               fill
               priority
-              className="object-cover object-center"
-              sizes="(min-width: 1024px) 216px, 176px"
+              className="object-contain object-left"
+              sizes="(min-width: 1024px) 172px, 152px"
             />
           </span>
         </Link>

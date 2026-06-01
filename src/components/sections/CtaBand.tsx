@@ -27,16 +27,15 @@ export function CtaBand({ title, body, primary, secondary }: CtaBandProps) {
         </div>
         <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
           <Button
-            className="border-warm-white bg-warm-white text-deep-aubergine hover:bg-soft-linen"
             href={primary.href}
+            variant="light"
           >
             {primary.label}
           </Button>
           {secondary && (
             <Button
-              className="border-warm-white/35 bg-transparent text-warm-white hover:border-warm-white hover:bg-warm-white/10"
               href={secondary.href}
-              variant="secondary"
+              variant="outlineOnDark"
             >
               {secondary.label}
             </Button>
