@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("agenda");
 
   return createMetadata({
-    title: page?.seoTitle || "Agenda",
+    title: page?.seoTitle || "Agenda & Aankomende Activiteiten",
     description: page?.metaDescription || description,
     path: "/agenda",
   });

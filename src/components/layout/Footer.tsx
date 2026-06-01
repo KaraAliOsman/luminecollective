@@ -25,14 +25,15 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
               aria-label={`${brand.name} — home`}
               className="inline-block transition-opacity hover:opacity-75"
             >
-              <Image
-                src={logoSrc}
-                alt={brand.name}
-                width={148}
-                height={48}
-                className="h-10 w-auto object-contain"
-                sizes="148px"
-              />
+              <span className="relative block aspect-[2.45/1] w-48 overflow-hidden sm:w-56">
+                <Image
+                  src={logoSrc}
+                  alt={brand.name}
+                  fill
+                  className="object-cover object-center"
+                  sizes="224px"
+                />
+              </span>
             </Link>
             <p className="max-w-[22ch] font-serif text-xl leading-[1.55] text-deep-aubergine/85 italic">
               {footerText}

@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("programmas");
 
   return createMetadata({
-    title: page?.seoTitle || "Programma's",
+    title: page?.seoTitle || "Onze Programma's & Ontmoetingen",
     description: page?.metaDescription || description,
     path: "/programmas",
   });

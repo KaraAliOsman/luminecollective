@@ -27,6 +27,10 @@ export function createMetadata({
     metadataBase: new URL(brand.siteUrl),
     alternates: {
       canonical: url,
+      languages: {
+        "nl-NL": url,
+        "x-default": url,
+      },
     },
     openGraph: {
       title: pageTitle,

@@ -13,11 +13,11 @@ export function EventCard({ event }: { event: EventDisplay }) {
     >
       <p className="font-serif text-3xl text-deep-aubergine">{event.date}</p>
       <div className="space-y-3">
-        <h2 className="font-serif text-3xl leading-tight text-deep-aubergine">
+        <h3 className="font-serif text-3xl leading-tight text-deep-aubergine">
           <Link href={href} className="transition hover:text-wine-plum">
             {event.title}
           </Link>
-        </h2>
+        </h3>
         <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warm-taupe">
           {event.location}
         </p>

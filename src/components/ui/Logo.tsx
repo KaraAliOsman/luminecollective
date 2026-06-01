@@ -25,14 +25,27 @@ export function Logo({
       className={cn("inline-flex items-center", className)}
       href="/"
     >
-      <Image
-        alt={alt}
-        className={cn("h-auto object-contain", markOnly ? "w-12" : "w-40")}
-        height={markOnly ? 128 : 300}
-        priority
-        src={markOnly ? markSrc : fullSrc}
-        width={markOnly ? 128 : 400}
-      />
+      {markOnly ? (
+        <Image
+          alt={alt}
+          className="h-auto w-12 object-contain"
+          height={128}
+          priority
+          src={markSrc}
+          width={128}
+        />
+      ) : (
+        <span className="relative block aspect-[2.45/1] w-44 overflow-hidden">
+          <Image
+            alt={alt}
+            className="object-cover object-center"
+            fill
+            priority
+            sizes="176px"
+            src={fullSrc}
+          />
+        </span>
+      )}
     </Link>
   );
 }

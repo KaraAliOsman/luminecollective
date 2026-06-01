@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("over-ons");
 
   return createMetadata({
-    title: page?.seoTitle || "Over ons",
+    title: page?.seoTitle || "Over Ons & Onze Missie",
     description: page?.metaDescription || description,
     path: "/over-ons",
   });

@@ -34,7 +34,7 @@ export function CtaBand({ title, body, primary, secondary }: CtaBandProps) {
           </Button>
           {secondary && (
             <Button
-              className="border-warm-white/30 text-warm-white hover:bg-warm-white/10"
+              className="border-warm-white/35 bg-transparent text-warm-white hover:border-warm-white hover:bg-warm-white/10"
               href={secondary.href}
               variant="secondary"
             >

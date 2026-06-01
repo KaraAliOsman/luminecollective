@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("doe-mee");
 
   return createMetadata({
-    title: page?.seoTitle || "Doe mee",
+    title: page?.seoTitle || "Doe Mee & Vrijwilliger Worden",
     description: page?.metaDescription || description,
     path: "/doe-mee",
   });
@@ -80,9 +80,9 @@ export default async function DoeMeePage() {
                 <p className="text-sm font-semibold text-muted-gold">
                   0{index + 1}
                 </p>
-                <h2 className="mt-5 font-serif text-3xl text-deep-aubergine">
+                <h3 className="mt-5 font-serif text-3xl text-deep-aubergine">
                   {option.title}
-                </h2>
+                </h3>
                 <p className="mt-4 max-w-xl leading-7 text-ink-brown/75">
                   {option.text}
                 </p>

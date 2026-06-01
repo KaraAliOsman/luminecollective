@@ -11,10 +11,10 @@ type HeadingProps = {
 
 const sizes = {
   hero:
-    "text-[clamp(3.1rem,8vw,6.85rem)] leading-[0.88] tracking-normal",
-  xl: "text-[clamp(2.45rem,5vw,4.6rem)] leading-[0.95]",
-  lg: "text-[clamp(2rem,3.8vw,3.35rem)] leading-[1]",
-  md: "text-[clamp(1.55rem,2.4vw,2.15rem)] leading-[1.08]",
+    "text-[clamp(2.7rem,8vw,6.85rem)] leading-[0.92] tracking-normal",
+  xl: "text-[clamp(2.15rem,5vw,4.6rem)] leading-[0.98]",
+  lg: "text-[clamp(1.85rem,3.8vw,3.35rem)] leading-[1.04]",
+  md: "text-[clamp(1.45rem,2.4vw,2.15rem)] leading-[1.12]",
 };
 
 export function Heading({

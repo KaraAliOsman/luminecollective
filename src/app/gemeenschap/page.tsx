@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("gemeenschap");
 
   return createMetadata({
-    title: page?.seoTitle || "Gemeenschap",
+    title: page?.seoTitle || "Onze Gemeenschap & Activiteiten",
     description: page?.metaDescription || description,
     path: "/gemeenschap",
   });

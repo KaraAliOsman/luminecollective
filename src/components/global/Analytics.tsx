@@ -40,7 +40,7 @@ export function CookieBanner() {
     <div
       aria-live="polite"
       aria-atomic="true"
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-deep-aubergine/12 bg-warm-white/96 px-4 py-5 backdrop-blur-sm md:px-8"
+      className="fixed bottom-0 left-0 right-0 z-40 border-t border-deep-aubergine/12 bg-warm-white/96 px-4 py-5 backdrop-blur-sm md:px-8"
       role="dialog"
       aria-label="Cookiemelding"
       aria-describedby="cookie-banner-desc"
@@ -56,16 +56,16 @@ export function CookieBanner() {
             Meer over cookies
           </a>
         </p>
-        <div className="flex shrink-0 flex-wrap gap-3">
+        <div className="grid shrink-0 gap-3 sm:flex sm:flex-wrap">
           <button
-            className="min-h-10 border border-deep-aubergine/25 px-4 py-2 text-sm font-semibold text-deep-aubergine transition hover:bg-deep-aubergine/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-deep-aubergine"
+            className="min-h-10 border border-deep-aubergine/25 bg-warm-white px-4 py-2 text-sm font-semibold text-deep-aubergine transition hover:bg-soft-linen focus-visible:outline focus-visible:outline-2 focus-visible:outline-deep-aubergine"
             onClick={decline}
             type="button"
           >
             Alleen functioneel
           </button>
           <button
-            className="min-h-10 border border-deep-aubergine bg-deep-aubergine px-4 py-2 text-sm font-semibold text-warm-white transition hover:bg-wine-plum focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-deep-aubergine"
+            className="min-h-10 border border-deep-aubergine bg-deep-aubergine px-4 py-2 text-sm font-semibold text-warm-white transition hover:border-wine-plum hover:bg-wine-plum focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-deep-aubergine"
             onClick={accept}
             type="button"
           >

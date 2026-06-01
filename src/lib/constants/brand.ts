@@ -7,6 +7,6 @@ export const brand = {
   claim: "Ruimte voor vrouwen om te groeien, verbinden en zichtbaar te zijn.",
   description:
     "Stichting Lumina Collective brengt vrouwen samen in Nederland rond ontmoeting, kennis, cultuur en maatschappelijke betrokkenheid.",
-  logoFull: "/brand/logo-full.jpeg",
+  logoFull: "/brand/logo-horizontal.jpeg",
   logoMark: "/brand/logo-mark.jpeg",
 } as const;

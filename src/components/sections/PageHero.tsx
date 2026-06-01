@@ -33,9 +33,9 @@ export function PageHero({
   secondary,
 }: PageHeroProps) {
   return (
-    <section className="py-14 md:py-20">
-      <Container className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="space-y-7">
+    <section className="py-12 md:py-20">
+      <Container className="grid items-center gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+        <div className="max-w-3xl space-y-6">
           <Eyebrow>{eyebrow}</Eyebrow>
           <Heading as="h1" size="xl">
             {title}
@@ -44,7 +44,7 @@ export function PageHero({
             <p>{body}</p>
           </Prose>
           {(primary || secondary) && (
-            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+            <div className="grid gap-3 pt-2 sm:inline-flex sm:flex-row">
               {primary && <Button href={primary.href}>{primary.label}</Button>}
               {secondary && (
                 <Button href={secondary.href} variant="secondary">
@@ -55,7 +55,7 @@ export function PageHero({
           )}
         </div>
         <CMSImage
-          className="min-h-[28rem]"
+          className="min-h-[20rem] sm:min-h-[24rem] lg:min-h-[30rem]"
           fallback={visual}
           image={image}
           priority

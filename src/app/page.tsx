@@ -24,8 +24,11 @@ import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/jsonLd";
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("home");
 
+  const fallbackTitle = "Verbinding & Groei voor Vrouwen";
+  const title = page?.seoTitle && page.seoTitle !== "Home" ? page.seoTitle : fallbackTitle;
+
   return createMetadata({
-    title: page?.seoTitle || "Home",
+    title,
     description: page?.metaDescription,
     path: "/",
   });

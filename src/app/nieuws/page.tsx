@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("nieuws");
 
   return createMetadata({
-    title: page?.seoTitle || "Nieuws & verhalen",
+    title: page?.seoTitle || "Nieuws, Verhalen & Kennis",
     description: page?.metaDescription || fallbackDescription,
     path: "/nieuws",
   });
@@ -121,14 +121,14 @@ export default async function NieuwsPage() {
                     <p className="text-sm font-semibold uppercase tracking-[0.1em] text-warm-taupe">
                       {formatDate(post.publishedAt)}
                     </p>
-                    <h2 className="font-serif text-2xl leading-tight text-deep-aubergine">
+                    <h3 className="font-serif text-2xl leading-tight text-deep-aubergine">
                       <Link
                         href={`/nieuws/${post.slug}`}
                         className="transition hover:text-wine-plum"
                       >
                         {post.title}
                       </Link>
-                    </h2>
+                    </h3>
                     <p className="leading-7 text-ink-brown/72">{post.excerpt}</p>
                     <TextLink href={`/nieuws/${post.slug}`}>Lees verder</TextLink>
                   </div>

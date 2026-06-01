@@ -65,7 +65,7 @@ export function CMSImage({
         src={src}
       />
       {(caption || image?.caption || image?.credit || image?.isPlaceholder) && (
-        <figcaption className="absolute bottom-4 left-4 max-w-xs border-l border-muted-gold/55 bg-warm-white/78 p-3 text-xs font-semibold uppercase tracking-[0.12em] text-wine-plum backdrop-blur">
+        <figcaption className="absolute bottom-3 left-3 right-3 max-w-xs border-l border-muted-gold/55 bg-warm-white/88 p-3 text-xs font-semibold uppercase tracking-[0.1em] text-wine-plum backdrop-blur sm:bottom-4 sm:left-4 sm:right-auto sm:tracking-[0.12em]">
           {caption || image?.caption || image?.credit || "Preview beeld"}
         </figcaption>
       )}

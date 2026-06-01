@@ -17,11 +17,11 @@ export function ProgramCard({ program }: { program: ProgramDisplay }) {
         />
       </Link>
       <div className="space-y-3">
-        <h2 className="font-serif text-3xl leading-tight text-deep-aubergine">
+        <h3 className="font-serif text-3xl leading-tight text-deep-aubergine">
           <Link href={href} className="transition hover:text-wine-plum">
             {program.title}
           </Link>
-        </h2>
+        </h3>
         <p className="leading-7 text-ink-brown/75">{program.description}</p>
         <TextLink href={href}>{program.ctaLabel}</TextLink>
       </div>

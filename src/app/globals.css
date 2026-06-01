@@ -22,7 +22,7 @@
 :root {
   color-scheme: light;
   --site-max:     78rem;
-  --site-gutter:  clamp(1.25rem, 5vw, 3.5rem);
+  --site-gutter:  clamp(1rem, 4.5vw, 3.5rem);
 }
 
 /* ── Reset ──────────────────────────────────────────────────────────────── */
@@ -35,6 +35,8 @@
 html {
   scroll-behavior: smooth;
   background: #f7f1e8;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -47,6 +49,12 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+main {
+  overflow-x: clip;
 }
 
 img, svg {
@@ -54,9 +62,24 @@ img, svg {
   max-width: 100%;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button {
+  overflow-wrap: break-word;
+}
+
 a {
-  color: inherit;
   text-decoration: none;
+}
+
+a:not([class]) {
+  color: inherit;
 }
 
 button,
@@ -91,8 +114,16 @@ select {
 
 /* ── Layout ─────────────────────────────────────────────────────────────── */
 .site-container {
-  width: min(var(--site-max), calc(100% - (var(--site-gutter) * 2)));
+  width: 100%;
+  max-width: var(--site-max);
   margin-inline: auto;
+  padding-inline: var(--site-gutter);
+}
+
+@media (max-width: 420px) {
+  .site-container {
+    padding-inline: 1rem;
+  }
 }
 
 /* ── Typography utilities ───────────────────────────────────────────────── */

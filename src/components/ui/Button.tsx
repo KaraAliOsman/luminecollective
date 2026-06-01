@@ -21,20 +21,20 @@ export function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center font-semibold tracking-wide transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-deep-aubergine disabled:cursor-not-allowed disabled:opacity-60";
+    "inline-flex items-center justify-center border font-semibold tracking-wide transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-deep-aubergine disabled:cursor-not-allowed disabled:opacity-60";
 
   const variants = {
     primary:
-      "border border-deep-aubergine bg-deep-aubergine text-warm-white hover:bg-wine-plum",
+      "border-deep-aubergine bg-deep-aubergine text-[#fffaf2] shadow-none hover:border-wine-plum hover:bg-wine-plum",
     secondary:
-      "border border-deep-aubergine/30 bg-transparent text-deep-aubergine hover:bg-deep-aubergine/6",
+      "border-deep-aubergine/35 bg-warm-white text-deep-aubergine hover:border-deep-aubergine hover:bg-soft-linen",
     ghost:
-      "border border-transparent text-deep-aubergine hover:text-wine-plum hover:border-deep-aubergine/20",
+      "border-transparent bg-transparent text-deep-aubergine hover:border-deep-aubergine/20 hover:text-wine-plum",
   };
 
   const sizes = {
-    sm: "min-h-9 px-4 py-2 text-xs",
-    md: "min-h-11 px-6 py-3 text-sm",
+    sm: "min-h-10 px-4 py-2 text-xs",
+    md: "min-h-11 px-5 py-3 text-sm sm:px-6",
   };
 
   const classes = cn(base, variants[variant], sizes[size], className);

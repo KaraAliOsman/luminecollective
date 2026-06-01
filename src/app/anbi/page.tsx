@@ -9,7 +9,7 @@ import { createMetadata } from "@/lib/seo/config";
 const contactEmail = brand.email || "[E-mailadres invullen]";
 
 export const metadata: Metadata = createMetadata({
-  title: "ANBI",
+  title: "ANBI & Transparantie",
   description:
     "Informatie over de ANBI-status van Stichting Lumina Collective.",
   path: "/anbi",

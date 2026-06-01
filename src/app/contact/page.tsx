@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("contact");
 
   return createMetadata({
-    title: page?.seoTitle || "Contact",
+    title: page?.seoTitle || "Contact & Bereikbaarheid",
     description: page?.metaDescription || description,
     path: "/contact",
   });
