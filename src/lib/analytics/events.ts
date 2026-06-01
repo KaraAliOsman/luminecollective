@@ -1,16 +1,4 @@
-/**
- * Analytics event helper — centralised tracking for all user interactions.
- *
- * Usage:
- *   import { trackEvent } from "@/lib/analytics/events";
- *   trackEvent("cta_hero_click", { label: "Doe mee" });
- *
- * Events are only fired when:
- * 1. The user has granted analytics consent (checked via cookie).
- * 2. The relevant analytics provider is loaded (GA4 or Plausible).
- *
- * No data is sent without explicit consent.
- */
+import { hasAnalyticsConsent } from "@/lib/analytics/consent";
 
 type EventName =
   | "cta_hero_click"
@@ -28,11 +16,6 @@ type EventName =
 
 type EventPayload = Record<string, string | number | boolean | undefined>;
 
-function hasConsent(): boolean {
-  if (typeof document === "undefined") return false;
-  return document.cookie.includes("lumina_analytics_consent=true");
-}
-
 function isGA4Available(): boolean {
   return typeof window !== "undefined" && typeof window.gtag === "function";
 }
@@ -42,20 +25,16 @@ function isPlausibleAvailable(): boolean {
 }
 
 export function trackEvent(name: EventName, payload: EventPayload = {}): void {
-  if (!hasConsent()) return;
+  if (!hasAnalyticsConsent()) return;
 
-  // GA4
   if (isGA4Available()) {
     window.gtag("event", name, payload);
   }
 
-  // Plausible
   if (isPlausibleAvailable()) {
     window.plausible(name, { props: payload });
   }
 }
-
-// ─── Typed declarations so TypeScript doesn't complain ──────────────────────
 
 declare global {
   interface Window {

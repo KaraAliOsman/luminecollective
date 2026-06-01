@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { CookiePreferencesButton } from "@/components/global/CookiePreferencesButton";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Prose } from "@/components/ui/Prose";
@@ -11,7 +12,7 @@ const privacyEmail = brand.email || "[E-mailadres invullen]";
 export const metadata: Metadata = createMetadata({
   title: "Cookiebeleid",
   description:
-    "Lees hoe Stichting Lumina Collective cookies en trackingtechnologieën gebruikt en hoe jij jouw voorkeuren kunt beheren.",
+    "Lees hoe Stichting Lumina Collective cookies en trackingtechnologieen gebruikt en hoe jij jouw voorkeuren kunt beheren.",
   path: "/cookies",
 });
 
@@ -28,7 +29,7 @@ export default function CookiesPage() {
             Laatste wijziging:{" "}
             <time dateTime="2025-01-01">1 januari 2025</time>.{" "}
             <strong className="text-wine-plum">
-              Dit beleid is een concept en moet worden gereviewed voor
+              Dit beleid is een concept en moet worden beoordeeld voor
               publicatie.
             </strong>
           </p>
@@ -49,8 +50,8 @@ export default function CookiesPage() {
 
             <h3>Functionele cookies (altijd actief)</h3>
             <p>
-              Deze cookies zijn noodzakelijk voor het werken van de website.
-              Ze onthouden jouw cookievoorkeuren en zorgen voor basisfunctionaliteit.
+              Deze cookies zijn noodzakelijk voor het werken van de website. Ze
+              onthouden jouw cookievoorkeuren en zorgen voor basisfunctionaliteit.
               Voor functionele cookies is geen toestemming nodig.
             </p>
 
@@ -64,7 +65,7 @@ export default function CookiesPage() {
             <p>Mogelijke analytische tools die wij gebruiken:</p>
             <ul>
               <li>
-                <strong>Google Analytics 4</strong> — gegevens worden verwerkt
+                <strong>Google Analytics 4</strong> - gegevens worden verwerkt
                 via Google LLC. Privacybeleid:{" "}
                 <a
                   href="https://policies.google.com/privacy"
@@ -75,7 +76,7 @@ export default function CookiesPage() {
                 </a>
               </li>
               <li>
-                <strong>Plausible Analytics</strong> — privacyvriendelijke
+                <strong>Plausible Analytics</strong> - privacyvriendelijke
                 analytics zonder persoonsgegevens. Geen cookies vereist.
                 Informatie:{" "}
                 <a
@@ -90,10 +91,11 @@ export default function CookiesPage() {
 
             <h2>Hoe beheer je jouw cookievoorkeuren?</h2>
             <p>
-              Je kunt jouw cookievoorkeuren op elk moment aanpassen via de
-              cookiebanner onderaan de pagina. Je kunt ook cookies verwijderen
-              via de instellingen van jouw browser.
+              Je kunt jouw cookievoorkeuren op elk moment opnieuw openen met de
+              knop hieronder. Je kunt ook cookies verwijderen via de instellingen
+              van jouw browser.
             </p>
+            <CookiePreferencesButton />
 
             <h2>Cookies van derden</h2>
             <p>
@@ -111,13 +113,12 @@ export default function CookiesPage() {
               ) : (
                 <span className="italic text-warm-taupe">{privacyEmail}</span>
               )}
-              . Zie ook ons{" "}
-              <a href="/privacy">privacybeleid</a>.
+              . Zie ook ons <a href="/privacy">privacybeleid</a>.
             </p>
 
             <div className="rounded border border-muted-gold/30 bg-lumina-ivory p-4 text-sm text-ink-brown/70">
               <strong>Juridische notitie:</strong> Dit cookiebeleid is een
-              concept. Laat het reviewen voor publicatie. Pas het aan als je
+              concept. Laat het beoordelen voor publicatie. Pas het aan als je
               specifieke analytische tools activeert of verwijdert.
             </div>
           </Prose>

@@ -28,7 +28,7 @@ export default function PrivacyPage() {
             Laatste wijziging:{" "}
             <time dateTime="2025-01-01">1 januari 2025</time>.{" "}
             <strong className="text-wine-plum">
-              Dit beleid is een concept en moet worden gereviewed door de
+              Dit beleid is een concept en moet worden beoordeeld door de
               organisatie of een juridisch adviseur voor publicatie.
             </strong>
           </p>
@@ -179,7 +179,7 @@ export default function PrivacyPage() {
 
             <div className="rounded border border-muted-gold/30 bg-lumina-ivory p-4 text-sm text-ink-brown/70">
               <strong>Juridische notitie:</strong> Dit privacybeleid is een
-              concept en bevat placeholders. Laat het reviewen door de
+              concept en bevat placeholders. Laat het beoordelen door de
               organisatie en/of een juridisch adviseur voordat de website live
               gaat. Informatie die ontbreekt:{" "}
               <span className="font-semibold text-wine-plum">

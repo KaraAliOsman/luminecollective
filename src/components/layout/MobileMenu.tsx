@@ -10,9 +10,11 @@ export function MobileMenu() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = open ? "hidden" : "";
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [open]);
 
@@ -49,6 +51,7 @@ export function MobileMenu() {
       </button>
 
       <div
+        aria-hidden={!open}
         className={cn(
           "fixed inset-0 z-[90] overflow-y-auto bg-deep-aubergine px-5 pb-8 pt-24 text-warm-white transition duration-300",
           open
@@ -56,6 +59,7 @@ export function MobileMenu() {
             : "pointer-events-none translate-x-full opacity-0",
         )}
         id="mobile-menu"
+        inert={!open}
       >
         <div className="mx-auto grid min-h-[calc(100dvh-8rem)] max-w-xl content-between gap-10">
           <nav aria-label="Mobiele navigatie" className="grid gap-1">
