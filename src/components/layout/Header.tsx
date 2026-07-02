@@ -7,7 +7,7 @@ import { mainNavigation } from "@/lib/constants/navigation";
 import type { SiteSettings } from "@/types/cms";
 
 export function Header({ settings }: { settings?: SiteSettings }) {
-  const logoSrc = settings?.logoFullUrl || brand.logoFull;
+  const logoSrc = brand.logoMark;
 
   return (
     <header className="sticky top-0 z-[80] border-b border-deep-aubergine/8 glass">
@@ -27,11 +27,11 @@ export function Header({ settings }: { settings?: SiteSettings }) {
               sizes="(min-width: 1024px) 56px, 48px"
             />
           </span>
-          <span className="hidden min-w-0 flex-col leading-[0.9] sm:flex">
-            <span className="font-caveat text-3xl font-bold text-deep-aubergine lg:text-[2.2rem]">
+          <span className="flex min-w-0 flex-col leading-[0.85]">
+            <span className="font-caveat text-[1.5rem] font-bold text-deep-aubergine sm:text-2xl lg:text-[2.2rem]">
               Lumina Collective
             </span>
-            <span className="mt-1 font-outfit text-[0.58rem] font-bold uppercase tracking-[0.26em] text-muted-gold">
+            <span className="mt-0.5 font-outfit text-[0.45rem] font-bold uppercase tracking-[0.22em] text-muted-gold sm:text-[0.58rem] sm:tracking-[0.26em]">
               Stichting
             </span>
           </span>

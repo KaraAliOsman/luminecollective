@@ -57,7 +57,7 @@ export default async function GemeenschapPage() {
       <section className="pb-10 sm:pb-16 md:pb-24">
         <Container>
           <div
-            className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"
+            className="flex flex-wrap justify-center gap-2 sm:gap-4"
             role="list"
             aria-label="Galerij van momenten"
           >
@@ -66,14 +66,15 @@ export default async function GemeenschapPage() {
                 <FadeInSection
                   key={item.id}
                   animation="scale-in"
-                  delay={Math.min(((index % 3) + 1) * 100, 300) as 100 | 200 | 300}
+                  className="w-[calc(50%-4px)] sm:w-[calc(33.33%-12px)] lg:w-[calc(25%-12px)]"
+                  delay={Math.min(((index % 4) + 1) * 100, 300) as 100 | 200 | 300}
                 >
                   <div role="listitem">
                     <div className="img-zoom overflow-hidden">
                       <CMSImage
                         altFallback={item.alt}
                         caption={item.caption}
-                        className="h-40 sm:h-52 md:h-60"
+                        className="h-40 sm:h-52 md:h-60 w-full"
                         fallback={item.visual}
                         image={item.image}
                       />

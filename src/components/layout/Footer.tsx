@@ -8,7 +8,7 @@ import type { SiteSettings } from "@/types/cms";
 
 export function Footer({ settings }: { settings?: SiteSettings }) {
   const year = new Date().getFullYear();
-  const logoSrc = settings?.logoFullUrl || brand.logoFull;
+  const logoSrc = brand.logoMark;
   const footerText = settings?.footerText || brand.claim;
   const socials = settings?.socialLinks?.length
     ? settings.socialLinks
