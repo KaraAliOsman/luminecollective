@@ -29,6 +29,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
     "@opennextjs/cloudflare": "^1.19.11",
     "@sanity/cli": "^6.6.0",
     "@tailwindcss/postcss": "^4.1.17",
