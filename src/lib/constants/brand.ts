@@ -16,6 +16,6 @@ export const brand = {
     city: "Tilburg",
     country: "Nederland",
   },
-  logoFull: "/brand/logo-horizontal.jpeg",
-  logoMark: "/brand/logo-mark.jpeg",
+  logoFull: "/brand/logo-mark.png",
+  logoMark: "/brand/logo-mark.png",
 } as const;

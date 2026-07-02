@@ -33,6 +33,41 @@ export default async function GemeenschapPage() {
     getApprovedTestimonials(),
   ]);
 
+  // Ensure grid is always a perfect rectangle by padding items to a multiple of 4 (min 12)
+  const displayItems = [...galleryItems];
+  if (displayItems.length < 12) {
+    const fallbacks = await getPublicGallery();
+    let fbIdx = 0;
+    while (displayItems.length < 12 && fbIdx < fallbacks.length) {
+      const fb = fallbacks[fbIdx++];
+      if (!displayItems.some(item => item.visual?.src === fb.visual?.src)) {
+        displayItems.push({
+          ...fb,
+          id: `pad-${fb.id}`
+        });
+      }
+    }
+    let dupIdx = 0;
+    while (displayItems.length < 12) {
+      const fb = fallbacks[dupIdx++ % fallbacks.length];
+      displayItems.push({
+        ...fb,
+        id: `pad-dup-${displayItems.length}`
+      });
+    }
+  } else if (displayItems.length % 4 !== 0) {
+    const nextMultiple = Math.ceil(displayItems.length / 4) * 4;
+    const fallbacks = await getPublicGallery();
+    let dupIdx = 0;
+    while (displayItems.length < nextMultiple) {
+      const fb = fallbacks[dupIdx++ % fallbacks.length];
+      displayItems.push({
+        ...fb,
+        id: `pad-mult-${displayItems.length}`
+      });
+    }
+  }
+
   return (
     <>
       <section className="bg-gradient-hero py-10 sm:py-14 md:py-20">
@@ -57,16 +92,15 @@ export default async function GemeenschapPage() {
       <section className="pb-10 sm:pb-16 md:pb-24">
         <Container>
           <div
-            className="flex flex-wrap justify-center gap-2 sm:gap-4"
+            className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"
             role="list"
             aria-label="Galerij van momenten"
           >
-            {galleryItems.slice(0, 12).map((item, index) => {
+            {displayItems.map((item, index) => {
               return (
                 <FadeInSection
                   key={item.id}
                   animation="scale-in"
-                  className="w-[calc(50%-4px)] sm:w-[calc(33.33%-12px)] lg:w-[calc(25%-12px)]"
                   delay={Math.min(((index % 4) + 1) * 100, 300) as 100 | 200 | 300}
                 >
                   <div role="listitem">
@@ -74,7 +108,7 @@ export default async function GemeenschapPage() {
                       <CMSImage
                         altFallback={item.alt}
                         caption={item.caption}
-                        className="h-40 sm:h-52 md:h-60 w-full"
+                        className="h-40 sm:h-52 md:h-60"
                         fallback={item.visual}
                         image={item.image}
                       />
