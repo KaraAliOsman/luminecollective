@@ -190,10 +190,10 @@ export default async function Home() {
                 className={
                   index === 0
                     ? "md:col-span-2"
-                    : index === 2
-                      ? "md:row-span-2"
-                      : index === 4
-                        ? "col-span-2"
+                    : index === 1
+                      ? "md:col-span-2"
+                      : index === 2
+                        ? "md:col-span-2"
                         : ""
                 }
                 delay={Math.min((index + 1) * 100, 500) as 100 | 200 | 300 | 400 | 500}
@@ -202,15 +202,7 @@ export default async function Home() {
                   <CMSImage
                     altFallback={item.alt}
                     caption={item.caption}
-                    className={
-                      index === 0
-                        ? "h-36 sm:h-56 md:h-[26rem]"
-                        : index === 2
-                          ? "h-36 sm:h-56 md:h-full md:min-h-[26rem]"
-                          : index === 4
-                            ? "h-36 sm:h-56 md:h-52"
-                            : "h-36 sm:h-56 md:h-52"
-                    }
+                    className="h-36 sm:h-56 md:h-52 w-full object-cover"
                     fallback={item.visual}
                     image={item.image}
                   />
