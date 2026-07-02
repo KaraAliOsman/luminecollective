@@ -12,6 +12,7 @@
   --color-ink-brown:       #2f241f;
   --color-muted-gold:      #c6a05a;
   --color-warm-taupe:      #9a8575;
+  --color-logo-rose:       #CF9B83;
 
   /* ── Typography — from next/font CSS variables ───────────────────────── */
   --font-sans:  var(--font-inter), "Segoe UI", Arial, sans-serif;

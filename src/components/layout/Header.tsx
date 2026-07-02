@@ -31,7 +31,7 @@ export function Header({ settings }: { settings?: SiteSettings }) {
             <span className="font-caveat text-[1.5rem] font-bold text-deep-aubergine sm:text-2xl lg:text-[2.2rem]">
               Lumina Collective
             </span>
-            <span className="mt-0.5 font-outfit text-[0.45rem] font-bold uppercase tracking-[0.22em] text-muted-gold sm:text-[0.58rem] sm:tracking-[0.26em]">
+            <span className="mt-0.5 font-outfit text-[0.45rem] font-bold uppercase tracking-[0.22em] text-logo-rose sm:text-[0.58rem] sm:tracking-[0.26em]">
               Stichting
             </span>
           </span>
