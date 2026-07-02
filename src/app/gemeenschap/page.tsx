@@ -57,11 +57,11 @@ export default async function GemeenschapPage() {
       <section className="pb-10 sm:pb-16 md:pb-24">
         <Container>
           <div
-            className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3"
+            className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"
             role="list"
             aria-label="Galerij van momenten"
           >
-            {galleryItems.slice(0, 10).map((item, index) => {
+            {galleryItems.slice(0, 12).map((item, index) => {
               return (
                 <FadeInSection
                   key={item.id}

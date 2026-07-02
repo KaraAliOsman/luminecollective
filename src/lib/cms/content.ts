@@ -610,6 +610,13 @@ export async function getPublicGallery(): Promise<GalleryItemDisplay[]> {
     visuals.participation,
     visuals.warmWorkshop,
     visuals.communityTable,
+    visuals.conversation,
+    visuals.meeting,
+    visuals.presentation,
+    visuals.supportCircle,
+    visuals.culturalMoment,
+    visuals.participation,
+    visuals.warmWorkshop,
   ].map((visual, index) => ({
     id: `fallback-gallery-${index}`,
     visual,

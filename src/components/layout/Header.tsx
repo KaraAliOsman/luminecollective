@@ -27,11 +27,11 @@ export function Header({ settings }: { settings?: SiteSettings }) {
               sizes="(min-width: 1024px) 56px, 48px"
             />
           </span>
-          <span className="hidden min-w-0 flex-col leading-none sm:flex">
-            <span className="font-serif text-xl text-deep-aubergine lg:text-2xl">
+          <span className="hidden min-w-0 flex-col leading-[0.9] sm:flex">
+            <span className="font-caveat text-3xl font-bold text-deep-aubergine lg:text-[2.2rem]">
               Lumina Collective
             </span>
-            <span className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-warm-taupe">
+            <span className="mt-1 font-outfit text-[0.58rem] font-bold uppercase tracking-[0.26em] text-muted-gold">
               Stichting
             </span>
           </span>

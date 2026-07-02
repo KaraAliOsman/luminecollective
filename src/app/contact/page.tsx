@@ -62,7 +62,7 @@ export default async function ContactPage() {
                 <Eyebrow>Email</Eyebrow>
                 {contactEmail ? (
                   <a
-                    className="font-serif text-3xl text-deep-aubergine underline decoration-muted-gold/55 underline-offset-8 transition hover:decoration-deep-aubergine"
+                    className="font-serif text-xl sm:text-2xl md:text-3xl text-deep-aubergine break-all underline decoration-muted-gold/55 underline-offset-8 transition hover:decoration-deep-aubergine"
                     href={`mailto:${contactEmail}`}
                   >
                     {contactEmail}

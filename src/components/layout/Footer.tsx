@@ -35,7 +35,7 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
                   sizes="80px"
                 />
               </span>
-              <span className="font-serif text-2xl leading-none text-deep-aubergine">
+              <span className="font-caveat text-3xl font-bold leading-none text-deep-aubergine">
                 Lumina Collective
               </span>
             </Link>
