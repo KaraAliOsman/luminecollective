@@ -33,37 +33,38 @@ export default async function GemeenschapPage() {
     getApprovedTestimonials(),
   ]);
 
-  // Ensure grid is always a perfect rectangle by padding items to a multiple of 4 (min 12)
+  const getWeight = (item: (typeof galleryItems)[number]) => {
+    const alt = item.alt || "";
+    if (alt.includes("deelnemen") || alt.includes("Spreker")) return 2;
+    return 1;
+  };
+
+  const getWeightSum = (items: typeof galleryItems) => {
+    return items.reduce((sum, item) => sum + getWeight(item), 0);
+  };
+
+  // Enforce a perfect grid by calculating weights: double-width items count as 2, others as 1.
+  // The total weight sum must be a multiple of 4 (min weight sum 12) for a perfect rectangle on PC.
   const displayItems = [...galleryItems];
-  if (displayItems.length < 12) {
-    const fallbacks = await getPublicGallery();
-    let fbIdx = 0;
-    while (displayItems.length < 12 && fbIdx < fallbacks.length) {
-      const fb = fallbacks[fbIdx++];
-      if (!displayItems.some(item => item.visual?.src === fb.visual?.src)) {
-        displayItems.push({
-          ...fb,
-          id: `pad-${fb.id}`
-        });
-      }
-    }
-    let dupIdx = 0;
-    while (displayItems.length < 12) {
-      const fb = fallbacks[dupIdx++ % fallbacks.length];
+  const fallbacks = await getPublicGallery();
+  let fbIdx = 0;
+
+  // First, pad up to a minimum weight of 12
+  while (getWeightSum(displayItems) < 12) {
+    const fb = fallbacks[fbIdx++ % fallbacks.length];
+    displayItems.push({
+      ...fb,
+      id: `pad-${displayItems.length}`
+    });
+  }
+
+  // Then, pad until total weight is a multiple of 4
+  while (getWeightSum(displayItems) % 4 !== 0) {
+    const fb = fallbacks[fbIdx++ % fallbacks.length];
+    if (getWeight(fb) === 1) {
       displayItems.push({
         ...fb,
-        id: `pad-dup-${displayItems.length}`
-      });
-    }
-  } else if (displayItems.length % 4 !== 0) {
-    const nextMultiple = Math.ceil(displayItems.length / 4) * 4;
-    const fallbacks = await getPublicGallery();
-    let dupIdx = 0;
-    while (displayItems.length < nextMultiple) {
-      const fb = fallbacks[dupIdx++ % fallbacks.length];
-      displayItems.push({
-        ...fb,
-        id: `pad-mult-${displayItems.length}`
+        id: `pad-weight-${displayItems.length}`
       });
     }
   }
@@ -97,10 +98,12 @@ export default async function GemeenschapPage() {
             aria-label="Galerij van momenten"
           >
             {displayItems.map((item, index) => {
+              const isDouble = getWeight(item) === 2;
               return (
                 <FadeInSection
                   key={item.id}
                   animation="scale-in"
+                  className={isDouble ? "col-span-1 lg:col-span-2" : "col-span-1"}
                   delay={Math.min(((index % 4) + 1) * 100, 300) as 100 | 200 | 300}
                 >
                   <div role="listitem">
