@@ -64,6 +64,28 @@ export default async function Home() {
   ]);
   const featuredEvent = events[0];
 
+  // Reorder gallery items to fit the homepage bento grid (weights: 2, 2, 2, 1, 1)
+  const homeGallery: typeof gallery = [];
+  const doubles = gallery.filter(
+    (item) => item.alt?.includes("deelnemen") || item.alt?.includes("Spreker")
+  );
+  const singles = gallery.filter(
+    (item) => !item.alt?.includes("deelnemen") && !item.alt?.includes("Spreker")
+  );
+
+  let dIdx = 0;
+  while (homeGallery.length < 3 && dIdx < doubles.length) {
+    homeGallery.push(doubles[dIdx++]);
+  }
+  let sIdx = 0;
+  while (homeGallery.length < 5 && sIdx < singles.length) {
+    homeGallery.push(singles[sIdx++]);
+  }
+  while (homeGallery.length < 5 && dIdx < doubles.length) {
+    homeGallery.push(doubles[dIdx++]);
+  }
+  const displayHomeGallery = homeGallery.length >= 5 ? homeGallery : gallery.slice(0, 5);
+
   return (
     <>
       <StructuredData data={organizationJsonLd()} />
@@ -183,7 +205,7 @@ export default async function Home() {
             </div>
           </FadeInSection>
           <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
-            {gallery.slice(0, 5).map((item, index) => (
+            {displayHomeGallery.map((item, index) => (
               <FadeInSection
                 key={item.id}
                 animation="scale-in"
