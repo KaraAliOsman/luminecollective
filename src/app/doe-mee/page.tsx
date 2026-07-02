@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { VolunteerForm } from "@/components/forms/VolunteerForm";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
+import { FadeInSection } from "@/components/ui/FadeInSection";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
@@ -28,22 +29,27 @@ const options = [
   {
     title: "Deelnemer worden",
     text: "Kom naar een bijeenkomst, leer de community kennen en ontdek wat bij jou past.",
+    icon: "01",
   },
   {
     title: "Vrijwilliger worden",
     text: "Draag bij met tijd, kennis, organisatiekracht of warme aanwezigheid.",
+    icon: "02",
   },
   {
     title: "Partner worden",
     text: "Werk met ons samen rond programma's, locaties, kennis of zichtbaarheid.",
+    icon: "03",
   },
   {
     title: "Doneren / donatie interesse",
     text: "Steun activiteiten die ruimte maken voor meer vrouwen in de community.",
+    icon: "04",
   },
   {
     title: "Verhaal delen",
     text: "Breng een ervaring, idee of perspectief in dat anderen kan raken.",
+    icon: "05",
   },
 ];
 
@@ -67,59 +73,71 @@ export default async function DoeMeePage() {
 
       <section className="py-16 md:py-24">
         <Container>
-          <div className="mb-12 max-w-3xl space-y-4">
-            <Eyebrow>Manieren om mee te doen</Eyebrow>
-            <Heading>Kies een vorm die past bij jou.</Heading>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
+          <FadeInSection>
+            <div className="mb-12 max-w-3xl space-y-4">
+              <Eyebrow>Manieren om mee te doen</Eyebrow>
+              <Heading>Kies een vorm die past bij jou.</Heading>
+            </div>
+          </FadeInSection>
+          <div className="grid gap-5 sm:grid-cols-2">
             {options.map((option, index) => (
-              <article
-                className="border-t border-deep-aubergine/15 bg-warm-white/45 p-6 pt-7"
-                key={option.title}
-              >
-                <p className="text-sm font-semibold text-muted-gold">
-                  0{index + 1}
-                </p>
-                <h3 className="mt-5 font-serif text-3xl text-deep-aubergine">
-                  {option.title}
-                </h3>
-                <p className="mt-4 max-w-xl leading-7 text-ink-brown/75">
-                  {option.text}
-                </p>
-              </article>
+              <FadeInSection key={option.title} delay={Math.min((index + 1) * 100, 500) as 100 | 200 | 300 | 400 | 500}>
+                <article
+                  className="group border-t border-deep-aubergine/15 bg-warm-white/45 p-6 pt-7 transition-all duration-300 hover:bg-warm-white hover:shadow-[0_8px_30px_rgba(66,21,47,0.06)] hover:border-muted-gold/40"
+                >
+                  <p className="text-sm font-semibold text-muted-gold">
+                    {option.icon}
+                  </p>
+                  <h3 className="mt-5 font-serif text-3xl text-deep-aubergine transition group-hover:text-wine-plum">
+                    {option.title}
+                  </h3>
+                  <p className="mt-4 max-w-xl leading-7 text-ink-brown/75">
+                    {option.text}
+                  </p>
+                </article>
+              </FadeInSection>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Volunteer form */}
       <section className="bg-warm-white py-16 md:py-24">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="space-y-5">
-            <Eyebrow>Aanmeldformulier</Eyebrow>
-            <Heading size="md">Vertel hoe je wilt bijdragen.</Heading>
-            <p className="text-lg leading-8 text-ink-brown/75">
-              We zoeken vrouwen en partners die met aandacht willen bijdragen. Een
-              eerste bericht is genoeg om te verkennen wat mogelijk is.
-            </p>
-          </div>
-          <div>
-            <VolunteerForm />
-          </div>
+          <FadeInSection animation="slide-left">
+            <div className="space-y-5">
+              <Eyebrow>Aanmeldformulier</Eyebrow>
+              <Heading size="md">Vertel hoe je wilt bijdragen.</Heading>
+              <p className="text-lg leading-8 text-ink-brown/75">
+                We zoeken vrouwen en partners die met aandacht willen bijdragen. Een
+                eerste bericht is genoeg om te verkennen wat mogelijk is.
+              </p>
+            </div>
+          </FadeInSection>
+          <FadeInSection animation="slide-right">
+            <div>
+              <VolunteerForm />
+            </div>
+          </FadeInSection>
         </Container>
       </section>
 
       <section className="bg-soft-blush/35 py-16 md:py-24">
         <Container className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
-          <div className="space-y-5">
-            <Eyebrow>Zacht en concreet</Eyebrow>
-            <Heading>We zoeken geen perfecte profielen.</Heading>
-            <p className="text-lg leading-8 text-ink-brown/78">
-              We zoeken vrouwen en partners die met aandacht willen bijdragen.
-              Een eerste bericht is genoeg om te verkennen wat mogelijk is.
-            </p>
-          </div>
-          <VisualPlaceholder className="min-h-[27rem]" visual={visuals.supportCircle} />
+          <FadeInSection animation="slide-left">
+            <div className="space-y-5">
+              <Eyebrow>Zacht en concreet</Eyebrow>
+              <Heading>We zoeken geen perfecte profielen.</Heading>
+              <p className="text-lg leading-8 text-ink-brown/78">
+                We zoeken vrouwen en partners die met aandacht willen bijdragen.
+                Een eerste bericht is genoeg om te verkennen wat mogelijk is.
+              </p>
+            </div>
+          </FadeInSection>
+          <FadeInSection animation="slide-right">
+            <div className="img-zoom overflow-hidden">
+              <VisualPlaceholder className="min-h-[27rem]" visual={visuals.supportCircle} />
+            </div>
+          </FadeInSection>
         </Container>
       </section>
 

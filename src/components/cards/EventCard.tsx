@@ -1,35 +1,29 @@
-import Link from "next/link";
-
-import { Button } from "@/components/ui/Button";
+import { TextLink } from "@/components/ui/TextLink";
 import type { EventDisplay } from "@/types/cms";
 
 export function EventCard({ event }: { event: EventDisplay }) {
-  const href = `/agenda/${event.slug}`;
+  const href = event.slug ? `/agenda/${event.slug}` : "/agenda";
 
   return (
     <article
-      className="grid gap-5 border-t border-deep-aubergine/15 py-8 md:grid-cols-[12rem_1fr_auto] md:items-start first:pt-0"
-      data-preview={event.isPlaceholder || event.isFallback}
+      className="group grid gap-6 border-b border-deep-aubergine/10 py-8 transition-colors hover:bg-warm-white/40 md:grid-cols-[15rem_1fr] md:items-center md:gap-10"
+      data-placeholder={event.isPlaceholder}
     >
-      <p className="font-serif text-3xl text-deep-aubergine">{event.date}</p>
-      <div className="space-y-3">
-        <h3 className="font-serif text-3xl leading-tight text-deep-aubergine">
-          <Link href={href} className="transition hover:text-wine-plum">
-            {event.title}
-          </Link>
-        </h3>
-        <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warm-taupe">
-          {event.location}
+      <div className="space-y-1">
+        <p className="inline-flex items-center gap-2 rounded-sm bg-soft-blush/40 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-wine-plum">
+          {event.date}
         </p>
-        <p className="max-w-2xl leading-7 text-ink-brown/75">{event.description}</p>
+        <p className="text-sm text-warm-taupe">{event.location}</p>
       </div>
-      <Button
-        className="md:justify-self-end"
-        href={event.registrationUrl || href}
-        variant="secondary"
-      >
-        {event.cta}
-      </Button>
+      <div className="space-y-3">
+        <h3 className="font-serif text-3xl leading-tight text-deep-aubergine transition group-hover:text-wine-plum">
+          {event.title}
+        </h3>
+        <p className="max-w-2xl leading-7 text-ink-brown/72">
+          {event.description}
+        </p>
+        <TextLink href={href}>{event.cta}</TextLink>
+      </div>
     </article>
   );
 }

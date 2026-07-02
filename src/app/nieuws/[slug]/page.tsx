@@ -140,17 +140,6 @@ export default async function NieuwsDetailPage({ params }: Props) {
               ))}
             </Prose>
           )}
-
-          {post.isPreview && (
-            <div
-              className="mt-10 border-l-2 border-muted-gold/50 bg-lumina-ivory px-5 py-4 text-sm text-ink-brown/65"
-              data-internal="preview-notice"
-            >
-              <strong>Interne notitie:</strong> Dit is voorbeeldinhoud voor de
-              previewfase. Vervang dit via Sanity Studio met echte inhoud voor
-              publicatie.
-            </div>
-          )}
         </Container>
       </article>
 

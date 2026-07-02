@@ -6,30 +6,28 @@ import { Prose } from "@/components/ui/Prose";
 import { brand } from "@/lib/constants/brand";
 import { createMetadata } from "@/lib/seo/config";
 
-const contactEmail = brand.email || "[E-mailadres invullen]";
-
 export const metadata: Metadata = createMetadata({
-  title: "ANBI & Transparantie",
+  title: "Transparantie",
   description:
-    "Informatie over de ANBI-status van Stichting Lumina Collective.",
+    "Publieke organisatiegegevens en transparantie-informatie van Stichting Lumina Collective.",
   path: "/anbi",
 });
 
 export default function AnbiPage() {
+  const address = `${brand.address.street}, ${brand.address.postalCode} ${brand.address.city}`;
+
   return (
     <article>
       <header className="border-b border-deep-aubergine/10 py-14 md:py-20">
         <Container className="max-w-3xl">
           <Eyebrow>Transparantie</Eyebrow>
           <h1 className="mt-4 font-serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-deep-aubergine">
-            ANBI-informatie
+            Organisatiegegevens
           </h1>
-          <p className="mt-5 text-ink-brown/65">
-            Transparantiepagina conform ANBI-vereisten.{" "}
-            <strong className="text-wine-plum">
-              Deze pagina bevat placeholders die moeten worden ingevuld door de
-              organisatie voor publicatie.
-            </strong>
+          <p className="mt-5 text-lg leading-8 text-ink-brown/70">
+            We vinden zorgvuldigheid belangrijk. Daarom delen we op deze pagina
+            de publieke gegevens van Stichting Lumina Collective en publiceren we
+            aanvullende documenten zodra deze officieel beschikbaar zijn.
           </p>
         </Container>
       </header>
@@ -37,85 +35,53 @@ export default function AnbiPage() {
       <section className="py-12 md:py-16">
         <Container className="max-w-3xl">
           <Prose>
-            <h2>Organisatiegegevens</h2>
+            <h2>Publieke gegevens</h2>
             <ul>
               <li>
                 <strong>Naam:</strong> {brand.name}
               </li>
               <li>
-                <strong>RSIN / Fiscaal nummer:</strong>{" "}
-                <span className="italic text-warm-taupe">
-                  [RSIN invullen indien van toepassing]
-                </span>
+                <strong>KVK-nummer:</strong> {brand.kvk}
               </li>
               <li>
-                <strong>KVK-nummer:</strong>{" "}
-                <span className="italic text-warm-taupe">
-                  [KVK nummer invullen]
-                </span>
+                <strong>Vestigingsnummer:</strong> {brand.establishmentNumber}
               </li>
               <li>
-                <strong>Adres:</strong>{" "}
-                <span className="italic text-warm-taupe">
-                  [Adres invullen indien van toepassing]
-                </span>
+                <strong>Adres:</strong> {address}, {brand.address.country}
               </li>
               <li>
-                <strong>E-mail:</strong>{" "}
-                {brand.email ? (
+                <strong>Activiteit:</strong> {brand.sbi}
+              </li>
+              <li>
+                <strong>Website:</strong>{" "}
+                <a href={brand.siteUrl}>{brand.domain}</a>
+              </li>
+              {brand.email && (
+                <li>
+                  <strong>E-mail:</strong>{" "}
                   <a href={`mailto:${brand.email}`}>{brand.email}</a>
-                ) : (
-                  <span className="italic text-warm-taupe">{contactEmail}</span>
-                )}
-              </li>
-              <li>
-                <strong>ANBI-status:</strong>{" "}
-                <span className="italic text-warm-taupe">
-                  [ANBI-status invullen indien van toepassing]
-                </span>
-              </li>
+                </li>
+              )}
             </ul>
 
             <h2>Doelstelling</h2>
             <p>{brand.description}</p>
 
-            <h2>Beleidsplan</h2>
+            <h2>Werkwijze</h2>
             <p>
-              <span className="italic text-warm-taupe">
-                [Beleidsplan of link naar beleidsplan invullen]
-              </span>
+              Lumina Collective organiseert en ondersteunt activiteiten rond
+              ontmoeting, persoonlijke ontwikkeling, cultuur, ondersteuning en
+              maatschappelijke participatie. We werken zorgvuldig, lokaal en met
+              aandacht voor privacy, toestemming en vertrouwen.
             </p>
 
-            <h2>Bestuur</h2>
+            <h2>ANBI en documenten</h2>
             <p>
-              <span className="italic text-warm-taupe">
-                [Namen en functies van bestuurders invullen]
-              </span>
+              Alleen gegevens die officieel bevestigd zijn worden hier
+              gepubliceerd. Wanneer een beleidsplan, financieel overzicht,
+              jaarverslag, RSIN of ANBI-gerelateerde informatie definitief
+              beschikbaar is, wordt deze pagina daarmee aangevuld.
             </p>
-
-            <h2>Beloningsbeleid</h2>
-            <p>
-              Bestuurders van {brand.name} ontvangen geen beloning voor hun
-              werkzaamheden.{" "}
-              <span className="italic text-warm-taupe">
-                [Aanvullen indien er betaalde medewerkers zijn]
-              </span>
-            </p>
-
-            <h2>Jaarverslag en financiën</h2>
-            <p>
-              <span className="italic text-warm-taupe">
-                [Link naar jaarverslag of financieel overzicht invullen zodra
-                beschikbaar]
-              </span>
-            </p>
-
-            <div className="rounded border border-muted-gold/30 bg-lumina-ivory p-4 text-sm text-ink-brown/70">
-              <strong>Notitie:</strong> Deze ANBI-pagina bevat placeholders.
-              Vul alle gemarkeerde velden in voor publicatie en laat de inhoud
-              controleren op correctheid conform de ANBI-vereisten van de
-              Belastingdienst.
-            </div>
           </Prose>
         </Container>
       </section>

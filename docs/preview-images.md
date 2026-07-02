@@ -1,13 +1,10 @@
-# Preview Images
+# Website Image Credits
 
-These images are temporary preview photography for Stichting Lumina Collective.
-They are stored locally in `public/preview/` so the website feels visual and
-editorial before the client replaces them with real Lumina photography.
+The public website uses a curated local photography set in `public/preview/`.
+The files have been resized and color-graded for consistent editorial use
+across the Lumina Collective website.
 
-Source: Pexels. Pexels states that photos and videos are free to use and that
-attribution is not required: https://www.pexels.com/license/
-
-## Files
+## Credits
 
 | File | Source | Credit |
 | --- | --- | --- |
@@ -20,8 +17,4 @@ attribution is not required: https://www.pexels.com/license/
 | `public/preview/participation.jpg` | https://www.pexels.com/photo/women-having-a-meeting-7491012/ | RDNE Stock project / Pexels |
 | `public/preview/conversation.jpg` | https://www.pexels.com/photo/women-having-a-conversation-3869641/ | PICHA Stock / Pexels |
 
-## Replacement Rule
-
-Before launch, replace these preview files with real Lumina photos whenever
-possible. Keep the same filenames if you want to avoid code changes, or update
-`src/data/placeholders.ts` with the final image paths and credits.
+Participant photos should only be published after explicit consent.

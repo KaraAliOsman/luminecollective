@@ -4,15 +4,12 @@ import { CookiePreferencesButton } from "@/components/global/CookiePreferencesBu
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Prose } from "@/components/ui/Prose";
-import { brand } from "@/lib/constants/brand";
 import { createMetadata } from "@/lib/seo/config";
-
-const privacyEmail = brand.email || "[E-mailadres invullen]";
 
 export const metadata: Metadata = createMetadata({
   title: "Cookiebeleid",
   description:
-    "Lees hoe Stichting Lumina Collective cookies en trackingtechnologieen gebruikt en hoe jij jouw voorkeuren kunt beheren.",
+    "Lees hoe Stichting Lumina Collective cookies gebruikt en hoe jij jouw voorkeuren kunt beheren.",
   path: "/cookies",
 });
 
@@ -27,11 +24,7 @@ export default function CookiesPage() {
           </h1>
           <p className="mt-5 text-ink-brown/65">
             Laatste wijziging:{" "}
-            <time dateTime="2025-01-01">1 januari 2025</time>.{" "}
-            <strong className="text-wine-plum">
-              Dit beleid is een concept en moet worden beoordeeld voor
-              publicatie.
-            </strong>
+            <time dateTime="2026-07-01">1 juli 2026</time>.
           </p>
         </Container>
       </header>
@@ -42,85 +35,48 @@ export default function CookiesPage() {
             <h2>Wat zijn cookies?</h2>
             <p>
               Cookies zijn kleine tekstbestanden die op jouw apparaat worden
-              opgeslagen als je een website bezoekt. Ze helpen websites te
-              onthouden hoe je ze gebruikt.
+              opgeslagen wanneer je een website bezoekt. Ze kunnen nodig zijn om
+              de website goed te laten werken of helpen om de website te
+              verbeteren.
             </p>
 
             <h2>Welke cookies gebruiken wij?</h2>
 
-            <h3>Functionele cookies (altijd actief)</h3>
+            <h3>Functionele cookies</h3>
             <p>
-              Deze cookies zijn noodzakelijk voor het werken van de website. Ze
-              onthouden jouw cookievoorkeuren en zorgen voor basisfunctionaliteit.
-              Voor functionele cookies is geen toestemming nodig.
+              Functionele cookies zijn nodig voor basisfuncties, zoals het
+              onthouden van jouw cookievoorkeuren en het veilig verwerken van
+              formulieren. Deze cookies staan altijd aan.
             </p>
 
-            <h3>Analytische cookies (alleen met toestemming)</h3>
+            <h3>Analytische cookies</h3>
             <p>
-              We kunnen optioneel gebruik maken van analytische tools om te
-              begrijpen hoe bezoekers de website gebruiken. Analytische cookies
-              worden <strong>alleen geladen na jouw expliciete toestemming</strong>{" "}
-              via onze cookiebanner.
+              Analytische cookies of privacyvriendelijke meetinstrumenten kunnen
+              ons helpen begrijpen welke pagina&apos;s worden bezocht en waar de
+              website verbeterd kan worden. Deze worden alleen geladen wanneer
+              je toestemming geeft.
             </p>
-            <p>Mogelijke analytische tools die wij gebruiken:</p>
-            <ul>
-              <li>
-                <strong>Google Analytics 4</strong> - gegevens worden verwerkt
-                via Google LLC. Privacybeleid:{" "}
-                <a
-                  href="https://policies.google.com/privacy"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  policies.google.com/privacy
-                </a>
-              </li>
-              <li>
-                <strong>Plausible Analytics</strong> - privacyvriendelijke
-                analytics zonder persoonsgegevens. Geen cookies vereist.
-                Informatie:{" "}
-                <a
-                  href="https://plausible.io/privacy"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  plausible.io/privacy
-                </a>
-              </li>
-            </ul>
 
-            <h2>Hoe beheer je jouw cookievoorkeuren?</h2>
+            <h2>Cookievoorkeuren beheren</h2>
             <p>
-              Je kunt jouw cookievoorkeuren op elk moment opnieuw openen met de
-              knop hieronder. Je kunt ook cookies verwijderen via de instellingen
-              van jouw browser.
+              Je kunt jouw voorkeuren op elk moment opnieuw openen met de knop
+              hieronder. Je kunt cookies ook verwijderen via de instellingen van
+              jouw browser.
             </p>
             <CookiePreferencesButton />
 
             <h2>Cookies van derden</h2>
             <p>
-              We kunnen social media knoppen of ingebedde inhoud tonen. Deze
-              externe partijen kunnen hun eigen cookies plaatsen. Wij hebben
-              hier geen controle over. Raadpleeg de privacybeleiden van de
-              betreffende partijen.
+              Wanneer je via onze website doorklikt naar externe platforms, zoals
+              sociale media, kunnen die partijen eigen cookies gebruiken. Raadpleeg
+              daarvoor het beleid van de betreffende aanbieder.
             </p>
 
             <h2>Meer informatie</h2>
             <p>
-              Voor vragen over ons cookiebeleid kun je contact opnemen via{" "}
-              {brand.email ? (
-                <a href={`mailto:${brand.email}`}>{brand.email}</a>
-              ) : (
-                <span className="italic text-warm-taupe">{privacyEmail}</span>
-              )}
-              . Zie ook ons <a href="/privacy">privacybeleid</a>.
+              Lees ook ons <a href="/privacy">privacybeleid</a> voor meer
+              informatie over hoe we met persoonsgegevens omgaan.
             </p>
-
-            <div className="rounded border border-muted-gold/30 bg-lumina-ivory p-4 text-sm text-ink-brown/70">
-              <strong>Juridische notitie:</strong> Dit cookiebeleid is een
-              concept. Laat het beoordelen voor publicatie. Pas het aan als je
-              specifieke analytische tools activeert of verwijdert.
-            </div>
           </Prose>
         </Container>
       </section>

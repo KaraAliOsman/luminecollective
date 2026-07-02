@@ -124,45 +124,45 @@ type RawGalleryItem = {
 
 const fallbackPosts: PostDisplay[] = [
   {
-    slug: "eerste-ontmoeting-lumina",
-    category: "nieuws",
-    publishedAt: "2025-01-01",
-    author: "Stichting Lumina Collective",
-    title: "Voorbeeldartikel: eerste bericht van Lumina Collective",
-    excerpt:
-      "Dit voorbeeld toont hoe nieuws eruitziet. Vervang dit met een echt artikel zodra de organisatie klaar is voor publicatie.",
-    bodyText:
-      "Dit voorbeeldartikel laat de leeservaring, typografie en structuur zien. Het bevat geen echte nieuwsfeiten en moet worden vervangen door inhoud die door Stichting Lumina Collective is goedgekeurd.\n\nVia Sanity Studio kunnen nieuwe artikelen worden aangemaakt, gecategoriseerd en gepubliceerd zonder technische kennis.",
-    visual: visuals.communityTable,
-    isPreview: true,
-    isFallback: true,
-  },
-  {
-    slug: "over-verbinding-en-groei",
+    slug: "waarom-lumina-bestaat",
     category: "verhalen",
-    publishedAt: "2025-01-01",
+    publishedAt: "2026-01-15",
     author: "Stichting Lumina Collective",
-    title: "Voorbeeldartikel: over verbinding en groei",
+    title: "Waarom Lumina Collective bestaat",
     excerpt:
-      "Verhalen van deelneemsters worden hier pas gedeeld zodra inhoud en toestemming bevestigd zijn.",
+      "Een korte introductie op onze missie: vrouwen samenbrengen rond ontmoeting, steun, cultuur en zichtbare participatie.",
     bodyText:
-      "Dit voorbeeld laat zien hoe een persoonlijk verhaal kan worden opgebouwd. Echte verhalen worden pas gepubliceerd na toestemming van de betrokken personen en redactionele controle.",
-    visual: visuals.conversation,
-    isPreview: true,
+      "Lumina Collective is ontstaan vanuit een eenvoudige overtuiging: vrouwen hebben plekken nodig waar ze elkaar kunnen ontmoeten zonder drempel, zonder oordeel en met ruimte voor hun eigen verhaal.\n\nIn Tilburg bouwen we aan een warme gemeenschap rond ontmoeting, ondersteuning, cultuur, kennis en maatschappelijke participatie. We geloven dat vertrouwen groeit wanneer vrouwen elkaar zien, naar elkaar luisteren en samen kleine stappen durven zetten.\n\nOnze stichting werkt zorgvuldig en lokaal. We willen een plek zijn waar deelnemers, vrijwilligers en partners elkaar vinden rond gedeelde verantwoordelijkheid en menselijke aandacht.",
+    visual: visuals.communityTable,
+    isPreview: false,
     isFallback: true,
   },
   {
-    slug: "interview-met-een-vrijwilligster",
-    category: "interviews",
-    publishedAt: "2025-01-01",
+    slug: "ontmoeting-als-eerste-stap",
+    category: "kennis",
+    publishedAt: "2026-02-01",
     author: "Stichting Lumina Collective",
-    title: "Voorbeeldartikel: interview met een vrijwilligster",
+    title: "Ontmoeting als eerste stap naar groei",
     excerpt:
-      "Interviews volgen zodra vrijwilligers toestemming hebben gegeven en de tekst is goedgekeurd.",
+      "Waarom laagdrempelige bijeenkomsten belangrijk zijn voor vertrouwen, welzijn en deelname aan de samenleving.",
     bodyText:
-      "Dit voorbeeld toont hoe een interviewpagina eruit kan zien. Publiceer hier alleen echte interviews nadat de tekst, foto en toestemming zorgvuldig zijn bevestigd.",
+      "Een sterke gemeenschap begint vaak klein: aan een tafel, tijdens een gesprek, bij een bijeenkomst waar iemand voor het eerst binnenstapt.\n\nVoor veel vrouwen is ontmoeting geen extraatje, maar een voorwaarde voor vertrouwen. Vanuit contact ontstaat herkenning. Vanuit herkenning ontstaat ruimte om vragen te stellen, hulp te zoeken, talenten te delen of actief mee te doen.\n\nDaarom investeert Lumina Collective in warme, goed georganiseerde momenten waar vrouwen elkaar op een natuurlijke manier kunnen leren kennen. Niet als eindpunt, maar als begin van verdere groei.",
+    visual: visuals.conversation,
+    isPreview: false,
+    isFallback: true,
+  },
+  {
+    slug: "vrijwilligers-maken-ruimte",
+    category: "interviews",
+    publishedAt: "2026-02-18",
+    author: "Stichting Lumina Collective",
+    title: "Vrijwilligers maken ruimte voor meer vrouwen",
+    excerpt:
+      "Bijdragen aan Lumina kan op veel manieren: met tijd, kennis, organisatiekracht of warme aanwezigheid.",
+    bodyText:
+      "Vrijwilligers zijn onmisbaar voor een stichting die dichtbij mensen wil blijven. Zij helpen bij ontvangst, organisatie, communicatie, activiteiten, praktische vragen en het creëren van een sfeer waarin deelnemers zich welkom voelen.\n\nBij Lumina zoeken we geen perfecte profielen. We zoeken mensen die zorgvuldig, betrouwbaar en met aandacht willen bijdragen. Soms is dat zichtbaar op de voorgrond, soms juist rustig achter de schermen.\n\nWie vrijwilliger wordt, bouwt mee aan een gemeenschap waarin vrouwen elkaar kunnen versterken. Een eerste gesprek is genoeg om te ontdekken welke rol past.",
     visual: visuals.presentation,
-    isPreview: true,
+    isPreview: false,
     isFallback: true,
   },
 ];
@@ -313,14 +313,17 @@ function normalizeProgram(program: RawProgram, index = 0): ProgramDisplay | null
 }
 
 function fallbackProgram(program: (typeof fallbackPrograms)[number]): ProgramDisplay {
+  const slug = slugify(program.title);
   return {
     title: program.title,
-    slug: slugify(program.title),
+    slug,
     description: program.description,
     visual: program.visual,
-    goals: [],
+    targetAudience: "targetAudience" in program ? program.targetAudience : undefined,
+    goals: "goals" in program ? [...program.goals] : [],
+    longDescription: "longDescription" in program ? program.longDescription : undefined,
     ctaLabel: program.cta,
-    ctaHref: `/programmas/${slugify(program.title)}`,
+    ctaHref: `/programmas/${slug}`,
     isFallback: true,
   };
 }

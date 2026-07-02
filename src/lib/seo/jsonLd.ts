@@ -9,6 +9,14 @@ export function organizationJsonLd() {
     url: brand.siteUrl,
     logo: new URL(brand.logoFull, brand.siteUrl).toString(),
     description: brand.description,
+    identifier: brand.kvk,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: brand.address.street,
+      postalCode: brand.address.postalCode,
+      addressLocality: brand.address.city,
+      addressCountry: "NL",
+    },
     sameAs: socialLinks.map((s) => s.href),
   };
 }

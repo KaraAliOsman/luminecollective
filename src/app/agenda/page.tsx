@@ -5,6 +5,7 @@ import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
+import { FadeInSection } from "@/components/ui/FadeInSection";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -58,13 +59,17 @@ export default async function AgendaPage() {
 
       <section className="py-16 md:py-24">
         <Container>
-          <div className="mb-8 max-w-2xl space-y-4">
-            <Eyebrow>Binnenkort</Eyebrow>
-            <Heading>Komende activiteiten.</Heading>
-          </div>
+          <FadeInSection>
+            <div className="mb-8 max-w-2xl space-y-4">
+              <Eyebrow>Binnenkort</Eyebrow>
+              <Heading>Komende activiteiten.</Heading>
+            </div>
+          </FadeInSection>
           <div>
-            {events.map((event) => (
-              <EventCard event={event} key={event.slug} />
+            {events.map((event, index) => (
+              <FadeInSection key={event.slug} delay={Math.min((index + 1) * 100, 300) as 100 | 200 | 300}>
+                <EventCard event={event} />
+              </FadeInSection>
             ))}
           </div>
         </Container>
@@ -72,25 +77,29 @@ export default async function AgendaPage() {
 
       <section className="bg-warm-white py-16 md:py-20">
         <Container className="grid gap-8 md:grid-cols-[1fr_26rem] md:items-start">
-          <div className="max-w-3xl space-y-4">
-            <Eyebrow>Nieuwe activiteiten</Eyebrow>
-            <Heading size="md">
-              Binnenkort delen we nieuwe activiteiten.
-            </Heading>
-            <p className="text-lg leading-8 text-ink-brown/78">
-              Volg ons op Instagram of schrijf je in voor updates.
-            </p>
-          </div>
-          <div className="bg-lumina-ivory p-6">
-            <NewsletterForm />
-            <Button
-              className="mt-5 w-full"
-              href="https://www.instagram.com/stichtinglumina"
-              variant="secondary"
-            >
-              Volg ons op Instagram
-            </Button>
-          </div>
+          <FadeInSection animation="slide-left">
+            <div className="max-w-3xl space-y-4">
+              <Eyebrow>Nieuwe activiteiten</Eyebrow>
+              <Heading size="md">
+                Binnenkort delen we nieuwe activiteiten.
+              </Heading>
+              <p className="text-lg leading-8 text-ink-brown/78">
+                Volg ons op Instagram of schrijf je in voor updates.
+              </p>
+            </div>
+          </FadeInSection>
+          <FadeInSection animation="slide-right">
+            <div className="glass rounded-sm p-6">
+              <NewsletterForm />
+              <Button
+                className="mt-5 w-full"
+                href="https://www.instagram.com/stichtinglumina"
+                variant="secondary"
+              >
+                Volg ons op Instagram
+              </Button>
+            </div>
+          </FadeInSection>
         </Container>
       </section>
 

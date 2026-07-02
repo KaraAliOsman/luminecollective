@@ -1,20 +1,27 @@
 # Stichting Lumina Collective
 
-Stichting Lumina Collective is een Nederlandse stichting/community voor vrouwen in Nederland. De website communiceert ontmoeting, groei, cultuur, maatschappelijke betrokkenheid en deelname op een warme, professionele en toegankelijke manier.
+Stichting Lumina Collective is een Tilburgse stichting voor sociaal-maatschappelijk welzijnswerk. De website communiceert ontmoeting, ondersteuning, cultuur, ontwikkeling en maatschappelijke participatie voor vrouwen op een warme, professionele en toegankelijke manier.
 
 ## Belangrijke pagina's
 - `/` - Home met missie, programma's, agenda, gemeenschap en oproep om mee te doen.
 - `/over-ons` - Missie, visie, waarden en achtergrond van de stichting.
 - `/programmas` - Overzicht van programma's en activiteiten.
 - `/agenda` - Aankomende activiteiten en evenementen.
-- `/doe-mee` - Mogelijkheden om deelnemer, vrijwilliger, partner of contactpersoon te worden.
-- `/contact` - Contactformulier en sociale kanalen.
-- `/privacy` en `/cookies` - Juridische informatie met placeholders waar officiële gegevens nog ontbreken.
-- `/anbi` - Transparantiepagina met duidelijke placeholders. ANBI-status, KVK-nummer en adres moeten door de organisatie worden ingevuld indien van toepassing.
+- `/gemeenschap` - Beeld en verhalen rond de community.
+- `/doe-mee` - Mogelijkheden om deelnemer, vrijwilliger, partner of donateur te worden.
+- `/contact` - Contactformulier, vestigingsgegevens en sociale kanalen.
+- `/privacy` en `/cookies` - Juridische informatie voor bezoekers.
+- `/anbi` - Transparantiepagina met publieke organisatiegegevens.
+
+## Publieke gegevens
+- KVK: 42082909.
+- Vestigingsnummer: 420829090000.
+- Adres: Nimrodstraat 30, 5042 WX Tilburg, Nederland.
+- Activiteit: sociaal-maatschappelijk welzijnswerk.
 
 ## Contentregels
-- Geen verzonnen KVK-nummer, ANBI-status, adres, telefoonnummer, officieel e-mailadres, teamleden, partners, testimonials of echte evenementen.
-- Ontbrekende gegevens worden gemarkeerd met veilige placeholders, bijvoorbeeld `[E-mailadres invullen]` of `[KVK nummer invullen]`.
+- Publiceer geen niet-bevestigde persoonsgegevens, testimonials, teamleden, telefoonnummers of financiele gegevens.
+- Foto's van deelnemers worden alleen gepubliceerd met expliciete toestemming.
 - Sanity CMS kan programma's, evenementen, nieuws, galerijbeelden, teamleden, partners, testimonials en globale instellingen beheren.
 
 ## Sociale kanalen

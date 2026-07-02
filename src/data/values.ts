@@ -1,7 +1,7 @@
 export const values = [
   {
     title: "Verbinding",
-    description: "We creeren plekken waar vrouwen elkaar echt kunnen ontmoeten.",
+    description: "We maken plekken waar vrouwen elkaar echt kunnen ontmoeten.",
   },
   {
     title: "Vertrouwen",

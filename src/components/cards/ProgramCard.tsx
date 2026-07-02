@@ -8,10 +8,10 @@ export function ProgramCard({ program }: { program: ProgramDisplay }) {
   const href = `/programmas/${program.slug}`;
 
   return (
-    <article className="grid gap-5" data-preview={program.isFallback}>
-      <Link href={href} tabIndex={-1} aria-hidden="true">
+    <article className="group grid gap-5 card-hover" data-preview={program.isFallback}>
+      <Link href={href} tabIndex={-1} aria-hidden="true" className="img-zoom block overflow-hidden">
         <CMSImage
-          className="aspect-[4/3] min-h-0"
+          className="aspect-[4/3] min-h-0 w-full"
           fallback={program.visual}
           image={program.image}
         />
