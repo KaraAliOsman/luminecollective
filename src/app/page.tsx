@@ -147,7 +147,7 @@ export default async function Home() {
 
       {/* Featured Event Section */}
       <section className="bg-soft-blush/35 py-10 sm:py-14 md:py-20">
-        <Container className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
+        <Container className="grid gap-10 md:grid-cols-2 md:gap-16 lg:gap-20 md:items-center max-w-5xl mx-auto">
           <FadeInSection animation="slide-left">
             <div className="space-y-5">
               <Eyebrow>Agenda</Eyebrow>
@@ -162,9 +162,9 @@ export default async function Home() {
             </div>
           </FadeInSection>
           <FadeInSection animation="slide-right">
-            <div className="img-zoom overflow-hidden">
+            <div className="img-zoom overflow-hidden rounded-2xl shadow-sm">
               <CMSImage
-                className="h-72 sm:h-80 md:h-[24rem]"
+                className="h-72 sm:h-80 md:h-[24rem] w-full object-cover"
                 fallback={featuredEvent.visual}
                 image={featuredEvent.image}
               />
