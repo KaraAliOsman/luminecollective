@@ -122,7 +122,7 @@ export default async function DoeMeePage() {
       </section>
 
       <section className="bg-soft-blush/35 py-10 sm:py-14 md:py-20">
-        <Container className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+        <Container className="grid gap-10 md:grid-cols-2 md:gap-16 lg:gap-20 md:items-center max-w-5xl mx-auto">
           <FadeInSection animation="slide-left">
             <div className="space-y-5">
               <Eyebrow>Zacht en concreet</Eyebrow>
@@ -134,8 +134,8 @@ export default async function DoeMeePage() {
             </div>
           </FadeInSection>
           <FadeInSection animation="slide-right">
-            <div className="img-zoom overflow-hidden">
-              <VisualPlaceholder className="h-72 sm:h-80 md:h-[27rem]" visual={visuals.supportCircle} />
+            <div className="img-zoom overflow-hidden rounded-2xl shadow-sm">
+              <VisualPlaceholder className="h-72 sm:h-80 md:h-[27rem] w-full object-cover" visual={visuals.supportCircle} />
             </div>
           </FadeInSection>
         </Container>
