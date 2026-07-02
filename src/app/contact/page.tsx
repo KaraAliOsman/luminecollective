@@ -54,7 +54,7 @@ export default async function ContactPage() {
         visual={visuals.communityTable}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <FadeInSection animation="slide-left">
             <aside className="space-y-10">

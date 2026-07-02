@@ -22,7 +22,7 @@ export function VisualPlaceholder({
   return (
     <figure
       className={cn(
-        "relative min-h-80 max-w-full overflow-hidden border border-deep-aubergine/10 bg-soft-linen text-deep-aubergine shadow-[0_24px_70px_rgba(66,21,47,0.10)]",
+        "relative max-w-full overflow-hidden border border-deep-aubergine/10 bg-soft-linen text-deep-aubergine shadow-[0_24px_70px_rgba(66,21,47,0.10)]",
         className,
       )}
       data-preview={visual.isPreview ? "true" : undefined}

@@ -17,7 +17,7 @@ type CtaBandProps = {
 
 export function CtaBand({ title, body, primary, secondary }: CtaBandProps) {
   return (
-    <section className="bg-gradient-cta relative py-16 text-warm-white md:py-20 overflow-hidden">
+    <section className="bg-gradient-cta relative py-10 text-warm-white sm:py-10 sm:py-14 md:py-20 overflow-hidden">
       {/* Decorative circles */}
       <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full border border-warm-white/5" />
       <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border border-muted-gold/10" />

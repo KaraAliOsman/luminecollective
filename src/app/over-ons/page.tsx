@@ -54,7 +54,7 @@ export default async function OverOnsPage() {
         visual={visuals.supportCircle}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container className="grid gap-12 md:grid-cols-[0.8fr_1.2fr]">
           <FadeInSection animation="slide-left">
             <div>
@@ -79,7 +79,7 @@ export default async function OverOnsPage() {
         </Container>
       </section>
 
-      <section className="bg-warm-white py-16 md:py-24">
+      <section className="bg-warm-white py-10 sm:py-14 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-2">
           <FadeInSection animation="slide-left">
             <div className="space-y-5">
@@ -106,7 +106,7 @@ export default async function OverOnsPage() {
         </Container>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>
             <div className="mb-10 max-w-2xl space-y-4">
@@ -133,12 +133,12 @@ export default async function OverOnsPage() {
         </Container>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container className="grid gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
           <FadeInSection animation="slide-left">
             <div className="img-zoom overflow-hidden">
               <VisualPlaceholder
-                className="min-h-[30rem]"
+                className="h-72 sm:h-80 md:h-[30rem]"
                 visual={visuals.communityTable}
               />
             </div>

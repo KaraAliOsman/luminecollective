@@ -39,17 +39,17 @@ const pillars = [
   {
     title: "Ontmoeting",
     text: "Warme ruimtes waar vrouwen elkaar kunnen leren kennen en verhalen delen.",
-    icon: "✦",
+    icon: "01",
   },
   {
     title: "Groei",
     text: "Programma's die persoonlijke ontwikkeling, kennis en zichtbaarheid ondersteunen.",
-    icon: "◈",
+    icon: "02",
   },
   {
     title: "Gemeenschap",
     text: "Een netwerk dat dichtbij voelt en tegelijk professioneel georganiseerd is.",
-    icon: "❖",
+    icon: "03",
   },
 ];
 
@@ -85,7 +85,7 @@ export default async function Home() {
       />
 
       {/* Overtuiging Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container className="max-w-5xl">
           <FadeInSection>
             <Eyebrow>Onze overtuiging</Eyebrow>
@@ -99,7 +99,7 @@ export default async function Home() {
       </section>
 
       {/* Pillars Section */}
-      <section className="bg-warm-white py-16 md:py-24">
+      <section className="bg-warm-white py-10 sm:py-14 md:py-20">
         <Container>
           <div className="grid gap-8 md:grid-cols-3">
             {pillars.map((pillar, index) => (
@@ -107,7 +107,9 @@ export default async function Home() {
                 <article
                   className="group border-t border-deep-aubergine/15 pt-6 transition-all duration-300 hover:border-muted-gold/50"
                 >
-                  <span className="text-2xl text-muted-gold/60">{pillar.icon}</span>
+                  <span className="text-sm font-semibold text-muted-gold">
+                    {pillar.icon}
+                  </span>
                   <h2 className="mt-3 font-serif text-3xl text-deep-aubergine">
                     {pillar.title}
                   </h2>
@@ -120,7 +122,7 @@ export default async function Home() {
       </section>
 
       {/* Programs Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>
             <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -144,14 +146,14 @@ export default async function Home() {
       </section>
 
       {/* Featured Event Section */}
-      <section className="bg-soft-blush/35 py-16 md:py-24">
+      <section className="bg-soft-blush/35 py-10 sm:py-14 md:py-20">
         <Container className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
           <FadeInSection animation="slide-left">
             <div className="space-y-5">
               <Eyebrow>Agenda</Eyebrow>
               <Heading>Volgende activiteit</Heading>
               <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warm-taupe">
-                {featuredEvent.date} — {featuredEvent.location}
+                {featuredEvent.date} - {featuredEvent.location}
               </p>
               <p className="max-w-xl text-lg leading-8 text-ink-brown/78">
                 {featuredEvent.description}
@@ -162,7 +164,7 @@ export default async function Home() {
           <FadeInSection animation="slide-right">
             <div className="img-zoom overflow-hidden">
               <CMSImage
-                className="min-h-[24rem]"
+                className="h-72 sm:h-80 md:h-[24rem]"
                 fallback={featuredEvent.visual}
                 image={featuredEvent.image}
               />
@@ -172,7 +174,7 @@ export default async function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>
             <div className="mb-10 max-w-2xl space-y-4">
@@ -180,11 +182,20 @@ export default async function Home() {
               <Heading>Een warme indruk van wat groeit.</Heading>
             </div>
           </FadeInSection>
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
             {gallery.slice(0, 5).map((item, index) => (
               <FadeInSection
                 key={item.id}
                 animation="scale-in"
+                className={
+                  index === 0
+                    ? "md:col-span-2"
+                    : index === 2
+                      ? "md:row-span-2"
+                      : index === 4
+                        ? "col-span-2"
+                        : ""
+                }
                 delay={Math.min((index + 1) * 100, 500) as 100 | 200 | 300 | 400 | 500}
               >
                 <div className="img-zoom overflow-hidden">
@@ -193,12 +204,12 @@ export default async function Home() {
                     caption={item.caption}
                     className={
                       index === 0
-                        ? "min-h-[18rem] md:col-span-2 md:min-h-[30rem]"
+                        ? "h-36 sm:h-56 md:h-[26rem]"
                         : index === 2
-                          ? "min-h-[18rem] md:row-span-2"
+                          ? "h-36 sm:h-56 md:h-full md:min-h-[26rem]"
                           : index === 4
-                            ? "min-h-[18rem] md:col-span-2"
-                            : "min-h-[18rem]"
+                            ? "h-36 sm:h-56 md:h-52"
+                            : "h-36 sm:h-56 md:h-52"
                     }
                     fallback={item.visual}
                     image={item.image}
@@ -212,7 +223,7 @@ export default async function Home() {
 
       {/* Testimonials Section */}
       {testimonials.length > 0 && (
-        <section className="bg-warm-white py-16 md:py-24">
+        <section className="bg-warm-white py-10 sm:py-14 md:py-20">
           <Container>
             <FadeInSection>
               <div className="mb-10 max-w-2xl space-y-4">
@@ -231,7 +242,7 @@ export default async function Home() {
                     </blockquote>
                     <figcaption className="mt-5 text-sm font-semibold uppercase tracking-[0.12em] text-warm-taupe">
                       {testimonial.anonymous ? "Anoniem" : testimonial.name}
-                      {testimonial.roleOrContext ? ` — ${testimonial.roleOrContext}` : ""}
+                      {testimonial.roleOrContext ? ` - ${testimonial.roleOrContext}` : ""}
                     </figcaption>
                   </figure>
                 </FadeInSection>

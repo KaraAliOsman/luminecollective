@@ -55,7 +55,7 @@ export default async function ProgrammasPage() {
         visual={visuals.warmWorkshop}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>
             <div className="mb-12 max-w-3xl space-y-4">

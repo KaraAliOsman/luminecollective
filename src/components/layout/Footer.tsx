@@ -15,40 +15,39 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
     : fallbackSocialLinks;
 
   return (
-    <footer className="border-t border-deep-aubergine/10 bg-warm-white relative overflow-hidden">
-      {/* Decorative gradient */}
+    <footer className="relative overflow-hidden border-t border-deep-aubergine/10 bg-warm-white">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_100%,rgba(234,208,205,0.2),transparent)]" />
 
-      <div className="site-container relative py-16 md:py-20">
-        <div className="grid gap-14 md:grid-cols-[1.3fr_2fr]">
-          {/* Brand */}
+      <div className="site-container relative py-12 sm:py-14 md:py-20">
+        <div className="grid gap-12 md:grid-cols-[1.3fr_2fr]">
           <div className="space-y-6">
             <Link
               href="/"
-              aria-label={`${brand.name} — home`}
-              className="inline-block transition-all duration-300 hover:opacity-75 hover:scale-[1.02]"
+              aria-label={`${brand.name} - home`}
+              className="inline-flex items-center gap-4 transition-all duration-300 hover:opacity-75 hover:scale-[1.01]"
             >
-              <span className="relative block aspect-[2.45/1] w-48 overflow-hidden sm:w-56">
+              <span className="relative block size-20 overflow-hidden rounded-full border border-muted-gold/25 bg-warm-white shadow-[0_12px_32px_rgba(66,21,47,0.08)]">
                 <Image
                   src={logoSrc}
                   alt={brand.name}
                   fill
                   className="object-cover object-center"
-                  sizes="224px"
+                  sizes="80px"
                 />
               </span>
+              <span className="font-serif text-2xl leading-none text-deep-aubergine">
+                Lumina Collective
+              </span>
             </Link>
-            <p className="max-w-[22ch] font-serif text-xl leading-[1.55] text-deep-aubergine/85 italic">
+            <p className="max-w-[24ch] font-serif text-xl leading-[1.55] text-deep-aubergine/85 italic">
               {footerText}
             </p>
-            {/* Gold accent line */}
             <div className="h-px w-12 bg-gradient-to-r from-muted-gold to-muted-gold/10" />
-            <p className="text-xs tracking-widest text-warm-taupe/80 uppercase">
+            <p className="text-xs uppercase tracking-widest text-warm-taupe/80">
               © {year} {brand.name}
             </p>
           </div>
 
-          {/* Links */}
           <div className="grid gap-10 sm:grid-cols-3">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-wine-plum">
@@ -108,8 +107,7 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 border-t border-deep-aubergine/8 pt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs text-warm-taupe/75">
+        <div className="mt-12 flex flex-col gap-2 border-t border-deep-aubergine/8 pt-8 text-xs text-warm-taupe/75 sm:flex-row sm:items-center sm:justify-between">
           <p>
             Gemaakt met zorg. Niet-commercieel. Voor en door de gemeenschap.
           </p>

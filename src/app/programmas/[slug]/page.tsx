@@ -101,7 +101,7 @@ export default async function ProgrammaDetailPage({ params }: Props) {
           </div>
           <CMSImage
             altFallback={program.title}
-            className="min-h-[28rem]"
+            className="h-72 sm:h-80 md:h-[28rem]"
             fallback={program.visual}
             image={program.image}
             priority
@@ -110,7 +110,7 @@ export default async function ProgrammaDetailPage({ params }: Props) {
       </section>
 
       {(program.targetAudience || program.goals.length > 0) && (
-        <section className="bg-warm-white py-16 md:py-24">
+        <section className="bg-warm-white py-10 sm:py-14 md:py-20">
           <Container className="grid gap-12 md:grid-cols-2">
             {program.targetAudience && (
               <div className="space-y-4">
@@ -141,7 +141,7 @@ export default async function ProgrammaDetailPage({ params }: Props) {
       )}
 
       {program.longDescription && (
-        <section className="py-16 md:py-24">
+        <section className="py-10 sm:py-14 md:py-20">
           <Container>
             <div className="mx-auto max-w-3xl">
               <Eyebrow>Over dit programma</Eyebrow>
@@ -154,7 +154,7 @@ export default async function ProgrammaDetailPage({ params }: Props) {
       )}
 
       {relatedEvents.length > 0 && (
-        <section className="bg-soft-blush/30 py-16 md:py-24">
+        <section className="bg-soft-blush/30 py-10 sm:py-14 md:py-20">
           <Container>
             <div className="mb-8 max-w-2xl space-y-4">
               <Eyebrow>Agenda</Eyebrow>
@@ -172,7 +172,7 @@ export default async function ProgrammaDetailPage({ params }: Props) {
       )}
 
       {gallery.length > 0 && (
-        <section className="py-16 md:py-24">
+        <section className="py-10 sm:py-14 md:py-20">
           <Container>
             <div className="mb-8 max-w-2xl space-y-4">
               <Eyebrow>In beeld</Eyebrow>
@@ -187,8 +187,8 @@ export default async function ProgrammaDetailPage({ params }: Props) {
                   caption={item.caption}
                   className={
                     index === 0
-                      ? "min-h-[22rem] md:col-span-2 md:min-h-[32rem]"
-                      : "min-h-[18rem]"
+                      ? "h-72 sm:h-80 md:col-span-2 md:h-[32rem]"
+                      : "h-56 sm:h-64 md:h-[18rem]"
                   }
                   fallback={item.visual}
                   image={item.image}

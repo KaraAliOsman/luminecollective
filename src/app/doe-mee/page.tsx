@@ -71,7 +71,7 @@ export default async function DoeMeePage() {
         visual={visuals.participation}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>
             <div className="mb-12 max-w-3xl space-y-4">
@@ -101,7 +101,7 @@ export default async function DoeMeePage() {
         </Container>
       </section>
 
-      <section className="bg-warm-white py-16 md:py-24">
+      <section className="bg-warm-white py-10 sm:py-14 md:py-20">
         <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <FadeInSection animation="slide-left">
             <div className="space-y-5">
@@ -121,7 +121,7 @@ export default async function DoeMeePage() {
         </Container>
       </section>
 
-      <section className="bg-soft-blush/35 py-16 md:py-24">
+      <section className="bg-soft-blush/35 py-10 sm:py-14 md:py-20">
         <Container className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <FadeInSection animation="slide-left">
             <div className="space-y-5">
@@ -135,7 +135,7 @@ export default async function DoeMeePage() {
           </FadeInSection>
           <FadeInSection animation="slide-right">
             <div className="img-zoom overflow-hidden">
-              <VisualPlaceholder className="min-h-[27rem]" visual={visuals.supportCircle} />
+              <VisualPlaceholder className="h-72 sm:h-80 md:h-[27rem]" visual={visuals.supportCircle} />
             </div>
           </FadeInSection>
         </Container>

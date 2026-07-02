@@ -26,12 +26,6 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-function itemSize(index: number) {
-  if (index === 0 || index === 7) return "large";
-  if (index === 3 || index === 4) return "medium";
-  return "small";
-}
-
 export default async function GemeenschapPage() {
   const [page, galleryItems, testimonials] = await Promise.all([
     getPageByKey("gemeenschap"),
@@ -41,7 +35,7 @@ export default async function GemeenschapPage() {
 
   return (
     <>
-      <section className="bg-gradient-hero py-16 md:py-24">
+      <section className="bg-gradient-hero py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>
             <div className="grid gap-10 md:grid-cols-[0.7fr_1.3fr] md:items-end">
@@ -60,42 +54,26 @@ export default async function GemeenschapPage() {
         </Container>
       </section>
 
-      <section className="pb-16 md:pb-24">
+      <section className="pb-10 sm:pb-16 md:pb-24">
         <Container>
           <div
-            className="grid gap-4 sm:grid-cols-2 md:grid-cols-3"
+            className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3"
             role="list"
             aria-label="Galerij van momenten"
           >
-            {galleryItems.slice(0, 12).map((item, index) => {
-              const size = itemSize(index);
+            {galleryItems.slice(0, 10).map((item, index) => {
               return (
                 <FadeInSection
                   key={item.id}
                   animation="scale-in"
                   delay={Math.min(((index % 3) + 1) * 100, 300) as 100 | 200 | 300}
                 >
-                  <div
-                    role="listitem"
-                    className={
-                      size === "large"
-                        ? "md:col-span-2 md:row-span-2"
-                        : size === "medium"
-                          ? "md:col-span-1 md:row-span-2"
-                          : ""
-                    }
-                  >
+                  <div role="listitem">
                     <div className="img-zoom overflow-hidden">
                       <CMSImage
                         altFallback={item.alt}
                         caption={item.caption}
-                        className={
-                          size === "large"
-                            ? "min-h-[22rem] md:min-h-[36rem]"
-                            : size === "medium"
-                              ? "min-h-[18rem] md:min-h-[28rem]"
-                              : "min-h-[18rem]"
-                        }
+                        className="h-40 sm:h-52 md:h-60"
                         fallback={item.visual}
                         image={item.image}
                       />
@@ -117,7 +95,7 @@ export default async function GemeenschapPage() {
       </section>
 
       {testimonials.length > 0 && (
-        <section className="bg-soft-blush/30 py-16 md:py-24">
+        <section className="bg-soft-blush/30 py-10 sm:py-14 md:py-20">
           <Container>
             <FadeInSection>
               <div className="mx-auto mb-10 max-w-3xl text-center">

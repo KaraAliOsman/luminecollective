@@ -33,8 +33,8 @@ export function PageHero({
   secondary,
 }: PageHeroProps) {
   return (
-    <section className="bg-gradient-hero py-12 md:py-20">
-      <Container className="grid items-center gap-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+    <section className="bg-gradient-hero py-10 sm:py-12 md:py-20">
+      <Container className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
         <div className="max-w-3xl space-y-6">
           <Eyebrow>{eyebrow}</Eyebrow>
           <Heading as="h1" size="xl">
@@ -59,7 +59,7 @@ export function PageHero({
           <div className="absolute -right-3 -top-3 z-10 hidden h-24 w-24 border-r-2 border-t-2 border-muted-gold/30 lg:block" />
           <div className="img-zoom overflow-hidden">
             <CMSImage
-              className="min-h-[20rem] sm:min-h-[24rem] lg:min-h-[30rem]"
+              className="h-[min(68vw,21rem)] min-h-0 sm:h-[24rem] lg:h-[30rem]"
               fallback={visual}
               image={image}
               priority

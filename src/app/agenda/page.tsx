@@ -57,7 +57,7 @@ export default async function AgendaPage() {
         visual={visuals.culturalMoment}
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>
             <div className="mb-8 max-w-2xl space-y-4">
@@ -75,7 +75,7 @@ export default async function AgendaPage() {
         </Container>
       </section>
 
-      <section className="bg-warm-white py-16 md:py-20">
+      <section className="bg-warm-white py-10 sm:py-10 sm:py-14 md:py-20">
         <Container className="grid gap-8 md:grid-cols-[1fr_26rem] md:items-start">
           <FadeInSection animation="slide-left">
             <div className="max-w-3xl space-y-4">

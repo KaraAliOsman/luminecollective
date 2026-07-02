@@ -46,7 +46,7 @@ export default async function NieuwsPage() {
 
   return (
     <>
-      <section className="border-b border-deep-aubergine/10 py-16 md:py-20">
+      <section className="border-b border-deep-aubergine/10 py-10 sm:py-14 md:py-20">
         <Container>
           <Eyebrow>Nieuws &amp; verhalen</Eyebrow>
           <h1 className="mt-4 max-w-2xl font-serif text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] text-deep-aubergine">
@@ -60,7 +60,7 @@ export default async function NieuwsPage() {
       </section>
 
       {featured && (
-        <section className="py-16 md:py-20">
+        <section className="py-10 sm:py-14 md:py-20">
           <Container>
             <Eyebrow>Uitgelicht</Eyebrow>
             <article
@@ -69,7 +69,7 @@ export default async function NieuwsPage() {
             >
               <Link href={`/nieuws/${featured.slug}`} tabIndex={-1} aria-hidden="true">
                 <CMSImage
-                  className="min-h-[24rem]"
+                  className="h-72 sm:h-80 md:h-[24rem]"
                   fallback={featured.visual}
                   image={featured.image}
                   caption={categoryLabels[featured.category] ?? featured.category}
@@ -96,7 +96,7 @@ export default async function NieuwsPage() {
       )}
 
       {rest.length > 0 && (
-        <section className="bg-warm-white py-16 md:py-20">
+        <section className="bg-warm-white py-10 sm:py-14 md:py-20">
           <Container>
             <div className="mb-10 max-w-2xl space-y-3">
               <Eyebrow>Alle artikelen</Eyebrow>
@@ -111,7 +111,7 @@ export default async function NieuwsPage() {
                 >
                   <Link href={`/nieuws/${post.slug}`} tabIndex={-1} aria-hidden="true">
                     <CMSImage
-                      className="min-h-[16rem]"
+                      className="h-52 sm:h-60 md:h-64"
                       fallback={post.visual}
                       image={post.image}
                       caption={categoryLabels[post.category] ?? post.category}
@@ -139,7 +139,7 @@ export default async function NieuwsPage() {
         </section>
       )}
 
-      <section className="py-16 md:py-20">
+      <section className="py-10 sm:py-14 md:py-20">
         <Container className="max-w-2xl text-center">
           <Eyebrow>Blijf op de hoogte</Eyebrow>
           <Heading className="mt-4" size="md">

@@ -21,7 +21,7 @@ export function Section({
   tone = "default",
 }: SectionProps) {
   return (
-    <section className={cn("py-16 md:py-24", tones[tone], className)}>
+    <section className={cn("py-10 sm:py-14 md:py-20", tones[tone], className)}>
       {children}
     </section>
   );

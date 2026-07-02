@@ -124,7 +124,7 @@ export default async function NieuwsDetailPage({ params }: Props) {
         </header>
 
         <CMSImage
-          className="mx-auto mb-12 min-h-[28rem] max-w-5xl"
+          className="mx-auto mb-12 h-72 max-w-5xl sm:h-80 md:h-[28rem]"
           fallback={post.visual}
           image={post.image}
           sizes="(min-width: 1024px) 960px, 100vw"
@@ -144,7 +144,7 @@ export default async function NieuwsDetailPage({ params }: Props) {
       </article>
 
       {relatedPosts.length > 0 && (
-        <section className="bg-warm-white py-16 md:py-20">
+        <section className="bg-warm-white py-10 sm:py-14 md:py-20">
           <Container>
             <div className="mb-10 max-w-2xl space-y-3">
               <p className="text-sm font-semibold uppercase tracking-[0.12em] text-muted-gold">

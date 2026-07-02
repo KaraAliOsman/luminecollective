@@ -12,21 +12,28 @@ export function Header({ settings }: { settings?: SiteSettings }) {
   return (
     <header className="sticky top-0 z-[80] border-b border-deep-aubergine/8 glass">
       <div className="site-container flex min-h-16 items-center justify-between gap-3 lg:min-h-[4.5rem]">
-        {/* Logo */}
         <Link
           href="/"
           aria-label={`${brand.name} - home`}
-          className="flex min-w-0 shrink-0 items-center transition-all duration-300 hover:opacity-85 hover:scale-[1.02]"
+          className="flex min-w-0 shrink-0 items-center gap-3 transition-all duration-300 hover:opacity-85 hover:scale-[1.01]"
         >
-          <span className="relative block h-11 w-[8.75rem] max-w-[44vw] overflow-hidden sm:w-[9.5rem] lg:h-12 lg:w-[10.75rem]">
+          <span className="relative block size-12 overflow-hidden rounded-full border border-muted-gold/25 bg-warm-white shadow-[0_8px_24px_rgba(66,21,47,0.08)] lg:size-14">
             <Image
               src={logoSrc}
               alt={brand.name}
               fill
               priority
-              className="object-contain object-left"
-              sizes="(min-width: 1024px) 172px, 152px"
+              className="object-cover object-center"
+              sizes="(min-width: 1024px) 56px, 48px"
             />
+          </span>
+          <span className="hidden min-w-0 flex-col leading-none sm:flex">
+            <span className="font-serif text-xl text-deep-aubergine lg:text-2xl">
+              Lumina Collective
+            </span>
+            <span className="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-warm-taupe">
+              Stichting
+            </span>
           </span>
         </Link>
 
