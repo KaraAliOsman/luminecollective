@@ -21,7 +21,6 @@ export function CtaBand({ title, body, primary, secondary }: CtaBandProps) {
       {/* Decorative circles */}
       <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full border border-warm-white/5" />
       <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border border-muted-gold/10" />
-      <div className="absolute right-1/4 top-1/3 h-2 w-2 rounded-full bg-muted-gold/25" />
 
       <Container className="relative grid items-end gap-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-3xl space-y-5">
