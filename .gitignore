@@ -16,3 +16,4 @@ pnpm-workspace.yaml
 next-env.d.ts
 dev-*.log
 cloudflare-env.d.ts
+*.zip
