@@ -23,6 +23,9 @@ type FormState = {
   errors: FormErrors;
 };
 
+const contactEmail = "info@stichtingluminacollective.nl";
+const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === "true";
+
 export function ContactForm() {
   const [state, setState] = useState<FormState>({ status: "idle", errors: {} });
   const [pending, setPending] = useState(false);
@@ -48,6 +51,27 @@ export function ContactForm() {
         status: "error",
         message: formMessages.error,
         errors: clientParsed.error.flatten().fieldErrors,
+      });
+      setPending(false);
+      return;
+    }
+
+    if (isStaticExport) {
+      const data = clientParsed.data;
+      const subject = encodeURIComponent(`Contact: ${data.subject}`);
+      const body = encodeURIComponent(
+        [
+          `Naam: ${data.name}`,
+          `E-mail: ${data.email}`,
+          "",
+          data.message,
+        ].join("\n"),
+      );
+      window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+      setState({
+        status: "success",
+        message: "Je e-mailprogramma wordt geopend om het bericht te versturen.",
+        errors: {},
       });
       setPending(false);
       return;

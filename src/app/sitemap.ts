@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 import { brand } from "@/lib/constants/brand";
 import { getEventSlugs, getProgramSlugs } from "@/lib/cms/content";
 
+export const dynamic = "force-static";
+
 const staticRoutes = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" as const },
   { path: "/over-ons", priority: 0.8, changeFrequency: "monthly" as const },
