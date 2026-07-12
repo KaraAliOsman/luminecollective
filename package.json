@@ -7,7 +7,7 @@
     "dev": "next dev",
     "studio:dev": "sanity dev",
     "studio:build": "sanity build public/studio -y && node scripts/copy-studio-static.mjs",
-    "build": "pnpm run studio:build && next build",
+    "build": "npm run studio:build && next build",
     "cf:build": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
