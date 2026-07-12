@@ -3,10 +3,10 @@ export const brand = {
   shortName: "Lumina Collective",
   domain: "stichtingluminacollective.nl",
   siteUrl: "https://stichtingluminacollective.nl",
-  email: process.env.CONTACT_EMAIL ?? "",
-  claim: "Ruimte voor vrouwen om te groeien, verbinden en zichtbaar te zijn.",
+  email: process.env.CONTACT_EMAIL ?? "info@stichtingluminacollective.nl",
+  claim: "Voor vrouwen die ruimte zoeken. En voor vrouwen die ruimte maken.",
   description:
-    "Stichting Lumina Collective is een Tilburgse stichting voor sociaal-maatschappelijk welzijnswerk. We brengen vrouwen samen rond ontmoeting, ondersteuning, cultuur, kennis en maatschappelijke participatie.",
+    "Lumina is een Tilburgs collectief waar vrouwen elkaar ontmoeten, kennis delen, verhalen zichtbaar maken en samen nieuwe ruimte creëren.",
   kvk: "42082909",
   establishmentNumber: "420829090000",
   sbi: "88992 - Sociaal-maatschappelijk welzijnswerk",
@@ -18,4 +18,5 @@ export const brand = {
   },
   logoFull: "/brand/logo-mark.png",
   logoMark: "/brand/logo-mark.png",
+  logoSocial: "/brand/logo-social.png",
 } as const;

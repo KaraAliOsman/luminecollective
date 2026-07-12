@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { StructuredData } from "@/components/seo/StructuredData";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { CMSImage } from "@/components/ui/CMSImage";
 import { FadeInSection } from "@/components/ui/FadeInSection";
@@ -12,6 +13,7 @@ import {
   getPublicGallery,
 } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
+import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 const description =
   "Een blik op de momenten, ontmoetingen en verhalen die de gemeenschap van Lumina Collective vormen.";
@@ -68,8 +70,17 @@ export default async function GemeenschapPage() {
     }
   }
 
+  const pageDescription = page?.metaDescription || description;
+
   return (
     <>
+      <StructuredData
+        data={webPageJsonLd({
+          path: "/gemeenschap",
+          title: page?.seoTitle || "Gemeenschap | Stichting Lumina Collective",
+          description: pageDescription,
+        })}
+      />
       <section className="bg-gradient-hero py-10 sm:py-14 md:py-20">
         <Container>
           <FadeInSection>

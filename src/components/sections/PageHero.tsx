@@ -1,9 +1,5 @@
 import { Button } from "@/components/ui/Button";
 import { CMSImage } from "@/components/ui/CMSImage";
-import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Heading } from "@/components/ui/Heading";
-import { Prose } from "@/components/ui/Prose";
 import type { VisualPlaceholder as VisualPlaceholderType } from "@/data/placeholders";
 import type { SanityImageLike } from "@/types/cms";
 
@@ -33,18 +29,14 @@ export function PageHero({
   secondary,
 }: PageHeroProps) {
   return (
-    <section className="bg-gradient-hero py-10 sm:py-12 md:py-20">
-      <Container className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-        <div className="max-w-3xl space-y-6">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <Heading as="h1" size="xl">
-            {title}
-          </Heading>
-          <Prose>
-            <p>{body}</p>
-          </Prose>
+    <section className="subpage-hero">
+      <div className="site-container subpage-hero__grid">
+        <div className="subpage-hero__copy">
+          <p className="section-index">{eyebrow}</p>
+          <h1>{title}</h1>
+          <p className="subpage-hero__intro">{body}</p>
           {(primary || secondary) && (
-            <div className="grid gap-3 pt-2 sm:inline-flex sm:flex-row">
+            <div className="subpage-hero__actions">
               {primary && <Button href={primary.href}>{primary.label}</Button>}
               {secondary && (
                 <Button href={secondary.href} variant="secondary">
@@ -54,21 +46,11 @@ export function PageHero({
             </div>
           )}
         </div>
-        <div className="relative">
-          {/* Decorative gold accent */}
-          <div className="absolute -right-3 -top-3 z-10 hidden h-24 w-24 border-r-2 border-t-2 border-muted-gold/30 lg:block" />
-          <div className="img-zoom overflow-hidden">
-            <CMSImage
-              className="h-[min(68vw,21rem)] min-h-0 sm:h-[24rem] lg:h-[30rem]"
-              fallback={visual}
-              image={image}
-              priority
-            />
-          </div>
-          {/* Decorative gold accent bottom */}
-          <div className="absolute -bottom-3 -left-3 z-10 hidden h-24 w-24 border-b-2 border-l-2 border-muted-gold/30 lg:block" />
+        <div className="subpage-hero__visual">
+          <CMSImage className="subpage-hero__image" fallback={visual} image={image} priority />
+          <span aria-hidden="true">L</span>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

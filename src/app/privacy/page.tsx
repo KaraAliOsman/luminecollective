@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 
+import { StructuredData } from "@/components/seo/StructuredData";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Prose } from "@/components/ui/Prose";
 import { brand } from "@/lib/constants/brand";
 import { createMetadata } from "@/lib/seo/config";
+import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = createMetadata({
   title: "Privacybeleid",
@@ -17,7 +19,15 @@ export default function PrivacyPage() {
   const address = `${brand.address.street}, ${brand.address.postalCode} ${brand.address.city}`;
 
   return (
-    <article>
+    <>
+      <StructuredData
+        data={webPageJsonLd({
+          path: "/privacy",
+          title: "Privacybeleid | Stichting Lumina Collective",
+          description: "Lees hoe Stichting Lumina Collective omgaat met persoonsgegevens, formulieren, analytics en jouw rechten.",
+        })}
+      />
+      <article>
       <header className="border-b border-deep-aubergine/10 py-14 md:py-20">
         <Container className="max-w-3xl">
           <Eyebrow>Juridisch</Eyebrow>
@@ -26,7 +36,7 @@ export default function PrivacyPage() {
           </h1>
           <p className="mt-5 text-ink-brown/65">
             Laatste wijziging:{" "}
-            <time dateTime="2026-07-01">1 juli 2026</time>.
+            <time dateTime="2026-07-12">12 juli 2026</time>.
           </p>
         </Container>
       </header>
@@ -140,5 +150,6 @@ export default function PrivacyPage() {
         </Container>
       </section>
     </article>
+    </>
   );
 }

@@ -18,10 +18,13 @@
     }
   ],
   "vars": {
-    "NEXT_PUBLIC_SITE_URL": "https://lumina-collective.aliosmankara111.workers.dev",
+    "NEXT_PUBLIC_SITE_URL": "https://stichtingluminacollective.nl",
     "NEXT_PUBLIC_SANITY_PROJECT_ID": "user9c35",
     "NEXT_PUBLIC_SANITY_DATASET": "production",
     "NEXTJS_ENV": "production",
+    "CONTACT_EMAIL": "info@stichtingluminacollective.nl",
+    "VOLUNTEER_EMAIL": "info@stichtingluminacollective.nl",
+    "NEWSLETTER_EMAIL": "info@stichtingluminacollective.nl",
     "NEXT_PUBLIC_GA_ID": "",
     "NEXT_PUBLIC_PLAUSIBLE_DOMAIN": ""
   },

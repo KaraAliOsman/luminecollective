@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/sections/CtaBand";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { Container } from "@/components/ui/Container";
 import { CMSImage } from "@/components/ui/CMSImage";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -9,6 +10,7 @@ import { Heading } from "@/components/ui/Heading";
 import { TextLink } from "@/components/ui/TextLink";
 import { getPageByKey, getPosts } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
+import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 const fallbackDescription =
   "Artikelen, interviews, terugblikken en kennis van Stichting Lumina Collective.";
@@ -43,9 +45,17 @@ function formatDate(iso: string) {
 export default async function NieuwsPage() {
   const [page, posts] = await Promise.all([getPageByKey("nieuws"), getPosts()]);
   const [featured, ...rest] = posts;
+  const pageDescription = page?.metaDescription || fallbackDescription;
 
   return (
     <>
+      <StructuredData
+        data={webPageJsonLd({
+          path: "/nieuws",
+          title: page?.seoTitle || "Nieuws & verhalen | Stichting Lumina Collective",
+          description: pageDescription,
+        })}
+      />
       <section className="border-b border-deep-aubergine/10 py-10 sm:py-14 md:py-20">
         <Container>
           <Eyebrow>Nieuws &amp; verhalen</Eyebrow>

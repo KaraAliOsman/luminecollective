@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Cormorant_Garamond, Inter, Outfit, Caveat } from "next/font/google";
+import { Cormorant_Garamond, Inter, Outfit } from "next/font/google";
 
 import { AnalyticsScripts, CookieBanner } from "@/components/global/Analytics";
 import { Footer } from "@/components/layout/Footer";
@@ -32,14 +32,14 @@ const outfit = Outfit({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  display: "swap",
-  weight: ["400", "700"],
-});
-
-export const metadata: Metadata = createMetadata();
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return createMetadata({
+    title: settings?.siteTitle,
+    description: settings?.siteDescription,
+    ogImage: settings?.defaultOgImageUrl,
+  });
+}
 
 export default async function RootLayout({
   children,
@@ -49,7 +49,7 @@ export default async function RootLayout({
   const settings = await getSiteSettings();
 
   return (
-    <html lang="nl" className={`${inter.variable} ${cormorant.variable} ${outfit.variable} ${caveat.variable}`}>
+    <html lang="nl" className={`${inter.variable} ${cormorant.variable} ${outfit.variable}`}>
       <body>
         <a
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-warm-white focus:px-4 focus:py-3 focus:text-deep-aubergine"

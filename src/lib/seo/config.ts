@@ -19,17 +19,46 @@ export function createMetadata({
 }: SeoInput = {}): Metadata {
   const pageTitle = title ? `${title} | ${siteName}` : siteName;
   const url = new URL(path, brand.siteUrl).toString();
-  const imageUrl = new URL(ogImage || brand.logoFull, brand.siteUrl).toString();
+  const imageUrl = new URL(ogImage || brand.logoSocial || brand.logoFull, brand.siteUrl).toString();
 
   return {
+    applicationName: brand.name,
     title: pageTitle,
     description,
     metadataBase: new URL(brand.siteUrl),
+    manifest: "/manifest.webmanifest",
+    category: "community organization",
+    keywords: [
+      "Stichting Lumina Collective",
+      "Lumina Collective",
+      "vrouwen Tilburg",
+      "community Tilburg",
+      "sociaal maatschappelijk welzijnswerk",
+      "vrouwen ontmoeten",
+    ],
+    icons: {
+      icon: [
+        { url: "/favicon.ico" },
+        { url: "/brand/logo-mark.png", type: "image/png" },
+      ],
+      apple: [{ url: "/brand/logo-mark.png", type: "image/png" }],
+    },
     alternates: {
       canonical: url,
       languages: {
         "nl-NL": url,
         "x-default": url,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
       },
     },
     openGraph: {

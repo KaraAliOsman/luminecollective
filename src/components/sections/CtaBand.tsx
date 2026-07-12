@@ -17,10 +17,8 @@ type CtaBandProps = {
 
 export function CtaBand({ title, body, primary, secondary }: CtaBandProps) {
   return (
-    <section className="bg-gradient-cta relative py-10 text-warm-white sm:py-10 sm:py-14 md:py-20 overflow-hidden">
-      {/* Decorative circles */}
-      <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full border border-warm-white/5" />
-      <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full border border-muted-gold/10" />
+    <section className="bg-gradient-cta relative py-14 text-warm-white md:py-24 overflow-hidden">
+      <div className="absolute right-[4vw] top-1/2 -translate-y-1/2 font-serif text-[28vw] leading-none text-warm-white/[0.035]" aria-hidden="true">L</div>
 
       <Container className="relative grid items-end gap-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-3xl space-y-5">

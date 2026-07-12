@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 
 import { CookiePreferencesButton } from "@/components/global/CookiePreferencesButton";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Prose } from "@/components/ui/Prose";
 import { createMetadata } from "@/lib/seo/config";
+import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = createMetadata({
   title: "Cookiebeleid",
@@ -15,7 +17,15 @@ export const metadata: Metadata = createMetadata({
 
 export default function CookiesPage() {
   return (
-    <article>
+    <>
+      <StructuredData
+        data={webPageJsonLd({
+          path: "/cookies",
+          title: "Cookiebeleid | Stichting Lumina Collective",
+          description: "Lees hoe Stichting Lumina Collective cookies gebruikt en hoe jij jouw voorkeuren kunt beheren.",
+        })}
+      />
+      <article>
       <header className="border-b border-deep-aubergine/10 py-14 md:py-20">
         <Container className="max-w-3xl">
           <Eyebrow>Juridisch</Eyebrow>
@@ -24,7 +34,7 @@ export default function CookiesPage() {
           </h1>
           <p className="mt-5 text-ink-brown/65">
             Laatste wijziging:{" "}
-            <time dateTime="2026-07-01">1 juli 2026</time>.
+            <time dateTime="2026-07-12">12 juli 2026</time>.
           </p>
         </Container>
       </header>
@@ -46,7 +56,9 @@ export default function CookiesPage() {
             <p>
               Functionele cookies zijn nodig voor basisfuncties, zoals het
               onthouden van jouw cookievoorkeuren en het veilig verwerken van
-              formulieren. Deze cookies staan altijd aan.
+              formulieren. Deze cookies staan altijd aan. Jouw cookievoorkeur
+              wordt maximaal twaalf maanden bewaard in een cookie en, wanneer
+              jouw browser dit toestaat, ook in lokale opslag.
             </p>
 
             <h3>Analytische cookies</h3>
@@ -54,7 +66,8 @@ export default function CookiesPage() {
               Analytische cookies of privacyvriendelijke meetinstrumenten kunnen
               ons helpen begrijpen welke pagina&apos;s worden bezocht en waar de
               website verbeterd kan worden. Deze worden alleen geladen wanneer
-              je toestemming geeft.
+              je toestemming geeft. Op dit moment plaatsen wij geen analytische
+              cookies zolang er geen meetinstrument is geactiveerd.
             </p>
 
             <h2>Cookievoorkeuren beheren</h2>
@@ -81,5 +94,6 @@ export default function CookiesPage() {
         </Container>
       </section>
     </article>
+    </>
   );
 }

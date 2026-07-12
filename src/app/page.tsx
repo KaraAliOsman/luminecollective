@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
-import { ProgramCard } from "@/components/cards/ProgramCard";
 import { StructuredData } from "@/components/seo/StructuredData";
-import { CtaBand } from "@/components/sections/CtaBand";
-import { PageHero } from "@/components/sections/PageHero";
-import { FadeInSection } from "@/components/ui/FadeInSection";
-import { Button } from "@/components/ui/Button";
 import { CMSImage } from "@/components/ui/CMSImage";
-import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Heading } from "@/components/ui/Heading";
 import { visuals } from "@/data/placeholders";
 import {
   getApprovedTestimonials,
@@ -24,34 +17,12 @@ import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/jsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageByKey("home");
-
-  const fallbackTitle = "Verbinding & Groei voor Vrouwen";
-  const title = page?.seoTitle && page.seoTitle !== "Home" ? page.seoTitle : fallbackTitle;
-
   return createMetadata({
-    title,
-    description: page?.metaDescription,
+    title: page?.seoTitle && page.seoTitle !== "Home" ? page.seoTitle : "Samen groeit meer",
+    description: page?.metaDescription || "Lumina brengt vrouwen in Tilburg samen rond ontmoeting, ontwikkeling en cultuur.",
     path: "/",
   });
 }
-
-const pillars = [
-  {
-    title: "Ontmoeting",
-    text: "Warme ruimtes waar vrouwen elkaar kunnen leren kennen en verhalen delen.",
-    icon: "01",
-  },
-  {
-    title: "Groei",
-    text: "Programma's die persoonlijke ontwikkeling, kennis en zichtbaarheid ondersteunen.",
-    icon: "02",
-  },
-  {
-    title: "Gemeenschap",
-    text: "Een netwerk dat dichtbij voelt en tegelijk professioneel georganiseerd is.",
-    icon: "03",
-  },
-];
 
 export default async function Home() {
   const [page, programs, events, gallery, testimonials, partners] = await Promise.all([
@@ -62,244 +33,158 @@ export default async function Home() {
     getApprovedTestimonials(),
     getVisiblePartners(),
   ]);
-  const featuredEvent = events[0];
-
-  // Reorder gallery items to fit the homepage bento grid (weights: 2, 2, 2, 1, 1)
-  const homeGallery: typeof gallery = [];
-  const doubles = gallery.filter(
-    (item) => item.alt?.includes("deelnemen") || item.alt?.includes("Spreker")
-  );
-  const singles = gallery.filter(
-    (item) => !item.alt?.includes("deelnemen") && !item.alt?.includes("Spreker")
-  );
-
-  let dIdx = 0;
-  while (homeGallery.length < 3 && dIdx < doubles.length) {
-    homeGallery.push(doubles[dIdx++]);
-  }
-  let sIdx = 0;
-  while (homeGallery.length < 5 && sIdx < singles.length) {
-    homeGallery.push(singles[sIdx++]);
-  }
-  while (homeGallery.length < 5 && dIdx < doubles.length) {
-    homeGallery.push(doubles[dIdx++]);
-  }
-  const displayHomeGallery = homeGallery.length >= 5 ? homeGallery : gallery.slice(0, 5);
+  const event = events[0];
 
   return (
     <>
       <StructuredData data={organizationJsonLd()} />
       <StructuredData data={websiteJsonLd()} />
-      <PageHero
-        body={
-          page?.heroText ||
-          "Stichting Lumina Collective brengt vrouwen samen in Nederland rond ontmoeting, kennis, cultuur en maatschappelijke betrokkenheid."
-        }
-        eyebrow="Stichting Lumina Collective"
-        image={page?.heroImage}
-        primary={{ label: "Doe mee", href: "/doe-mee" }}
-        secondary={{ label: "Bekijk programma's", href: "/programmas" }}
-        title={
-          page?.heroTitle ||
-          "Ruimte voor vrouwen om te groeien, verbinden en zichtbaar te zijn."
-        }
-        visual={visuals.communityTable}
-      />
 
-      {/* Overtuiging Section */}
-      <section className="py-10 sm:py-14 md:py-20">
-        <Container className="max-w-5xl">
-          <FadeInSection>
-            <Eyebrow>Onze overtuiging</Eyebrow>
-            <p className="mt-6 font-serif text-[clamp(2.25rem,5vw,5rem)] leading-[0.98] text-deep-aubergine text-balance">
-              Wij geloven dat verandering begint waar vrouwen elkaar ontmoeten,
-              verhalen delen en samen nieuwe mogelijkheden creëren.
-            </p>
-            <div className="mt-8 h-px w-16 bg-gradient-to-r from-muted-gold to-transparent" />
-          </FadeInSection>
-        </Container>
-      </section>
-
-      {/* Pillars Section */}
-      <section className="bg-warm-white py-10 sm:py-14 md:py-20">
-        <Container>
-          <div className="grid gap-8 md:grid-cols-3">
-            {pillars.map((pillar, index) => (
-              <FadeInSection key={pillar.title} delay={(index + 1) * 100 as 100 | 200 | 300}>
-                <article
-                  className="group border-t border-deep-aubergine/15 pt-6 transition-all duration-300 hover:border-muted-gold/50"
-                >
-                  <span className="text-sm font-semibold text-muted-gold">
-                    {pillar.icon}
-                  </span>
-                  <h2 className="mt-3 font-serif text-3xl text-deep-aubergine">
-                    {pillar.title}
-                  </h2>
-                  <p className="mt-4 leading-7 text-ink-brown/75">{pillar.text}</p>
-                </article>
-              </FadeInSection>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Programs Section */}
-      <section className="py-10 sm:py-14 md:py-20">
-        <Container>
-          <FadeInSection>
-            <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div className="max-w-2xl space-y-4">
-                <Eyebrow>Programma&apos;s</Eyebrow>
-                <Heading>Activiteiten die vrouwen samenbrengen.</Heading>
-              </div>
-              <Button href="/programmas" variant="secondary">
-                Alle programma&apos;s
-              </Button>
+      <section className="studio-hero">
+        <CMSImage
+          className="studio-hero__image"
+          fallback={visuals.communityTable}
+          image={page?.heroImage}
+          imageClassName="object-center"
+          priority
+          sizes="100vw"
+        />
+        <div className="studio-hero__shade" />
+        <div className="site-container studio-hero__inner">
+          <div className="studio-hero__copy">
+            <p className="studio-label studio-label--light">Stichting Lumina · Tilburg</p>
+            <h1>Samen<br /><em>groeit meer.</em></h1>
+            <p>{page?.heroText || "Een plek waar vrouwen elkaar ontmoeten, hun verhaal delen en samen de volgende stap zetten."}</p>
+            <div className="studio-actions">
+              <Link className="studio-button studio-button--light" href="/doe-mee">Doe mee</Link>
+              <Link className="studio-link studio-link--light" href="/over-ons">Leer ons kennen <span>→</span></Link>
             </div>
-          </FadeInSection>
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          </div>
+          <nav className="studio-hero__routes" aria-label="Uitgelichte onderdelen">
             {programs.slice(0, 3).map((program, index) => (
-              <FadeInSection key={program.title} delay={(index + 1) * 100 as 100 | 200 | 300}>
-                <ProgramCard program={program} />
-              </FadeInSection>
+              <Link href={`/programmas/${program.slug}`} key={program.slug}>
+                <span>0{index + 1}</span>
+                <strong>{program.title}</strong>
+                <i aria-hidden="true">↗</i>
+              </Link>
             ))}
-          </div>
-        </Container>
+          </nav>
+        </div>
       </section>
 
-      {/* Featured Event Section */}
-      <section className="bg-soft-blush/35 py-10 sm:py-14 md:py-20">
-        <Container className="grid gap-10 md:grid-cols-2 md:gap-16 lg:gap-20 md:items-center max-w-5xl mx-auto">
-          <FadeInSection animation="slide-left">
-            <div className="space-y-5">
-              <Eyebrow>Agenda</Eyebrow>
-              <Heading>Volgende activiteit</Heading>
-              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warm-taupe">
-                {featuredEvent.date} - {featuredEvent.location}
-              </p>
-              <p className="max-w-xl text-lg leading-8 text-ink-brown/78">
-                {featuredEvent.description}
-              </p>
-              <Button href="/agenda">Bekijk agenda</Button>
+      <section className="studio-intro">
+        <div className="site-container studio-intro__grid">
+          <div>
+            <p className="studio-label">Waarom Lumina</p>
+            <h2>Je hoeft het niet<br />alleen te doen.</h2>
+          </div>
+          <div className="studio-intro__body">
+            <p className="studio-intro__lead">Lumina is een gemeenschap van vrouwen met verschillende verhalen, achtergronden en ambities.</p>
+            <p>We organiseren ontmoetingen, workshops en culturele activiteiten. Niet vanuit een vast beeld van wat vrouwen nodig hebben, maar vanuit wat zij zelf inbrengen.</p>
+            <Link className="studio-link" href="/over-ons">Dit is onze aanpak <span>→</span></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="studio-programs">
+        <div className="site-container">
+          <header className="studio-heading">
+            <div>
+              <p className="studio-label">Onze programma&apos;s</p>
+              <h2>Ruimte om te ontmoeten,<br /><em>leren en maken.</em></h2>
             </div>
-          </FadeInSection>
-          <FadeInSection animation="slide-right">
-            <div className="img-zoom overflow-hidden rounded-2xl shadow-sm">
+            <Link className="studio-link" href="/programmas">Bekijk alles <span>→</span></Link>
+          </header>
+          <div className="studio-programs__grid">
+            {programs.slice(0, 3).map((program, index) => (
+              <article className="studio-program" key={program.slug}>
+                <Link href={`/programmas/${program.slug}`} className="studio-program__image-link" tabIndex={-1}>
+                  <CMSImage className="studio-program__image" fallback={program.visual} image={program.image} sizes="(min-width: 768px) 33vw, 100vw" />
+                  <span>0{index + 1}</span>
+                </Link>
+                <h3><Link href={`/programmas/${program.slug}`}>{program.title}</Link></h3>
+                <p>{program.description}</p>
+                <Link className="studio-link" href={`/programmas/${program.slug}`}>Ontdek meer <span>→</span></Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {event && (
+        <section className="studio-event">
+          <div className="site-container studio-event__grid">
+            <div className="studio-event__visual">
+              <CMSImage className="studio-event__image" fallback={event.visual} image={event.image} sizes="(min-width: 768px) 50vw, 100vw" />
+              <span>AGENDA</span>
+            </div>
+            <div className="studio-event__copy">
+              <p className="studio-label studio-label--light">De volgende ontmoeting</p>
+              <p className="studio-event__date">{event.date} · {event.location}</p>
+              <h2>{event.title}</h2>
+              <p>{event.description}</p>
+              <Link className="studio-button studio-button--light" href={`/agenda/${event.slug}`}>Bekijk de activiteit</Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="studio-community">
+        <div className="site-container">
+          <header className="studio-heading">
+            <div>
+              <p className="studio-label">Onze gemeenschap</p>
+              <h2>Dit gebeurt wanneer<br /><em>mensen samenkomen.</em></h2>
+            </div>
+            <Link className="studio-link" href="/gemeenschap">Bekijk de gemeenschap <span>→</span></Link>
+          </header>
+          <div className="studio-community__grid">
+            {gallery.slice(0, 4).map((item, index) => (
               <CMSImage
-                className="h-72 sm:h-80 md:h-[24rem] w-full object-cover"
-                fallback={featuredEvent.visual}
-                image={featuredEvent.image}
-              />
-            </div>
-          </FadeInSection>
-        </Container>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="py-10 sm:py-14 md:py-20">
-        <Container>
-          <FadeInSection>
-            <div className="mb-10 max-w-2xl space-y-4">
-              <Eyebrow>Gemeenschap</Eyebrow>
-              <Heading>Een warme indruk van wat groeit.</Heading>
-            </div>
-          </FadeInSection>
-          <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-4">
-            {displayHomeGallery.map((item, index) => (
-              <FadeInSection
+                altFallback={item.alt}
+                className={`studio-community__image studio-community__image--${index + 1}`}
+                fallback={item.visual}
+                image={item.image}
                 key={item.id}
-                animation="scale-in"
-                className={
-                  index === 0
-                    ? "md:col-span-2"
-                    : index === 1
-                      ? "md:col-span-2"
-                      : index === 2
-                        ? "md:col-span-2"
-                        : ""
-                }
-                delay={Math.min((index + 1) * 100, 500) as 100 | 200 | 300 | 400 | 500}
-              >
-                <div className="img-zoom overflow-hidden">
-                  <CMSImage
-                    altFallback={item.alt}
-                    caption={item.caption}
-                    className="h-36 sm:h-56 md:h-52 w-full object-cover"
-                    fallback={item.visual}
-                    image={item.image}
-                  />
-                </div>
-              </FadeInSection>
+                sizes="(min-width: 768px) 40vw, 100vw"
+              />
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* Testimonials Section */}
-      {testimonials.length > 0 && (
-        <section className="bg-warm-white py-10 sm:py-14 md:py-20">
-          <Container>
-            <FadeInSection>
-              <div className="mb-10 max-w-2xl space-y-4">
-                <Eyebrow>Verhalen</Eyebrow>
-                <Heading>Woorden uit de gemeenschap.</Heading>
-              </div>
-            </FadeInSection>
-            <div className="grid gap-6 md:grid-cols-3">
-              {testimonials.slice(0, 3).map((testimonial, index) => (
-                <FadeInSection key={testimonial.quote} delay={(index + 1) * 100 as 100 | 200 | 300}>
-                  <figure
-                    className="border-t border-deep-aubergine/15 pt-6 transition-colors duration-300 hover:border-muted-gold/50"
-                  >
-                    <blockquote className="font-serif text-2xl leading-tight text-deep-aubergine">
-                      &ldquo;{testimonial.quote}&rdquo;
-                    </blockquote>
-                    <figcaption className="mt-5 text-sm font-semibold uppercase tracking-[0.12em] text-warm-taupe">
-                      {testimonial.anonymous ? "Anoniem" : testimonial.name}
-                      {testimonial.roleOrContext ? ` - ${testimonial.roleOrContext}` : ""}
-                    </figcaption>
-                  </figure>
-                </FadeInSection>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+      <section className="studio-quote">
+        <div className="site-container studio-quote__inner">
+          <span aria-hidden="true">“</span>
+          <blockquote>{testimonials[0]?.quote || "Ik kwam binnen zonder iemand te kennen. Ik ging naar huis met het gevoel dat ik ergens bij hoor."}</blockquote>
+          <p>{testimonials[0] ? (testimonials[0].anonymous ? "Deelnemer, anoniem" : testimonials[0].name) : "Een deelnemer van Lumina"}</p>
+        </div>
+      </section>
 
-      {/* Partners Section */}
       {partners.length > 0 && (
-        <section className="py-12">
-          <Container>
-            <FadeInSection>
-              <Eyebrow>Partners</Eyebrow>
-              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4 text-lg font-semibold text-deep-aubergine">
-                {partners.slice(0, 8).map((partner) =>
-                  partner.website ? (
-                    <a
-                      className="underline decoration-muted-gold/45 underline-offset-8 transition-all duration-300 hover:decoration-deep-aubergine hover:scale-[1.02]"
-                      href={partner.website}
-                      key={partner.name}
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {partner.name}
-                    </a>
-                  ) : (
-                    <span key={partner.name}>{partner.name}</span>
-                  ),
-                )}
-              </div>
-            </FadeInSection>
-          </Container>
+        <section className="studio-partners">
+          <div className="site-container">
+            <p className="studio-label">Samen met</p>
+            <div>{partners.slice(0, 8).map((partner) => <span key={partner.name}>{partner.name}</span>)}</div>
+          </div>
         </section>
       )}
 
-      <CtaBand
-        body="Meedoen kan klein beginnen: een bijeenkomst bezoeken, vrijwilliger worden, een idee delen of contact opnemen voor samenwerking."
-        primary={{ label: "Doe mee", href: "/doe-mee" }}
-        secondary={{ label: "Neem contact op", href: "/contact" }}
-        title="Jouw betrokkenheid maakt ruimte voor meer vrouwen."
-      />
+      <section className="studio-cta">
+        <div className="site-container studio-cta__inner">
+          <div>
+            <p className="studio-label studio-label--light">Welkom bij Lumina</p>
+            <h2>Kom een keer<br /><em>naast ons zitten.</em></h2>
+          </div>
+          <div>
+            <p>Een eerste bezoek, een vraag of een idee: zo begint het vaak.</p>
+            <div className="studio-actions">
+              <Link className="studio-button studio-button--light" href="/doe-mee">Ik wil meedoen</Link>
+              <Link className="studio-link studio-link--light" href="/contact">Neem contact op <span>→</span></Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

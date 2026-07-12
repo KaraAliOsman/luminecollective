@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 
+import { StructuredData } from "@/components/seo/StructuredData";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Prose } from "@/components/ui/Prose";
 import { brand } from "@/lib/constants/brand";
 import { createMetadata } from "@/lib/seo/config";
+import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = createMetadata({
   title: "Transparantie",
@@ -17,7 +19,15 @@ export default function AnbiPage() {
   const address = `${brand.address.street}, ${brand.address.postalCode} ${brand.address.city}`;
 
   return (
-    <article>
+    <>
+      <StructuredData
+        data={webPageJsonLd({
+          path: "/anbi",
+          title: "Transparantie | Stichting Lumina Collective",
+          description: "Publieke organisatiegegevens en transparantie-informatie van Stichting Lumina Collective.",
+        })}
+      />
+      <article>
       <header className="border-b border-deep-aubergine/10 py-14 md:py-20">
         <Container className="max-w-3xl">
           <Eyebrow>Transparantie</Eyebrow>
@@ -86,5 +96,6 @@ export default function AnbiPage() {
         </Container>
       </section>
     </article>
+  </>
   );
 }

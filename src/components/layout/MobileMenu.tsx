@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { mainNavigation } from "@/lib/constants/navigation";
 import { cn } from "@/lib/utils/cn";
@@ -9,22 +9,13 @@ import { cn } from "@/lib/utils/cn";
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = open ? "hidden" : "";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [open]);
-
   return (
     <div className="lg:hidden">
       <button
         aria-controls="mobile-menu"
         aria-expanded={open}
         className={cn(
-          "relative z-[100] inline-flex min-h-11 items-center gap-3 border px-3.5 py-2 text-sm font-semibold transition",
+          "relative z-[100] inline-flex min-h-11 items-center gap-3 border px-3.5 py-2 text-xs font-bold uppercase tracking-[0.12em] transition",
           open
             ? "border-warm-white/35 bg-warm-white text-deep-aubergine"
             : "border-deep-aubergine/25 bg-warm-white/70 text-deep-aubergine hover:border-deep-aubergine/50",
@@ -53,7 +44,7 @@ export function MobileMenu() {
       <div
         aria-hidden={!open}
         className={cn(
-          "fixed inset-0 z-[90] overflow-y-auto bg-deep-aubergine px-5 pb-8 pt-24 text-warm-white transition duration-300",
+          "fixed inset-0 z-[90] overflow-y-auto bg-deep-aubergine px-5 pb-8 pt-24 text-warm-white transition duration-500",
           open
             ? "translate-x-0 opacity-100"
             : "pointer-events-none translate-x-full opacity-0",
@@ -81,8 +72,8 @@ export function MobileMenu() {
           </nav>
 
           <div className="border-l border-muted-gold/60 pl-5">
-            <p className="max-w-sm font-serif text-2xl leading-tight text-warm-white">
-              Ruimte voor vrouwen om te groeien, verbinden en zichtbaar te zijn.
+            <p className="max-w-sm font-serif text-3xl leading-[1.05] text-warm-white">
+              Neem je nieuwsgierigheid mee. De deur staat open.
             </p>
             <Link
               className="mt-5 inline-flex min-h-11 items-center border border-warm-white bg-warm-white px-5 py-3 text-sm font-semibold text-deep-aubergine"

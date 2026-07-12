@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import { StructuredData } from "@/components/seo/StructuredData";
 import { VolunteerForm } from "@/components/forms/VolunteerForm";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageHero } from "@/components/sections/PageHero";
@@ -11,6 +11,7 @@ import { VisualPlaceholder } from "@/components/ui/VisualPlaceholder";
 import { visuals } from "@/data/placeholders";
 import { getPageByKey } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
+import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
 const description =
   "Ontdek hoe je kunt deelnemen, vrijwilliger worden, partner worden, doneren of een verhaal delen met Lumina Collective.";
@@ -56,8 +57,17 @@ const options = [
 export default async function DoeMeePage() {
   const page = await getPageByKey("doe-mee");
 
+  const pageDescription = page?.metaDescription || description;
+
   return (
     <>
+      <StructuredData
+        data={webPageJsonLd({
+          path: "/doe-mee",
+          title: page?.seoTitle || "Doe Mee | Stichting Lumina Collective",
+          description: pageDescription,
+        })}
+      />
       <PageHero
         body={
           page?.heroText ||

@@ -1,0 +1,21 @@
+{
+  "name": "Stichting Lumina Collective",
+  "short_name": "Lumina Collective",
+  "description": "Lumina is een Tilburgs collectief waar vrouwen elkaar ontmoeten, kennis delen, verhalen zichtbaar maken en samen nieuwe ruimte creëren.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f0e8",
+  "theme_color": "#4b1737",
+  "icons": [
+    {
+      "src": "/brand/logo-mark.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/logo-mark.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

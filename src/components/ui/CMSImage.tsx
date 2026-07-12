@@ -42,7 +42,7 @@ export function CMSImage({
 
   if (!src) {
     return (
-      <VisualPlaceholder className={className} visual={fallback}>
+      <VisualPlaceholder className={className} priority={priority} sizes={sizes} visual={fallback}>
         {caption}
       </VisualPlaceholder>
     );
