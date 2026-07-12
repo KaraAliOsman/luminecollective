@@ -58,7 +58,9 @@ export default function CookiesPage() {
               onthouden van jouw cookievoorkeuren en het veilig verwerken van
               formulieren. Deze cookies staan altijd aan. Jouw cookievoorkeur
               wordt maximaal twaalf maanden bewaard in een cookie en, wanneer
-              jouw browser dit toestaat, ook in lokale opslag.
+              jouw browser dit toestaat, ook in lokale opslag. De technische
+              naam van deze voorkeur is <code>lumina_analytics_consent</code>;
+              in lokale opslag gebruiken we <code>lumina.analyticsConsent</code>.
             </p>
 
             <h3>Analytische cookies</h3>
