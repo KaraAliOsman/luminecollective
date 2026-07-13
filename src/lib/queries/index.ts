@@ -1,4 +1,4 @@
-import { groq } from "next-sanity";
+const groq = String.raw;
 
 // Reusable image fragment
 const imageFragment = groq`{

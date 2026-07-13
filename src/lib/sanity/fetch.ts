@@ -1,5 +1,3 @@
-import type { QueryParams } from "next-sanity";
-
 import { isSanityConfigured, sanityClient } from "./client";
 
 type FetchOptions = {
@@ -16,7 +14,7 @@ type FetchOptions = {
  */
 export async function sanityFetch<T>(
   query: string,
-  params: QueryParams = {},
+  params: Record<string, any> = {},
   { revalidate = 60, tags }: FetchOptions = {},
 ): Promise<T | null> {
   if (!isSanityConfigured) return null;
