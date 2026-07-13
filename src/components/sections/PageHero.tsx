@@ -48,7 +48,7 @@ export function PageHero({
         </div>
         <div className="subpage-hero__visual">
           <CMSImage className="subpage-hero__image" fallback={visual} image={image} priority />
-          <span aria-hidden="true"><i />013<small>Tilburg</small></span>
+          <span aria-hidden="true">L</span>
         </div>
       </div>
     </section>

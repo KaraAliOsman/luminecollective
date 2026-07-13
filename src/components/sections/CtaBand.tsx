@@ -17,9 +17,7 @@ type CtaBandProps = {
 
 export function CtaBand({ title, body, primary, secondary }: CtaBandProps) {
   return (
-    <section className="cta-band bg-gradient-cta relative py-14 text-warm-white md:py-24 overflow-hidden">
-      <div className="cta-band__glow" aria-hidden="true" />
-      <div className="cta-band__signal" aria-hidden="true"><i /><i /><i /></div>
+    <section className="bg-gradient-cta relative overflow-hidden py-14 text-warm-white md:py-24">
 
       <Container className="relative grid items-end gap-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-3xl space-y-5">

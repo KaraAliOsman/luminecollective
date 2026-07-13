@@ -14,7 +14,7 @@ type FetchOptions = {
  */
 export async function sanityFetch<T>(
   query: string,
-  params: Record<string, any> = {},
+  params: Record<string, unknown> = {},
   { revalidate = 60, tags }: FetchOptions = {},
 ): Promise<T | null> {
   if (!isSanityConfigured) return null;
