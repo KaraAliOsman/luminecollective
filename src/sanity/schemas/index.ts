@@ -5,6 +5,7 @@ import { pageSchema } from "./page";
 import { partnerSchema, teamMemberSchema, testimonialSchema } from "./people";
 import { postSchema } from "./post";
 import { programSchema } from "./program";
+import { homeSectionSchemas } from "./homeSections";
 
 export const schemaTypes = [
   globalSettingsSchema,
@@ -16,4 +17,5 @@ export const schemaTypes = [
   teamMemberSchema,
   partnerSchema,
   testimonialSchema,
+  ...homeSectionSchemas,
 ];

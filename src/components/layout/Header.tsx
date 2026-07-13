@@ -8,25 +8,33 @@ import type { SiteSettings } from "@/types/cms";
 
 export function Header({ settings }: { settings?: SiteSettings }) {
   const logoSrc = settings?.logoMarkUrl || brand.logoMark;
+  const navigation = settings?.navigation?.length ? settings.navigation : [...mainNavigation];
+  const cta = settings?.headerCta || { label: "Doe mee", href: "/doe-mee" };
+  const desktopNavigation = navigation.filter(
+    (item) => item.href !== "/" && item.href !== cta.href,
+  );
 
   return (
     <header className="site-header">
       <div className="site-header__inner">
         <Link href="/" aria-label={`${brand.name} - home`} className="wordmark">
-          <Image src={logoSrc} width={42} height={42} alt="" priority />
-          <span className="wordmark__text"><strong>Lumina</strong><small>Collective</small></span>
+          <span className="wordmark__mark"><Image src={logoSrc} width={40} height={40} alt="" priority /></span>
+          <span className="wordmark__lockup">
+            <strong>{settings?.brandPrimaryText || "Lumina"}</strong>
+            <small>{settings?.brandSecondaryText || "Collective"}<i>013</i></small>
+          </span>
         </Link>
 
         <nav aria-label="Hoofdnavigatie" className="site-header__nav">
-          {mainNavigation.slice(1, 7).map((item) => (
+          {desktopNavigation.map((item) => (
             <Link key={item.href} href={item.href}>{item.label}</Link>
           ))}
         </nav>
 
-        <Link href="/doe-mee" className="site-header__cta">
-          Doe mee <span aria-hidden="true">↗</span>
+        <Link href={cta.href} className="site-header__cta">
+          {cta.label} <span aria-hidden="true">↗</span>
         </Link>
-        <MobileMenu />
+        <MobileMenu navigation={navigation} cta={cta} />
       </div>
     </header>
   );

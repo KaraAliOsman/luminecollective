@@ -2,6 +2,7 @@ import { events as fallbackEvents } from "@/data/events";
 import { visuals } from "@/data/placeholders";
 import { programs as fallbackPrograms } from "@/data/programs";
 import { brand } from "@/lib/constants/brand";
+import { mainNavigation } from "@/lib/constants/navigation";
 import { socialLinks as fallbackSocialLinks } from "@/lib/constants/social";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { urlFor } from "@/lib/sanity/image";
@@ -39,6 +40,8 @@ import type {
   SiteSettings,
   TeamMemberDisplay,
   TestimonialDisplay,
+  HomeSection,
+  NavigationItem,
 } from "@/types/cms";
 
 type RawSettings = {
@@ -53,6 +56,11 @@ type RawSettings = {
   donationEnabled?: boolean;
   donationUrl?: string;
   newsletterEnabled?: boolean;
+  brandPrimaryText?: string;
+  brandSecondaryText?: string;
+  navigation?: NavigationItem[];
+  headerCta?: NavigationItem;
+  address?: Partial<SiteSettings["address"]>;
 };
 
 type RawPage = {
@@ -65,6 +73,13 @@ type RawPage = {
   body?: unknown[];
   seoTitle?: string;
   metaDescription?: string;
+  heroEyebrow?: string;
+  heroPrimary?: NavigationItem;
+  heroSecondary?: NavigationItem;
+  heroBadge?: string;
+  heroCaption?: string;
+  heroTicker?: string[];
+  homeSections?: HomeSection[];
 };
 
 type RawPost = {
@@ -239,6 +254,11 @@ function fallbackSettings(): SiteSettings {
     footerText: brand.claim,
     donationEnabled: false,
     newsletterEnabled: true,
+    brandPrimaryText: "Lumina",
+    brandSecondaryText: "Collective",
+    navigation: [...mainNavigation],
+    headerCta: { label: "Doe mee", href: "/doe-mee" },
+    address: { ...brand.address },
     isFallback: true,
   };
 }
@@ -255,6 +275,13 @@ function normalizePage(page: RawPage): PageDisplay | null {
     body: page.body,
     seoTitle: page.seoTitle,
     metaDescription: page.metaDescription,
+    heroEyebrow: page.heroEyebrow,
+    heroPrimary: page.heroPrimary?.label && page.heroPrimary?.href ? page.heroPrimary : undefined,
+    heroSecondary: page.heroSecondary?.label && page.heroSecondary?.href ? page.heroSecondary : undefined,
+    heroBadge: page.heroBadge,
+    heroCaption: page.heroCaption,
+    heroTicker: page.heroTicker?.filter(Boolean),
+    homeSections: page.homeSections,
     isFallback: false,
   };
 }
@@ -400,6 +427,18 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     donationEnabled: Boolean(data.donationEnabled),
     donationUrl: data.donationUrl,
     newsletterEnabled: data.newsletterEnabled ?? true,
+    brandPrimaryText: data.brandPrimaryText || "Lumina",
+    brandSecondaryText: data.brandSecondaryText || "Collective",
+    navigation: data.navigation?.filter((item) => item.label && item.href) ?? [...mainNavigation],
+    headerCta: data.headerCta?.label && data.headerCta?.href
+      ? data.headerCta
+      : { label: "Doe mee", href: "/doe-mee" },
+    address: {
+      street: data.address?.street || brand.address.street,
+      postalCode: data.address?.postalCode || brand.address.postalCode,
+      city: data.address?.city || brand.address.city,
+      country: data.address?.country || brand.address.country,
+    },
     isFallback: false,
   };
 }

@@ -8,6 +8,20 @@ export type SanityImageLike = {
   isPlaceholder?: boolean;
 };
 
+export type NavigationItem = {
+  label: string;
+  href: string;
+};
+
+export type HomeSection =
+  | { _key?: string; _type: "homeManifesto"; eyebrow?: string; title?: string; accent?: string; items?: Array<{ _key?: string; title?: string; text?: string }> }
+  | { _key?: string; _type: "homePrograms"; eyebrow?: string; title?: string; accent?: string; intro?: string; limit?: number; footerPrompt?: string; linkLabel?: string }
+  | { _key?: string; _type: "homeEvent"; eyebrow?: string; badge?: string; buttonLabel?: string }
+  | { _key?: string; _type: "homeGallery"; eyebrow?: string; title?: string; accent?: string; limit?: number; linkLabel?: string }
+  | { _key?: string; _type: "homeTestimonial"; eyebrow?: string }
+  | { _key?: string; _type: "homePartners"; eyebrow?: string; limit?: number }
+  | { _key?: string; _type: "homeCta"; eyebrow?: string; title?: string; accent?: string; text?: string; primary?: NavigationItem; secondary?: NavigationItem };
+
 export type SiteSettings = {
   siteTitle: string;
   siteDescription: string;
@@ -23,6 +37,16 @@ export type SiteSettings = {
   donationEnabled: boolean;
   donationUrl?: string;
   newsletterEnabled: boolean;
+  brandPrimaryText: string;
+  brandSecondaryText: string;
+  navigation: NavigationItem[];
+  headerCta: NavigationItem;
+  address: {
+    street: string;
+    postalCode: string;
+    city: string;
+    country: string;
+  };
   isFallback: boolean;
 };
 
@@ -36,6 +60,13 @@ export type PageDisplay = {
   body?: unknown[];
   seoTitle?: string;
   metaDescription?: string;
+  heroEyebrow?: string;
+  heroPrimary?: NavigationItem;
+  heroSecondary?: NavigationItem;
+  heroBadge?: string;
+  heroCaption?: string;
+  heroTicker?: string[];
+  homeSections?: HomeSection[];
   isFallback: boolean;
 };
 
