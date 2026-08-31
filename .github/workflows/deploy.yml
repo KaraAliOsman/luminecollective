@@ -19,6 +19,11 @@ jobs:
           node-version: 22
           cache: 'npm'
 
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
       - name: Install Dependencies
         run: npm install
 
