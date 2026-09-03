@@ -1,6 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "lumina-collective",
+  "account_id": "8b0163597918b41cf5c6d61b87518515",
+  "workers_dev": true,
+  "keep_vars": true,
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-04-01",
   "compatibility_flags": [
