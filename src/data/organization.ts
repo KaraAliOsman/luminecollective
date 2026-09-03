@@ -5,7 +5,7 @@ export const organization = {
   policyPeriod: "2026-2030",
   policyPages: 10,
   policySize: "1,5 MB",
-  rsin: null as string | null,
+  rsin: brand.rsin,
   anbiStatus: "aangevraagd" as "aangevraagd" | "toegekend",
   quote:
     "De vrouw van nu: een bewuste, mondige, zelfredzame en actieve deelneemster in de samenleving. In onze kerngedachte kan elk mens, elke vrouw, iets waardevols teruggeven aan de maatschappij, een klein bloemblaadje van zichzelf. Met al onze krachten gebundeld, alle blaadjes verzameld, zijn we een grote bos bloeiende rozen, een bloeiende samenleving.",

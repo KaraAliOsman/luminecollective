@@ -10,6 +10,7 @@ export function organizationJsonLd() {
     logo: new URL(brand.logoFull, brand.siteUrl).toString(),
     description: brand.description,
     identifier: brand.kvk,
+    taxID: brand.rsin,
     email: brand.email,
     telephone: brand.phone,
     foundingDate: String(brand.founded),

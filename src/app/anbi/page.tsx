@@ -45,7 +45,7 @@ export default function AnbiPage() {
             <div><dt>KVK-nummer</dt><dd>{brand.kvk}</dd></div>
             <div><dt>Vestigingsnummer</dt><dd>{brand.establishmentNumber}</dd></div>
             <div><dt>SBI-code</dt><dd>{brand.sbi}</dd></div>
-            <div><dt>RSIN / fiscaal nummer</dt><dd>{organization.rsin || "Nog niet gepubliceerd"}</dd></div>
+            <div><dt>RSIN / fiscaal nummer</dt><dd>{organization.rsin}</dd></div>
             <div><dt>ANBI-status</dt><dd>{organization.anbiStatus === "toegekend" ? "Toegekend" : "Aanvraag vermeld in het beleidsplan"}</dd></div>
             <div><dt>Adres</dt><dd>{brand.address.street}<br />{brand.address.postalCode} {brand.address.city}, Nederland</dd></div>
             <div><dt>E-mail</dt><dd><a href={`mailto:${brand.email}`}>{brand.email}</a></dd></div>
@@ -54,7 +54,7 @@ export default function AnbiPage() {
             <div><dt>Werkgebied</dt><dd>Tilburg en omgeving, met ambitie voor regionale en internationale samenwerking</dd></div>
             <div><dt>Boekjaar</dt><dd>1 januari tot en met 31 december</dd></div>
           </dl>
-          <div className="notice"><strong>Over de ANBI-aanvraag</strong><p>Het beleidsplan vermeldt dat de stichting is aangemeld als algemeen nut beogende instelling (ANBI). Op deze pagina zijn nog geen bevestigde toekenning en RSIN gepubliceerd. Een aanvraag is niet hetzelfde als een toekenning. Controleer de actuele status via het officiële ANBI-register van de Belastingdienst.</p><a href={taxRegister} target="_blank" rel="noopener noreferrer">Naar de ANBI-controle bij de Belastingdienst <ArrowUpRight size={14} className="inline" aria-hidden="true" /></a></div>
+          <div className="notice"><strong>Over de ANBI-aanvraag & RSIN</strong><p>Stichting Lumina Collective is statutair opgericht te Tilburg en ingeschreven onder RSIN <strong>{brand.rsin}</strong> (KVK {brand.kvk}). Het beleidsplan vermeldt dat de stichting is aangemeld als algemeen nut beogende instelling (ANBI). Controleer de actuele status via het officiële ANBI-register van de Belastingdienst.</p><a href={taxRegister} target="_blank" rel="noopener noreferrer">Naar de ANBI-controle bij de Belastingdienst <ArrowUpRight size={14} className="inline" aria-hidden="true" /></a></div>
         </section>
 
         <section id="doelstelling"><h2>Missie & doelstelling</h2>

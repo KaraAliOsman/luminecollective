@@ -23,7 +23,7 @@ for (const path of ["/", "/over-ons", "/programmas", "/anbi", "/contact", "/doe-
   assert.ok(html.includes("<h1"), `${path} needs a heading`);
   assert.ok(!html.includes("Application error: a server-side exception"), `${path} runtime error`);
   if (path === "/anbi") {
-    for (const expected of ["beleidsplan-lumina-2026-2030.pdf", "Yasemin", "RSIN", "42082909"]) assert.ok(html.includes(expected), `ANBI page missing ${expected}`);
+    for (const expected of ["beleidsplan-lumina-2026-2030.pdf", "Yasemin", "RSIN", "42082909", "869628409"]) assert.ok(html.includes(expected), `ANBI page missing ${expected}`);
   }
   console.log(`OK ${path}`);
 }

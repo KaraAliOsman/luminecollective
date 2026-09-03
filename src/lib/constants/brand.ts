@@ -11,6 +11,7 @@ export const brand = {
     "Stichting Lumina Collective in Tilburg verbindt vrouwen, nieuwkomers, jongeren en gezinnen. Samen werken we aan welzijn, ontwikkeling en gelijke kansen.",
   founded: 2026,
   kvk: "42082909",
+  rsin: "869628409",
   establishmentNumber: "420829090000",
   sbi: "88992 - Sociaal-maatschappelijk welzijnswerk",
   address: {
