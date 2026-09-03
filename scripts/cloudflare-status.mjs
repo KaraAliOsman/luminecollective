@@ -1,7 +1,7 @@
 import { resolveNs } from "node:dns/promises";
 import { appendFileSync } from "node:fs";
 
-const account = "8b0163597918b41cf5c6d61b87518515";
+let account = process.env.CLOUDFLARE_ACCOUNT_ID || "8b0163597918b41cf5c6d61b87518515";
 const worker = "lumina-collective";
 const domain = "stichtingluminacollective.nl";
 const token = process.env.CLOUDFLARE_API_TOKEN;

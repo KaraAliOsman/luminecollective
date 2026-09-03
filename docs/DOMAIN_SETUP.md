@@ -1,4 +1,4 @@
-﻿# Guía de Conexión del Dominio: stichtingluminacollective.nl
+# Guía de Conexión del Dominio: stichtingluminacollective.nl
 
 Esta guía explica con total claridad técnica por qué tu dominio todavía no muestra la web desplegada en Cloudflare y cómo activarlo de forma definitiva.
 
@@ -19,17 +19,12 @@ Mientras tanto:
 
 ---
 
-## 2. Configuración en el Código (Ya Realizada)
+## 2. Despliegue del Worker en Cloudflare
 
-En `wrangler.jsonc` se han registrado las rutas de dominio personalizado:
-```jsonc
-"routes": [
-  { "pattern": "stichtingluminacollective.nl", "custom_domain": true },
-  { "pattern": "www.stichtingluminacollective.nl", "custom_domain": true }
-]
-```
+El Worker se despliega bajo el servicio `lumina-collective` en Cloudflare Workers. Su URL directa de Worker es:
+`https://lumina-collective.aliosmankara111.workers.dev`
 
-Esto le indica a Cloudflare que vincule automáticamente el Worker con el dominio `stichtingluminacollective.nl`.
+Para vincular el dominio `stichtingluminacollective.nl`, Cloudflare requiere que la zona DNS esté delegada o que el dominio esté configurado como Custom Domain en el panel de Cloudflare.
 
 ---
 
