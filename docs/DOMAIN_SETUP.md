@@ -1,74 +1,61 @@
-# Guía de Conexión del Dominio: stichtingluminacollective.nl
+# Conexion de stichtingluminacollective.nl
 
-Esta guía explica con total claridad técnica por qué tu dominio todavía no muestra la web desplegada en Cloudflare y cómo activarlo de forma definitiva.
+## Estado comprobado el 3 de septiembre de 2026
 
----
+- GitHub Actions despliega el Worker `lumina-collective`.
+- URL operativa: https://lumina-collective.aliosmankara111.workers.dev
+- El dominio sigue respondiendo desde LiteSpeed/Webhost.
+- DNS autoritativos: `ns1.webhost.company`, `ns2.webhost.company`, `ns3.webhost.company`.
+- La consulta de zonas accesibles con el token de despliegue no devuelve este dominio.
+- El Worker no tiene un Custom Domain asociado.
 
-## 1. Diagnóstico del Estado Actual
+Por tanto, publicar en GitHub no actualiza todavia el dominio. El proveedor DNS
+observado no identifica por si solo al registrador donde se cambian los nameservers.
 
-Cuando cualquier usuario visita `https://stichtingluminacollective.nl`, actualmente recibe:
-* **Servidor que responde:** `LiteSpeed` (un servidor compartido en `178.251.232.180`).
-* **Servidores de Nombres (DNS):**
-  - `ns1.webhost.company`
-  - `ns2.webhost.company`
-  - `ns3.webhost.company`
+## Antes De Cambiar DNS
 
-Mientras tanto:
-* El código del proyecto se compila y se despliega como **Cloudflare Worker** (`lumina-collective`) en la infraestructura global de Cloudflare.
-* Por lo tanto, aunque GitHub Actions despliegue con éxito en Cloudflare, el dominio sigue apuntando a los servidores antiguos de `webhost.company`.
+Inicia sesion en Cloudflare y en el panel del registrador. En Cloudflare, anade el
+dominio a la cuenta que contiene el Worker. Revisa la importacion de **todos** los
+registros, incluidos MX, SPF, DKIM, DMARC, subdominios y verificaciones.
 
----
+Conserva una exportacion de la zona anterior. Los destinos de correo deben seguir
+resolviendo al servidor de correo existente; un MX que apunte al dominio raiz
+necesita especial atencion antes de mover la web. Los registros de correo no deben
+quedar detras del proxy HTTP. No canceles el alojamiento de correo.
 
-## 2. Despliegue del Worker en Cloudflare
+Utiliza exactamente los nameservers asignados a esta zona, nunca ejemplos. Revisa
+DNSSEC y los registros DS anteriores siguiendo el procedimiento oficial antes de
+cambiar la delegacion. Espera a que la zona aparezca **Active**; no hay un plazo de
+propagacion garantizado. [Guia oficial de cambio de nameservers](https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/).
 
-El Worker se despliega bajo el servicio `lumina-collective` en Cloudflare Workers. Su URL directa de Worker es:
-`https://lumina-collective.aliosmankara111.workers.dev`
+## Asociar El Worker
 
-Para vincular el dominio `stichtingluminacollective.nl`, Cloudflare requiere que la zona DNS esté delegada o que el dominio esté configurado como Custom Domain en el panel de Cloudflare.
+En la misma cuenta de Cloudflare:
 
----
+1. Abre Workers & Pages, `lumina-collective`, Settings, Domains & Routes.
+2. Anade `stichtingluminacollective.nl` como **Custom Domain** cuando la zona este activa.
+3. Revisa cualquier conflicto de registros web existentes antes de aceptar el cambio.
+4. Anade `www.stichtingluminacollective.nl` si tambien debe funcionar. Mantiene el mismo
+   destino y verifica su certificado.
+5. Comprueba la emision del certificado y el acceso HTTPS.
 
-## 3. Pasos Requeridos en tu Proveedor de Dominio (webhost.company)
+Cloudflare gestiona los registros web y el certificado de un Custom Domain.
+**No crees un CNAME desde el dominio raiz a `workers.dev` como sustituto de esta
+asociacion.** El proyecto no usa un despliegue estatico de Cloudflare Pages.
+[Documentacion de Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/).
 
-Para que el tráfico llegue a Cloudflare, debes realizar **una** de las siguientes dos opciones en el panel donde administras `stichtingluminacollective.nl`:
+## Verificacion
 
-### Opción A (Recomendada): Cambiar los Servidores de Nombres (Nameservers) a Cloudflare
-
-1. Inicia sesión en el panel de **Cloudflare** (cuenta `8b0163597918b41cf5c6d61b87518515` o la cuenta donde tengas la zona).
-2. Si el dominio `stichtingluminacollective.nl` ya está añadido como Zona en Cloudflare, te mostrará dos servidores de nombres asignados (por ejemplo: `xxx.ns.cloudflare.com` y `yyy.ns.cloudflare.com`).
-3. Inicia sesión en tu registrador (**webhost.company** o panel de cPanel / cliente).
-4. Ve a la sección **Nameservers / Servidores de DNS** del dominio.
-5. Cambia `ns1.webhost.company` y `ns2.webhost.company` por los dos servidores de Cloudflare.
-6. Guarda los cambios. (La propagación toma entre 15 minutos y un par de horas).
-   *A partir de ese momento, todo el tráfico pasará por Cloudflare y servirá instantáneamente la versión nueva.*
-
----
-
-### Opción B: Si gestionas el DNS en webhost.company (Sin cambiar Nameservers)
-
-Si necesitas mantener los DNS en `webhost.company` (por ejemplo, si tienes cuentas de correo cPanel allí):
-1. Entra a la **Zona DNS** en el panel de `webhost.company`.
-2. Modifica el registro **A** o **CNAME**:
-   - Tipo: `CNAME`
-   - Nombre: `@` (o `stichtingluminacollective.nl`)
-   - Destino: `lumina-collective.aliosmankara111.workers.dev`
-   - Registro para `www`: `CNAME` apuntando a `stichtingluminacollective.nl`
-3. En el panel de Cloudflare (Workers & Pages -> `lumina-collective` -> Settings -> Domains & Routes), asegúrate de que `stichtingluminacollective.nl` figure como **Custom Domain**.
-
----
-
-## 4. Verificación de Funcionamiento
-
-Una vez configurado, puedes comprobar que el dominio sirve Cloudflare ejecutando en PowerShell:
 ```powershell
-Resolve-DnsName -Name stichtingluminacollective.nl
-curl -I https://stichtingluminacollective.nl
+Resolve-DnsName -Name stichtingluminacollective.nl -Type NS
+Invoke-RestMethod https://stichtingluminacollective.nl/api/health
+Invoke-RestMethod https://lumina-collective.aliosmankara111.workers.dev/api/health
 ```
 
-El encabezado de respuesta HTTP debe mostrar:
-```http
-Server: cloudflare
-cf-ray: ...
-```
-Y el endpoint de salud debe devolver la versión de despliegue:
-`https://stichtingluminacollective.nl/api/health`
+Las dos respuestas deben contener el mismo `release`, correspondiente al commit
+publicado. Comprueba ademas `/anbi`, su PDF, `/contact`, imagenes, HTTPS y correo
+entrante/saliente. El script `scripts/cloudflare-status.mjs` realiza una auditoria
+de lectura en GitHub Actions sin mostrar secretos.
+
+El `wrangler.jsonc` no declara rutas para una zona inexistente o no activada. Asi
+se puede seguir desplegando el Worker mientras se completa la migracion del dominio.

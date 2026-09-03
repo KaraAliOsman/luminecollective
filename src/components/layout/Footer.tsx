@@ -32,7 +32,7 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
             <address>{brand.address.street}<br />{brand.address.postalCode} {brand.address.city}</address>
             <Link href="/contact">Contact <ArrowUpRight size={14} className="inline" aria-hidden="true" /></Link>
           </div>
-          <nav aria-label="Sociale media" className="mt-5">{socials.slice(0, 2).map(item => <a href={item.href} key={item.href} target="_blank" rel="noopener noreferrer">{item.label} <ArrowUpRight size={13} className="inline" aria-hidden="true" /></a>)}</nav>
+          {socials.length > 0 && <nav aria-label="Sociale media" className="mt-5">{socials.map(item => <a href={item.href} key={item.href} target="_blank" rel="noopener noreferrer">{item.label} <ArrowUpRight size={13} className="inline" aria-hidden="true" /></a>)}</nav>}
         </div>
       </div>
       <div className="site-footer__bottom"><p>© {new Date().getFullYear()} Stichting Lumina Collective · KVK {brand.kvk}</p><nav aria-label="Juridisch">{legalNavigation.map(item => <Link key={item.href} href={item.href}>{item.label}</Link>)}<Link href="/fotografie">Fotografie</Link></nav></div>

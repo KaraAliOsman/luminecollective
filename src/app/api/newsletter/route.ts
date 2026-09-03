@@ -27,16 +27,12 @@ export async function POST(request: Request) {
     );
   }
 
-  if (parsed.data.website) {
-    return NextResponse.json({ message: formMessages.newsletterSuccess });
-  }
-
   try {
     const result = await sendNotification({
       to: process.env.NEWSLETTER_EMAIL || process.env.CONTACT_EMAIL || brand.email,
       replyTo: parsed.data.email,
-      subject: "Nieuwe nieuwsbriefinschrijving via Lumina Collective",
-      intro: "Er is een nieuwe nieuwsbriefinschrijving ingestuurd via de website.",
+      subject: "Nieuw verzoek om updates van Lumina Collective",
+      intro: "Deze bezoeker vraagt om op de hoogte te blijven. Er is geen automatische inschrijving bij een externe mailingdienst aangemaakt.",
       fields: {
         Email: parsed.data.email,
         Consent: parsed.data.consent,
@@ -53,5 +49,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: formMessages.error }, { status: 500 });
   }
 
-  return NextResponse.json({ message: formMessages.newsletterSuccess });
+  return NextResponse.json({ success: true, message: formMessages.newsletterSuccess });
 }

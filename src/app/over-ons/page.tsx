@@ -18,9 +18,9 @@ export default async function OverOnsPage() {
   const page = await getPageByKey("over-ons");
   return <>
     <StructuredData data={webPageJsonLd({ path: "/over-ons", title: "Over Lumina", description })} />
-    <PageHero eyebrow="Over Lumina" title="Een stichting voor elkaar." body="Verschillende achtergronden. Gedeelde mogelijkheden. Vanuit Tilburg bouwen we aan een samenleving waarin iedereen kan meedoen." visual={photography.together} image={page?.heroImage} primary={{ label: "Onze programma's", href: "/programmas" }} secondary={{ label: "Maak kennis", href: "/contact" }} />
+    <PageHero eyebrow="Onafhankelijk, betrokken, in Tilburg" title="Over Lumina Collective" body="Een stichting voor het welzijn, de zelfredzaamheid en de participatie van vrouwen en de mensen om hen heen." visual={photography.conversation} image={page?.heroImage} primary={{ label: "Onze programma's", href: "/programmas" }} secondary={{ label: "Maak kennis", href: "/contact" }} />
     <section className="section"><Container className="intro-grid">
-      <div><p className="section-index">Ons verhaal</p><Heading>Verschil mag er zijn.<br />Verbinding ook.</Heading></div>
+      <div><p className="section-index">Ons verhaal</p><Heading>Een stichting<br />die we samen maken.</Heading></div>
       <div className="editorial-text"><p className="lead">Stichting Lumina Collective is in 2026 opgericht in Tilburg. Een onafhankelijke stichting zonder winstoogmerk, gedragen door vrijwillige inzet.</p><p>We zetten ons in voor vrouwen, nieuwkomers, jongeren en gezinnen. Niet iedereen begint met dezelfde kansen, hetzelfde netwerk of dezelfde mogelijkheden om mee te doen. Met ontmoeting, educatie en samenwerking willen we daarin iets betekenen.</p><p>Onze bijzondere aandacht gaat uit naar het welzijn, de zelfredzaamheid en de maatschappelijke participatie van vrouwen van alle leeftijden. Vanuit die basis verbinden we ook de mensen en gemeenschappen om hen heen.</p></div>
     </Container></section>
     <section className="section section--sage"><Container className="two-column">

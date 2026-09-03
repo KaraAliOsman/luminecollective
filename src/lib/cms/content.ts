@@ -527,7 +527,7 @@ async function getRelatedGallery(
 
   return (
     data
-      ?.filter((item) => item.image?.asset && item.alt)
+      ?.filter((item) => item.image?.asset && item.alt && !item.isPlaceholder)
       .map((item, index) => ({
         id: item._id || `${slug}-gallery-${index}`,
         image: {
@@ -560,7 +560,7 @@ export async function getRelatedEventsForProgram(
     { slug },
     { tags: ["events"] },
   );
-  return (data?.map(normalizeEvent).filter(Boolean) as EventDisplay[] | undefined) ?? [];
+  return data?.map(normalizeEvent).filter((event): event is EventDisplay => Boolean(event && event.status === "upcoming" && validDate(event.dateStart))) ?? [];
 }
 
 export async function getRelatedEventsForEvent(
@@ -571,7 +571,7 @@ export async function getRelatedEventsForEvent(
     { slug },
     { tags: ["events"] },
   );
-  return (data?.map(normalizeEvent).filter(Boolean) as EventDisplay[] | undefined) ?? [];
+  return data?.map(normalizeEvent).filter((event): event is EventDisplay => Boolean(event && event.status === "upcoming" && validDate(event.dateStart))) ?? [];
 }
 
 export async function getGalleryForProgram(slug: string) {

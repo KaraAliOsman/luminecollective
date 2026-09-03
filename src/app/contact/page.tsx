@@ -15,7 +15,7 @@ export const metadata: Metadata = createMetadata({ title: "Contact", description
 export default function ContactPage() {
   return <>
     <StructuredData data={webPageJsonLd({ path: "/contact", title: "Contact", description })} />
-    <header className="page-heading"><Container><p className="section-index">Je bent welkom</p><Heading as="h1" size="xl">Laten we kennismaken.</Heading><p className="lead">Een vraag, een idee of een eerste kennismaking? We horen graag van je.</p></Container></header>
+    <header className="page-heading"><Container><p className="section-index">We horen graag van je</p><Heading as="h1" size="xl">Contact met Lumina</Heading><p className="lead">Een vraag, een idee of een eerste kennismaking? Stuur ons een bericht of bel ons.</p></Container></header>
     <section className="section"><Container className="contact-layout">
       <div><Heading size="md">Contact met Lumina</Heading><div className="contact-methods">
         <div className="contact-method"><Mail size={21} aria-hidden="true" /><div><h3>E-mail</h3><a href={`mailto:${brand.email}`}>{brand.email}</a></div></div>

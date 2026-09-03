@@ -101,9 +101,9 @@ export const organization = {
     ],
   },
   taxBenefits: {
-    title: "Giftenaftrek voor inkomsten- en vennootschapsbelasting",
+    title: "Een donatie en de ANBI-aanvraag",
     description:
-      "Stichting Lumina Collective is aangemeld als algemeen nut beogende instelling (ANBI). Hierdoor kunnen giften en donaties onder de geldende fiscale regels aftrekbaar zijn voor de inkomstenbelasting (particulieren) en vennootschapsbelasting (ondernemingen).",
+      "Het beleidsplan vermeldt een ANBI-aanvraag. Zolang de toekenning niet is bevestigd, kunnen wij geen fiscale aftrekbaarheid van donaties toezeggen. Controleer de actuele registratie en de voorwaarden voor jouw gift bij de Belastingdienst.",
   },
   document: {
     title: "Beleidsplan 2026-2030",

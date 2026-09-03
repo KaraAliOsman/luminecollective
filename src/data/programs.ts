@@ -7,7 +7,7 @@ export const programs = [
     category: "Elkaar leren kennen",
     description: "Een koffieochtend, een gesprek of een activiteit met je gezin. Ontmoet mensen uit Tilburg en ontdek wat je met elkaar deelt.",
     cta: "Ontdek ontmoeting",
-    visual: photography.together,
+    visual: photography.meeting,
     targetAudience: "Vrouwen van alle leeftijden, nieuwkomers en gezinnen die andere mensen willen ontmoeten.",
     goals: ["Sociale contacten opbouwen en isolement doorbreken.", "Ervaringen delen met mensen met verschillende achtergronden.", "Een vertrouwd netwerk dichtbij huis laten groeien."],
     longDescription: "Nieuwe mensen ontmoeten kan spannend zijn. Bij Lumina maken we de eerste stap graag persoonlijk. We brengen mensen samen via vrouwenbijeenkomsten, koffieochtenden, gezinsactiviteiten en culturele ontmoetingen.\n\nJe mag komen zoals je bent. Je hoeft geen ervaring te hebben of iemand mee te nemen. We luisteren naar wat deelnemers bezighoudt en geven ruimte aan hun ideeën.\n\nWil je kennismaken? Neem contact op. We vertellen je welke ontmoetingen worden voorbereid en hoe je kunt aansluiten.",

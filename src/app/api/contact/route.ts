@@ -27,10 +27,6 @@ export async function POST(request: Request) {
     );
   }
 
-  if (parsed.data.website) {
-    return NextResponse.json({ message: formMessages.contactSuccess });
-  }
-
   try {
     const result = await sendNotification({
       to: process.env.CONTACT_EMAIL || brand.email,
@@ -56,5 +52,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: formMessages.error }, { status: 500 });
   }
 
-  return NextResponse.json({ message: formMessages.contactSuccess });
+  return NextResponse.json({ success: true, message: formMessages.contactSuccess });
 }

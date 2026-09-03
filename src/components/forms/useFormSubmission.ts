@@ -53,7 +53,7 @@ export function useFormSubmission({ endpoint, schema, emailSubject, successMessa
     try {
       const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(parsed.data), signal: AbortSignal.timeout(15000) });
       const result = await response.json().catch(() => null);
-      if (!response.ok) {
+      if (!response.ok || result?.success !== true) {
         if (response.status === 503) setDeliveryAvailable(false);
         setState({ status: "error", errors: result?.errors || {}, emailHref, message: result?.message || formMessages.error });
         return;

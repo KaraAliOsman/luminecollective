@@ -45,7 +45,7 @@ export default function AnbiPage() {
             <div><dt>KVK-nummer</dt><dd>{brand.kvk}</dd></div>
             <div><dt>Vestigingsnummer</dt><dd>{brand.establishmentNumber}</dd></div>
             <div><dt>SBI-code</dt><dd>{brand.sbi}</dd></div>
-            <div><dt>RSIN / fiscaal nummer</dt><dd>{organization.rsin || "In aanvraag / verificatie (zie toelichting)"}</dd></div>
+            <div><dt>RSIN / fiscaal nummer</dt><dd>{organization.rsin || "Nog niet gepubliceerd"}</dd></div>
             <div><dt>ANBI-status</dt><dd>{organization.anbiStatus === "toegekend" ? "Toegekend" : "Aanvraag vermeld in het beleidsplan"}</dd></div>
             <div><dt>Adres</dt><dd>{brand.address.street}<br />{brand.address.postalCode} {brand.address.city}, Nederland</dd></div>
             <div><dt>E-mail</dt><dd><a href={`mailto:${brand.email}`}>{brand.email}</a></dd></div>
@@ -54,7 +54,7 @@ export default function AnbiPage() {
             <div><dt>Werkgebied</dt><dd>Tilburg en omgeving, met ambitie voor regionale en internationale samenwerking</dd></div>
             <div><dt>Boekjaar</dt><dd>1 januari tot en met 31 december</dd></div>
           </dl>
-          <div className="notice"><strong>Over de ANBI-aanvraag</strong><p>Het beleidsplan vermeldt dat de stichting is aangemeld als algemeen nut beogende instelling (ANBI). Een toekenningsbesluit en het definitieve RSIN worden na registratie bijgewerkt. Een formele aanvraag op zichzelf geeft geen direct recht op giftenaftrek tot toekenning. Controleer de actuele status via het officiële ANBI-register van de Belastingdienst.</p><a href={taxRegister} target="_blank" rel="noopener noreferrer">Naar de ANBI-controle bij de Belastingdienst <ArrowUpRight size={14} className="inline" aria-hidden="true" /></a></div>
+          <div className="notice"><strong>Over de ANBI-aanvraag</strong><p>Het beleidsplan vermeldt dat de stichting is aangemeld als algemeen nut beogende instelling (ANBI). Op deze pagina zijn nog geen bevestigde toekenning en RSIN gepubliceerd. Een aanvraag is niet hetzelfde als een toekenning. Controleer de actuele status via het officiële ANBI-register van de Belastingdienst.</p><a href={taxRegister} target="_blank" rel="noopener noreferrer">Naar de ANBI-controle bij de Belastingdienst <ArrowUpRight size={14} className="inline" aria-hidden="true" /></a></div>
         </section>
 
         <section id="doelstelling"><h2>Missie & doelstelling</h2>
@@ -64,6 +64,7 @@ export default function AnbiPage() {
           <p>We werken vanuit onze kernwaarden: {organization.coreValues.join(" · ")}.</p>
 
           <h3 className="mt-8">Statutaire werkterreinen</h3>
+          <p>Hieronder staat de statutaire reikwijdte uit het beleidsplan. Dit is geen overzicht van diensten die op dit moment beschikbaar zijn. Lumina biedt geen acute hulp of medische behandeling; ons actuele aanbod wordt afzonderlijk aangekondigd.</p>
           <div className="statutory-groups">
             {organization.statutoryCategories.map(cat => (
               <div key={cat.category} className="statutory-group">
@@ -128,7 +129,7 @@ export default function AnbiPage() {
           <div className="tax-benefit-card">
             <h4>{organization.taxBenefits.title}</h4>
             <p>{organization.taxBenefits.description}</p>
-            <p className="mt-3 text-sm text-warm-taupe">Neem contact met ons op voor periodieke schenkingsovereenkomsten of vragen over fiscale aftrekbaarheid.</p>
+            <p className="mt-3 text-sm"><a className="underline" href={taxRegister} target="_blank" rel="noopener noreferrer">Controleer de ANBI-status bij de Belastingdienst</a>. Voor vragen over het steunen van Lumina kun je contact opnemen met het bestuur.</p>
           </div>
 
           <h3 className="mt-8">Stichting Bankrekening</h3>

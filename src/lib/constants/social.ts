@@ -1,18 +1,2 @@
-export const socialLinks = [
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/stichtinglumina",
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/stichtinglumina",
-  },
-  {
-    label: "TikTok",
-    href: "https://www.tiktok.com/@stichtinglumina",
-  },
-  {
-    label: "X",
-    href: "https://x.com/stichtinglumina",
-  },
-] as const;
+// Publish confirmed organization profiles through Sanity Site Settings.
+export const socialLinks: Array<{ label: string; href: string }> = [];
