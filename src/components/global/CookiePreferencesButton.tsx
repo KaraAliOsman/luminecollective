@@ -1,15 +1,10 @@
 "use client";
 
+import { SlidersHorizontal } from "lucide-react";
+import { analyticsEnabled } from "./Analytics";
 import { resetAnalyticsConsent } from "@/lib/analytics/consent";
 
 export function CookiePreferencesButton() {
-  return (
-    <button
-      className="mt-4 inline-flex min-h-11 items-center border border-deep-aubergine bg-deep-aubergine px-5 py-3 text-sm font-semibold text-warm-white transition hover:border-wine-plum hover:bg-wine-plum focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-deep-aubergine"
-      onClick={resetAnalyticsConsent}
-      type="button"
-    >
-      Cookievoorkeuren aanpassen
-    </button>
-  );
+  if (!analyticsEnabled) return <p className="notice">Op deze website zijn geen analytische meetinstrumenten actief. Je hoeft hiervoor geen toestemming te geven.</p>;
+  return <button className="button button--secondary" onClick={resetAnalyticsConsent} type="button"><SlidersHorizontal size={17} aria-hidden="true" />Cookievoorkeuren aanpassen</button>;
 }

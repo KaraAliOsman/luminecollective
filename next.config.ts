@@ -1,20 +1,9 @@
 import type { NextConfig } from "next";
-
-const isStaticExport = process.env.STATIC_EXPORT === "true";
+import { legacyProgramSlugs } from "./src/data/redirects";
 
 const nextConfig: NextConfig = {
-  ...(isStaticExport
-    ? {
-        output: "export" as const,
-        trailingSlash: true,
-      }
-    : {}),
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
+  devIndicators: false,
   poweredByHeader: false,
   images: {
     unoptimized: true,
@@ -40,10 +29,9 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "DENY" },
-          { key: "X-XSS-Protection", value: "1; mode=block" },
           {
             key: "Strict-Transport-Security",
-            value: "max-age=31536000; includeSubDomains; preload",
+            value: "max-age=31536000",
           },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           {
@@ -53,15 +41,30 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: "/documenten/:path*.pdf",
+        headers: [
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Type", value: "application/pdf" },
+          { key: "Cache-Control", value: "public, max-age=3600" },
+        ],
+      },
+      {
         source: "/:path*.(jpg|jpeg|png|webp|gif|svg|ico)",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
         ],
       },
     ];
+  },
+  async redirects() {
+    return Object.entries(legacyProgramSlugs).map(([from, to]) => ({
+      source: `/programmas/${from}`,
+      destination: `/programmas/${to}`,
+      permanent: true,
+    }));
   },
   async rewrites() {
     return [

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Cormorant_Garamond, Inter, Outfit } from "next/font/google";
+import { DM_Sans, DM_Serif_Display } from "next/font/google";
 
 import { AnalyticsScripts, CookieBanner } from "@/components/global/Analytics";
 import { Footer } from "@/components/layout/Footer";
@@ -10,26 +10,19 @@ import { createMetadata } from "@/lib/seo/config";
 
 import "./globals.css";
 
-const inter = Inter({
+const sans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-dm-sans",
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
-const cormorant = Cormorant_Garamond({
+const serif = DM_Serif_Display({
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  variable: "--font-dm-serif",
   display: "swap",
-  weight: ["300", "400", "500", "600"],
+  weight: "400",
   style: ["normal", "italic"],
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -49,7 +42,7 @@ export default async function RootLayout({
   const settings = await getSiteSettings();
 
   return (
-    <html lang="nl" className={`${inter.variable} ${cormorant.variable} ${outfit.variable}`}>
+    <html lang="nl" className={`${sans.variable} ${serif.variable}`}>
       <body>
         <a
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-warm-white focus:px-4 focus:py-3 focus:text-deep-aubergine"

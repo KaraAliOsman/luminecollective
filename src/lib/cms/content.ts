@@ -1,4 +1,3 @@
-import { events as fallbackEvents } from "@/data/events";
 import { visuals } from "@/data/placeholders";
 import { programs as fallbackPrograms } from "@/data/programs";
 import { brand } from "@/lib/constants/brand";
@@ -7,6 +6,7 @@ import { socialLinks as fallbackSocialLinks } from "@/lib/constants/social";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { urlFor } from "@/lib/sanity/image";
 import { slugify } from "@/lib/utils/slugify";
+import { formatDate, formatTime, validDate } from "@/lib/utils/dates";
 import {
   approvedTestimonialsQuery,
   eventBySlugQuery,
@@ -141,13 +141,13 @@ const fallbackPosts: PostDisplay[] = [
   {
     slug: "waarom-lumina-bestaat",
     category: "verhalen",
-    publishedAt: "2026-01-15",
+    publishedAt: "2026-09-02",
     author: "Stichting Lumina Collective",
     title: "Waarom Lumina Collective bestaat",
     excerpt:
-      "Een korte introductie op onze missie: vrouwen samenbrengen rond ontmoeting, steun, cultuur en zichtbare participatie.",
+      "Vanuit Tilburg werken we aan verbinding, ontwikkeling en gelijke kansen. Dit is de overtuiging achter onze stichting.",
     bodyText:
-      "Lumina Collective is ontstaan vanuit een eenvoudige overtuiging: vrouwen hebben plekken nodig waar ze elkaar kunnen ontmoeten zonder drempel, zonder oordeel en met ruimte voor hun eigen verhaal.\n\nIn Tilburg bouwen we aan een warme gemeenschap rond ontmoeting, ondersteuning, cultuur, kennis en maatschappelijke participatie. We geloven dat vertrouwen groeit wanneer vrouwen elkaar zien, naar elkaar luisteren en samen kleine stappen durven zetten.\n\nOnze stichting werkt zorgvuldig en lokaal. We willen een plek zijn waar deelnemers, vrijwilligers en partners elkaar vinden rond gedeelde verantwoordelijkheid en menselijke aandacht.",
+      "Je prettig voelen in je omgeving begint vaak bij iemand die naar je luistert. Bij een plek waar je een vraag kunt stellen, een talent kunt ontdekken of gewoon jezelf kunt zijn. Vanuit die gedachte is Stichting Lumina Collective in 2026 opgericht in Tilburg.\n\nWe zetten ons in voor het welzijn, de zelfredzaamheid en de maatschappelijke deelname van vrouwen, nieuwkomers, jongeren en gezinnen. Gelijke kansen voor vrouwen staan centraal, met aandacht voor de mensen om hen heen.\n\nOns beleidsplan 2026-2030 beschrijft vier richtingen: ontmoeting en verbinding; educatie en ontwikkeling; welzijn en participatie; en jongeren, cultuur en samenwerking. We bouwen de activiteiten stap voor stap op, samen met vrijwilligers en mensen uit de buurt.\n\nLumina is een onafhankelijke stichting zonder winstoogmerk. Het bestuur werkt onbezoldigd. Onze plannen, de samenstelling van het bestuur en de uitgangspunten voor ons geldbeheer zijn openbaar op de pagina ANBI & transparantie.\n\nWil je kennismaken of heb je een idee dat hierbij past? Een bericht of telefoontje is een goed begin. We horen graag wat jij zoekt of wilt bijdragen.",
     visual: visuals.communityTable,
     isPreview: false,
     isFallback: true,
@@ -155,27 +155,27 @@ const fallbackPosts: PostDisplay[] = [
   {
     slug: "ontmoeting-als-eerste-stap",
     category: "kennis",
-    publishedAt: "2026-02-01",
+    publishedAt: "2026-09-02",
     author: "Stichting Lumina Collective",
     title: "Ontmoeting als eerste stap naar groei",
     excerpt:
-      "Waarom laagdrempelige bijeenkomsten belangrijk zijn voor vertrouwen, welzijn en deelname aan de samenleving.",
+      "Nieuwe mensen leren kennen hoeft niet groot te beginnen. Een gesprek, een gedeelde interesse of samen iets doen kan al genoeg zijn.",
     bodyText:
-      "Een sterke gemeenschap begint vaak klein: aan een tafel, tijdens een gesprek, bij een bijeenkomst waar iemand voor het eerst binnenstapt.\n\nVoor veel vrouwen is ontmoeting geen extraatje, maar een voorwaarde voor vertrouwen. Vanuit contact ontstaat herkenning. Vanuit herkenning ontstaat ruimte om vragen te stellen, hulp te zoeken, talenten te delen of actief mee te doen.\n\nDaarom investeert Lumina Collective in warme, goed georganiseerde momenten waar vrouwen elkaar op een natuurlijke manier kunnen leren kennen. Niet als eindpunt, maar als begin van verdere groei.",
+      "Voor het eerst ergens binnenstappen kan spannend zijn. Zeker als je nog niemand kent, een nieuwe taal leert of weinig tijd voor jezelf hebt. Bij Lumina willen we dat je die eerste stap op je eigen manier kunt zetten.\n\nOntmoeting en verbinding vormen daarom een van de vier richtingen in ons beleidsplan. We willen ruimte maken voor koffieochtenden, gesprekken, culturele uitwisseling en activiteiten waarbij gezinnen elkaar leren kennen. De precieze invulling groeit mee met de vragen en interesses van de mensen die aansluiten.\n\nJe hoeft vooraf niet precies te weten wat je zoekt. Vertel ons waar je nieuwsgierig naar bent, wat je leuk vindt of waar je tegenaan loopt. Samen bekijken we welke mogelijkheid bij je past.\n\nZodra een activiteit een bevestigde datum en locatie heeft, vind je die in onze agenda. Daar vermelden we ook hoe je kunt aanmelden en of er kosten zijn. Wil je nu al kennismaken? Neem gerust contact op.",
     visual: visuals.conversation,
     isPreview: false,
     isFallback: true,
   },
   {
     slug: "vrijwilligers-maken-ruimte",
-    category: "interviews",
-    publishedAt: "2026-02-18",
+    category: "verhalen",
+    publishedAt: "2026-09-02",
     author: "Stichting Lumina Collective",
-    title: "Vrijwilligers maken ruimte voor meer vrouwen",
+    title: "Wat jij kunt betekenen als vrijwilliger",
     excerpt:
-      "Bijdragen aan Lumina kan op veel manieren: met tijd, kennis, organisatiekracht of warme aanwezigheid.",
+      "Goed in organiseren, graag bezig met taal of iemand die anderen op hun gemak stelt? Jouw inzet kan op verschillende manieren van betekenis zijn.",
     bodyText:
-      "Vrijwilligers zijn onmisbaar voor een stichting die dichtbij mensen wil blijven. Zij helpen bij ontvangst, organisatie, communicatie, activiteiten, praktische vragen en het creëren van een sfeer waarin deelnemers zich welkom voelen.\n\nBij Lumina zoeken we geen perfecte profielen. We zoeken mensen die zorgvuldig, betrouwbaar en met aandacht willen bijdragen. Soms is dat zichtbaar op de voorgrond, soms juist rustig achter de schermen.\n\nWie vrijwilliger wordt, bouwt mee aan een gemeenschap waarin vrouwen elkaar kunnen versterken. Een eerste gesprek is genoeg om te ontdekken welke rol past.",
+      "Een warm welkom, een helder bericht of een goed voorbereide activiteit: een stichting draait op mensen die hun tijd en aandacht willen delen. Lumina bouwt aan een netwerk van vrijwilligers dat past bij onze plannen en bij wat mensen zelf willen bijdragen.\n\nMisschien help je graag bij het organiseren van ontmoetingen. Misschien heb je kennis van taal, creativiteit, communicatie of administratie. Ook praktische hulp en het meedenken over een activiteit zijn waardevol.\n\nEen kennismaking is geen verplichting. We bespreken samen wat je leuk vindt, hoeveel tijd je hebt en welke afspraken nodig zijn. Zo wordt duidelijk of er op dit moment een passende rol voor je is.\n\nHet bestuur van Lumina werkt onbezoldigd. Ons beleidsplan beschrijft ook de uitgangspunten voor onkosten en vrijwilligersvergoedingen. We maken vooraf duidelijke afspraken over de inzet en eventuele kosten.\n\nVia de pagina Doe mee kun je je interesse doorgeven. Vertel kort waar je goed in bent en wanneer je beschikbaar bent. Je hoeft geen uitgebreid cv te sturen.",
     visual: visuals.presentation,
     isPreview: false,
     isFallback: true,
@@ -213,23 +213,6 @@ function plainText(value: unknown) {
     .join("\n\n");
 }
 
-function formatEventDate(value?: string) {
-  if (!value) return "Binnenkort";
-  return new Intl.DateTimeFormat("nl-NL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(value));
-}
-
-function formatEventTime(value?: string) {
-  if (!value) return undefined;
-  return new Intl.DateTimeFormat("nl-NL", {
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(value));
-}
-
 function normalizeSocial(platform?: string, url?: string) {
   if (!platform || !url) return null;
   const labelMap: Record<string, string> = {
@@ -249,7 +232,7 @@ function fallbackSettings(): SiteSettings {
     siteDescription: brand.description,
     logoFullUrl: brand.logoFull,
     logoMarkUrl: brand.logoMark,
-    contactEmail: process.env.CONTACT_EMAIL || undefined,
+    contactEmail: brand.email,
     socialLinks: [...fallbackSocialLinks],
     footerText: brand.claim,
     donationEnabled: false,
@@ -287,12 +270,12 @@ function normalizePage(page: RawPage): PageDisplay | null {
 }
 
 function normalizePost(post: RawPost, index = 0): PostDisplay | null {
-  if (!post.title || !post.slug || !post.excerpt || !post.publishedAt) return null;
+  if (!post.title || !post.slug || !post.excerpt || !validDate(post.publishedAt)) return null;
   return {
     title: post.title,
     slug: post.slug,
     category: post.category || "nieuws",
-    publishedAt: post.publishedAt,
+    publishedAt: post.publishedAt!,
     author: post.author || "Stichting Lumina Collective",
     excerpt: post.excerpt,
     image: post.featuredImage,
@@ -340,12 +323,13 @@ function normalizeProgram(program: RawProgram, index = 0): ProgramDisplay | null
 }
 
 function fallbackProgram(program: (typeof fallbackPrograms)[number]): ProgramDisplay {
-  const slug = slugify(program.title);
+  const slug = program.slug;
   return {
     title: program.title,
     slug,
     description: program.description,
     visual: program.visual,
+    category: program.category,
     targetAudience: "targetAudience" in program ? program.targetAudience : undefined,
     goals: "goals" in program ? [...program.goals] : [],
     longDescription: "longDescription" in program ? program.longDescription : undefined,
@@ -363,44 +347,27 @@ function normalizeEvent(event: RawEvent, index = 0): EventDisplay | null {
     title: event.title,
     slug,
     description,
-    date: formatEventDate(event.dateStart),
-    time: formatEventTime(event.dateStart),
+    date: formatDate(event.dateStart),
+    time: formatTime(event.dateStart),
     dateStart: event.dateStart,
     dateEnd: event.dateEnd,
     location: event.locationName || "Locatie wordt later gedeeld",
     locationName: event.locationName,
     locationAddress: event.locationAddress,
     registrationUrl: event.registrationUrl,
-    isFree: event.isFree ?? true,
+    isFree: event.isFree === true,
     priceDescription: event.priceDescription,
     capacity: event.capacity,
     image: event.featuredImage,
     visual: [visuals.communityTable, visuals.warmWorkshop, visuals.culturalMoment][
       index % 3
     ],
-    status: event.status ?? "upcoming",
+    status: event.status === "cancelled" ? "cancelled" : event.status === "past" || (validDate(event.dateEnd || event.dateStart)?.getTime() ?? Infinity) < Date.now() ? "past" : "upcoming",
     cta: event.registrationUrl ? "Aanmelden" : "Meer weten",
     seoTitle: event.seoTitle,
     metaDescription: event.metaDescription,
     isPlaceholder: false,
     isFallback: false,
-  };
-}
-
-function fallbackEvent(event: (typeof fallbackEvents)[number]): EventDisplay {
-  return {
-    title: event.title,
-    slug: slugify(event.title),
-    description: event.description,
-    date: event.date,
-    time: undefined,
-    location: event.location,
-    isFree: true,
-    visual: event.visual,
-    status: "upcoming",
-    cta: event.cta,
-    isPlaceholder: true,
-    isFallback: true,
   };
 }
 
@@ -417,7 +384,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     defaultOgImageUrl: imageUrl(data.defaultOgImage),
     logoFullUrl: imageUrl(data.logoFull) || brand.logoFull,
     logoMarkUrl: imageUrl(data.logoMark) || brand.logoMark,
-    contactEmail: data.contactEmail || process.env.CONTACT_EMAIL || undefined,
+    contactEmail: data.contactEmail || brand.email,
     socialLinks:
       data.socialLinks
         ?.map((item) => normalizeSocial(item.platform, item.url))
@@ -513,7 +480,7 @@ export async function getProgramSlugs() {
     { tags: ["programs"] },
   );
   const cmsSlugs = data?.map((item) => item.slug).filter(Boolean) ?? [];
-  const fallbackSlugs = fallbackPrograms.map((program) => slugify(program.title));
+  const fallbackSlugs = fallbackPrograms.map((program) => program.slug);
   return Array.from(new Set([...cmsSlugs, ...fallbackSlugs])).map((slug) => ({ slug }));
 }
 
@@ -524,7 +491,7 @@ export async function getUpcomingEvents(): Promise<EventDisplay[]> {
     { tags: ["events"] },
   );
   const events = data?.map(normalizeEvent).filter(Boolean) as EventDisplay[] | undefined;
-  return events?.length ? events : fallbackEvents.map(fallbackEvent);
+  return events?.filter(event => event.status === "upcoming" && validDate(event.dateStart)) ?? [];
 }
 
 export async function getEventBySlug(slug: string): Promise<EventDisplay | null> {
@@ -535,7 +502,7 @@ export async function getEventBySlug(slug: string): Promise<EventDisplay | null>
   );
   const cmsEvent = data ? normalizeEvent(data) : null;
   if (cmsEvent) return cmsEvent;
-  return fallbackEvents.map(fallbackEvent).find((event) => event.slug === slug) ?? null;
+  return null;
 }
 
 export async function getEventSlugs() {
@@ -545,8 +512,7 @@ export async function getEventSlugs() {
     { tags: ["events"] },
   );
   const cmsSlugs = data?.map((item) => item.slug).filter(Boolean) ?? [];
-  const fallbackSlugs = fallbackEvents.map((event) => slugify(event.title));
-  return Array.from(new Set([...cmsSlugs, ...fallbackSlugs])).map((slug) => ({ slug }));
+  return Array.from(new Set(cmsSlugs)).map((slug) => ({ slug }));
 }
 
 async function getRelatedGallery(
@@ -641,32 +607,7 @@ export async function getPublicGallery(): Promise<GalleryItemDisplay[]> {
       isFallback: false,
     }));
 
-  if (gallery?.length) return gallery;
-
-  return [
-    visuals.supportCircle,
-    visuals.culturalMoment,
-    visuals.participation,
-    visuals.warmWorkshop,
-    visuals.communityTable,
-    visuals.conversation,
-    visuals.meeting,
-    visuals.presentation,
-    visuals.presentation2,
-    visuals.talking1,
-    visuals.smilingGroup,
-    visuals.workshop2,
-    visuals.support2,
-    visuals.laughingCafe,
-    visuals.seminar1,
-    visuals.students1,
-  ].map((visual, index) => ({
-    id: `fallback-gallery-${index}`,
-    visual,
-    alt: visual.alt,
-    isPlaceholder: true,
-    isFallback: true,
-  }));
+  return gallery?.filter(item => !item.isPlaceholder) ?? [];
 }
 
 export async function getVisibleTeam(): Promise<TeamMemberDisplay[]> {

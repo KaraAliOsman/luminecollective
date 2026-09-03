@@ -10,6 +10,9 @@ export function organizationJsonLd() {
     logo: new URL(brand.logoFull, brand.siteUrl).toString(),
     description: brand.description,
     identifier: brand.kvk,
+    email: brand.email,
+    telephone: brand.phone,
+    foundingDate: String(brand.founded),
     address: {
       "@type": "PostalAddress",
       streetAddress: brand.address.street,
@@ -180,7 +183,7 @@ export function eventJsonLd({
         }
       : undefined,
     image: imageUrl,
-    isAccessibleForFree: isFree ?? true,
+    isAccessibleForFree: isFree,
     organizer: {
       "@type": "Organization",
       name: organizer ?? brand.name,

@@ -1,161 +1,37 @@
 import type { Metadata } from "next";
-import { StructuredData } from "@/components/seo/StructuredData";
-import { VolunteerForm } from "@/components/forms/VolunteerForm";
-import { CtaBand } from "@/components/sections/CtaBand";
+import { HandHeart, HeartHandshake, Users } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
-import { FadeInSection } from "@/components/ui/FadeInSection";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
-import { VisualPlaceholder } from "@/components/ui/VisualPlaceholder";
-import { visuals } from "@/data/placeholders";
+import { TextLink } from "@/components/ui/TextLink";
+import { CopyIban } from "@/components/ui/CopyIban";
+import { VolunteerForm } from "@/components/forms/VolunteerForm";
+import { photography } from "@/data/placeholders";
 import { getPageByKey } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
-const description =
-  "Ontdek hoe je kunt deelnemen, vrijwilliger worden, partner worden, doneren of een verhaal delen met Lumina Collective.";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageByKey("doe-mee");
-
-  return createMetadata({
-    title: page?.seoTitle || "Doe Mee & Vrijwilliger Worden",
-    description: page?.metaDescription || description,
-    path: "/doe-mee",
-  });
-}
-
-const options = [
-  {
-    title: "Deelnemer worden",
-    text: "Kom naar een bijeenkomst, leer de community kennen en ontdek wat bij jou past.",
-    icon: "01",
-  },
-  {
-    title: "Vrijwilliger worden",
-    text: "Draag bij met tijd, kennis, organisatiekracht of warme aanwezigheid.",
-    icon: "02",
-  },
-  {
-    title: "Partner worden",
-    text: "Werk met ons samen rond programma's, locaties, kennis of zichtbaarheid.",
-    icon: "03",
-  },
-  {
-    title: "Doneren / donatie interesse",
-    text: "Steun activiteiten die ruimte maken voor meer vrouwen in de community.",
-    icon: "04",
-  },
-  {
-    title: "Verhaal delen",
-    text: "Breng een ervaring, idee of perspectief in dat anderen kan raken.",
-    icon: "05",
-  },
-];
+const description = "Sluit aan bij Lumina als deelnemer, vrijwilliger of partner. Steun onze stichting met jouw tijd, kennis, materialen of een donatie.";
+export const metadata: Metadata = createMetadata({ title: "Doe mee", description, path: "/doe-mee" });
 
 export default async function DoeMeePage() {
   const page = await getPageByKey("doe-mee");
-
-  const pageDescription = page?.metaDescription || description;
-
-  return (
-    <>
-      <StructuredData
-        data={webPageJsonLd({
-          path: "/doe-mee",
-          title: page?.seoTitle || "Doe Mee | Stichting Lumina Collective",
-          description: pageDescription,
-        })}
-      />
-      <PageHero
-        body={
-          page?.heroText ||
-          "Meedoen hoeft niet groot te beginnen. Je kunt aansluiten als deelnemer, vrijwilliger, partner, donateur of door een verhaal te delen."
-        }
-        eyebrow="Doe mee"
-        image={page?.heroImage}
-        primary={{ label: "Neem contact op", href: "/contact" }}
-        secondary={{ label: "Bekijk programma's", href: "/programmas" }}
-        title={page?.heroTitle || "Jouw betrokkenheid maakt ruimte voor meer vrouwen."}
-        visual={visuals.participation}
-      />
-
-      <section className="py-10 sm:py-14 md:py-20">
-        <Container>
-          <FadeInSection>
-            <div className="mb-12 max-w-3xl space-y-4">
-              <Eyebrow>Manieren om mee te doen</Eyebrow>
-              <Heading>Kies een vorm die past bij jou.</Heading>
-            </div>
-          </FadeInSection>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {options.map((option, index) => (
-              <FadeInSection key={option.title} delay={Math.min((index + 1) * 100, 500) as 100 | 200 | 300 | 400 | 500}>
-                <article
-                  className="group border-t border-deep-aubergine/15 bg-warm-white/45 p-6 pt-7 transition-all duration-300 hover:bg-warm-white hover:shadow-[0_8px_30px_rgba(66,21,47,0.06)] hover:border-muted-gold/40"
-                >
-                  <p className="text-sm font-semibold text-muted-gold">
-                    {option.icon}
-                  </p>
-                  <h3 className="mt-5 font-serif text-3xl text-deep-aubergine transition group-hover:text-wine-plum">
-                    {option.title}
-                  </h3>
-                  <p className="mt-4 max-w-xl leading-7 text-ink-brown/75">
-                    {option.text}
-                  </p>
-                </article>
-              </FadeInSection>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-warm-white py-10 sm:py-14 md:py-20">
-        <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <FadeInSection animation="slide-left">
-            <div className="space-y-5">
-              <Eyebrow>Aanmeldformulier</Eyebrow>
-              <Heading size="md">Vertel hoe je wilt bijdragen.</Heading>
-              <p className="text-lg leading-8 text-ink-brown/75">
-                We zoeken vrouwen en partners die met aandacht willen bijdragen. Een
-                eerste bericht is genoeg om te verkennen wat mogelijk is.
-              </p>
-            </div>
-          </FadeInSection>
-          <FadeInSection animation="slide-right">
-            <div>
-              <VolunteerForm />
-            </div>
-          </FadeInSection>
-        </Container>
-      </section>
-
-      <section className="bg-soft-blush/35 py-10 sm:py-14 md:py-20">
-        <Container className="grid gap-10 md:grid-cols-2 md:gap-16 lg:gap-20 md:items-center max-w-5xl mx-auto">
-          <FadeInSection animation="slide-left">
-            <div className="space-y-5">
-              <Eyebrow>Zacht en concreet</Eyebrow>
-              <Heading>We zoeken geen perfecte profielen.</Heading>
-              <p className="text-lg leading-8 text-ink-brown/78">
-                We zoeken vrouwen en partners die met aandacht willen bijdragen.
-                Een eerste bericht is genoeg om te verkennen wat mogelijk is.
-              </p>
-            </div>
-          </FadeInSection>
-          <FadeInSection animation="slide-right">
-            <div className="img-zoom overflow-hidden rounded-2xl shadow-sm">
-              <VisualPlaceholder className="h-72 sm:h-80 md:h-[27rem] w-full object-cover" visual={visuals.supportCircle} />
-            </div>
-          </FadeInSection>
-        </Container>
-      </section>
-
-      <CtaBand
-        body="Vertel kort wie je bent en hoe je betrokken wilt zijn. We reageren persoonlijk en zorgvuldig."
-        primary={{ label: "Contact opnemen", href: "/contact" }}
-        title="Laat ons weten hoe je wilt meedoen."
-      />
-    </>
-  );
+  return <>
+    <StructuredData data={webPageJsonLd({ path: "/doe-mee", title: "Doe mee", description })} />
+    <PageHero eyebrow="Er is een plek voor jou" title="Doe mee met Lumina." body="Met je nieuwsgierigheid, jouw ervaring of wat tijd voor een ander. Je kunt op verschillende manieren bijdragen aan een betrokken gemeenschap." visual={photography.youth} image={page?.heroImage} primary={{ label: "Ik wil kennismaken", href: "/contact?onderwerp=Kennismaken" }} secondary={{ label: "Vrijwilliger worden", href: "#vrijwilliger" }} />
+    <section className="section"><Container><div className="join-options">
+      <article className="join-option"><Users size={30} strokeWidth={1.5} aria-hidden="true" /><h2>Sluit aan</h2><p>Leer andere mensen kennen en ontdek welke activiteiten bij je passen. Je kunt ook eerst contact opnemen om rustig kennis te maken.</p><TextLink href="/contact?onderwerp=Meedoen">Ik wil meedoen</TextLink></article>
+      <article className="join-option"><HandHeart size={30} strokeWidth={1.5} aria-hidden="true" /><h2>Deel je talent</h2><p>Help bij een activiteit, deel je kennis of ondersteun achter de schermen. Samen vinden we een rol die bij je past.</p><TextLink href="#vrijwilliger">Word vrijwilliger</TextLink></article>
+      <article className="join-option"><HeartHandshake size={30} strokeWidth={1.5} aria-hidden="true" /><h2>Maak het mogelijk</h2><p>Met een donatie, materialen of een samenwerking help je onze maatschappelijke projecten verder.</p><TextLink href="#steunen">Steun Lumina</TextLink></article>
+    </div></Container></section>
+    <section className="section section--sage" id="vrijwilliger"><Container className="contact-layout">
+      <div><p className="section-index">Vrijwillig, met betekenis</p><Heading className="mt-4 mb-6">Jouw inzet<br />maakt verschil.</Heading><p className="lead">We zoeken mensen die willen meebouwen. Je hoeft geen perfect cv te hebben; aandacht, betrokkenheid en betrouwbaarheid zijn een goed begin.</p><div className="editorial-text mt-6"><p>Je kunt helpen met activiteiten, communicatie, begeleiding, fotografie of organisatie. We bespreken samen je interesses, beschikbaarheid en wat je nodig hebt om aan de slag te gaan.</p><p>Eventuele vrijwilligersvergoedingen volgen het beloningsbeleid van de stichting.</p></div><TextLink href="/anbi#bestuur" className="mt-5">Ons vrijwilligersbeleid</TextLink></div>
+      <div className="contact-form-panel"><h2>Vertel ons over jezelf</h2><p>Dit is een eerste kennismaking, geen verplichting.</p><VolunteerForm /></div>
+    </Container></section>
+    <section className="section" id="steunen"><Container className="two-column">
+      <div><p className="section-index">Samen mogelijk maken</p><Heading className="mt-4 mb-6">Geef ontmoeting<br />de ruimte.</Heading><p className="lead">Donaties helpen ons om activiteiten en maatschappelijke projecten op te bouwen. Ook materialen, kennis of een passende samenwerking zijn welkom.</p><TextLink href="/contact?onderwerp=Sponsoring%20en%20samenwerking" className="mt-5">Bespreek een samenwerking</TextLink></div>
+      <div><CopyIban /><p className="mt-5 text-sm text-warm-taupe">Meer weten over de besteding van middelen en de ANBI-aanvraag?</p><TextLink href="/anbi#financien">Bekijk onze verantwoording</TextLink></div>
+    </Container></section>
+  </>;
 }

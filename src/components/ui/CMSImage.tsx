@@ -42,7 +42,7 @@ export function CMSImage({
 
   if (!src) {
     return (
-      <VisualPlaceholder className={className} priority={priority} sizes={sizes} visual={fallback}>
+      <VisualPlaceholder className={className} imageClassName={imageClassName} priority={priority} sizes={sizes} visual={{ ...fallback, alt }}>
         {caption}
       </VisualPlaceholder>
     );
@@ -51,21 +51,21 @@ export function CMSImage({
   return (
     <figure
       className={cn(
-        "relative max-w-full overflow-hidden border border-deep-aubergine/10 bg-soft-linen",
+        "photo",
         className,
       )}
       data-preview={image?.isPlaceholder ? "true" : undefined}
     >
       <Image
         alt={alt}
-        className={cn("h-full w-full object-cover", imageClassName)}
+        className={cn("photo__image", imageClassName)}
         fill
         priority={priority}
         sizes={sizes}
         src={src}
       />
       {caption && (
-        <figcaption className="absolute bottom-3 left-3 right-3 max-w-xs glass rounded-sm p-3 text-xs font-semibold uppercase tracking-[0.1em] text-wine-plum sm:bottom-4 sm:left-4 sm:right-auto sm:tracking-[0.12em]">
+        <figcaption className="photo__caption">
           {caption}
         </figcaption>
       )}

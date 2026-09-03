@@ -1,100 +1,48 @@
-import { visuals } from "@/data/placeholders";
+import { photography } from "@/data/placeholders";
 
 export const programs = [
   {
-    title: "Ontmoeting & Community",
-    description:
-      "Kleinschalige bijeenkomsten waar vrouwen elkaar leren kennen, ervaringen delen en een betrouwbaar netwerk opbouwen.",
-    cta: "Ontdek de community",
-    visual: visuals.communityTable,
-    targetAudience:
-      "Voor vrouwen in Tilburg en omgeving die op een toegankelijke manier nieuwe contacten, herkenning en gemeenschap zoeken.",
-    goals: [
-      "Nieuwe verbindingen laten ontstaan in een veilige sfeer.",
-      "Ruimte geven aan verhalen, vragen en talenten.",
-      "De drempel verlagen om later aan andere activiteiten mee te doen.",
-    ],
-    longDescription:
-      "Onze ontmoetingen zijn warm, rustig en persoonlijk. Je hoeft niets te bewijzen om binnen te stappen. We maken ruimte voor gesprek, koffie, herkenning en praktische uitwisseling.\n\nDe bijeenkomsten zijn bedoeld als eerste ingang tot de gemeenschap: een plek waar vrouwen elkaar kunnen vinden en waar vertrouwen stap voor stap groeit.",
+    slug: "ontmoeting-verbinding",
+    title: "Ontmoeting & verbinding",
+    category: "Elkaar leren kennen",
+    description: "Een koffieochtend, een gesprek of een activiteit met je gezin. Ontmoet mensen uit Tilburg en ontdek wat je met elkaar deelt.",
+    cta: "Ontdek ontmoeting",
+    visual: photography.together,
+    targetAudience: "Vrouwen van alle leeftijden, nieuwkomers en gezinnen die andere mensen willen ontmoeten.",
+    goals: ["Sociale contacten opbouwen en isolement doorbreken.", "Ervaringen delen met mensen met verschillende achtergronden.", "Een vertrouwd netwerk dichtbij huis laten groeien."],
+    longDescription: "Nieuwe mensen ontmoeten kan spannend zijn. Bij Lumina maken we de eerste stap graag persoonlijk. We brengen mensen samen via vrouwenbijeenkomsten, koffieochtenden, gezinsactiviteiten en culturele ontmoetingen.\n\nJe mag komen zoals je bent. Je hoeft geen ervaring te hebben of iemand mee te nemen. We luisteren naar wat deelnemers bezighoudt en geven ruimte aan hun ideeën.\n\nWil je kennismaken? Neem contact op. We vertellen je welke ontmoetingen worden voorbereid en hoe je kunt aansluiten.",
   },
   {
-    title: "Groei & Ontwikkeling",
-    description:
-      "Workshops en gesprekken rond zelfvertrouwen, welzijn, communicatie, digitale vaardigheden en persoonlijke richting.",
-    cta: "Bekijk workshops",
-    visual: visuals.warmWorkshop,
-    targetAudience:
-      "Voor vrouwen die willen groeien in kennis, zelfvertrouwen, zichtbaarheid of praktische vaardigheden.",
-    goals: [
-      "Persoonlijke kracht en zelfvertrouwen versterken.",
-      "Praktische kennis delen die direct toepasbaar is.",
-      "Vrouwen ondersteunen bij een volgende stap in hun leven.",
-    ],
-    longDescription:
-      "Groei hoeft niet hard of groot te zijn. Soms begint het met woorden vinden voor wat je wilt, met oefenen in een veilige groep of met iemand die naast je zit terwijl je een volgende stap voorbereidt.\n\nBinnen dit programma organiseren we workshops, themagesprekken en leerzame sessies rond welzijn, communicatie, talentontwikkeling en maatschappelijke oriëntatie.",
+    slug: "educatie-ontwikkeling",
+    title: "Educatie & ontwikkeling",
+    category: "Kennis en zelfvertrouwen",
+    description: "Verder komen met taal, nieuwe vaardigheden of je eigen talent. Leer samen, stel vragen en werk aan jouw volgende stap.",
+    cta: "Ontdek educatie",
+    visual: photography.learning,
+    targetAudience: "Vrouwen, jongeren en nieuwkomers die hun kennis, vaardigheden of zelfvertrouwen willen versterken.",
+    goals: ["Taalvaardigheid en praktische kennis vergroten.", "Talenten ontdekken en persoonlijke doelen verkennen.", "Elkaar ondersteunen via workshops en mentorschap."],
+    longDescription: "Leren opent deuren: naar een gesprek, een opleiding, werk of een nieuwe rol in je buurt. Binnen educatie en ontwikkeling richt Lumina zich op workshops, taal- en huiswerkbegeleiding, trainingen en mentorprogramma's.\n\nWe sluiten aan bij de vragen en mogelijkheden van deelnemers. Dat kan gaan om communicatie, persoonlijke ontwikkeling, loopbaanoriëntatie of het delen van een vaardigheid met anderen.\n\nHet aanbod wordt stap voor stap opgebouwd. Vertel ons wat je wilt leren of welke kennis je zelf kunt inbrengen; samen bekijken we de mogelijkheden.",
   },
   {
-    title: "Cultuur & Verhalen",
-    description:
-      "Activiteiten waarin cultuur, creativiteit, taal en persoonlijke verhalen zichtbaar en gedeeld mogen worden.",
-    cta: "Verken cultuur",
-    visual: visuals.culturalMoment,
-    targetAudience:
-      "Voor vrouwen die hun achtergrond, creativiteit of verhaal willen delen en nieuwsgierig zijn naar anderen.",
-    goals: [
-      "Culturele uitwisseling zichtbaar en gelijkwaardig maken.",
-      "Creatieve vormen gebruiken om gesprek en begrip te openen.",
-      "Verhalen bewaren die anders te weinig ruimte krijgen.",
-    ],
-    longDescription:
-      "Cultuur leeft in taal, eten, rituelen, muziek, herinneringen en de manier waarop vrouwen zorg dragen voor elkaar. Lumina geeft die rijkdom een plek.\n\nWe organiseren culturele middagen, creatieve sessies en momenten waarin verhalen met aandacht gedeeld worden. Zo ontstaat herkenning zonder dat iedereen hetzelfde hoeft te zijn.",
+    slug: "welzijn-participatie",
+    title: "Welzijn & participatie",
+    category: "Goed in je vel, sterker in de samenleving",
+    description: "Aandacht voor je welzijn, vragen over opvoeden of je weg vinden in Nederland. Samen kijken we wat jou verder helpt.",
+    cta: "Ontdek welzijn",
+    visual: photography.connection,
+    targetAudience: "Vrouwen, ouders en nieuwkomers die steun, informatie of meer aansluiting bij de samenleving zoeken.",
+    goals: ["Welzijn en zelfredzaamheid versterken.", "Ouders en nieuwkomers ondersteunen bij hun vragen.", "De weg naar passende voorzieningen en actieve deelname toegankelijker maken."],
+    longDescription: "Meedoen begint met aandacht voor wat er in je leven speelt. Lumina zet in op gezondheidsvoorlichting, opvoedingsondersteuning en begeleiding van nieuwkomers naar actieve deelname aan de samenleving.\n\nWe luisteren, delen praktische informatie en denken mee over een passende volgende stap. Daarbij zoeken we samenwerking met lokale organisaties, zodat vragen op de juiste plek terechtkomen.\n\nOnze activiteiten zijn gericht op ontmoeting en maatschappelijke ondersteuning. Voor behandeling of acute hulp is professionele zorg nodig. Bespreek bij contact gerust wat je zoekt; we kijken samen wat binnen Lumina mogelijk is.",
   },
   {
-    title: "Mentorschap & Ondersteuning",
-    description:
-      "Zorgvuldige begeleiding, doorverwijzing en steun voor vrouwen die helderheid zoeken in een volgende stap.",
-    cta: "Lees over steun",
-    visual: visuals.supportCircle,
-    targetAudience:
-      "Voor vrouwen die behoefte hebben aan een luisterend oor, praktische richting of een betrouwbare eerste stap naar hulp.",
-    goals: [
-      "Vragen serieus nemen zonder oordeel.",
-      "Samen helder maken welke stap passend is.",
-      "Waar nodig zorgvuldig verbinden met passende partners of voorzieningen.",
-    ],
-    longDescription:
-      "Niet elke vraag past in een workshop. Soms is eerst rust, aandacht en overzicht nodig. Binnen mentorschap en ondersteuning luisteren we zorgvuldig en denken we mee over wat haalbaar en passend is.\n\nLumina is geen crisisdienst en vervangt geen professionele zorg. We kunnen wel een veilige ingang zijn: iemand die meedenkt, helpt ordenen en waar nodig verbindt met de juiste organisatie.",
-  },
-  {
-    title: "Vrouwen & participatie",
-    description:
-      "Programma's die vrouwen helpen hun stem, kennis en rol in de samenleving zichtbaar en krachtig in te nemen.",
-    cta: "Bekijk participatie",
-    visual: visuals.participation,
-    targetAudience:
-      "Voor vrouwen die actiever willen deelnemen aan buurt, vrijwilligerswerk, opleiding, werk of maatschappelijke initiatieven.",
-    goals: [
-      "Drempels naar deelname verlagen.",
-      "Vrouwen ondersteunen om hun kennis en stem in te brengen.",
-      "Samenwerking met lokale partners versterken.",
-    ],
-    longDescription:
-      "Participatie gaat over meer dan aanwezig zijn. Het gaat over invloed, keuze, vertrouwen en de mogelijkheid om bij te dragen op een manier die past bij je leven.\n\nLumina helpt vrouwen hun plek te vinden in de buurt, bij activiteiten, in vrijwilligerswerk of in gesprekken met organisaties. We bouwen bruggen tussen persoonlijke kracht en maatschappelijke ruimte.",
-  },
-  {
-    title: "Community events",
-    description:
-      "Bijeenkomsten, themadagen en samenwerkingen die de gemeenschap zichtbaar, levendig en uitnodigend maken.",
-    cta: "Naar de agenda",
-    visual: visuals.communityTable,
-    targetAudience:
-      "Voor deelnemers, vrijwilligers, partners en buurtgenoten die Lumina willen ontmoeten of samen iets mogelijk willen maken.",
-    goals: [
-      "De community zichtbaar en toegankelijk maken.",
-      "Nieuwe samenwerkingen en ideeën laten ontstaan.",
-      "Viering, ontmoeting en maatschappelijke betrokkenheid samenbrengen.",
-    ],
-    longDescription:
-      "Community events brengen alles samen: ontmoeting, cultuur, kennis, partnerschap en de energie van vrouwen die iets willen betekenen.\n\nSoms is een event klein en persoonlijk, soms meer publiek. Altijd blijft het uitgangspunt hetzelfde: een warme, professionele setting waar mensen elkaar echt kunnen ontmoeten.",
+    slug: "jongeren-cultuur",
+    title: "Jongeren, cultuur & samenwerking",
+    category: "Talenten en nieuwe perspectieven",
+    description: "Samen maken, verhalen delen en andere werelden leren kennen. Met ruimte voor jonge mensen, cultuur en ideeën uit de buurt.",
+    cta: "Ontdek jongeren en cultuur",
+    visual: photography.creative,
+    targetAudience: "Jongeren, vrouwen, gezinnen en organisaties die willen bijdragen aan culturele uitwisseling en talentontwikkeling.",
+    goals: ["Jongeren ruimte geven om hun talenten te ontwikkelen.", "Mensen met verschillende achtergronden verbinden via cultuur.", "Samenwerken met scholen, gemeenten en maatschappelijke organisaties."],
+    longDescription: "Cultuur brengt mensen bij elkaar. Via creatieve activiteiten, jongerenprogramma's en culturele ontmoetingen wil Lumina ruimte maken voor talent, verhalen en nieuwe vriendschappen.\n\nOns beleidsplan noemt onder meer jongerenprogramma's, zomerkampen en een Multicultureel Zomerfestival. Dit zijn ontwikkelrichtingen voor de komende jaren; concrete data en activiteiten publiceren we zodra ze vaststaan.\n\nWerk je bij een school, gemeente of maatschappelijke organisatie, of heb je zelf een idee? We maken graag kennis om te onderzoeken wat we samen kunnen organiseren.",
   },
 ] as const;

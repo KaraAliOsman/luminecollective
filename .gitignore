@@ -1,4 +1,6 @@
 .next/
+.next-dev/
+.lumina-local/
 node_modules/
 out/
 dist/

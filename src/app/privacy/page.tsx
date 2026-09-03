@@ -1,155 +1,36 @@
 import type { Metadata } from "next";
-
-import { StructuredData } from "@/components/seo/StructuredData";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Prose } from "@/components/ui/Prose";
+import { Heading } from "@/components/ui/Heading";
 import { brand } from "@/lib/constants/brand";
 import { createMetadata } from "@/lib/seo/config";
-import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
-export const metadata: Metadata = createMetadata({
-  title: "Privacybeleid",
-  description:
-    "Lees hoe Stichting Lumina Collective omgaat met persoonsgegevens, formulieren, analytics en jouw rechten.",
-  path: "/privacy",
-});
+export const metadata: Metadata = createMetadata({ title: "Privacy", description: "Hoe Stichting Lumina Collective omgaat met jouw gegevens, contactverzoeken en privacyrechten.", path: "/privacy" });
 
 export default function PrivacyPage() {
-  const address = `${brand.address.street}, ${brand.address.postalCode} ${brand.address.city}`;
-
-  return (
-    <>
-      <StructuredData
-        data={webPageJsonLd({
-          path: "/privacy",
-          title: "Privacybeleid | Stichting Lumina Collective",
-          description: "Lees hoe Stichting Lumina Collective omgaat met persoonsgegevens, formulieren, analytics en jouw rechten.",
-        })}
-      />
-      <article>
-      <header className="border-b border-deep-aubergine/10 py-14 md:py-20">
-        <Container className="max-w-3xl">
-          <Eyebrow>Juridisch</Eyebrow>
-          <h1 className="mt-4 font-serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-deep-aubergine">
-            Privacybeleid
-          </h1>
-          <p className="mt-5 text-ink-brown/65">
-            Laatste wijziging:{" "}
-            <time dateTime="2026-07-12">12 juli 2026</time>.
-          </p>
-        </Container>
-      </header>
-
-      <section className="py-12 md:py-16">
-        <Container className="max-w-3xl">
-          <Prose>
-            <h2>1. Wie zijn wij?</h2>
-            <p>
-              <strong>{brand.name}</strong> is verantwoordelijk voor de
-              verwerking van persoonsgegevens via deze website.
-            </p>
-            <ul>
-              <li>
-                <strong>Naam:</strong> {brand.name}
-              </li>
-              <li>
-                <strong>KVK-nummer:</strong> {brand.kvk}
-              </li>
-              <li>
-                <strong>Adres:</strong> {address}, {brand.address.country}
-              </li>
-              <li>
-                <strong>Website:</strong>{" "}
-                <a href={brand.siteUrl}>{brand.domain}</a>
-              </li>
-              {brand.email && (
-                <li>
-                  <strong>E-mail:</strong>{" "}
-                  <a href={`mailto:${brand.email}`}>{brand.email}</a>
-                </li>
-              )}
-            </ul>
-
-            <h2>2. Welke gegevens verzamelen wij?</h2>
-            <h3>Contactformulier</h3>
-            <p>
-              Als je het contactformulier invult, verwerken we je naam,
-              e-mailadres, onderwerp en bericht. We gebruiken deze gegevens om
-              jouw vraag te beantwoorden.
-            </p>
-
-            <h3>Vrijwilligersformulier</h3>
-            <p>
-              Als je je aanmeldt als vrijwilliger, verwerken we je naam,
-              e-mailadres, eventueel telefoonnummer, interessegebied en bericht.
-              We gebruiken deze gegevens om contact met je op te nemen over jouw
-              mogelijke betrokkenheid.
-            </p>
-
-            <h3>Nieuwsbrief</h3>
-            <p>
-              Als je je inschrijft voor updates, bewaren we je e-mailadres en de
-              datum van inschrijving. Je kunt je op elk moment uitschrijven.
-            </p>
-
-            <h3>Websiteanalyse</h3>
-            <p>
-              We kunnen privacybewuste analytische gegevens gebruiken om te
-              begrijpen hoe bezoekers de website gebruiken. Analytische scripts
-              worden alleen geladen wanneer je daarvoor toestemming geeft via de
-              cookiebanner. Lees meer in ons <a href="/cookies">cookiebeleid</a>.
-            </p>
-
-            <h2>3. Waarom verwerken wij gegevens?</h2>
-            <ul>
-              <li>Om contactverzoeken te beantwoorden.</li>
-              <li>Om aanmeldingen voor vrijwilligerswerk te behandelen.</li>
-              <li>Om updates te sturen wanneer je daarvoor toestemming geeft.</li>
-              <li>Om de website veilig, toegankelijk en bruikbaar te houden.</li>
-            </ul>
-
-            <h2>4. Hoe lang bewaren wij gegevens?</h2>
-            <p>
-              We bewaren persoonsgegevens niet langer dan nodig is voor het doel
-              waarvoor ze zijn verzameld. Contactberichten bewaren we zolang dat
-              nodig is om je vraag zorgvuldig af te handelen. Nieuwsbriefgegevens
-              bewaren we totdat je je uitschrijft.
-            </p>
-
-            <h2>5. Delen wij gegevens met derden?</h2>
-            <p>
-              We verkopen persoonsgegevens nooit. We delen gegevens alleen met
-              dienstverleners die nodig zijn voor websitebeheer, formulierafhandeling
-              of e-mailcommunicatie. Met zulke partijen maken we passende afspraken
-              over beveiliging en vertrouwelijkheid.
-            </p>
-
-            <h2>6. Jouw rechten</h2>
-            <p>
-              Je hebt recht op inzage, correctie, verwijdering, beperking van
-              verwerking, overdraagbaarheid en bezwaar. Wil je gebruikmaken van
-              deze rechten, neem dan contact met ons op via de contactpagina.
-            </p>
-
-            <h2>7. Klachten</h2>
-            <p>
-              Heb je een klacht over de manier waarop wij met persoonsgegevens
-              omgaan? Dan kun je contact met ons opnemen. Je hebt ook het recht
-              een klacht in te dienen bij de Autoriteit Persoonsgegevens via{" "}
-              <a
-                href="https://www.autoriteitpersoonsgegevens.nl"
-                rel="noreferrer"
-                target="_blank"
-              >
-                autoriteitpersoonsgegevens.nl
-              </a>
-              .
-            </p>
-          </Prose>
-        </Container>
-      </section>
-    </article>
-    </>
-  );
+  return <article>
+    <header className="page-heading"><Container><p className="section-index">Zorgvuldig met jouw gegevens</p><Heading as="h1" size="xl">Privacy</Heading><p className="lead">Je verhaal is van jou. Hier lees je welke gegevens we via deze website verwerken en waarvoor.</p><p className="article-meta">Bijgewerkt op <time dateTime="2026-09-02">2 september 2026</time></p></Container></header>
+    <section className="section"><Container><div className="legal-content editorial-text">
+      <h2>Wie is verantwoordelijk?</h2>
+      <p>{brand.name}, KVK {brand.kvk}, is verantwoordelijk voor de verwerking via deze website. Ons adres is {brand.address.street}, {brand.address.postalCode} {brand.address.city}. Voor vragen over privacy kun je schrijven naar <a href={`mailto:${brand.email}?subject=Privacy`}>{brand.email}</a>.</p>
+      <h2>Contact en vrijwilligerswerk</h2>
+      <p>Als je contact opneemt, ontvangen we je naam, e-mailadres, onderwerp en bericht. Bij interesse in vrijwilligerswerk vragen we ook naar je interessegebied en, als je dat wilt delen, je telefoonnummer. We gebruiken deze gegevens om je vraag of verzoek te behandelen en afspraken met je te maken.</p>
+      <p>De formulieren vragen je toestemming voor dit gebruik. Je kunt die toestemming intrekken door ons te mailen. Dat verandert niets aan de verwerking die vóór je intrekking al rechtmatig heeft plaatsgevonden. Je bent niet verplicht het formulier te gebruiken: bellen of rechtstreeks mailen kan ook.</p>
+      <p>Wanneer een formulier je e-mailprogramma opent, wordt het bericht pas verstuurd nadat je het daar zelf verzendt. Een ingevuld maar niet verzonden formulier wordt niet als aanmelding geregistreerd. Stuur geen BSN, medische gegevens of identiteitsdocumenten mee.</p>
+      <h2>Updates ontvangen</h2>
+      <p>Vraag je om op de hoogte te blijven, dan gebruiken we je e-mailadres om dat verzoek te behandelen. Een contactbericht meldt je niet automatisch aan voor nieuwsbrieven. Wil je geen updates meer, laat het ons per e-mail weten.</p>
+      <h2>Technische gegevens en cookies</h2>
+      <p>Voor het aanbieden en beveiligen van de website verwerken onze hostingdiensten technische gegevens, zoals het IP-adres, het tijdstip van een verzoek en het bezochte adres. De grondslag is ons gerechtvaardigde belang bij een bereikbare en veilige website. Formulierverzoeken worden tijdelijk begrensd om misbruik tegen te gaan.</p>
+      <p>De website slaat geen formulierberichten op in een publieke databank. Statistische meetinstrumenten worden alleen geladen als ze zijn geactiveerd én je toestemming hebt gegeven. Meer hierover staat in ons <a href="/cookies">cookiebeleid</a>.</p>
+      <h2>Hoe lang bewaren we gegevens?</h2>
+      <p>We bewaren contactgegevens en berichten zolang dat nodig is om je vraag af te handelen of afspraken over deelname of vrijwilligerswerk uit te voeren. Is het contact afgerond en bestaat er geen ander noodzakelijk doel of wettelijke bewaarplicht, dan kunnen de gegevens worden verwijderd. Gegevens voor vrijwillige updates bewaren we totdat je je afmeldt. Je kunt ons vragen welke gegevens we nog hebben en waarom.</p>
+      <h2>Wie heeft toegang?</h2>
+      <p>Gegevens zijn bestemd voor de mensen die jouw verzoek namens Lumina behandelen. Voor de technische werking gebruiken we Cloudflare voor hosting, Sanity voor gepubliceerde website-inhoud en, wanneer formulierverzending is ingeschakeld, Resend voor het doorsturen van berichten. Bij rechtstreeks mailen verwerken ook de betrokken e-mailaanbieders je bericht.</p>
+      <p>Deze diensten kunnen gegevens buiten de Europese Economische Ruimte verwerken. Bij internationale verwerking moeten de toepasselijke AVG-waarborgen gelden. Je kunt ons om nadere informatie vragen over de dienstverleners en de afspraken voor jouw gegevens. We verkopen geen persoonsgegevens en gebruiken ze niet voor geautomatiseerde besluiten of profilering.</p>
+      <h2>Foto&apos;s en verhalen</h2>
+      <p>Voor herkenbare foto&apos;s en persoonlijke verhalen uit onze activiteiten vragen we toestemming voor publicatie. Wil je een publicatie bespreken of toestemming intrekken? Neem contact op en vermeld de betreffende pagina. De herkomst van de illustratieve websitefotografie staat op <a href="/fotografie">Fotografie</a>.</p>
+      <h2>Jouw rechten</h2>
+      <p>Je kunt, voor zover van toepassing, vragen om inzage, correctie, verwijdering, beperking van verwerking of overdracht van je gegevens. Ook kun je bezwaar maken tegen verwerking op basis van een gerechtvaardigd belang. Stuur je verzoek naar <a href={`mailto:${brand.email}?subject=Privacyverzoek`}>{brand.email}</a>. Om je gegevens te beschermen kunnen we je identiteit zorgvuldig controleren.</p>
+      <p>Heb je een klacht? Bespreek die gerust met ons. Je kunt ook terecht bij de <a href="https://www.autoriteitpersoonsgegevens.nl/themas/basis-avg/privacyrechten-avg/voor-organisaties-privacyrechten-in-de-praktijk" target="_blank" rel="noreferrer">Autoriteit Persoonsgegevens</a>.</p>
+    </div></Container></section>
+  </article>;
 }

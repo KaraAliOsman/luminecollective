@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
+import { brand } from "@/lib/constants/brand";
 
 import { sendNotification } from "@/lib/email/sendNotification";
 import { checkRateLimit } from "@/lib/utils/rateLimit";
+import { readFormRequest } from "@/lib/utils/requestPayload";
 import { contactFormSchema, formMessages } from "@/lib/validation/forms";
 
 function clientKey(request: Request) {
-  return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
+  return request.headers.get("cf-connecting-ip") ?? request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
 }
 
 export async function POST(request: Request) {
@@ -14,8 +16,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: formMessages.error }, { status: 429 });
   }
 
-  const payload = await request.json().catch(() => null);
-  const parsed = contactFormSchema.safeParse(payload);
+  const payload = await readFormRequest(request);
+  if (!payload.ok) return NextResponse.json({ message: formMessages.error }, { status: payload.status });
+  const parsed = contactFormSchema.safeParse(payload.data);
 
   if (!parsed.success) {
     return NextResponse.json(
@@ -29,8 +32,9 @@ export async function POST(request: Request) {
   }
 
   try {
-    await sendNotification({
-      to: process.env.CONTACT_EMAIL,
+    const result = await sendNotification({
+      to: process.env.CONTACT_EMAIL || brand.email,
+      replyTo: parsed.data.email,
       subject: "Nieuw contactbericht via Lumina Collective",
       intro: "Er is een nieuw contactbericht ingestuurd via de website.",
       fields: {
@@ -41,6 +45,12 @@ export async function POST(request: Request) {
         Consent: parsed.data.consent,
       },
     });
+    if (!result.delivered) {
+      return NextResponse.json(
+        { message: "Je bericht is niet verstuurd. Probeer het opnieuw of stuur het rechtstreeks via e-mail." },
+        { status: result.reason === "unavailable" ? 503 : 502 },
+      );
+    }
   } catch (error) {
     console.error("Error in contact route:", error);
     return NextResponse.json({ message: formMessages.error }, { status: 500 });

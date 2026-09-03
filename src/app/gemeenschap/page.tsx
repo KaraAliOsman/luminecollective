@@ -1,184 +1,29 @@
 import type { Metadata } from "next";
-
-import { StructuredData } from "@/components/seo/StructuredData";
+import { HeartHandshake, MessagesSquare, Sparkles } from "lucide-react";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { PageHero } from "@/components/sections/PageHero";
 import { CMSImage } from "@/components/ui/CMSImage";
-import { FadeInSection } from "@/components/ui/FadeInSection";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/Heading";
-import {
-  getApprovedTestimonials,
-  getPageByKey,
-  getPublicGallery,
-} from "@/lib/cms/content";
+import { TextLink } from "@/components/ui/TextLink";
+import { photography } from "@/data/placeholders";
+import { getApprovedTestimonials, getPageByKey, getPublicGallery } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
-import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
-const description =
-  "Een blik op de momenten, ontmoetingen en verhalen die de gemeenschap van Lumina Collective vormen.";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const page = await getPageByKey("gemeenschap");
-
-  return createMetadata({
-    title: page?.seoTitle || "Onze Gemeenschap & Activiteiten",
-    description: page?.metaDescription || description,
-    path: "/gemeenschap",
-  });
-}
+export const metadata: Metadata = createMetadata({ title: "Gemeenschap", description: "Bij Lumina is ruimte voor jouw verhaal, talent en ideeën. Maak kennis met onze gemeenschap in Tilburg.", path: "/gemeenschap" });
 
 export default async function GemeenschapPage() {
-  const [page, galleryItems, testimonials] = await Promise.all([
-    getPageByKey("gemeenschap"),
-    getPublicGallery(),
-    getApprovedTestimonials(),
-  ]);
-
-  // Ensure grid is always a perfect rectangle by padding items to a multiple of 4 (min 12)
-  const displayItems = [...galleryItems];
-  if (displayItems.length < 12) {
-    const fallbacks = await getPublicGallery();
-    let fbIdx = 0;
-    while (displayItems.length < 12 && fbIdx < fallbacks.length) {
-      const fb = fallbacks[fbIdx++];
-      if (!displayItems.some(item => item.visual?.src === fb.visual?.src)) {
-        displayItems.push({
-          ...fb,
-          id: `pad-${fb.id}`
-        });
-      }
-    }
-    let dupIdx = 0;
-    while (displayItems.length < 12) {
-      const fb = fallbacks[dupIdx++ % fallbacks.length];
-      displayItems.push({
-        ...fb,
-        id: `pad-dup-${displayItems.length}`
-      });
-    }
-  } else if (displayItems.length % 4 !== 0) {
-    const nextMultiple = Math.ceil(displayItems.length / 4) * 4;
-    const fallbacks = await getPublicGallery();
-    let dupIdx = 0;
-    while (displayItems.length < nextMultiple) {
-      const fb = fallbacks[dupIdx++ % fallbacks.length];
-      displayItems.push({
-        ...fb,
-        id: `pad-mult-${displayItems.length}`
-      });
-    }
-  }
-
-  const pageDescription = page?.metaDescription || description;
-
-  return (
-    <>
-      <StructuredData
-        data={webPageJsonLd({
-          path: "/gemeenschap",
-          title: page?.seoTitle || "Gemeenschap | Stichting Lumina Collective",
-          description: pageDescription,
-        })}
-      />
-      <section className="bg-gradient-hero py-10 sm:py-14 md:py-20">
-        <Container>
-          <FadeInSection>
-            <div className="grid gap-10 md:grid-cols-[0.7fr_1.3fr] md:items-end">
-              <div>
-                <Eyebrow>Gemeenschap</Eyebrow>
-                <h1 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] text-deep-aubergine">
-                  {page?.heroTitle || "Onze gemeenschap in beeld."}
-                </h1>
-              </div>
-              <p className="text-lg leading-8 text-ink-brown/75 md:max-w-xl md:pb-2">
-                {page?.heroText ||
-                  "Een blik op de momenten, ontmoetingen en verhalen die onze gemeenschap vormen."}
-              </p>
-            </div>
-          </FadeInSection>
-        </Container>
-      </section>
-
-      <section className="pb-10 sm:pb-16 md:pb-24">
-        <Container>
-          <div
-            className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"
-            role="list"
-            aria-label="Galerij van momenten"
-          >
-            {displayItems.map((item, index) => {
-              return (
-                <FadeInSection
-                  key={item.id}
-                  animation="scale-in"
-                  className="col-span-1"
-                  delay={Math.min(((index % 4) + 1) * 100, 300) as 100 | 200 | 300}
-                >
-                  <div role="listitem">
-                    <div className="img-zoom overflow-hidden">
-                      <CMSImage
-                        altFallback={item.alt}
-                        caption={item.caption}
-                        className="h-40 sm:h-52 md:h-60"
-                        fallback={item.visual}
-                        image={item.image}
-                      />
-                    </div>
-                  </div>
-                </FadeInSection>
-              );
-            })}
-          </div>
-
-          <p
-            className="mt-8 text-center text-xs text-warm-taupe"
-            data-internal="privacy-filter-note"
-          >
-            Alle foto&apos;s worden alleen getoond met expliciete toestemming van
-            de betrokken personen. Privéfoto&apos;s worden nooit gepubliceerd.
-          </p>
-        </Container>
-      </section>
-
-      {testimonials.length > 0 && (
-        <section className="bg-soft-blush/30 py-10 sm:py-14 md:py-20">
-          <Container>
-            <FadeInSection>
-              <div className="mx-auto mb-10 max-w-3xl text-center">
-                <Eyebrow>Verhalen</Eyebrow>
-                <Heading className="mt-4">
-                  Elke vrouw brengt haar eigen verhaal mee.
-                </Heading>
-              </div>
-            </FadeInSection>
-            <div className="grid gap-6 md:grid-cols-3">
-              {testimonials.slice(0, 6).map((testimonial, index) => (
-                <FadeInSection key={testimonial.quote} delay={Math.min((index % 3 + 1) * 100, 300) as 100 | 200 | 300}>
-                  <figure
-                    className="border-t border-deep-aubergine/15 pt-6 transition-colors duration-300 hover:border-muted-gold/50"
-                  >
-                    <blockquote className="font-serif text-2xl leading-tight text-deep-aubergine">
-                      &ldquo;{testimonial.quote}&rdquo;
-                    </blockquote>
-                    <figcaption className="mt-5 text-sm font-semibold uppercase tracking-[0.12em] text-warm-taupe">
-                      {testimonial.anonymous ? "Anoniem" : testimonial.name}
-                      {testimonial.roleOrContext ? ` — ${testimonial.roleOrContext}` : ""}
-                    </figcaption>
-                  </figure>
-                </FadeInSection>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
-
-      <CtaBand
-        body="Word deel van de gemeenschap. Meedoen kan op jouw eigen manier en tempo."
-        primary={{ label: "Doe mee", href: "/doe-mee" }}
-        secondary={{ label: "Bekijk programma's", href: "/programmas" }}
-        title="Maak deel uit van wat groeit."
-      />
-    </>
-  );
+  const [page, gallery, testimonials] = await Promise.all([getPageByKey("gemeenschap"), getPublicGallery(), getApprovedTestimonials()]);
+  return <>
+    <PageHero eyebrow="Bij elkaar" title={page?.heroTitle || "De gemeenschap van Lumina"} body={page?.heroText || "Je brengt iets mee wat niemand anders heeft: jouw verhaal. Hier is ruimte om het te delen, anderen te leren kennen en samen iets op te bouwen."} image={page?.heroImage} visual={photography.connection} primary={{ label: "Kom kennismaken", href: "/contact?onderwerp=Kennismaken" }} />
+    <section className="section"><Container className="intro-grid"><div><p className="section-index">Dichtbij elkaar</p><Heading size="lg">Verschillende verhalen. Gedeelde mogelijkheden.</Heading></div><div className="intro-grid__body"><p className="lead">Een buurt wordt sterker als mensen elkaar weten te vinden. Lumina wil in Tilburg een plek zijn waar vrouwen, nieuwkomers, jongeren en gezinnen elkaar ontmoeten. Waar je je vraag kunt stellen, maar ook iets kunt betekenen voor een ander.</p><TextLink href="/programmas">Ontdek onze programma&apos;s</TextLink></div></Container></section>
+    <section className="section section--lilac"><Container><div className="section-heading"><div><p className="section-index">Zo willen we samen zijn</p><Heading size="lg">Aandacht maakt het verschil.</Heading></div></div><div className="values-grid">
+      <article><MessagesSquare size={26} aria-hidden="true" /><h3>We luisteren naar elkaar</h3><p>Je hoeft niet hetzelfde te denken of dezelfde achtergrond te hebben om iets van elkaar te kunnen leren.</p></article>
+      <article><HeartHandshake size={26} aria-hidden="true" /><h3>We respecteren jouw grenzen</h3><p>Jij bepaalt wat je deelt. We gaan zorgvuldig om met persoonlijke verhalen en met foto&apos;s.</p></article>
+      <article><Sparkles size={26} aria-hidden="true" /><h3>Iedere bijdrage telt</h3><p>Een idee, een helpende hand of een talent dat je wilt delen. Samen ontdekken we wat mogelijk is.</p></article>
+    </div></Container></section>
+    {gallery.length > 0 && <section className="section"><Container><div className="section-heading"><div><p className="section-index">Uit de gemeenschap</p><Heading size="lg">Momenten om te delen.</Heading></div></div><div className="gallery-grid">{gallery.map(item => <figure key={item.id}><CMSImage image={item.image} fallback={item.visual} altFallback={item.alt} />{item.caption && <figcaption>{item.caption}</figcaption>}</figure>)}</div></Container></section>}
+    {testimonials.length > 0 && <section className="section"><Container><div className="section-heading"><div><p className="section-index">Ervaringen</p><Heading size="lg">In hun eigen woorden.</Heading></div></div><div className="testimonial-grid">{testimonials.map(item => <figure key={item.quote}><blockquote>{item.quote}</blockquote><figcaption>{item.anonymous ? "Anoniem" : item.name}{item.roleOrContext ? `, ${item.roleOrContext}` : ""}</figcaption></figure>)}</div></Container></section>}
+    <CtaBand title="Er is ook ruimte voor jou." body="Je hoeft niemand te kennen om een eerste stap te zetten. Stuur een bericht, stel je vraag of deel je idee." primary={{ label: "Doe mee", href: "/doe-mee" }} secondary={{ label: "Neem contact op", href: "/contact" }} />
+  </>;
 }

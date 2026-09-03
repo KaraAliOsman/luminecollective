@@ -9,12 +9,12 @@ const components = {
       </p>
     ),
     h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 className="mt-10 mb-4 font-serif text-[clamp(1.6rem,2.5vw,2.25rem)] font-normal leading-tight text-deep-aubergine">
+      <h2 className="mt-10 mb-4 font-serif text-3xl font-normal leading-tight text-deep-aubergine">
         {children}
       </h2>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="mt-8 mb-3 font-serif text-[clamp(1.35rem,2vw,1.75rem)] font-normal leading-tight text-deep-aubergine">
+      <h3 className="mt-8 mb-3 font-serif text-2xl font-normal leading-tight text-deep-aubergine">
         {children}
       </h3>
     ),
@@ -26,7 +26,7 @@ const components = {
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <ul className="my-5 space-y-2 pl-5 text-ink-brown/78">{children}</ul>
+      <ul className="my-5 list-disc space-y-2 pl-5 text-ink-brown/78">{children}</ul>
     ),
     number: ({ children }: { children?: React.ReactNode }) => (
       <ol className="my-5 list-decimal space-y-2 pl-5 text-ink-brown/78">{children}</ol>
@@ -34,7 +34,7 @@ const components = {
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="relative pl-1 leading-[1.75] before:absolute before:-left-3 before:text-muted-gold before:content-['—']">
+      <li className="pl-1 leading-[1.75]">
         {children}
       </li>
     ),

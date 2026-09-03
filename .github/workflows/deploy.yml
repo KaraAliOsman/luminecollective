@@ -1,29 +1,61 @@
-name: Deploy to Cloudflare Workers
+name: Validate and deploy Lumina
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumina-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Build & Deploy
+  website:
+    name: Test, build and deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_PUBLIC_SITE_URL: https://stichtingluminacollective.nl
+      NEXT_PUBLIC_SANITY_PROJECT_ID: user9c35
+      NEXT_PUBLIC_SANITY_DATASET: production
+      NEXT_PUBLIC_RELEASE_SHA: ${{ github.sha }}
+      NEXTJS_ENV: production
+      NEXT_TELEMETRY_DISABLED: 1
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build & Deploy to Cloudflare
-        run: npm run deploy
+          cache: npm
+      - name: Use the project npm version
+        run: npm install --global npm@11.9.0
+      - name: Install locked dependencies
+        run: npm ci --no-fund
+      - name: Lint
+        run: npm run lint
+      - name: Type check
+        run: npm run typecheck
+      - name: Test forms and content
+        run: npm test
+      - name: Build Cloudflare Worker and Sanity Studio
+        run: npm run cf:build
+      - name: Deploy Cloudflare Worker
+        if: github.event_name != 'pull_request'
+        run: npx opennextjs-cloudflare deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          NEXTJS_ENV: production
+      - name: Verify the deployed version, routes and PDF
+        if: github.event_name != 'pull_request'
+        run: node scripts/smoke-test.mjs https://lumina-collective.aliosmankara111.workers.dev ${{ github.sha }}
+      - name: Check custom domain and email configuration
+        if: github.event_name != 'pull_request'
+        run: node scripts/cloudflare-status.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

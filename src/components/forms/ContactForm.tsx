@@ -1,203 +1,23 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-
-import {
-  errorStyle,
-  fieldWrap,
-  inputStyle,
-  labelStyle,
-  statusStyle,
-  submitStyle,
-  textareaStyle,
-} from "@/components/forms/formStyles";
-import {
-  contactFormSchema,
-  formMessages,
-  type FormErrors,
-} from "@/lib/validation/forms";
-
-type FormState = {
-  status: "idle" | "success" | "error";
-  message?: string;
-  errors: FormErrors;
-};
-
-const contactEmail = "info@stichtingluminacollective.nl";
-const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === "true";
+import { useEffect, useRef } from "react";
+import { ArrowRight, Mail } from "lucide-react";
+import { contactFormSchema, formMessages } from "@/lib/validation/forms";
+import { ConsentField, FormFeedback, Honeypot } from "./FormFeedback";
+import { useFormSubmission } from "./useFormSubmission";
 
 export function ContactForm() {
-  const [state, setState] = useState<FormState>({ status: "idle", errors: {} });
-  const [pending, setPending] = useState(false);
-
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setPending(true);
-    setState({ status: "idle", errors: {} });
-
-    const formData = new FormData(event.currentTarget);
-    const payload = {
-      name: String(formData.get("name") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      subject: String(formData.get("subject") ?? ""),
-      message: String(formData.get("message") ?? ""),
-      consent: formData.get("consent") === "on",
-      website: String(formData.get("website") ?? ""),
-    };
-
-    const clientParsed = contactFormSchema.safeParse(payload);
-    if (!clientParsed.success) {
-      setState({
-        status: "error",
-        message: formMessages.error,
-        errors: clientParsed.error.flatten().fieldErrors,
-      });
-      setPending(false);
-      return;
-    }
-
-    if (isStaticExport) {
-      const data = clientParsed.data;
-      const subject = encodeURIComponent(`Contact: ${data.subject}`);
-      const body = encodeURIComponent(
-        [
-          `Naam: ${data.name}`,
-          `E-mail: ${data.email}`,
-          "",
-          data.message,
-        ].join("\n"),
-      );
-      window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-      setState({
-        status: "success",
-        message: "Je e-mailprogramma wordt geopend om het bericht te versturen.",
-        errors: {},
-      });
-      setPending(false);
-      return;
-    }
-
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(clientParsed.data),
-    }).catch(() => null);
-
-    if (!response?.ok) {
-      const body = await response?.json().catch(() => null);
-      setState({
-        status: "error",
-        message: body?.message ?? formMessages.error,
-        errors: body?.errors ?? {},
-      });
-      setPending(false);
-      return;
-    }
-
-    event.currentTarget.reset();
-    const body = await response.json().catch(() => null);
-    setState({
-      status: "success",
-      message: body?.message ?? formMessages.contactSuccess,
-      errors: {},
-    });
-    setPending(false);
-  }
-
-  return (
-    <form className="grid gap-5" noValidate onSubmit={onSubmit}>
-      <div className={fieldWrap}>
-        <label className={labelStyle} htmlFor="contact-name">
-          Naam
-        </label>
-        <input
-          aria-describedby={state.errors.name ? "contact-name-error" : undefined}
-          className={inputStyle}
-          id="contact-name"
-          name="name"
-          type="text"
-        />
-        {state.errors.name && (
-          <p className={errorStyle} id="contact-name-error">
-            {state.errors.name[0]}
-          </p>
-        )}
-      </div>
-      <div className={fieldWrap}>
-        <label className={labelStyle} htmlFor="contact-email">
-          E-mail
-        </label>
-        <input
-          aria-describedby={state.errors.email ? "contact-email-error" : undefined}
-          className={inputStyle}
-          id="contact-email"
-          name="email"
-          type="email"
-        />
-        {state.errors.email && (
-          <p className={errorStyle} id="contact-email-error">
-            {state.errors.email[0]}
-          </p>
-        )}
-      </div>
-      <div className={fieldWrap}>
-        <label className={labelStyle} htmlFor="contact-subject">
-          Onderwerp
-        </label>
-        <input
-          aria-describedby={
-            state.errors.subject ? "contact-subject-error" : undefined
-          }
-          className={inputStyle}
-          id="contact-subject"
-          name="subject"
-          type="text"
-        />
-        {state.errors.subject && (
-          <p className={errorStyle} id="contact-subject-error">
-            {state.errors.subject[0]}
-          </p>
-        )}
-      </div>
-      <div className={fieldWrap}>
-        <label className={labelStyle} htmlFor="contact-message">
-          Bericht
-        </label>
-        <textarea
-          aria-describedby={
-            state.errors.message ? "contact-message-error" : undefined
-          }
-          className={textareaStyle}
-          id="contact-message"
-          name="message"
-        />
-        {state.errors.message && (
-          <p className={errorStyle} id="contact-message-error">
-            {state.errors.message[0]}
-          </p>
-        )}
-      </div>
-      <div className="hidden" aria-hidden="true">
-        <label htmlFor="contact-website">Website</label>
-        <input id="contact-website" name="website" tabIndex={-1} type="text" />
-      </div>
-      <div>
-        <label className="flex items-start gap-3 text-sm leading-6 text-ink-brown/75">
-          <input className="mt-1" name="consent" type="checkbox" />
-          {formMessages.consent}
-        </label>
-        {state.errors.consent && (
-          <p className={errorStyle}>{state.errors.consent[0]}</p>
-        )}
-      </div>
-      {state.message && (
-        <p aria-live="polite" className={statusStyle}>
-          {state.message}
-        </p>
-      )}
-      <button className={submitStyle} disabled={pending} type="submit">
-        {pending ? "Versturen..." : "Bericht versturen"}
-      </button>
-    </form>
-  );
+  const subjectRef = useRef<HTMLInputElement>(null);
+  const { state, pending, deliveryAvailable, onSubmit } = useFormSubmission({ endpoint: "/api/contact", schema: contactFormSchema, emailSubject: "Contact met Lumina", successMessage: formMessages.contactSuccess });
+  useEffect(() => {
+    const subject = new URLSearchParams(window.location.search).get("onderwerp");
+    if (subject && subjectRef.current) subjectRef.current.value = subject.slice(0, 200);
+  }, []);
+  return <form className="form-grid" noValidate onSubmit={onSubmit} aria-label="Contactformulier">
+    <div className="form-row">{[{ key: "name", label: "Naam", type: "text", autoComplete: "name" }, { key: "email", label: "E-mailadres", type: "email", autoComplete: "email" }].map(field => <div className="form-field" key={field.key}><label htmlFor={`contact-${field.key}`} className="form-label">{field.label}</label><input className="form-input" id={`contact-${field.key}`} name={field.key} type={field.type} autoComplete={field.autoComplete} required maxLength={field.key === "name" ? 100 : 254} aria-invalid={!!state.errors[field.key]} aria-describedby={state.errors[field.key] ? `contact-${field.key}-error` : undefined} />{state.errors[field.key] && <p className="form-error" id={`contact-${field.key}-error`}>{state.errors[field.key]?.[0]}</p>}</div>)}</div>
+    <div className="form-field"><label className="form-label" htmlFor="contact-subject">Onderwerp</label><input ref={subjectRef} className="form-input" id="contact-subject" name="subject" type="text" required maxLength={200} aria-invalid={!!state.errors.subject} aria-describedby={state.errors.subject ? "contact-subject-error" : undefined} />{state.errors.subject && <p className="form-error" id="contact-subject-error">{state.errors.subject[0]}</p>}</div>
+    <div className="form-field"><label className="form-label" htmlFor="contact-message">Waar kunnen we je mee helpen?</label><textarea className="form-input" id="contact-message" name="message" required maxLength={5000} aria-invalid={!!state.errors.message} aria-describedby={state.errors.message ? "contact-message-error" : undefined} />{state.errors.message && <p className="form-error" id="contact-message-error">{state.errors.message[0]}</p>}</div>
+    <Honeypot id="contact-website" /><ConsentField id="contact-consent" error={state.errors.consent} /><FormFeedback {...state} />
+    <div><button className="button button--primary" disabled={pending} type="submit">{pending ? "Bezig met versturen..." : deliveryAvailable === false ? "Verder via e-mail" : "Verstuur je bericht"}{deliveryAvailable === false ? <Mail size={17} aria-hidden="true" /> : <ArrowRight size={17} aria-hidden="true" />}</button></div>
+  </form>;
 }

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { brand } from "@/lib/constants/brand";
-import { getEventSlugs, getProgramSlugs } from "@/lib/cms/content";
+import { getEventSlugs, getProgramSlugs, getPostSlugs } from "@/lib/cms/content";
 
 export const dynamic = "force-static";
 
@@ -16,16 +16,19 @@ const staticRoutes = [
   { path: "/nieuws", priority: 0.8, changeFrequency: "weekly" as const },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
   { path: "/cookies", priority: 0.3, changeFrequency: "yearly" as const },
-  { path: "/anbi", priority: 0.4, changeFrequency: "yearly" as const },
+  { path: "/anbi", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/fotografie", priority: 0.2, changeFrequency: "yearly" as const },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [programSlugs, eventSlugs] = await Promise.all([
+  const [programSlugs, eventSlugs, postSlugs] = await Promise.all([
     getProgramSlugs(),
     getEventSlugs(),
+    getPostSlugs(),
   ]);
 
   const dynamicRoutes = [
+    ...postSlugs.map(({ slug }) => ({ path: `/nieuws/${slug}`, priority: 0.6, changeFrequency: "monthly" as const })),
     ...programSlugs.map(({ slug }) => ({
       path: `/programmas/${slug}`,
       priority: 0.65,
