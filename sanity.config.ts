@@ -1,5 +1,6 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
+import { trTRLocale } from "@sanity/locale-tr-tr";
 
 import { schemaTypes } from "./src/sanity/schemas";
 import { studioStructure } from "./src/sanity/structure";
@@ -139,7 +140,7 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  plugins: [structureTool({ structure: studioStructure })],
+  plugins: [trTRLocale(), structureTool({ structure: studioStructure })],
   schema: {
     types: schemaTypes,
     templates: (prev) => [

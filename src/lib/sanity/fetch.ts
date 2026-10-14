@@ -1,7 +1,7 @@
 import { isSanityConfigured, sanityClient } from "./client";
 
 type FetchOptions = {
-  /** Next.js revalidation in seconds. Default: 60. Pass 0 to disable caching. */
+  /** Next.js revalidation in seconds. Uncached by default; published reads use Sanity's CDN. */
   revalidate?: number;
   /** Tags for on-demand revalidation via webhooks. */
   tags?: string[];
@@ -15,14 +15,14 @@ type FetchOptions = {
 export async function sanityFetch<T>(
   query: string,
   params: Record<string, unknown> = {},
-  { revalidate = 60, tags }: FetchOptions = {},
+  { revalidate = 0, tags }: FetchOptions = {},
 ): Promise<T | null> {
   if (!isSanityConfigured) return null;
 
   try {
     return await sanityClient.fetch<T>(query, params, {
       next: {
-        revalidate: tags ? false : revalidate,
+        revalidate,
         tags,
       },
     });

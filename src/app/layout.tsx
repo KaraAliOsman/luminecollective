@@ -10,6 +10,8 @@ import { createMetadata } from "@/lib/seo/config";
 
 import "./globals.css";
 
+export const dynamic = "force-dynamic";
+
 const sans = Source_Sans_3({
   subsets: ["latin", "latin-ext"],
   variable: "--font-source-sans",

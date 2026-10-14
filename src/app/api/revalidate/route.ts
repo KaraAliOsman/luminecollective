@@ -5,7 +5,7 @@ import type { NextRequest } from "next/server";
 export async function POST(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get("secret");
 
-  if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
+  if (!process.env.SANITY_REVALIDATE_SECRET || !secret || secret !== process.env.SANITY_REVALIDATE_SECRET) {
     return NextResponse.json({ message: "Invalid secret." }, { status: 401 });
   }
 
@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
 
   // Revalidate based on document type
   const tagMap: Record<string, string[]> = {
+    page: ["pages"],
     program: ["programs"],
     event: ["events"],
     post: ["posts"],
@@ -25,10 +26,9 @@ export async function POST(request: NextRequest) {
   };
 
   const tags = documentType ? (tagMap[documentType] ?? []) : [];
-  const revalidate = revalidateTag as (tag: string, profile?: string) => void;
 
   for (const tag of tags) {
-    revalidate(tag, "max");
+    revalidateTag(tag);
   }
 
   // Always revalidate shared paths
