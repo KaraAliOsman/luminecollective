@@ -91,8 +91,14 @@ not an automatic subscription to an external mailing platform.
 ## Sanity
 
 The Studio is built separately into ignored `public/studio/` assets so it is not
-included in the Worker JavaScript bundle. Production URL: `/studio`.
+included in the Worker JavaScript bundle. Production URL:
+https://stichtingluminacollective.nl/studio/.
 `npm run studio:dev` starts the separate local editor.
+
+`public/_redirects` serves the Studio shell for direct visits and refreshes under
+`/studio/structure`, `/studio/releases` and `/studio/intent`. These Cloudflare
+asset rewrites leave Studio JavaScript, manifests and public website routes
+untouched. The deployment smoke test checks both the entry point and deep links.
 
 Set the project/dataset in the build environment. Add the site and Studio origins
 to Sanity CORS when editing. Keep read/write tokens and the revalidation secret

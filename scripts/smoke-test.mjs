@@ -66,5 +66,15 @@ assert.equal((await get("/this-page-does-not-exist")).status, 404);
 const sitemap = await get("/sitemap.xml").then(r => r.text());
 assert.ok(sitemap.includes("/anbi"));
 assert.ok(sitemap.includes("/nieuws/waarom-lumina-bestaat"));
-assert.equal((await get("/studio")).status, 200);
+for (const path of ["/studio", "/studio/", "/studio/structure", "/studio/structure/buradanBasla", "/studio/structure/icerikOlustur;post", "/studio/structure/icerikOlustur;event", "/studio/releases"]) {
+  const response = await getAsset(path);
+  assert.equal(response.status, 200, `${path} must support direct visits and refresh`);
+  assert.ok(response.headers.get("content-type")?.includes("text/html"), `${path} must serve HTML`);
+  assert.ok((await response.text()).includes('id="sanity"'), `${path} must serve the Studio, not the website's 404 page`);
+}
+const studioManifest = await getAsset("/studio/static/manifest.webmanifest");
+assert.equal(studioManifest.status, 200);
+assert.ok(studioManifest.headers.get("content-type")?.includes("json"));
+await studioManifest.json();
+assert.equal((await get("/studio/static/this-chunk-does-not-exist.js")).status, 404, "Missing Studio assets must not return the Studio shell");
 console.log(`OK redirects, validation, 404, sitemap and Studio. Native email configured: ${status.available}`);

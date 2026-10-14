@@ -1,0 +1,8 @@
+# Serve the standalone Studio shell for its client-side routes.
+# Do not rewrite Studio assets or public website routes.
+/studio/structure /studio/ 200
+/studio/releases /studio/ 200
+/studio/intent /studio/ 200
+/studio/structure/* /studio/ 200
+/studio/releases/* /studio/ 200
+/studio/intent/* /studio/ 200
