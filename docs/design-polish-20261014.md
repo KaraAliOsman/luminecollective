@@ -11,8 +11,9 @@ feedback and platform-specific care, not an imitation of Apple's visual branding
 
 | Before | After | Why |
 | --- | --- | --- |
-| Generic illustrative activity photos | Five photographs from Lumina's account, supplemented by three licensed activity photographs | Show real details without fabricating activities |
+| Generic illustrative activity photos | Five photographs from Lumina's account, supplemented by four licensed activity photographs | Show real details without fabricating activities |
 | Two client-rejected hero portraits | Removed from the website and public assets; gardening and practical volunteering replace them | Lead with open community participation, not posed identity portraits |
+| The gardening hero felt subdued to the client | A separate outdoor learning photograph with shared laughter, by Zen Chung | Make the first impression cheerful while keeping the approved design and other sections |
 | A landscape group photo could lose faces in portrait crops | Separate photo and copy on small screens; photo-specific focal points | Preserve people and legibility |
 | The smallest screen could inherit a fixed tablet hero height | Content-driven height and a compact 320px treatment | Keep CTA buttons inside the hero and reveal the next section |
 | Mouse hover styling applied to touch devices | Hover styling only for fine pointers; restrained press feedback | Avoid sticky touch states |
@@ -38,10 +39,10 @@ feedback and platform-specific care, not an imitation of Apple's visual branding
 
 ## Deliberate Limits
 
-- Gardening, volunteering and education images are supplementary photography, marked as preview
+- The Home, gardening, volunteering and education images are supplementary photography, marked as preview
   and distinguished on the photography page. See preview-images.md.
 - Social originals are at most 828px wide. Full-resolution original files would
-  improve their sharpness; the gardening hero is 1920px wide. No AI enlargement is used.
+  improve their sharpness; the Home hero is 1920px wide. No AI enlargement is used.
 - Existing Sanity content and privacy visibility/consent rules were not changed.
 - Viewport checks do not replace a final check on physical iOS/Android devices.
 - No Lighthouse or real-user Core Web Vitals score is claimed by this review.

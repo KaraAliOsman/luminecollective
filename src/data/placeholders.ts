@@ -11,6 +11,13 @@ export type VisualPlaceholder = {
 };
 
 export const photography = {
+  welcome: {
+    label: "Plezier in samen leren", tone: "community",
+    alt: "Twee vrouwen lachen samen aan een tafel in het groen, met notitieboeken en een potlood",
+    src: "/images/samen-met-plezier.webp", credit: "Zen Chung / Pexels",
+    sourceUrl: "https://www.pexels.com/photo/multiethnic-students-laughing-while-doing-home-task-5538334/", isPreview: true,
+    objectPosition: "50% 35%", isGroupPortrait: true,
+  },
   together: {
     label: "Samen doen", tone: "community",
     alt: "Twee vrouwen werken samen in een groene tuin en bekijken de planten die ze hebben geoogst",

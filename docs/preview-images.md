@@ -31,10 +31,13 @@ remain visible. Its crop is checked separately on desktop.
 The Over ons group photo is separated from its copy at every size. These rules
 apply only to the selected fallback; uploaded Sanity hero images keep their layout.
 Other sections keep the approved layout, colors and typography.
+The Home now uses a separate, cheerful outdoor learning photograph by Zen Chung.
+The earlier gardening image was considered too subdued for the hero; it remains
+available only for existing activity illustrations and image URLs.
 Sanity images still take precedence over these fallbacks. No CMS documents were
 published and no gallery consent or visibility flags were automatically changed.
 
-The gardening, volunteering and education fallbacks are illustrative photography, marked
+The Home, gardening, volunteering and education fallbacks are illustrative photography, marked
 `isPreview: true` and `data-preview="true"` in rendered figures. They do not claim
 to depict Lumina participants or activities. Replace them when suitable,
 consented organization photos are available. The public `/fotografie` page
@@ -42,12 +45,15 @@ distinguishes own images from supplementary stock photography.
 
 | File | Photographer | Original Size | Source |
 | --- | --- | --- | --- |
+| `samen-met-plezier.webp` | Zen Chung | 6000 x 4000 | [Women laughing while learning together, published October 6, 2020](https://www.pexels.com/photo/multiethnic-students-laughing-while-doing-home-task-5538334/) |
 | `samen-in-de-buurt.webp` | Centre for Ageing Better | 5710 x 3799 | [Women gardening together, published May 10, 2021](https://www.pexels.com/photo/women-planting-plants-on-the-garden-7849457/) |
 | `vrijwilligers.webp` | Julia M Cameron | 6000 x 4000 | [Volunteers sorting donations, published March 1, 2021](https://www.pexels.com/photo/people-packing-donations-in-boxes-6995044/) |
 | `samen-leren.webp` | RF._.studio | See source | [Women working on a project](https://www.pexels.com/photo/photo-of-women-at-the-meeting-3810792/) |
 
 The gardening photograph is compressed to 1920 x 1277 WebP without generative editing,
 upscaling or face retouching.
+The Home photograph is compressed to 1920 x 1280 WebP (127040 bytes), using the
+original colors and expressions. No AI editing, upscaling or additional filter is used.
 The [Pexels licence](https://www.pexels.com/license/) permits the intended website use.
 The supplied foundation logo and policy PDF are not stock assets.
 

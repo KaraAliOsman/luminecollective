@@ -26,7 +26,7 @@ test("Lumina originals and supplementary stock are clearly distinguished", () =>
     assert.equal(new URL(photo.sourceUrl).hostname, "www.instagram.com");
     assert.ok(new URL(photo.sourceUrl).pathname.startsWith("/stichtingluminacollective/p/"));
   }
-  for (const photo of [photography.learning, photography.together, photography.conversation]) {
+  for (const photo of [photography.welcome, photography.learning, photography.together, photography.conversation]) {
     assert.equal(photo.isPreview, true);
     assert.ok(photo.credit.includes("Pexels"));
   }
