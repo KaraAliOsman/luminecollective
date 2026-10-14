@@ -6,56 +6,65 @@ export type VisualPlaceholder = {
   credit: string;
   sourceUrl: string;
   isPreview: boolean;
+  objectPosition?: string;
+  isGroupPortrait?: boolean;
 };
 
 export const photography = {
   together: {
-    label: "Samen buiten", tone: "community",
-    alt: "Vrouwen lachen samen op een bank in een park",
-    src: "/images/samen-buiten.webp", credit: "Samuel Peter / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/women-sitting-together-and-smiling-16934837/", isPreview: false,
+    label: "Samen in Amsterdam", tone: "community",
+    alt: "Zes vrouwen van Lumina samen op de Dam tijdens een uitstapje in Amsterdam",
+    src: "/images/lumina-amsterdam-groep.webp", credit: "Stichting Lumina Collective",
+    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/?img_index=9", isPreview: false,
+    objectPosition: "50% 58%", isGroupPortrait: true,
   },
   meeting: {
-    label: "Elkaar ontmoeten", tone: "community",
-    alt: "Vrouwen lachen met elkaar terwijl ze samen eten bereiden",
-    src: "/images/ontmoeten.webp", credit: "Yakup Polat / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/women-in-kitchen-in-hijabs-22604236/", isPreview: false,
+    label: "Burendag", tone: "community",
+    alt: "Ingepakte lekkernijen voor de buren, klaargezet door Lumina voor Burendag",
+    src: "/images/lumina-burendag.webp", credit: "Stichting Lumina Collective",
+    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUzLrFEzzz/", isPreview: false,
+    objectPosition: "50% 45%",
   },
   conversation: {
-    label: "Een goed gesprek", tone: "support",
-    alt: "Vrouwen wisselen ideeën uit tijdens een gezamenlijke workshop",
-    src: "/images/in-gesprek.webp", credit: "Xhemi Photo / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/discussion-of-women-during-conference-15018889/", isPreview: false,
+    label: "De vrouwen van Lumina", tone: "support",
+    alt: "Vrouwen van Lumina poseren samen voor het Koninklijk Paleis in Amsterdam",
+    src: "/images/lumina-amsterdam-groep.webp", credit: "Stichting Lumina Collective",
+    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/?img_index=9", isPreview: false,
+    objectPosition: "50% 58%", isGroupPortrait: true,
   },
   learning: {
     label: "Samen leren", tone: "growth",
     alt: "Vrouwen bekijken een gezamenlijk project en maken aantekeningen aan tafel",
     src: "/images/samen-leren.webp", credit: "RF._.studio / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/photo-of-women-at-the-meeting-3810792/", isPreview: false,
+    sourceUrl: "https://www.pexels.com/photo/photo-of-women-at-the-meeting-3810792/", isPreview: true,
   },
   connection: {
-    label: "Tijd voor elkaar", tone: "support",
-    alt: "Een jonge vrouw en een oudere vrouw omarmen elkaar tijdens een wandeling",
-    src: "/images/verbinding.webp", credit: "Danik Prihodko / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/two-happy-women-walking-together-in-a-park-17066532/", isPreview: false,
+    label: "Aandacht voor elkaar", tone: "support",
+    alt: "Een mand met cupcakes en kaartjes van Lumina voor de Week tegen Eenzaamheid",
+    src: "/images/lumina-cupcakes-samen.webp", credit: "Stichting Lumina Collective",
+    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUyHppk9ne/?img_index=2", isPreview: false,
+    objectPosition: "50% 48%",
   },
   creative: {
-    label: "Samen iets maken", tone: "culture",
-    alt: "Vrouwen werken met papier, inkt en penselen tijdens een creatieve activiteit",
-    src: "/images/creatief.webp", credit: "Anna Tarazevich / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/women-working-on-artwork-project-6146630/", isPreview: false,
+    label: "De stad verkennen", tone: "culture",
+    alt: "Een fiets op een Amsterdamse brug, gefotografeerd tijdens Lumina's Colour Hunting-uitstapje",
+    src: "/images/lumina-amsterdam-gracht.webp", credit: "Stichting Lumina Collective",
+    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/", isPreview: false,
+    objectPosition: "50% 62%",
   },
   youth: {
-    label: "Jong talent", tone: "participation",
-    alt: "Jongeren helpen elkaar met aantekeningen en schoolwerk aan een tafel",
-    src: "/images/jongeren.webp", credit: "Monstera Production / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/diverse-students-doing-homework-together-in-classroom-6238046/", isPreview: false,
+    label: "Samen op ontdekking", tone: "participation",
+    alt: "Amsterdamse grachtenpanden en rondvaartboten tijdens Lumina's uitstapje in de stad",
+    src: "/images/lumina-amsterdam-ontdekken.webp", credit: "Stichting Lumina Collective",
+    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/?img_index=2", isPreview: false,
+    objectPosition: "50% 52%",
   },
   volunteering: {
-    label: "Samen iets betekenen", tone: "participation",
-    alt: "Twee vrijwilligers sorteren gedoneerde kleding aan een grote tafel",
-    src: "/images/vrijwilligers.webp", credit: "Julia M Cameron / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/people-packing-donations-in-boxes-6995044/", isPreview: false,
+    label: "Een klein gebaar", tone: "participation",
+    alt: "Een hand met een cupcake en een Lumina-kaartje bij woonzorgcentrum Heelwijk",
+    src: "/images/lumina-cupcake-actie.webp", credit: "Stichting Lumina Collective",
+    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUyHppk9ne/", isPreview: false,
+    objectPosition: "50% 62%",
   },
 } satisfies Record<string, VisualPlaceholder>;
 

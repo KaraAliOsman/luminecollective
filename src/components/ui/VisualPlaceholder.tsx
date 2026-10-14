@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { VisualPlaceholder as Visual } from "@/data/placeholders";
 import { cn } from "@/lib/utils/cn";
 
@@ -11,7 +11,7 @@ export function VisualPlaceholder({ visual, className, imageClassName, children,
   priority?: boolean;
   sizes?: string;
 }) {
-  return <figure className={cn("photo", className)}>
+  return <figure className={cn("photo", className)} data-preview={visual.isPreview ? "true" : undefined} style={visual.objectPosition ? { "--photo-position": visual.objectPosition } as CSSProperties : undefined}>
     <Image alt={visual.alt} className={cn("photo__image", imageClassName)} fill priority={priority} sizes={sizes} src={visual.src} />
     {children && <figcaption className="photo__caption">{children}</figcaption>}
   </figure>;

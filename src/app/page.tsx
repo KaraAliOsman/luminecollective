@@ -32,7 +32,7 @@ export default async function Home() {
   return <>
     <StructuredData data={organizationJsonLd()} />
     <StructuredData data={websiteJsonLd()} />
-    <section className="home-hero" aria-label="Welkom bij Lumina">
+    <section className={`home-hero${page?.heroImage?.asset ? "" : " home-hero--group"}`} aria-label="Welkom bij Lumina">
       <CMSImage className="home-hero__photo" fallback={photography.together} image={page?.heroImage} priority sizes="100vw" />
       <Container className="home-hero__inner">
         <p className="home-hero__location"><MapPin size={15} aria-hidden="true" />Stichting Lumina Collective · Tilburg</p>

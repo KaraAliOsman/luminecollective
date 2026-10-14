@@ -13,7 +13,8 @@ type PageHeroProps = {
 };
 
 export function PageHero({ eyebrow, title, body, visual, image, primary, secondary }: PageHeroProps) {
-  return <section className="subpage-hero">
+  const isGroupPortrait = !image?.asset && visual.isGroupPortrait;
+  return <section className={`subpage-hero${isGroupPortrait ? " subpage-hero--group" : ""}`}>
     <CMSImage className="subpage-hero__visual" fallback={visual} image={image} priority sizes="100vw" />
     <Container>
       <div className="subpage-hero__copy">

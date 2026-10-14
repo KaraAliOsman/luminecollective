@@ -28,7 +28,7 @@ for (const path of ["/", "/over-ons", "/programmas", "/anbi", "/contact", "/doe-
   console.log(`OK ${path}`);
 }
 
-for (const file of ["samen-buiten", "ontmoeten", "in-gesprek", "samen-leren", "verbinding", "creatief", "jongeren", "vrijwilligers"]) {
+for (const file of ["samen-buiten", "ontmoeten", "in-gesprek", "samen-leren", "verbinding", "creatief", "jongeren", "vrijwilligers", "lumina-amsterdam-groep", "lumina-amsterdam-gracht", "lumina-amsterdam-ontdekken", "lumina-cupcake-actie", "lumina-cupcakes-samen", "lumina-burendag"]) {
   const response = await get(`/images/${file}.webp`);
   assert.equal(response.status, 200, `Photo ${file}`);
   assert.ok(response.headers.get("content-type")?.startsWith("image/"));
@@ -40,7 +40,7 @@ assert.equal(pdf.status, 200);
 assert.ok(pdf.headers.get("content-type")?.includes("application/pdf"));
 assert.equal(pdf.headers.get("x-frame-options"), "SAMEORIGIN", "The policy PDF must be embeddable on the ANBI page");
 assert.equal(createHash("sha256").update(Buffer.from(await pdf.arrayBuffer())).digest("hex"), "cbe36cad43ba1e8eaad8bdb6960ea79357aea1959b39b48200086166e373eb24");
-console.log("OK original policy PDF and eight licensed photographs");
+console.log("OK original policy PDF, Lumina photographs and retained licensed assets");
 
 const redirect = await get("/programmas/ontmoeting-community", { redirect: "manual" });
 assert.equal(redirect.status, 308);
