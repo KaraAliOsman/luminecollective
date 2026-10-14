@@ -1,14 +1,19 @@
 # Photography Register
 
 Current fallback photography is in `public/images/*.webp`. Five photographs were
-selected from the organization's public Instagram, confirmed by the client on
-2026-10-14. These are photographs from Lumina's account, not stock activities.
+selected from the organization's public Instagram, whose profile was supplied by
+the client on 2026-10-14. These are photographs from Lumina's account, not stock activities.
 The images were converted to WebP without AI modification, colour grading or
 upscaling. The original composition is retained; responsive CSS controls the crop.
 
 The client rejected the six-women photograph in front of the Royal Palace because
 it looks artificial. It has been removed from the website and public assets.
 Do not reintroduce it, generate replacements with AI or retouch faces with AI.
+The subsequent park portrait was also rejected because it did not represent the
+open, civic community direction. It too has been removed from public assets.
+Choose shared activities, candid interaction and volunteering instead of posed
+identity portraits. Do not imply a religious affiliation or select people as
+representatives of a religion based on appearance.
 Images of identifiable children, vulnerable
 participants, collage screenshots and social video frames were not selected.
 The current Instagram profile is `stichtingluminacollective`, not `stichtinglumina`.
@@ -29,7 +34,7 @@ Other sections keep the approved layout, colors and typography.
 Sanity images still take precedence over these fallbacks. No CMS documents were
 published and no gallery consent or visibility flags were automatically changed.
 
-The park and education fallbacks are illustrative Pexels photography, marked
+The gardening, volunteering and education fallbacks are illustrative photography, marked
 `isPreview: true` and `data-preview="true"` in rendered figures. They do not claim
 to depict Lumina participants or activities. Replace them when suitable,
 consented organization photos are available. The public `/fotografie` page
@@ -37,17 +42,18 @@ distinguishes own images from supplementary stock photography.
 
 | File | Photographer | Original Size | Source |
 | --- | --- | --- | --- |
-| `samen-in-het-park.webp` | Asad Photo Maldives | 3840 x 2560 | [Conversation in a park, published July 16, 2020](https://www.pexels.com/photo/cheerful-muslim-women-gathering-on-lawn-in-park-and-talking-4884256/) |
+| `samen-in-de-buurt.webp` | Centre for Ageing Better | 5710 x 3799 | [Women gardening together, published May 10, 2021](https://www.pexels.com/photo/women-planting-plants-on-the-garden-7849457/) |
+| `vrijwilligers.webp` | Julia M Cameron | 6000 x 4000 | [Volunteers sorting donations, published March 1, 2021](https://www.pexels.com/photo/people-packing-donations-in-boxes-6995044/) |
 | `samen-leren.webp` | RF._.studio | See source | [Women working on a project](https://www.pexels.com/photo/photo-of-women-at-the-meeting-3810792/) |
 
-The park photograph is compressed to 1920 x 1280 WebP without generative editing,
+The gardening photograph is compressed to 1920 x 1277 WebP without generative editing,
 upscaling or face retouching.
 The [Pexels licence](https://www.pexels.com/license/) permits the intended website use.
 The supplied foundation logo and policy PDF are not stock assets.
 
 ## Retained Stock Assets
 
-Only `samen-leren.webp` from this legacy list is active in the fallback set. Other old files remain
+`samen-leren.webp` and `vrijwilligers.webp` from this legacy list are active. Other old files remain
 available to avoid breaking existing CMS or external image URLs.
 
 | File | Photographer | Source |

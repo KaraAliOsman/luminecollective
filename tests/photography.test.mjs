@@ -32,10 +32,11 @@ test("Lumina originals and supplementary stock are clearly distinguished", () =>
   }
 });
 
-test("the client-rejected artificial-looking photograph is not served or selected", async () => {
-  const rejected = "/images/lumina-amsterdam-groep.webp";
-  assert.ok(Object.values(photography).every(photo => photo.src !== rejected));
-  await assert.rejects(access(new URL(`../public${rejected}`, import.meta.url)), { code: "ENOENT" });
+test("client-rejected hero photographs are not served or selected", async () => {
+  for (const rejected of ["/images/lumina-amsterdam-groep.webp", "/images/samen-in-het-park.webp"]) {
+    assert.ok(Object.values(photography).every(photo => photo.src !== rejected));
+    await assert.rejects(access(new URL(`../public${rejected}`, import.meta.url)), { code: "ENOENT" });
+  }
 });
 
 test("the footer uses the organization's confirmed Instagram profile", () => {

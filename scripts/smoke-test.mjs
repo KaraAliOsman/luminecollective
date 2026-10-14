@@ -39,7 +39,7 @@ for (const path of ["/", "/over-ons", "/programmas", "/anbi", "/contact", "/doe-
   console.log(`OK ${path}`);
 }
 
-for (const file of ["samen-buiten", "ontmoeten", "in-gesprek", "samen-leren", "verbinding", "creatief", "jongeren", "vrijwilligers", "samen-in-het-park", "lumina-amsterdam-gracht", "lumina-amsterdam-ontdekken", "lumina-cupcake-actie", "lumina-cupcakes-samen", "lumina-burendag"]) {
+for (const file of ["samen-buiten", "ontmoeten", "in-gesprek", "samen-leren", "verbinding", "creatief", "jongeren", "vrijwilligers", "samen-in-de-buurt", "lumina-amsterdam-gracht", "lumina-amsterdam-ontdekken", "lumina-cupcake-actie", "lumina-cupcakes-samen", "lumina-burendag"]) {
   const response = await getAsset(`/images/${file}.webp`);
   assert.equal(response.status, 200, `Photo ${file}`);
   assert.ok(response.headers.get("content-type")?.startsWith("image/"));

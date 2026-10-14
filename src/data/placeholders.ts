@@ -12,11 +12,11 @@ export type VisualPlaceholder = {
 
 export const photography = {
   together: {
-    label: "Samen in het park", tone: "community",
-    alt: "Drie vrouwen zitten op het gras in een park en lachen tijdens een gesprek",
-    src: "/images/samen-in-het-park.webp", credit: "Asad Photo Maldives / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/cheerful-muslim-women-gathering-on-lawn-in-park-and-talking-4884256/", isPreview: true,
-    objectPosition: "50% 58%", isGroupPortrait: true,
+    label: "Samen doen", tone: "community",
+    alt: "Twee vrouwen werken samen in een groene tuin en bekijken de planten die ze hebben geoogst",
+    src: "/images/samen-in-de-buurt.webp", credit: "Centre for Ageing Better / Pexels",
+    sourceUrl: "https://www.pexels.com/photo/women-planting-plants-on-the-garden-7849457/", isPreview: true,
+    objectPosition: "50% 38%", isGroupPortrait: true,
   },
   meeting: {
     label: "Burendag", tone: "community",
@@ -26,11 +26,11 @@ export const photography = {
     objectPosition: "50% 45%",
   },
   conversation: {
-    label: "Een gesprek in het groen", tone: "support",
-    alt: "Drie vrouwen praten met elkaar terwijl ze ontspannen op het gras in een park zitten",
-    src: "/images/samen-in-het-park.webp", credit: "Asad Photo Maldives / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/cheerful-muslim-women-gathering-on-lawn-in-park-and-talking-4884256/", isPreview: true,
-    objectPosition: "50% 58%", isGroupPortrait: true,
+    label: "Samen het verschil maken", tone: "support",
+    alt: "Twee vrijwilligers sorteren samen kleding en houden bij wat er voor een inzameling is klaargezet",
+    src: "/images/vrijwilligers.webp", credit: "Julia M Cameron / Pexels",
+    sourceUrl: "https://www.pexels.com/photo/people-packing-donations-in-boxes-6995044/", isPreview: true,
+    objectPosition: "50% 0%", isGroupPortrait: true,
   },
   learning: {
     label: "Samen leren", tone: "growth",

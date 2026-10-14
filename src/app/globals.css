@@ -121,7 +121,7 @@ main:focus-visible { outline: none; box-shadow: none; }
 .home-hero { position: relative; isolation: isolate; height: min(660px, calc(100svh - 190px)); min-height: 490px; background: var(--forest); color: #fff; }
 .home-hero__photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; z-index: -2; }
 .home-hero__photo img { object-position: var(--photo-position, center 42%); }
-.home-hero--group .home-hero__photo img { object-position: center 82%; }
+.home-hero--group .home-hero__photo img { object-position: var(--photo-position, center); }
 .home-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #12211ddd, #12211d45 43%, #12211d00 76%); }
 .home-hero__inner { height: 100%; display: flex; flex-direction: column; justify-content: end; padding-bottom: 40px; }
 .home-hero__location { display: flex; align-items: center; gap: 7px; margin-bottom: 14px; font-size: 13px; }
@@ -205,7 +205,7 @@ main:focus-visible { outline: none; box-shadow: none; }
 .subpage-hero--group { display: block; min-height: 0; }
 .subpage-hero--group::after { display: none; }
 .subpage-hero--group .subpage-hero__visual { position: relative; height: auto; aspect-ratio: 16 / 5; }
-.subpage-hero--group .subpage-hero__visual img { object-position: center 58%; }
+.subpage-hero--group .subpage-hero__visual img { object-position: var(--photo-position, center); }
 .subpage-hero--group .subpage-hero__copy { padding-block: 40px; }
 .page-heading { background: var(--sage); padding-block: 54px 64px; border-bottom: 1px solid var(--line); }
 .page-heading h1 { margin-top: 13px; }
@@ -441,7 +441,7 @@ textarea.form-input { min-height: 150px; resize: vertical; }
   .home-hero.home-hero--group { height: auto; min-height: 0; max-height: none; }
   .home-hero--group::after { display: none; }
   .home-hero--group .home-hero__photo { position: relative; height: auto; aspect-ratio: 16 / 9; }
-  .home-hero--group .home-hero__photo img { object-position: center 58%; }
+  .home-hero--group .home-hero__photo img { object-position: var(--photo-position, center); }
   .home-hero--group .home-hero__inner { height: auto; padding-top: 26px; }
   .subpage-hero--group .subpage-hero__visual { aspect-ratio: 16 / 9; }
   .intro-grid { grid-template-columns: 1fr; gap: 20px; }
