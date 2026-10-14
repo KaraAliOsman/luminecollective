@@ -39,6 +39,12 @@ test("client-rejected hero photographs are not served or selected", async () => 
   }
 });
 
+test("the Home fallback keeps the client-approved photograph of women together", () => {
+  assert.equal(photography.welcome.src, "/images/vrouwen-samen-buiten.webp");
+  assert.equal(photography.welcome.sourceUrl, "https://www.pexels.com/photo/group-of-friends-dancing-holding-hands-in-the-park-4834133/");
+  assert.equal(photography.welcome.credit, "Elina Fairytale / Pexels");
+});
+
 test("the footer uses the organization's confirmed Instagram profile", () => {
   assert.equal(socialLinks.find(link => link.label === "Instagram")?.href, "https://www.instagram.com/stichtingluminacollective/");
   assert.equal(socialLinks.find(link => link.label === "Facebook")?.href, "https://www.facebook.com/stichtinglumina");

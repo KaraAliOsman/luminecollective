@@ -12,11 +12,11 @@ export type VisualPlaceholder = {
 
 export const photography = {
   welcome: {
-    label: "Plezier in samen leren", tone: "community",
-    alt: "Twee vrouwen lachen samen aan een tafel in het groen, met notitieboeken en een potlood",
-    src: "/images/samen-met-plezier.webp", credit: "Zen Chung / Pexels",
-    sourceUrl: "https://www.pexels.com/photo/multiethnic-students-laughing-while-doing-home-task-5538334/", isPreview: true,
-    objectPosition: "50% 35%", isGroupPortrait: true,
+    label: "Een vrolijk moment samen", tone: "community",
+    alt: "Vier vrouwen dansen hand in hand in een groene tuin en genieten van een vrolijk moment samen",
+    src: "/images/vrouwen-samen-buiten.webp", credit: "Elina Fairytale / Pexels",
+    sourceUrl: "https://www.pexels.com/photo/group-of-friends-dancing-holding-hands-in-the-park-4834133/", isPreview: true,
+    objectPosition: "50% 42%", isGroupPortrait: true,
   },
   together: {
     label: "Samen doen", tone: "community",

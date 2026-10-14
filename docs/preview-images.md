@@ -31,9 +31,11 @@ remain visible. Its crop is checked separately on desktop.
 The Over ons group photo is separated from its copy at every size. These rules
 apply only to the selected fallback; uploaded Sanity hero images keep their layout.
 Other sections keep the approved layout, colors and typography.
-The Home now uses a separate, cheerful outdoor learning photograph by Zen Chung.
-The earlier gardening image was considered too subdued for the hero; it remains
-available only for existing activity illustrations and image URLs.
+The Home uses the photograph of four women dancing together in a garden by
+Elina Fairytale, explicitly approved by the client on 2026-10-14. The hero is
+centered on women's community and shared joy. The gardening and outdoor learning
+images were rejected as hero choices; the gardening image remains available for
+existing activity illustrations, and their image URLs remain for compatibility.
 Sanity images still take precedence over these fallbacks. No CMS documents were
 published and no gallery consent or visibility flags were automatically changed.
 
@@ -45,14 +47,14 @@ distinguishes own images from supplementary stock photography.
 
 | File | Photographer | Original Size | Source |
 | --- | --- | --- | --- |
-| `samen-met-plezier.webp` | Zen Chung | 6000 x 4000 | [Women laughing while learning together, published October 6, 2020](https://www.pexels.com/photo/multiethnic-students-laughing-while-doing-home-task-5538334/) |
+| `vrouwen-samen-buiten.webp` | Elina Fairytale | 5617 x 3745 | [Four women dancing together outdoors, published July 9, 2020](https://www.pexels.com/photo/group-of-friends-dancing-holding-hands-in-the-park-4834133/) |
 | `samen-in-de-buurt.webp` | Centre for Ageing Better | 5710 x 3799 | [Women gardening together, published May 10, 2021](https://www.pexels.com/photo/women-planting-plants-on-the-garden-7849457/) |
 | `vrijwilligers.webp` | Julia M Cameron | 6000 x 4000 | [Volunteers sorting donations, published March 1, 2021](https://www.pexels.com/photo/people-packing-donations-in-boxes-6995044/) |
 | `samen-leren.webp` | RF._.studio | See source | [Women working on a project](https://www.pexels.com/photo/photo-of-women-at-the-meeting-3810792/) |
 
 The gardening photograph is compressed to 1920 x 1277 WebP without generative editing,
 upscaling or face retouching.
-The Home photograph is compressed to 1920 x 1280 WebP (127040 bytes), using the
+The Home photograph is compressed to 1920 x 1280 WebP (319612 bytes), using the
 original colors and expressions. No AI editing, upscaling or additional filter is used.
 The [Pexels licence](https://www.pexels.com/license/) permits the intended website use.
 The supplied foundation logo and policy PDF are not stock assets.
@@ -64,6 +66,7 @@ available to avoid breaking existing CMS or external image URLs.
 
 | File | Photographer | Source |
 | --- | --- | --- |
+| `samen-met-plezier.webp` | Zen Chung | [Women laughing while learning together; no longer selected for the Home](https://www.pexels.com/photo/multiethnic-students-laughing-while-doing-home-task-5538334/) |
 | `samen-buiten.webp` | Samuel Peter | [A shared moment outdoors](https://www.pexels.com/photo/women-sitting-together-and-smiling-16934837/) |
 | `ontmoeten.webp` | Yakup Polat | [Women cooking together](https://www.pexels.com/photo/women-in-kitchen-in-hijabs-22604236/) |
 | `in-gesprek.webp` | Xhemi Photo | [Workshop discussion](https://www.pexels.com/photo/discussion-of-women-during-conference-15018889/) |
