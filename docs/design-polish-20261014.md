@@ -11,7 +11,8 @@ feedback and platform-specific care, not an imitation of Apple's visual branding
 
 | Before | After | Why |
 | --- | --- | --- |
-| Generic illustrative activity photos | Six real Lumina photographs, with sources and alt text | Show the organization rather than a template |
+| Generic illustrative activity photos | Five photographs from Lumina's account, supplemented by two licensed natural photographs | Show real details without fabricating activities |
+| An artificial-looking portrait rejected by the client | Removed from the website and public assets; a documented photographer's park scene replaces it | Respect the no-AI requirement and the client's image selection |
 | A landscape group photo could lose faces in portrait crops | Separate photo and copy on small screens; photo-specific focal points | Preserve people and legibility |
 | The smallest screen could inherit a fixed tablet hero height | Content-driven height and a compact 320px treatment | Keep CTA buttons inside the hero and reveal the next section |
 | Mouse hover styling applied to touch devices | Hover styling only for fine pointers; restrained press feedback | Avoid sticky touch states |
@@ -37,10 +38,10 @@ feedback and platform-specific care, not an imitation of Apple's visual branding
 
 ## Deliberate Limits
 
-- One education image is still supplementary stock, explicitly marked as preview
+- The park and education images are supplementary stock, explicitly marked as preview
   and distinguished on the photography page. See preview-images.md.
 - Social originals are at most 828px wide. Full-resolution original files would
-  improve large-desktop sharpness; they were not artificially enlarged with AI.
+  improve their sharpness; the park hero is 1920px wide. No AI enlargement is used.
 - Existing Sanity content and privacy visibility/consent rules were not changed.
 - Viewport checks do not replace a final check on physical iOS/Android devices.
 - No Lighthouse or real-user Core Web Vitals score is claimed by this review.

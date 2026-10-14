@@ -1,44 +1,53 @@
 # Photography Register
 
-Current fallback photography is in `public/images/*.webp`. Six photographs were
+Current fallback photography is in `public/images/*.webp`. Five photographs were
 selected from the organization's public Instagram, confirmed by the client on
-2026-10-14. These are real Lumina images, not newly generated or stock activities.
+2026-10-14. These are photographs from Lumina's account, not stock activities.
 The images were converted to WebP without AI modification, colour grading or
 upscaling. The original composition is retained; responsive CSS controls the crop.
 
-The group photograph is from the Amsterdam outing, not the Giethoorn post that
-discusses asylum accommodation. Images of identifiable children, vulnerable
+The client rejected the six-women photograph in front of the Royal Palace because
+it looks artificial. It has been removed from the website and public assets.
+Do not reintroduce it, generate replacements with AI or retouch faces with AI.
+Images of identifiable children, vulnerable
 participants, collage screenshots and social video frames were not selected.
 The current Instagram profile is `stichtingluminacollective`, not `stichtinglumina`.
 
 | File | Original Size | Source |
 | --- | --- | --- |
-| `lumina-amsterdam-groep.webp` | 828 x 608 | [Amsterdam, image 9](https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/?img_index=9) |
 | `lumina-amsterdam-gracht.webp` | 828 x 1091 | [Amsterdam, image 1](https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/) |
 | `lumina-amsterdam-ontdekken.webp` | 828 x 1084 | [Amsterdam, image 2](https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/?img_index=2) |
 | `lumina-cupcake-actie.webp` | 828 x 1087 | [Cupcake action, image 1](https://www.instagram.com/stichtingluminacollective/p/DeUyHppk9ne/) |
 | `lumina-cupcakes-samen.webp` | 456 x 599 | [Cupcake action, image 2](https://www.instagram.com/stichtingluminacollective/p/DeUyHppk9ne/?img_index=2) |
 | `lumina-burendag.webp` | 828 x 1088 | [Burendag, image 1](https://www.instagram.com/stichtingluminacollective/p/DeUzLrFEzzz/) |
 
-The Home group photo is shown above its text on phones and tablets so all six
-faces remain visible. On desktop its focal point keeps the title below the faces.
+The Home group photo is shown above its text on phones and tablets so people
+remain visible. Its crop is checked separately on desktop.
 The Over ons group photo is separated from its copy at every size. These rules
 apply only to the selected fallback; uploaded Sanity hero images keep their layout.
 Other sections keep the approved layout, colors and typography.
 Sanity images still take precedence over these fallbacks. No CMS documents were
 published and no gallery consent or visibility flags were automatically changed.
 
-The education fallback (`samen-leren.webp`) remains illustrative Pexels photography,
-marked `isPreview: true` and `data-preview="true"` in the rendered figure. It does
-not claim that a training session has already taken place at Lumina. Replace it
-when a suitable, consented education photo is available. The public `/fotografie`
-page distinguishes own images from this supplementary stock photo.
+The park and education fallbacks are illustrative Pexels photography, marked
+`isPreview: true` and `data-preview="true"` in rendered figures. They do not claim
+to depict Lumina participants or activities. Replace them when suitable,
+consented organization photos are available. The public `/fotografie` page
+distinguishes own images from supplementary stock photography.
+
+| File | Photographer | Original Size | Source |
+| --- | --- | --- | --- |
+| `samen-in-het-park.webp` | Asad Photo Maldives | 3840 x 2560 | [Conversation in a park, published July 16, 2020](https://www.pexels.com/photo/cheerful-muslim-women-gathering-on-lawn-in-park-and-talking-4884256/) |
+| `samen-leren.webp` | RF._.studio | See source | [Women working on a project](https://www.pexels.com/photo/photo-of-women-at-the-meeting-3810792/) |
+
+The park photograph is compressed to 1920 x 1280 WebP without generative editing,
+upscaling or face retouching.
 The [Pexels licence](https://www.pexels.com/license/) permits the intended website use.
 The supplied foundation logo and policy PDF are not stock assets.
 
 ## Retained Stock Assets
 
-Only `samen-leren.webp` is active in the fallback set. Other old files remain
+Only `samen-leren.webp` from this legacy list is active in the fallback set. Other old files remain
 available to avoid breaking existing CMS or external image URLs.
 
 | File | Photographer | Source |

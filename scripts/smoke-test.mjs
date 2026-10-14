@@ -6,6 +6,17 @@ const base = process.argv[2] || "http://127.0.0.1:3100";
 const expectedRelease = process.argv[3];
 const get = (path, options = {}) => fetch(new URL(path, base), { ...options, signal: AbortSignal.timeout(30000), cache: "no-store" });
 
+const getAsset = async path => {
+  const deadline = Date.now() + 90000;
+  for (;;) {
+    const response = await get(path);
+    // Static assets can reach an edge shortly after the new Worker version.
+    if (!expectedRelease || ![404, 503].includes(response.status) || Date.now() >= deadline) return response;
+    await response.body?.cancel();
+    await setTimeout(5000);
+  }
+};
+
 if (expectedRelease) {
   let live;
   for (let attempt = 0; attempt < 24; attempt++) {
@@ -28,8 +39,8 @@ for (const path of ["/", "/over-ons", "/programmas", "/anbi", "/contact", "/doe-
   console.log(`OK ${path}`);
 }
 
-for (const file of ["samen-buiten", "ontmoeten", "in-gesprek", "samen-leren", "verbinding", "creatief", "jongeren", "vrijwilligers", "lumina-amsterdam-groep", "lumina-amsterdam-gracht", "lumina-amsterdam-ontdekken", "lumina-cupcake-actie", "lumina-cupcakes-samen", "lumina-burendag"]) {
-  const response = await get(`/images/${file}.webp`);
+for (const file of ["samen-buiten", "ontmoeten", "in-gesprek", "samen-leren", "verbinding", "creatief", "jongeren", "vrijwilligers", "samen-in-het-park", "lumina-amsterdam-gracht", "lumina-amsterdam-ontdekken", "lumina-cupcake-actie", "lumina-cupcakes-samen", "lumina-burendag"]) {
+  const response = await getAsset(`/images/${file}.webp`);
   assert.equal(response.status, 200, `Photo ${file}`);
   assert.ok(response.headers.get("content-type")?.startsWith("image/"));
   assert.ok((await response.arrayBuffer()).byteLength > 10000);

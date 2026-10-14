@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { photography } from "../src/data/placeholders.ts";
 import { socialLinks } from "../src/lib/constants/social.ts";
 
@@ -20,14 +20,22 @@ test("fallback photographs have local assets, descriptions and provenance", asyn
 
 test("Lumina originals and supplementary stock are clearly distinguished", () => {
   const originals = Object.values(photography).filter(photo => photo.credit === "Stichting Lumina Collective");
-  assert.equal(new Set(originals.map(photo => photo.src)).size, 6);
+  assert.equal(new Set(originals.map(photo => photo.src)).size, 5);
   for (const photo of originals) {
     assert.equal(photo.isPreview, false);
     assert.equal(new URL(photo.sourceUrl).hostname, "www.instagram.com");
     assert.ok(new URL(photo.sourceUrl).pathname.startsWith("/stichtingluminacollective/p/"));
   }
-  assert.equal(photography.learning.isPreview, true);
-  assert.ok(photography.learning.credit.includes("Pexels"));
+  for (const photo of [photography.learning, photography.together, photography.conversation]) {
+    assert.equal(photo.isPreview, true);
+    assert.ok(photo.credit.includes("Pexels"));
+  }
+});
+
+test("the client-rejected artificial-looking photograph is not served or selected", async () => {
+  const rejected = "/images/lumina-amsterdam-groep.webp";
+  assert.ok(Object.values(photography).every(photo => photo.src !== rejected));
+  await assert.rejects(access(new URL(`../public${rejected}`, import.meta.url)), { code: "ENOENT" });
 });
 
 test("the footer uses the organization's confirmed Instagram profile", () => {

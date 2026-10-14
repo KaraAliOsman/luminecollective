@@ -12,10 +12,10 @@ export type VisualPlaceholder = {
 
 export const photography = {
   together: {
-    label: "Samen in Amsterdam", tone: "community",
-    alt: "Zes vrouwen van Lumina samen op de Dam tijdens een uitstapje in Amsterdam",
-    src: "/images/lumina-amsterdam-groep.webp", credit: "Stichting Lumina Collective",
-    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/?img_index=9", isPreview: false,
+    label: "Samen in het park", tone: "community",
+    alt: "Drie vrouwen zitten op het gras in een park en lachen tijdens een gesprek",
+    src: "/images/samen-in-het-park.webp", credit: "Asad Photo Maldives / Pexels",
+    sourceUrl: "https://www.pexels.com/photo/cheerful-muslim-women-gathering-on-lawn-in-park-and-talking-4884256/", isPreview: true,
     objectPosition: "50% 58%", isGroupPortrait: true,
   },
   meeting: {
@@ -26,10 +26,10 @@ export const photography = {
     objectPosition: "50% 45%",
   },
   conversation: {
-    label: "De vrouwen van Lumina", tone: "support",
-    alt: "Vrouwen van Lumina poseren samen voor het Koninklijk Paleis in Amsterdam",
-    src: "/images/lumina-amsterdam-groep.webp", credit: "Stichting Lumina Collective",
-    sourceUrl: "https://www.instagram.com/stichtingluminacollective/p/DeUlL3bmK3c/?img_index=9", isPreview: false,
+    label: "Een gesprek in het groen", tone: "support",
+    alt: "Drie vrouwen praten met elkaar terwijl ze ontspannen op het gras in een park zitten",
+    src: "/images/samen-in-het-park.webp", credit: "Asad Photo Maldives / Pexels",
+    sourceUrl: "https://www.pexels.com/photo/cheerful-muslim-women-gathering-on-lawn-in-park-and-talking-4884256/", isPreview: true,
     objectPosition: "50% 58%", isGroupPortrait: true,
   },
   learning: {
