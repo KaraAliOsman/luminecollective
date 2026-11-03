@@ -8,7 +8,7 @@ import { TextLink } from "@/components/ui/TextLink";
 import { getUpcomingEvents } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 
-export const metadata: Metadata = createMetadata({ title: "Agenda", description: "Bijeenkomsten, workshops en activiteiten van Lumina Collective in Tilburg. Bekijk wat er op de agenda staat.", path: "/agenda" });
+export const metadata: Metadata = createMetadata({ title: "Agenda", description: "Bijeenkomsten, workshops en activiteiten van Lumina Collective. Bekijk wat er op de agenda staat.", path: "/agenda" });
 
 export default async function AgendaPage() {
   const events = await getUpcomingEvents();

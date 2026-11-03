@@ -6,7 +6,7 @@ import { Heading } from "@/components/ui/Heading";
 import { getPageByKey, getPosts } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 
-export const metadata: Metadata = createMetadata({ title: "Nieuws & verhalen", description: "Maak kennis met de ideeën achter Lumina Collective. Lees over ontmoeting, vrijwilligerswerk en onze plannen voor Tilburg.", path: "/nieuws" });
+export const metadata: Metadata = createMetadata({ title: "Nieuws & verhalen", description: "Maak kennis met de ideeën achter Lumina Collective. Lees over ontmoeting, vrijwilligerswerk en onze plannen voor de gemeenschap.", path: "/nieuws" });
 export default async function NieuwsPage() {
   const [page, posts] = await Promise.all([getPageByKey("nieuws"), getPosts()]);
   return <>

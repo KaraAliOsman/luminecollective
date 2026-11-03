@@ -105,7 +105,7 @@ export const pageSchema = defineType({
       type: "string",
       group: "home",
       hidden: ({ document }) => document?.pageKey !== "home",
-      initialValue: "Stichting Lumina · Tilburg",
+      initialValue: "Stichting Lumina",
     }),
     defineField({
       name: "heroPrimary",

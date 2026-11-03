@@ -4,7 +4,7 @@ export const events = [
   {
     date: "Binnenkort",
     title: "Lumina Community Ontmoeting",
-    location: "Tilburg",
+    location: "",
     description:
       "Een laagdrempelige bijeenkomst voor vrouwen die Lumina willen leren kennen, nieuwe verbindingen zoeken of rustig willen aansluiten bij de community.",
     cta: "Interesse tonen",
@@ -14,7 +14,7 @@ export const events = [
   {
     date: "Binnenkort",
     title: "Workshop Groei & Zichtbaarheid",
-    location: "Tilburg",
+    location: "",
     description:
       "Een kleinschalige sessie rond zelfvertrouwen, persoonlijke richting en zichtbaar worden op een manier die bij je past.",
     cta: "Meer weten",
@@ -24,7 +24,7 @@ export const events = [
   {
     date: "Binnenkort",
     title: "Culturele Middag",
-    location: "Tilburg",
+    location: "",
     description:
       "Een warm moment voor ontmoeting, verhalen, creatieve uitwisseling en herkenning binnen de gemeenschap.",
     cta: "Updates ontvangen",

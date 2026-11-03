@@ -77,7 +77,7 @@ export const organization = {
   swot: {
     strengths: [
       "Betrokken, gekwalificeerde professionals met maatschappelijke expertise",
-      "Vooruitstrevende en verbindende visie geworteld in Tilburg",
+      "Vooruitstrevende en verbindende visie",
       "Laagdrempelige activiteiten, koffieochtenden en ontmoetingsruimtes",
       "Inspirerende en vernieuwende initiatieven gericht op zelfredzaamheid",
       "Sterke culturele sensitiviteit en meertalige benaderbaarheid",
@@ -88,7 +88,7 @@ export const organization = {
       "Gevoelig voor bezuinigingen en beleidswijzigingen in het sociale domein",
     ],
     opportunities: [
-      "Verder uitbreiden van een divers en inclusief bereik in Tilburg en de regio",
+      "Verder uitbreiden van een divers en inclusief bereik in de regio",
       "Kennis van betrokken professionals inzetten voor lezingen en seminars",
       "Gerichte deskundigheidsbevordering en trainingen bieden aan vrijwilligsters",
       "Structurele samenwerkingen met gemeenten, scholen en maatschappelijke partners",

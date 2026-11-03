@@ -10,13 +10,13 @@ import { photography } from "@/data/placeholders";
 import { getApprovedTestimonials, getPageByKey, getPublicGallery } from "@/lib/cms/content";
 import { createMetadata } from "@/lib/seo/config";
 
-export const metadata: Metadata = createMetadata({ title: "Gemeenschap", description: "Bij Lumina is ruimte voor jouw verhaal, talent en ideeën. Maak kennis met onze gemeenschap in Tilburg.", path: "/gemeenschap" });
+export const metadata: Metadata = createMetadata({ title: "Gemeenschap", description: "Bij Lumina is ruimte voor jouw verhaal, talent en ideeën. Maak kennis met onze gemeenschap.", path: "/gemeenschap" });
 
 export default async function GemeenschapPage() {
   const [page, gallery, testimonials] = await Promise.all([getPageByKey("gemeenschap"), getPublicGallery(), getApprovedTestimonials()]);
   return <>
     <PageHero eyebrow="Bij elkaar" title={page?.heroTitle || "De gemeenschap van Lumina"} body={page?.heroText || "Je brengt iets mee wat niemand anders heeft: jouw verhaal. Hier is ruimte om het te delen, anderen te leren kennen en samen iets op te bouwen."} image={page?.heroImage} visual={photography.connection} primary={{ label: "Kom kennismaken", href: "/contact?onderwerp=Kennismaken" }} />
-    <section className="section"><Container className="intro-grid"><div><p className="section-index">Dichtbij elkaar</p><Heading size="lg">Verschillende verhalen. Gedeelde mogelijkheden.</Heading></div><div className="intro-grid__body"><p className="lead">Een buurt wordt sterker als mensen elkaar weten te vinden. Lumina wil in Tilburg een plek zijn waar vrouwen, nieuwkomers, jongeren en gezinnen elkaar ontmoeten. Waar je je vraag kunt stellen, maar ook iets kunt betekenen voor een ander.</p><TextLink href="/programmas">Ontdek onze programma&apos;s</TextLink></div></Container></section>
+    <section className="section"><Container className="intro-grid"><div><p className="section-index">Dichtbij elkaar</p><Heading size="lg">Verschillende verhalen. Gedeelde mogelijkheden.</Heading></div><div className="intro-grid__body"><p className="lead">Een buurt wordt sterker als mensen elkaar weten te vinden. Lumina wil een plek zijn waar vrouwen, nieuwkomers, jongeren en gezinnen elkaar ontmoeten. Waar je je vraag kunt stellen, maar ook iets kunt betekenen voor een ander.</p><TextLink href="/programmas">Ontdek onze programma&apos;s</TextLink></div></Container></section>
     <section className="section section--lilac"><Container><div className="section-heading"><div><p className="section-index">Zo willen we samen zijn</p><Heading size="lg">Aandacht maakt het verschil.</Heading></div></div><div className="values-grid">
       <article><MessagesSquare size={26} aria-hidden="true" /><h3>We luisteren naar elkaar</h3><p>Je hoeft niet hetzelfde te denken of dezelfde achtergrond te hebben om iets van elkaar te kunnen leren.</p></article>
       <article><HeartHandshake size={26} aria-hidden="true" /><h3>We respecteren jouw grenzen</h3><p>Jij bepaalt wat je deelt. We gaan zorgvuldig om met persoonlijke verhalen en met foto&apos;s.</p></article>

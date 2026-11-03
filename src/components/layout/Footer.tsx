@@ -16,7 +16,7 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
             <Image src={settings?.logoMarkUrl || brand.logoMark} width={60} height={60} alt="" />
             <span className="wordmark__text"><strong>Lumina</strong><small>Collective</small></span>
           </Link>
-          <p className="site-footer__intro">Een stichting voor verbinding, ontwikkeling en gelijke kansen. Vanuit Tilburg, met aandacht voor elkaar.</p>
+          <p className="site-footer__intro">Een stichting voor verbinding, ontwikkeling en gelijke kansen. Met aandacht voor elkaar.</p>
         </div>
         <div>
           <p className="site-footer__label">Ontdek Lumina</p>
@@ -29,7 +29,6 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
         <div className="site-footer__contact-column">
           <p className="site-footer__label">We horen graag van je</p>
           <div className="site-footer__contact"><a href={`mailto:${brand.email}`}>{brand.email}</a><a href={brand.phoneHref}>{brand.phone}</a>
-            <address>{brand.address.street}<br />{brand.address.postalCode} {brand.address.city}</address>
             <Link href="/contact">Contact <ArrowUpRight size={14} className="inline" aria-hidden="true" /></Link>
           </div>
           {socials.length > 0 && <nav aria-label="Sociale media" className="mt-5">{socials.map(item => <a href={item.href} key={item.href} target="_blank" rel="noopener noreferrer">{item.label} <ArrowUpRight size={13} className="inline" aria-hidden="true" /></a>)}</nav>}

@@ -14,13 +14,6 @@ export function organizationJsonLd() {
     email: brand.email,
     telephone: brand.phone,
     foundingDate: String(brand.founded),
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: brand.address.street,
-      postalCode: brand.address.postalCode,
-      addressLocality: brand.address.city,
-      addressCountry: "NL",
-    },
     sameAs: socialLinks.map((s) => s.href),
   };
 }

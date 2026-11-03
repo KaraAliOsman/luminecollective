@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, FileText, MapPin, Plus } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileText, Plus } from "lucide-react";
 import { ProgramCard } from "@/components/cards/ProgramCard";
 import { HomeSections } from "@/components/home/HomeSections";
 import { StructuredData } from "@/components/seo/StructuredData";
@@ -16,10 +16,10 @@ import { getApprovedTestimonials, getPageByKey, getPrograms, getPublicGallery, g
 import { createMetadata } from "@/lib/seo/config";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/jsonLd";
 
-export const metadata: Metadata = createMetadata({ title: "Ontmoeting & ontwikkeling in Tilburg", path: "/" });
+export const metadata: Metadata = createMetadata({ title: "Ontmoeting & ontwikkeling", path: "/" });
 
 const questions = [
-  { question: "Voor wie is Lumina er?", answer: "Lumina zet zich in voor vrouwen van alle leeftijden, nieuwkomers, jongeren en gezinnen. Bij ieder programma lees je voor wie het bedoeld is. We werken vanuit Tilburg en staan open voor verschillende achtergronden en ervaringen." },
+  { question: "Voor wie is Lumina er?", answer: "Lumina zet zich in voor vrouwen van alle leeftijden, nieuwkomers, jongeren en gezinnen. Bij ieder programma lees je voor wie het bedoeld is. We staan open voor verschillende achtergronden en ervaringen." },
   { question: "Kan ik meedoen als ik nog niemand ken?", answer: "Zeker. Je kunt alleen contact opnemen of iemand meenemen bij een eerste kennismaking. Vertel ons wat je zoekt; we denken met je mee over een activiteit of volgende stap die bij je past." },
   { question: "Kost deelname geld?", answer: "Dat verschilt per activiteit. Bij activiteiten waarvoor een eigen bijdrage geldt, houden we rekening met de financiële mogelijkheden van de doelgroep. Je hoort vooraf wat de eventuele kosten zijn." },
   { question: "Hoe kan ik vrijwilliger worden?", answer: "Via de pagina Doe mee kun je je interesse doorgeven. Of je nu graag organiseert, mensen begeleidt of een praktische vaardigheid wilt delen: we maken graag kennis en bekijken samen wat past." },
@@ -35,7 +35,7 @@ export default async function Home() {
     <section className={`home-hero${page?.heroImage?.asset ? "" : " home-hero--group"}`} aria-label="Welkom bij Lumina">
       <CMSImage className="home-hero__photo" fallback={photography.welcome} image={page?.heroImage} priority sizes="100vw" />
       <Container className="home-hero__inner">
-        <p className="home-hero__location"><MapPin size={15} aria-hidden="true" />Stichting Lumina Collective · Tilburg</p>
+        <p className="home-hero__location">Stichting Lumina Collective</p>
         <h1>Lumina Collective</h1>
         <div className="home-hero__bottom">
           <p>Ontmoeting, ontwikkeling en gelijke kansen.<br />Voor vrouwen. Met iedereen.</p>
@@ -49,7 +49,7 @@ export default async function Home() {
       <section className="section">
         <Container className="intro-grid">
           <div><p className="section-index">Dit is Lumina</p><Heading size="xl">Mensen maken<br />Lumina.</Heading></div>
-          <div className="intro-grid__body"><p className="lead">Een vrouw die haar talent ontdekt. Een nieuwkomer die aansluiting vindt. Iemand die tijd maakt voor een ander.</p><p>Vanuit Tilburg zet Lumina zich in voor vrouwen, nieuwkomers, jongeren en gezinnen. We brengen mensen samen om te leren, ervaringen te delen en mee te doen. Met aandacht voor ieders achtergrond, mogelijkheden en ambities.</p><TextLink href="/over-ons">Ons verhaal en onze missie</TextLink><div className="audience-list"><span>Ontmoeting</span><span>Ontwikkeling</span><span>Welzijn</span><span>Cultuur</span></div></div>
+          <div className="intro-grid__body"><p className="lead">Een vrouw die haar talent ontdekt. Een nieuwkomer die aansluiting vindt. Iemand die tijd maakt voor een ander.</p><p>Lumina zet zich in voor vrouwen, nieuwkomers, jongeren en gezinnen. We brengen mensen samen om te leren, ervaringen te delen en mee te doen. Met aandacht voor ieders achtergrond, mogelijkheden en ambities.</p><TextLink href="/over-ons">Ons verhaal en onze missie</TextLink><div className="audience-list"><span>Ontmoeting</span><span>Ontwikkeling</span><span>Welzijn</span><span>Cultuur</span></div></div>
         </Container>
       </section>
 
@@ -86,7 +86,7 @@ export default async function Home() {
         <ol className="steps">
           <li><span className="steps__number">01</span><h3>Laat van je horen</h3><p>Stuur een bericht of bel ons voor een kennismaking. Een vraag, een idee of gewoon meer weten: je bent welkom.</p></li>
           <li><span className="steps__number">02</span><h3>We leren je kennen</h3><p>In een laagdrempelig gesprek ontdekken we wat je zoekt en welke activiteit, workshop of vrijwilligersrol het beste bij jou past.</p></li>
-          <li><span className="steps__number">03</span><h3>Sluit aan en groei mee</h3><p>Ontmoet nieuwe mensen uit Tilburg, ontwikkel je talenten en draag bij aan de gemeenschap. Op jouw eigen tempo.</p></li>
+          <li><span className="steps__number">03</span><h3>Sluit aan en groei mee</h3><p>Ontmoet nieuwe mensen, ontwikkel je talenten en draag bij aan de gemeenschap. Op jouw eigen tempo.</p></li>
         </ol>
       </Container></section>
 

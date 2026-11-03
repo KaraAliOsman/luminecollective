@@ -31,8 +31,6 @@ export function createMetadata({
     keywords: [
       "Stichting Lumina Collective",
       "Lumina Collective",
-      "vrouwen Tilburg",
-      "community Tilburg",
       "sociaal maatschappelijk welzijnswerk",
       "vrouwen ontmoeten",
     ],

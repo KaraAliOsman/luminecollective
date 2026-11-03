@@ -11,7 +11,7 @@ export default function PrivacyPage() {
     <header className="page-heading"><Container><p className="section-index">Zorgvuldig met jouw gegevens</p><Heading as="h1" size="xl">Privacy</Heading><p className="lead">Je verhaal is van jou. Hier lees je welke gegevens we via deze website verwerken en waarvoor.</p><p className="article-meta">Bijgewerkt op <time dateTime="2026-09-02">2 september 2026</time></p></Container></header>
     <section className="section"><Container><div className="legal-content editorial-text">
       <h2>Wie is verantwoordelijk?</h2>
-      <p>{brand.name}, KVK {brand.kvk}, is verantwoordelijk voor de verwerking via deze website. Ons adres is {brand.address.street}, {brand.address.postalCode} {brand.address.city}. Voor vragen over privacy kun je schrijven naar <a href={`mailto:${brand.email}?subject=Privacy`}>{brand.email}</a>.</p>
+      <p>{brand.name}, KVK {brand.kvk}, is verantwoordelijk voor de verwerking via deze website. Voor vragen over privacy kun je schrijven naar <a href={`mailto:${brand.email}?subject=Privacy`}>{brand.email}</a>.</p>
       <h2>Contact en vrijwilligerswerk</h2>
       <p>Als je contact opneemt, ontvangen we je naam, e-mailadres, onderwerp en bericht. Bij interesse in vrijwilligerswerk vragen we ook naar je interessegebied en, als je dat wilt delen, je telefoonnummer. We gebruiken deze gegevens om je vraag of verzoek te behandelen en afspraken met je te maken.</p>
       <p>De formulieren vragen je toestemming voor dit gebruik. Je kunt die toestemming intrekken door ons te mailen. Dat verandert niets aan de verwerking die vóór je intrekking al rechtmatig heeft plaatsgevonden. Je bent niet verplicht het formulier te gebruiken: bellen of rechtstreeks mailen kan ook.</p>

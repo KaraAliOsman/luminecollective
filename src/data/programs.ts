@@ -5,7 +5,7 @@ export const programs = [
     slug: "ontmoeting-verbinding",
     title: "Ontmoeting & verbinding",
     category: "Elkaar leren kennen",
-    description: "Een koffieochtend, een gesprek of een activiteit met je gezin. Ontmoet mensen uit Tilburg en ontdek wat je met elkaar deelt.",
+    description: "Een koffieochtend, een gesprek of een activiteit met je gezin. Ontmoet mensen en ontdek wat je met elkaar deelt.",
     cta: "Ontdek ontmoeting",
     visual: photography.meeting,
     targetAudience: "Vrouwen van alle leeftijden, nieuwkomers en gezinnen die andere mensen willen ontmoeten.",

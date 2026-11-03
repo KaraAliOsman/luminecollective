@@ -10,7 +10,7 @@ import { createMetadata } from "@/lib/seo/config";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
-const description = "Ontmoeting, educatie, welzijn en cultuur in Tilburg. Ontdek de programma's van Lumina voor vrouwen, nieuwkomers, jongeren en gezinnen.";
+const description = "Ontmoeting, educatie, welzijn en cultuur. Ontdek de programma's van Lumina voor vrouwen, nieuwkomers, jongeren en gezinnen.";
 export const metadata: Metadata = createMetadata({ title: "Programma's", description, path: "/programmas" });
 
 export default async function ProgrammasPage() {

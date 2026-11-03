@@ -11,17 +11,17 @@ import { createMetadata } from "@/lib/seo/config";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { webPageJsonLd } from "@/lib/seo/jsonLd";
 
-const description = "Maak kennis met Stichting Lumina Collective, ons bestuur en onze missie voor verbinding, welzijn en gelijke kansen vanuit Tilburg.";
+const description = "Maak kennis met Stichting Lumina Collective, ons bestuur en onze missie voor verbinding, welzijn en gelijke kansen.";
 export const metadata: Metadata = createMetadata({ title: "Over Lumina", description, path: "/over-ons" });
 
 export default async function OverOnsPage() {
   const page = await getPageByKey("over-ons");
   return <>
     <StructuredData data={webPageJsonLd({ path: "/over-ons", title: "Over Lumina", description })} />
-    <PageHero eyebrow="Onafhankelijk, betrokken, in Tilburg" title="Over Lumina Collective" body="Een stichting voor het welzijn, de zelfredzaamheid en de participatie van vrouwen en de mensen om hen heen." visual={photography.conversation} image={page?.heroImage} primary={{ label: "Onze programma's", href: "/programmas" }} secondary={{ label: "Maak kennis", href: "/contact" }} />
+    <PageHero eyebrow="Onafhankelijk, betrokken" title="Over Lumina Collective" body="Een stichting voor het welzijn, de zelfredzaamheid en de participatie van vrouwen en de mensen om hen heen." visual={photography.conversation} image={page?.heroImage} primary={{ label: "Onze programma's", href: "/programmas" }} secondary={{ label: "Maak kennis", href: "/contact" }} />
     <section className="section"><Container className="intro-grid">
       <div><p className="section-index">Ons verhaal</p><Heading>Een stichting<br />die we samen maken.</Heading></div>
-      <div className="editorial-text"><p className="lead">Stichting Lumina Collective is in 2026 opgericht in Tilburg. Een onafhankelijke stichting zonder winstoogmerk, gedragen door vrijwillige inzet.</p><p>We zetten ons in voor vrouwen, nieuwkomers, jongeren en gezinnen. Niet iedereen begint met dezelfde kansen, hetzelfde netwerk of dezelfde mogelijkheden om mee te doen. Met ontmoeting, educatie en samenwerking willen we daarin iets betekenen.</p><p>Onze bijzondere aandacht gaat uit naar het welzijn, de zelfredzaamheid en de maatschappelijke participatie van vrouwen van alle leeftijden. Vanuit die basis verbinden we ook de mensen en gemeenschappen om hen heen.</p></div>
+      <div className="editorial-text"><p className="lead">Stichting Lumina Collective is in 2026 opgericht. Een onafhankelijke stichting zonder winstoogmerk, gedragen door vrijwillige inzet.</p><p>We zetten ons in voor vrouwen, nieuwkomers, jongeren en gezinnen. Niet iedereen begint met dezelfde kansen, hetzelfde netwerk of dezelfde mogelijkheden om mee te doen. Met ontmoeting, educatie en samenwerking willen we daarin iets betekenen.</p><p>Onze bijzondere aandacht gaat uit naar het welzijn, de zelfredzaamheid en de maatschappelijke participatie van vrouwen van alle leeftijden. Vanuit die basis verbinden we ook de mensen en gemeenschappen om hen heen.</p></div>
     </Container></section>
     <section className="section section--sage"><Container className="two-column">
       <div><p className="section-index">Onze missie</p><Heading className="mt-4 mb-6">Meer kansen om<br />mee te doen.</Heading><p className="lead">{organization.mission}</p></div>

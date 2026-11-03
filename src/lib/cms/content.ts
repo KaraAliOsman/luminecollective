@@ -145,9 +145,9 @@ const fallbackPosts: PostDisplay[] = [
     author: "Stichting Lumina Collective",
     title: "Waarom Lumina Collective bestaat",
     excerpt:
-      "Vanuit Tilburg werken we aan verbinding, ontwikkeling en gelijke kansen. Dit is de overtuiging achter onze stichting.",
+      "We werken aan verbinding, ontwikkeling en gelijke kansen. Dit is de overtuiging achter onze stichting.",
     bodyText:
-      "Je prettig voelen in je omgeving begint vaak bij iemand die naar je luistert. Bij een plek waar je een vraag kunt stellen, een talent kunt ontdekken of gewoon jezelf kunt zijn. Vanuit die gedachte is Stichting Lumina Collective in 2026 opgericht in Tilburg.\n\nWe zetten ons in voor het welzijn, de zelfredzaamheid en de maatschappelijke deelname van vrouwen, nieuwkomers, jongeren en gezinnen. Gelijke kansen voor vrouwen staan centraal, met aandacht voor de mensen om hen heen.\n\nOns beleidsplan 2026-2030 beschrijft vier richtingen: ontmoeting en verbinding; educatie en ontwikkeling; welzijn en participatie; en jongeren, cultuur en samenwerking. We bouwen de activiteiten stap voor stap op, samen met vrijwilligers en mensen uit de buurt.\n\nLumina is een onafhankelijke stichting zonder winstoogmerk. Het bestuur werkt onbezoldigd. Onze plannen, de samenstelling van het bestuur en de uitgangspunten voor ons geldbeheer zijn openbaar op de pagina ANBI & transparantie.\n\nWil je kennismaken of heb je een idee dat hierbij past? Een bericht of telefoontje is een goed begin. We horen graag wat jij zoekt of wilt bijdragen.",
+      "Je prettig voelen in je omgeving begint vaak bij iemand die naar je luistert. Bij een plek waar je een vraag kunt stellen, een talent kunt ontdekken of gewoon jezelf kunt zijn. Vanuit die gedachte is Stichting Lumina Collective in 2026 opgericht.\n\nWe zetten ons in voor het welzijn, de zelfredzaamheid en de maatschappelijke deelname van vrouwen, nieuwkomers, jongeren en gezinnen. Gelijke kansen voor vrouwen staan centraal, met aandacht voor de mensen om hen heen.\n\nOns beleidsplan 2026-2030 beschrijft vier richtingen: ontmoeting en verbinding; educatie en ontwikkeling; welzijn en participatie; en jongeren, cultuur en samenwerking. We bouwen de activiteiten stap voor stap op, samen met vrijwilligers en mensen uit de buurt.\n\nLumina is een onafhankelijke stichting zonder winstoogmerk. Het bestuur werkt onbezoldigd. Onze plannen, de samenstelling van het bestuur en de uitgangspunten voor ons geldbeheer zijn openbaar op de pagina ANBI & transparantie.\n\nWil je kennismaken of heb je een idee dat hierbij past? Een bericht of telefoontje is een goed begin. We horen graag wat jij zoekt of wilt bijdragen.",
     visual: visuals.communityTable,
     isPreview: false,
     isFallback: true,
@@ -241,7 +241,7 @@ function fallbackSettings(): SiteSettings {
     brandSecondaryText: "Collective",
     navigation: [...mainNavigation],
     headerCta: { label: "Doe mee", href: "/doe-mee" },
-    address: { ...brand.address },
+    address: { street: "", postalCode: "", city: "", country: "Nederland" },
     isFallback: true,
   };
 }
@@ -400,12 +400,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     headerCta: data.headerCta?.label && data.headerCta?.href
       ? data.headerCta
       : { label: "Doe mee", href: "/doe-mee" },
-    address: {
-      street: data.address?.street || brand.address.street,
-      postalCode: data.address?.postalCode || brand.address.postalCode,
-      city: data.address?.city || brand.address.city,
-      country: data.address?.country || brand.address.country,
-    },
+    address: fallbackSettings().address,
     isFallback: false,
   };
 }
