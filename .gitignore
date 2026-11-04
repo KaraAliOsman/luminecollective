@@ -19,3 +19,6 @@ next-env.d.ts
 dev-*.log
 cloudflare-env.d.ts
 *.zip
+.impeccable/review/
+.impeccable/mocks/
+.claude/launch.json

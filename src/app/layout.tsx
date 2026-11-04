@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Barlow_Condensed, Source_Sans_3 } from "next/font/google";
+import { Atkinson_Hyperlegible_Next, Bricolage_Grotesque } from "next/font/google";
 
 import { AnalyticsScripts, CookieBanner } from "@/components/global/Analytics";
+import { PosterMotion } from "@/components/global/PosterMotion";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { getSiteSettings } from "@/lib/cms/content";
@@ -13,22 +14,22 @@ import "./globals.css";
 export const dynamic = "force-dynamic";
 
 export const viewport: Viewport = {
-  themeColor: "#203d35",
+  themeColor: "#ffffff",
   viewportFit: "cover",
 };
 
-const sans = Source_Sans_3({
+const sans = Atkinson_Hyperlegible_Next({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-source-sans",
+  variable: "--font-body",
+  adjustFontFallback: false,
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
-const display = Barlow_Condensed({
-  subsets: ["latin"],
-  variable: "--font-barlow-condensed",
+const display = Bricolage_Grotesque({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-display",
   display: "swap",
-  weight: ["500", "600", "700"],
+  axes: ["opsz", "wdth"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -61,6 +62,7 @@ export default async function RootLayout({
         <Footer settings={settings} />
         <CookieBanner />
         <AnalyticsScripts />
+        <PosterMotion />
       </body>
     </html>
   );

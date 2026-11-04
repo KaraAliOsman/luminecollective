@@ -10,10 +10,11 @@ export function Footer({ settings }: { settings?: SiteSettings }) {
   const socials = settings?.socialLinks?.length ? settings.socialLinks : socialLinks;
   return <footer className="site-footer">
     <div className="site-container">
+      <p className="site-footer__claim">{brand.claim}</p>
       <div className="site-footer__grid">
         <div className="site-footer__brand">
           <Link href="/" className="wordmark" aria-label={`${brand.name} - home`}>
-            <Image src={settings?.logoMarkUrl || brand.logoMark} width={60} height={60} alt="" />
+            <Image src={settings?.logoMarkUrl || brand.logoMark} width={80} height={80} alt="" />
             <span className="wordmark__text"><strong>Lumina</strong><small>Collective</small></span>
           </Link>
           <p className="site-footer__intro">Een stichting voor verbinding, ontwikkeling en gelijke kansen. Met aandacht voor elkaar.</p>

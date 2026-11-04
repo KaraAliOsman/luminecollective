@@ -87,7 +87,60 @@ export const homeCtaSchema = defineType({
   preview: { select: { subtitle: "title" }, prepare: ({ subtitle }) => ({ title: "Afsluitende oproep", subtitle }) },
 });
 
+const hidden = (name: string) => defineField({ name, title: name, type: "string", hidden: true });
+const items = defineField({
+  name: "items",
+  title: "Satırlar",
+  type: "array",
+  of: [defineField({ name: "row", title: "Satır", type: "object", fields: [short("title", "Başlık"), defineField({ name: "text", title: "Metin", type: "text", rows: 3 })] })],
+});
+
+export const homeTextSchema = defineType({
+  name: "homeText",
+  title: "Metin afişi",
+  type: "object",
+  fields: [short("eyebrow", "Köşe yazısı"), short("title", "Başlık"), short("accent", "Vurgulu başlık satırı"), defineField({ name: "text", title: "Metin", type: "text", rows: 5 }), link("link", "Bağlantı"), hidden("tone"), hidden("spacing")],
+  preview: { select: { title: "title", subtitle: "accent" } },
+});
+
+export const homeStorySchema = defineType({
+  name: "homeStory",
+  title: "Fotoğraflı afiş",
+  type: "object",
+  fields: [short("eyebrow", "Köşe yazısı"), short("title", "Başlık"), short("accent", "Vurgulu başlık satırı"), defineField({ name: "text", title: "Metin", type: "text", rows: 5 }), defineField({ name: "image", title: "Fotoğraf", type: "image", options: { hotspot: true }, fields: [short("alt", "Fotoğraf açıklaması"), short("credit", "Fotoğraf kaynağı"), defineField({ name: "isPlaceholder", title: "Geçici fotoğraf", type: "boolean" })] }), link("link", "Bağlantı"), hidden("tone")],
+  preview: { select: { title: "title", subtitle: "accent", media: "image" } },
+});
+
+export const homeQuoteSchema = defineType({
+  name: "homeQuote",
+  title: "Alıntı afişi (çiçek animasyonu)",
+  type: "object",
+  fields: [short("eyebrow", "Köşe yazısı"), defineField({ name: "text", title: "Alıntı", type: "text", rows: 3 }), short("accent", "Alıntının vurgulu sonu"), short("attribution", "Kaynak"), link("link", "Bağlantı"), hidden("tone")],
+  preview: { select: { subtitle: "text" }, prepare: ({ subtitle }) => ({ title: "Alıntı afişi", subtitle }) },
+});
+
+export const homeStepsSchema = defineType({
+  name: "homeSteps",
+  title: "Adımlar",
+  type: "object",
+  fields: [short("eyebrow", "Köşe yazısı"), short("title", "Başlık"), short("accent", "Vurgulu başlık satırı"), items],
+  preview: { select: { title: "title", subtitle: "accent" } },
+});
+
+export const homeFaqSchema = defineType({
+  name: "homeFaq",
+  title: "Sık sorulan sorular",
+  type: "object",
+  fields: [short("eyebrow", "Köşe yazısı"), short("title", "Başlık"), short("accent", "Vurgulu başlık satırı"), items, link("link", "Bağlantı")],
+  preview: { select: { title: "title", subtitle: "accent" } },
+});
+
 export const homeSectionSchemas = [
+  homeTextSchema,
+  homeStorySchema,
+  homeQuoteSchema,
+  homeStepsSchema,
+  homeFaqSchema,
   homeManifestoSchema,
   homeProgramsSchema,
   homeEventSchema,

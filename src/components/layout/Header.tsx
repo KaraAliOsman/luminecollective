@@ -14,7 +14,7 @@ export function Header({ settings }: { settings?: SiteSettings }) {
   return <header className="site-header">
     <div className="site-header__inner">
       <Link href="/" aria-label={`${brand.name} - home`} className="wordmark">
-        <Image src={settings?.logoMarkUrl || brand.logoMark} width={54} height={54} alt="" priority />
+        <Image src={settings?.logoMarkUrl || brand.logoMark} width={80} height={80} alt="" priority />
         <span className="wordmark__text"><strong>Lumina</strong><small>Collective</small></span>
       </Link>
       <nav aria-label="Hoofdnavigatie" className="site-header__nav">

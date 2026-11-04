@@ -1,6 +1,6 @@
 # Stichting Lumina Collective
 
-Stichting Lumina Collective is een Tilburgse stichting voor sociaal-maatschappelijk welzijnswerk. De website communiceert ontmoeting, ondersteuning, cultuur, ontwikkeling en maatschappelijke participatie voor vrouwen op een warme, professionele en toegankelijke manier.
+Stichting Lumina Collective is een stichting voor sociaal-maatschappelijk welzijnswerk. De website communiceert ontmoeting, ondersteuning, cultuur, ontwikkeling en maatschappelijke participatie voor vrouwen op een warme, professionele en toegankelijke manier.
 
 ## Belangrijke pagina's
 - `/` - Home met missie, programma's, agenda, gemeenschap en oproep om mee te doen.
@@ -16,7 +16,6 @@ Stichting Lumina Collective is een Tilburgse stichting voor sociaal-maatschappel
 ## Publieke gegevens
 - KVK: 42082909.
 - Vestigingsnummer: 420829090000.
-- Adres: Nimrodstraat 30, 5042 WX Tilburg, Nederland.
 - Activiteit: sociaal-maatschappelijk welzijnswerk.
 
 ## Contentregels
@@ -26,6 +25,6 @@ Stichting Lumina Collective is een Tilburgse stichting voor sociaal-maatschappel
 
 ## Sociale kanalen
 - Facebook: https://www.facebook.com/stichtinglumina
-- Instagram: https://www.instagram.com/stichtinglumina
+- Instagram: https://www.instagram.com/stichtingluminacollective
 - TikTok: https://www.tiktok.com/@stichtinglumina
 - X: https://x.com/stichtinglumina

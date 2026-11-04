@@ -8,4 +8,4 @@ export const errorStyle = "text-sm font-semibold text-wine-plum";
 export const statusStyle =
   "border border-deep-aubergine/15 bg-lumina-ivory px-4 py-3 text-sm font-semibold text-deep-aubergine";
 export const submitStyle =
-  "inline-flex min-h-11 w-full items-center justify-center border border-deep-aubergine bg-deep-aubergine px-5 py-3 text-sm font-semibold text-warm-white transition duration-200 hover:border-wine-plum hover:bg-wine-plum disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto";
+  "inline-flex min-h-13 w-full items-center justify-center rounded-[4px_18px_4px_18px] bg-[#ffb20f] px-6 py-3 text-base font-bold text-deep-aubergine transition duration-200 hover:bg-[#ffc340] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto";
