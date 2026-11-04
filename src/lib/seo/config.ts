@@ -36,10 +36,10 @@ export function createMetadata({
     ],
     icons: {
       icon: [
-        { url: "/favicon.ico" },
-        { url: "/brand/logo-mark.png", type: "image/png" },
+        { url: "/brand/favicon-lumina.ico", sizes: "any" },
+        { url: "/icon.png", type: "image/png", sizes: "512x512" },
       ],
-      apple: [{ url: "/brand/logo-mark.png", type: "image/png" }],
+      apple: [{ url: "/icon.png", type: "image/png", sizes: "512x512" }],
     },
     alternates: {
       canonical: url,
