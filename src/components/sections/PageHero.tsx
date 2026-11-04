@@ -13,12 +13,11 @@ type PageHeroProps = {
   tone?: "roos" | "wijn" | "blad" | "perzik" | "mint";
 };
 
-export function PageHero({ eyebrow, title, body, visual, image, primary, secondary, tone = "roos" }: PageHeroProps) {
+export function PageHero({ title, body, visual, image, primary, secondary, tone = "roos" }: PageHeroProps) {
   return <section className={`subpage-hero tone-${tone}`}>
     <CMSImage className="subpage-hero__visual" fallback={visual} image={image} priority sizes="100vw" />
     <Container>
       <div className="subpage-hero__copy">
-        <p className="poster__corner">{eyebrow}</p>
         <div>
         <h1>{title}</h1>
         <p className="subpage-hero__intro">{body}</p>

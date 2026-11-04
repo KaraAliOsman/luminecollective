@@ -32,7 +32,7 @@ export default async function ProgrammaDetailPage({ params }: Props) {
   return <>
     <StructuredData data={breadcrumbJsonLd(crumbs)} />
     <Breadcrumbs items={crumbs} />
-    <PageHero tone="blad" eyebrow={program.category || "Programma"} title={program.title} body={program.description} visual={program.visual} image={program.image} primary={{ label: "Ik ben geïnteresseerd", href: ctaHref }} secondary={{ label: "Alle programma's", href: "/programmas" }} />
+    <PageHero tone="roos" eyebrow={program.category || "Programma"} title={program.title} body={program.description} visual={program.visual} image={program.image} primary={{ label: "Ik ben geïnteresseerd", href: ctaHref }} secondary={{ label: "Alle programma's", href: "/programmas" }} />
     <section className="section"><Container className="two-column">
       <div><p className="section-index">Over dit programma</p><Heading className="mt-4" size="lg">Ruimte voor jouw volgende stap.</Heading>
         {program.targetAudience && <div className="program-audience"><h2>Voor wie?</h2><p>{program.targetAudience}</p></div>}

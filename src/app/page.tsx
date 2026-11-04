@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { HomeSections } from "@/components/home/HomeSections";
-import { SeriesRail } from "@/components/home/SeriesRail";
-import { TearStrips } from "@/components/home/TearStrips";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { Button } from "@/components/ui/Button";
 import { CMSImage } from "@/components/ui/CMSImage";
@@ -28,23 +27,24 @@ export default async function Home() {
   return <>
     <StructuredData data={organizationJsonLd()} />
     <StructuredData data={websiteJsonLd()} />
-    <SeriesRail />
-    <div className="poster-series">
-      <section className="poster hero tone-roos" aria-label="Welkom bij Lumina">
-        <div className="hero__sheet">
-          <h1 className="hero__title"><span className="hero__name">Lumina</span> <span className="hero__sub">Collective</span></h1>
-          <CMSImage className="hero__petal petal" fallback={photography.welcome} image={page?.heroImage} imageClassName="hero__image" priority sizes="(max-width: 960px) 96vw, 50vw" />
-          <div className="hero__copy">
-            <p>Ontmoeting, ontwikkeling en gelijke kansen.<br />Voor vrouwen. Met iedereen.</p>
-            <div className="actions">
-              <Button href="/doe-mee">Doe mee<ArrowRight size={18} aria-hidden="true" /></Button>
-              <Button href="/programmas" variant="outlineOnDark">Onze programma&apos;s</Button>
-            </div>
-          </div>
+    <section className="poster hero tone-roos" aria-label="Welkom bij Lumina">
+      <h1 className="hero__title"><span className="hero__name">Lumina</span> <span className="hero__sub">Collective</span></h1>
+      <div className="hero__bloom">
+        <CMSImage className="hero__petal" fallback={photography.welcome} image={page?.heroImage} priority sizes="(max-width: 960px) 96vw, 56vw" />
+        <figure className="hero__bud hero__bud--a"><Image alt="" height={300} src="/images/lumina-cupcake-actie.webp" width={300} /></figure>
+        <figure className="hero__bud hero__bud--b"><Image alt="" height={220} src="/images/samen-in-de-buurt.webp" width={220} /></figure>
+      </div>
+      <div className="hero__copy">
+        <p>Ontmoeting, ontwikkeling en gelijke kansen.<br />Voor vrouwen. Met iedereen.</p>
+        <div className="actions">
+          <Button href="/doe-mee">Doe mee</Button>
+          <Button href="/programmas" variant="outlineOnDark">Onze programma&apos;s</Button>
         </div>
-        <TearStrips label="Wat brengt jou hier?" strips={firstSteps} />
-      </section>
-      <HomeSections sections={sections} programs={programs} event={events[0]} gallery={gallery} testimonials={testimonials} partners={partners} />
-    </div>
+      </div>
+      <nav className="hero__paths" aria-label="Wat brengt jou hier?">
+        {firstSteps.map(step => <Link href={step.href} key={step.href}>{step.label}</Link>)}
+      </nav>
+    </section>
+    <HomeSections sections={sections} programs={programs} event={events[0]} gallery={gallery} testimonials={testimonials} partners={partners} />
   </>;
 }

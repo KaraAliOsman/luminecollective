@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { CMSImage } from "@/components/ui/CMSImage";
 import type { ProgramDisplay } from "@/types/cms";
 
@@ -12,7 +11,7 @@ export function ProgramCard({ program }: { program: ProgramDisplay; index?: numb
     <div className="program-card__body">
       <h3><Link href={href}>{program.title}</Link></h3>
       <p>{program.description}</p>
-      <div className="program-card__meta"><span>{program.category || "Programma"}</span><ArrowUpRight size={20} aria-hidden="true" /></div>
+      <div className="program-card__meta"><span>{program.category || "Programma"}</span></div>
     </div>
   </article>;
 }

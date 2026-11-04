@@ -17,7 +17,7 @@ export default function ContactPage() {
     <StructuredData data={webPageJsonLd({ path: "/contact", title: "Contact", description })} />
     <header className="page-heading"><Container><p className="section-index">We horen graag van je</p><Heading as="h1" size="xl">Contact met Lumina</Heading><p className="lead">Een vraag, een idee of een eerste kennismaking? Stuur ons een bericht of bel ons.</p></Container></header>
     <section className="section"><Container className="contact-layout">
-      <div><Heading size="md">Contact met Lumina</Heading><div className="contact-methods">
+      <div><div className="contact-methods">
         <div className="contact-method"><Mail size={21} aria-hidden="true" /><div><h3>E-mail</h3><a href={`mailto:${brand.email}`}>{brand.email}</a></div></div>
         <div className="contact-method"><Phone size={21} aria-hidden="true" /><div><h3>Telefoon</h3><a href={brand.phoneHref}>{brand.phone}</a></div></div>
       </div><div className="notice"><strong>Een bericht met persoonlijke informatie?</strong><p>Deel in het formulier alleen wat nodig is om je vraag te begrijpen. Uitgebreide persoonlijke of medische details bespreken we liever rechtstreeks.</p></div><Link href="/anbi" className="text-link mt-5">Organisatiegegevens & ANBI<ArrowUpRight size={16} aria-hidden="true" /></Link></div>

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Atkinson_Hyperlegible_Next, Bricolage_Grotesque } from "next/font/google";
+import { Elsie, Hanken_Grotesk } from "next/font/google";
 
 import { AnalyticsScripts, CookieBanner } from "@/components/global/Analytics";
 import { PosterMotion } from "@/components/global/PosterMotion";
@@ -18,18 +18,17 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const sans = Atkinson_Hyperlegible_Next({
+const sans = Hanken_Grotesk({
   subsets: ["latin", "latin-ext"],
   variable: "--font-body",
-  adjustFontFallback: false,
   display: "swap",
 });
 
-const display = Bricolage_Grotesque({
+const display = Elsie({
   subsets: ["latin", "latin-ext"],
   variable: "--font-display",
   display: "swap",
-  axes: ["opsz", "wdth"],
+  weight: ["400", "900"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
