@@ -17,7 +17,7 @@ export default async function ProgrammasPage() {
   const [page, programs] = await Promise.all([getPageByKey("programmas"), getPrograms()]);
   return <>
     <StructuredData data={webPageJsonLd({ path: "/programmas", title: "Programma's", description })} />
-    <PageHero eyebrow="Ontmoeting, ontwikkeling, welzijn en cultuur" title="Onze programma's" body="Ontdek wat bij jou past. Een nieuw contact, meer zelfvertrouwen of de kans om jouw talent met anderen te delen." visual={photography.youth} image={page?.heroImage} primary={{ label: "Bekijk de programma's", href: "#aanbod" }} secondary={{ label: "Bekijk de agenda", href: "/agenda" }} />
+    <PageHero tone="wijn" eyebrow="Ontmoeting, ontwikkeling, welzijn en cultuur" title="Onze programma’s" body="Ontdek wat bij jou past. Een nieuw contact, meer zelfvertrouwen of de kans om jouw talent met anderen te delen." visual={photography.youth} image={page?.heroImage} primary={{ label: "Bekijk de programma's", href: "#aanbod" }} secondary={{ label: "Bekijk de agenda", href: "/agenda" }} />
     <section className="section" id="aanbod"><Container>
       <div className="section-heading"><div><p className="section-index">Het aanbod van Lumina</p><Heading>Wat wil jij doen?</Heading></div></div>
       <div className="program-grid program-grid--editorial">{programs.map((program, index) => <ProgramCard key={program.slug} program={program} index={index} />)}</div>

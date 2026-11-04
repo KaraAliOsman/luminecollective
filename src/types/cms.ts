@@ -13,7 +13,15 @@ export type NavigationItem = {
   href: string;
 };
 
+type HomeLink = { label?: string; href?: string };
+type HomeItem = { _key?: string; title?: string; text?: string };
+
 export type HomeSection =
+  | { _key?: string; _type: "homeText"; eyebrow?: string; title?: string; accent?: string; text?: string; link?: HomeLink; tone?: string; spacing?: string }
+  | { _key?: string; _type: "homeStory"; eyebrow?: string; title?: string; accent?: string; text?: string; image?: SanityImageLike; link?: HomeLink }
+  | { _key?: string; _type: "homeQuote"; eyebrow?: string; text?: string; accent?: string; attribution?: string; link?: HomeLink; tone?: string }
+  | { _key?: string; _type: "homeSteps"; eyebrow?: string; title?: string; accent?: string; items?: HomeItem[] }
+  | { _key?: string; _type: "homeFaq"; eyebrow?: string; title?: string; accent?: string; items?: HomeItem[]; link?: HomeLink }
   | { _key?: string; _type: "homeManifesto"; eyebrow?: string; title?: string; accent?: string; items?: Array<{ _key?: string; title?: string; text?: string }> }
   | { _key?: string; _type: "homePrograms"; eyebrow?: string; title?: string; accent?: string; intro?: string; limit?: number; footerPrompt?: string; linkLabel?: string }
   | { _key?: string; _type: "homeEvent"; eyebrow?: string; badge?: string; buttonLabel?: string }

@@ -142,6 +142,11 @@ export const pageSchema = defineType({
       hidden: ({ document }) => document?.pageKey !== "home",
       description: "Voeg secties toe, verwijder ze of sleep ze in een andere volgorde.",
       of: [
+        { type: "homeText" },
+        { type: "homeStory" },
+        { type: "homeQuote" },
+        { type: "homeSteps" },
+        { type: "homeFaq" },
         { type: "homeManifesto" },
         { type: "homePrograms" },
         { type: "homeEvent" },

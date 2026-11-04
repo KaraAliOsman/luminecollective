@@ -10,21 +10,22 @@ type PageHeroProps = {
   visual: VisualPlaceholder; image?: SanityImageLike;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string };
+  tone?: "roos" | "wijn" | "blad" | "perzik" | "mint";
 };
 
-export function PageHero({ eyebrow, title, body, visual, image, primary, secondary }: PageHeroProps) {
-  const isGroupPortrait = !image?.asset && visual.isGroupPortrait;
-  return <section className={`subpage-hero${isGroupPortrait ? " subpage-hero--group" : ""}`}>
+export function PageHero({ title, body, visual, image, primary, secondary, tone = "roos" }: PageHeroProps) {
+  return <section className={`subpage-hero tone-${tone}`}>
     <CMSImage className="subpage-hero__visual" fallback={visual} image={image} priority sizes="100vw" />
     <Container>
       <div className="subpage-hero__copy">
-        <p className="section-index">{eyebrow}</p>
+        <div>
         <h1>{title}</h1>
         <p className="subpage-hero__intro">{body}</p>
         {(primary || secondary) && <div className="subpage-hero__actions">
-          {primary && <Button href={primary.href} variant="light">{primary.label}<ArrowRight size={17} aria-hidden="true" /></Button>}
+          {primary && <Button href={primary.href}>{primary.label}<ArrowRight size={17} aria-hidden="true" /></Button>}
           {secondary && <Button href={secondary.href} variant="outlineOnDark">{secondary.label}</Button>}
         </div>}
+        </div>
       </div>
     </Container>
   </section>;

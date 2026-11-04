@@ -246,6 +246,15 @@ function fallbackSettings(): SiteSettings {
   };
 }
 
+/** Lumina no longer names a home town; older published copy may still do so until an editor updates it. */
+function withoutRetiredCity(sections?: PageDisplay["homeSections"]) {
+  if (!sections) return sections;
+  const cleaned = JSON.stringify(sections)
+    .replaceAll("Vanuit Tilburg brengt Lumina", "Lumina brengt")
+    .replaceAll("We werken vanuit Tilburg en staan open", "We staan open");
+  return JSON.parse(cleaned) as PageDisplay["homeSections"];
+}
+
 function normalizePage(page: RawPage): PageDisplay | null {
   if (!page.pageKey || !page.heroTitle || !page.heroText) return null;
   return {
@@ -264,7 +273,7 @@ function normalizePage(page: RawPage): PageDisplay | null {
     heroBadge: page.heroBadge,
     heroCaption: page.heroCaption,
     heroTicker: page.heroTicker?.filter(Boolean),
-    homeSections: page.homeSections,
+    homeSections: withoutRetiredCity(page.homeSections),
     isFallback: false,
   };
 }
