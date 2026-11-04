@@ -18,9 +18,8 @@ Green comes only from photographs. Do not add another brand color.
 
 ## Type
 
-- Display: **Elsie** 400, self-hosted through `next/font`. Sizes from about 1.7rem up.
-- Text and small headings: **Hanken Grotesk** 400 to 600. Questions, labels and anything small use this face so readers with limited Dutch can read it easily.
-- Decorative ligatures stay off, except on "Collective" in the hero.
+- Display: **Jost** 500, self-hosted through `next/font`. The client rejected heavy grotesques and serifs.
+- Text and small headings: **Hanken Grotesk** 400 to 600. Questions and labels use this face for easy reading.
 
 ## Shapes
 
@@ -31,14 +30,18 @@ Green comes only from photographs. Do not add another brand color.
 
 ## Motion
 
-- The hero petal opens on load and two small petals follow.
+- The hero petal opens on load; on desktop two small petals follow.
 - In the quote section, photo petals drift in and gather as the visitor scrolls. This is the signature moment; do not repeat it elsewhere.
 - Headings and cards fade up once. Sections scroll normally: no pinned or stacked sections.
 - `prefers-reduced-motion` shows everything in its final state.
 
+## Phones
+
+The hero photo runs edge to edge above the words. Programmes become a list of four rows, with no sideways scrolling.
+
 ## Avoid
 
-Heavy condensed display type, two-tone headings outside the quote, small labels above headings, rounded section cards, numbered section markers, gimmicks borrowed from physical posters.
+Serif or heavy condensed display type, two-tone headings outside the quote, small labels above headings, rounded section cards, numbered section markers, gimmicks borrowed from physical posters.
 
 ## Sanity
 

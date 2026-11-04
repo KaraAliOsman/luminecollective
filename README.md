@@ -114,6 +114,6 @@ themes. Credits and source links are available at `/fotografie` and in
 [the image register](docs/preview-images.md). They are not photographs of Lumina
 participants. No unlicensed Shutterstock previews or watermarked assets are used.
 
-Fonts are self-hosted through `next/font`: Elsie and Hanken Grotesk.
+Fonts are self-hosted through `next/font`: Jost and Hanken Grotesk.
 Analytics remain off while `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`
 are empty. Enabling either requires a rebuild and visitor consent.

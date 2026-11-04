@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Elsie, Hanken_Grotesk } from "next/font/google";
+import { Hanken_Grotesk, Jost } from "next/font/google";
 
 import { AnalyticsScripts, CookieBanner } from "@/components/global/Analytics";
 import { PosterMotion } from "@/components/global/PosterMotion";
@@ -24,11 +24,10 @@ const sans = Hanken_Grotesk({
   display: "swap",
 });
 
-const display = Elsie({
+const display = Jost({
   subsets: ["latin", "latin-ext"],
   variable: "--font-display",
   display: "swap",
-  weight: ["400", "900"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
