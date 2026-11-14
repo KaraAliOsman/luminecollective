@@ -6,15 +6,17 @@ Lumina's visual world is **De Bloem**: small acts, shown as photo petals, gather
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--roos` | `#d8285f` | Hero, quote, closing and header action |
-| `--roos-deep` | `#b01f4d` | Small accent text on light grounds |
-| `--wijn` | `#4a0d2b` | Headings on light grounds, dark sections, footer, primary button on light |
-| `--blush` | `#fdeef1` | Quiet alternating sections and panels |
+| `--poeder` | `#f4e3dc` | Hero, quote, closing and call-to-action grounds |
+| `--roos` | `#a8604a` | Rose gold from the logo: header action, step numbers, small accents |
+| `--roos-deep` | `#96513d` | Small rose gold text on light grounds |
+| `--rosegoud-licht` | `#e8bba6` | Rose gold on plum: footer motto, menu highlights |
+| `--wijn` | `#4a1f2e` | Plum ink for headings and primary buttons, dark sections, footer |
+| `--blush` | `#fbf3ef` | Quiet alternating sections and panels |
 | `--ink` | `#24111b` | Body text |
 | `--muted` | `#6b5660` | Secondary text |
-| White | `#ffffff` | Main reading ground, primary button on roos and wijn |
+| White | `#ffffff` | Main reading ground |
 
-Green comes only from photographs. Do not add another brand color.
+Saturated pink was retired on 2026-11-14 because it clashed with the rose gold logo. Rose gold stays small; grounds stay powder, white or plum. Green comes only from photographs. Do not add another brand color.
 
 ## Type
 
